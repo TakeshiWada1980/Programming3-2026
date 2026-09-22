@@ -1,0 +1,14 @@
+.vscode
+.claude
+.agents
+
+package.json
+
+docs/balloon-demo.html
+source/balloon-demo.md
+
+CLAUDE.md
+AGENTS.md
+
+tmp/
+local/

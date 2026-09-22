@@ -1,0 +1,1257 @@
+html {
+  font-family:
+    "M PLUS Rounded 1c",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Helvetica,
+    Arial,
+    sans-serif,
+    "Apple Color Emoji",
+    "Segoe UI Emoji",
+    "Segoe UI Symbol";
+
+  /* --- 本文 --- */
+  --main-foreground: #24292e;
+  --main-background: #ebebeb;
+  --main-theme-color: #0366d6;
+  --main-theme-lt-color: #47a4f5;
+
+  /* --- プログラムコード --- */
+  --code-pg-foreground: #24292e; /* インラインcode・ハイライトブロック 文字色 */
+  --code-pg-background: #ebebeb; /* インラインcode・ハイライトブロック 背景色 */
+  --code-quote-background: #f6f8fa; /* 引用内インラインcode 背景色 */
+  --code-ln-foreground: #a8a8a8; /* 行番号 */
+  --code-out-foreground: #ebebeb; /* 出力ブロック 文字色 */
+  --code-out-background: #012456; /* 出力ブロック 背景色 */
+
+  /* --- マスク（フリップ） --- */
+  --main-masked-foreground: #888888; /* アイコン色（閉時） */
+  --main-masked-background: #ebebeb; /* 枠線色（開時） */
+  --main-masked-bordercolor: #fff57c; /* ピル背景・枠線色（閉時） */
+}
+
+/* ------- 共通 ------- */
+
+.markdown-body {
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  color: var(--main-foreground);
+  line-height: 1.5;
+  word-wrap: break-word;
+  box-sizing: border-box;
+  min-width: 200px;
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 0 45px;
+}
+
+mjx-container {
+  font-size: 100% !important;
+}
+
+@media (max-width: 767px) {
+  .markdown-body {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  mjx-container {
+    font-size: 85% !important;
+  }
+}
+
+main.markdown-body p {
+  margin-block-start: 0.7em;
+  margin-block-end: 0.7em;
+  text-indent: 0.7em;
+}
+
+/* ------- ヘッダーとフッター ------- */
+header.markdown-body p {
+  text-align: right;
+  line-height: 1;
+  margin-block-start: 0.3em;
+  margin-block-end: 0.3em;
+}
+
+footer.markdown-body p {
+  text-align: right;
+}
+
+/* ------- 水平線 ------- */
+.markdown-body hr {
+  margin: 1.5em 0em;
+}
+
+/* ------- 強調 ------- */
+
+.markdown-body strong {
+  color: var(--main-theme-color);
+}
+
+.markdown-body em {
+  font-style: normal;
+  font-weight: normal;
+  padding: 0 0.4em;
+  color: var(--main-background);
+  border-radius: 5px;
+  border-bottom: 0;
+  background-color: var(--main-theme-color);
+}
+
+.markdown-body u {
+  text-decoration: none;
+  background: linear-gradient(transparent 70%, rgba(184, 227, 255, 0.7) 30%);
+}
+
+/* ------- 見出し ------- */
+
+.markdown-body h1 {
+  position: relative;
+  padding: 0 0 0 1.6em;
+  border-bottom: 2px solid;
+  color: var(--main-theme-color);
+}
+
+.markdown-body h1::before {
+  position: absolute;
+  left: 0;
+  font-family: "Font Awesome 7 Free";
+  content: "\f5fc";
+  color: var(--main-theme-color);
+}
+
+.markdown-body h2 {
+  border-bottom: 2px solid;
+}
+
+.markdown-body h3 {
+  border-bottom: 2px solid;
+  padding-left: 0.25em;
+  font-size: 1.3em;
+}
+
+.markdown-body h3 span {
+  display: none;
+}
+
+h1 .header-section-number,
+h2 .header-section-number {
+  padding-right: 0.5em;
+}
+
+/* ------- 表 ------- */
+
+.markdown-body table {
+  border-collapse: collapse;
+  border: 1.5px solid #312e81;
+  margin: 0.7em 0.5em;
+}
+
+.markdown-body table th,
+.markdown-body table td {
+  background-color: #ffffff;
+  border: 1px solid #312e81;
+  padding: 0em 0.5em;
+}
+
+.markdown-body table th {
+  color: #1e40af;
+  background-color: #eef2ff;
+  border-bottom: 1.5px solid #312e81;
+  padding: 0.25em 0.5em;
+}
+
+/* ------- 図 ------- */
+
+.markdown-body figure {
+  text-align: center;
+  margin-inline-start: 0;
+  margin-inline-end: 0;
+}
+
+.markdown-body figcaption {
+  display: none;
+}
+
+.markdown-body figure img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* ------- リンク ------- */
+
+.markdown-body a {
+  font-weight: bold;
+  text-decoration: none;
+  color: var(--main-theme-color);
+  margin: 0;
+  cursor: pointer;
+  border-bottom: 1.5px dashed;
+  transition: background-color 0.5s;
+}
+
+.markdown-body a:hover {
+  color: var(--main-theme-lt-color);
+}
+
+/* ------- Awesome icon ------- */
+
+.markdown-body i[class^="fa-"] {
+  margin-left: -0.1em;
+  margin-right: 0.5em;
+}
+
+.markdown-body i.fa-flip-horizontal {
+  margin-left: 0.55em;
+  margin-right: -0.1em;
+}
+
+.markdown-body p i[class^="fa-"] {
+  margin-left: -0.4em;
+  margin-right: 0.6em;
+}
+
+.markdown-body p i.fa-flip-horizontal {
+  margin-left: 0.7em;
+  margin-right: -0.4em;
+}
+
+/* ------- 引用 ------- */
+
+.markdown-body blockquote {
+  margin-left: 1em;
+  margin-right: 1em;
+  padding: 0 0 0 1em;
+  color: #6a737d;
+  border-left: 0.25em solid #dfe2e5;
+  margin-block-start: 0.7em;
+  margin-block-end: 0.7em;
+}
+
+.markdown-body blockquote p {
+  text-indent: 0;
+}
+
+.markdown-body blockquote u {
+  background: none;
+  border-bottom: 2px solid;
+  border-color: #d9d9d9;
+}
+
+.markdown-body blockquote > :last-child {
+  margin-bottom: 0;
+}
+.markdown-body blockquote > :first-child {
+  margin-top: 0;
+}
+
+/* ------- プログラムコード ------- */
+
+div.sourceCode {
+  position: relative;
+  overflow-x: auto;
+  background-color: var(--code-pg-background);
+  border-radius: 10px;
+  margin-block-start: 0.7em;
+  margin-block-end: 0.7em;
+  counter-reset: pg-line;
+}
+
+div.sourceCode[data-caption]::before {
+  font-family:
+    "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
+    Courier, monospace;
+  display: block;
+  padding-left: 20px;
+  background: var(--code-pg-foreground);
+  color: var(--code-pg-background);
+  content: attr(data-caption);
+}
+
+/* ------- プログラムコード::行番号 ------- */
+
+.markdown-body code > span > a {
+  margin-left: 0;
+  margin-right: 5px;
+}
+
+.numberLines code > span > a {
+  color: var(--code-ln-foreground);
+  margin-left: 0;
+  margin-right: 10px;
+  font-weight: normal;
+  border: none;
+  cursor: auto;
+}
+
+.numberLines code > span > a::before {
+  counter-increment: pg-line;
+  content: counter(pg-line, decimal-leading-zero);
+}
+
+@media (max-width: 767px) {
+  .markdown-body code > span > a {
+    display: none;
+  }
+}
+
+/* ------- プログラムコード::本体 ------- */
+
+.markdown-body pre {
+  background: var(--code-out-background);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 12px;
+  padding-right: 16px;
+  margin: 0;
+  overflow: auto;
+  line-height: 1.2;
+  word-wrap: normal;
+  border-radius: 10px;
+}
+
+.markdown-body pre.sourceCode {
+  background-color: transparent;
+  border-radius: 0;
+}
+
+main.markdown-body > pre {
+  margin-block-start: 0.7em;
+  margin-block-end: 0.7em;
+}
+
+div.note > pre {
+  margin-block-start: 0.7em;
+  margin-block-end: 0.7em;
+}
+
+/* ------- プログラムコード::文字 ------- */
+
+.markdown-body code {
+  font-weight: normal;
+  font-family:
+    "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
+    Courier, monospace;
+  font-variant-ligatures: none;
+  padding: 0.15em 0.4em;
+  font-size: 100%;
+  word-break: normal;
+  color: var(--code-pg-foreground);
+  background-color: var(--code-pg-background);
+  border-radius: 5px;
+  white-space: pre-wrap;
+  overflow-wrap: break-word;
+}
+
+.markdown-body blockquote code {
+  background-color: var(--code-quote-background);
+}
+
+.markdown-body pre code {
+  color: var(--code-pg-background);
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
+}
+
+.markdown-body pre.sourceCode code {
+  color: var(--code-pg-foreground);
+}
+
+/* ------- マスク ------- */
+
+.markdown-body span.masked {
+  font-weight: bold;
+  color: transparent;
+  background-color: var(--main-masked-bordercolor);
+  padding: 0.05em 0.5em 0.05em 0.3em;
+  border-radius: 8px;
+  border: solid 2px var(--main-masked-bordercolor);
+  cursor: pointer;
+}
+
+.markdown-body span.masked::before {
+  font-family: "Font Awesome 7 Free";
+  content: "\f08e";
+  margin-right: 0.4em;
+  color: var(--main-masked-foreground);
+}
+
+.markdown-body span.masked.open {
+  color: var(--main-theme-color);
+  background-color: transparent;
+  border: solid 2px var(--main-masked-background);
+}
+
+.markdown-body span.masked.open::before {
+  color: #bbbbbb;
+  background-color: transparent;
+}
+
+.markdown-body .masked code {
+  color: transparent;
+  background-color: transparent;
+  padding: 0.05em 0.4em;
+}
+
+.markdown-body .masked.open code {
+  color: var(--code-pg-foreground);
+}
+
+/* ------- 番号付き箇条書き ------- */
+
+.markdown-body ol li::marker {
+  color: var(--main-theme-color);
+  font-weight: bold;
+}
+
+.markdown-body ol li {
+  position: relative;
+  padding: 0.35em 0 0 0;
+  margin: 0;
+  text-indent: 0.3em;
+}
+
+/* ------- 箇条書き ------- */
+
+.markdown-body ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 0.7em 0;
+}
+
+.markdown-body li > ul {
+  margin: 0 0 0.7em -0.5em;
+  padding: 0;
+}
+
+.markdown-body li > ol {
+  margin: 0 0 0.7em 0;
+  padding-left: 1.5em;
+}
+
+/* ol > li 内の ul > li：記号と本文の距離を専用調整 */
+.markdown-body ol > li > ul > li {
+  text-indent: 0;
+  padding-left: 1.4em;
+}
+
+.markdown-body ol > li > ul > li::before {
+  left: 0;
+  width: 1em;
+  text-align: center;
+}
+
+.markdown-body ul p {
+  margin-block-start: 0.2em;
+  margin-block-end: 0.2em;
+}
+
+/* ul の直接の子 li のみに適用（子孫セレクタによる ol > li への漏れを防ぐ） */
+.markdown-body ul > li {
+  position: relative;
+  padding: 0.35em 0 0 1.3em;
+  margin: 0;
+  text-indent: 0.5em;
+}
+
+.markdown-body ul > li::before {
+  position: absolute;
+  left: 0.1em;
+  font-family: "Font Awesome 7 Free";
+  font-weight: 900;
+  content: "\f0da";
+  color: var(--main-theme-lt-color);
+}
+
+.markdown-body ul > li > ul > li::before {
+  padding-top: 3px;
+  font-size: 85%;
+}
+
+/* ------- 吹き出し ------- */
+
+.markdown-body div.balloon {
+  --balloon-border-color: #5b98ff;
+  --balloon-accent-color: #d9e7ff;
+  --balloon-shadow-color: rgba(91, 152, 255, 0.12);
+  display: grid;
+  grid-template-columns: minmax(96px, 128px) minmax(0, 1fr);
+  gap: 0;
+  align-items: start;
+  margin: 1.2em 0 1.4em;
+}
+
+.markdown-body div.balloon.balloon-no-avatar {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.markdown-body .balloon-figure {
+  align-self: start;
+  width: min(100%, 128px);
+}
+
+.markdown-body .balloon-avatar {
+  width: 100%;
+  overflow: hidden;
+  /* border: 2px solid var(--balloon-border-color); */
+  border-radius: 20px;
+  /* background: linear-gradient(180deg, #ffffff 0%, #f8fbff 100%);
+  box-shadow: 0 10px 24px var(--balloon-shadow-color); */
+}
+
+.markdown-body .balloon-avatar img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.markdown-body .balloon-body {
+  --balloon-stroke-width: 2px;
+  --balloon-radius: 12px;
+  --balloon-tail-width: 20px;
+  --balloon-tail-top: 18px;
+  --balloon-tail-base: 20px;
+  --balloon-tail-tip-inset: 3px;
+  position: relative;
+  min-width: 0;
+  width: 97%;
+  max-width: none;
+  padding-left: var(--balloon-tail-width);
+  padding-top: 0;
+}
+
+@media (max-width: 767px) {
+  .markdown-body .balloon-body {
+    width: 92%;
+  }
+}
+
+.markdown-body .balloon-frame {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  overflow: visible;
+  pointer-events: none;
+  /* filter: drop-shadow(0 10px 24px var(--balloon-shadow-color)); */
+  z-index: 0;
+}
+
+.markdown-body .balloon-frame-shape {
+  fill: #ffffff;
+  stroke: var(--balloon-border-color);
+  stroke-width: var(--balloon-stroke-width);
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  shape-rendering: geometricPrecision;
+}
+
+.markdown-body .balloon-bubble {
+  position: relative;
+  min-height: 68px;
+  z-index: 1;
+}
+
+.markdown-body .balloon-no-avatar .balloon-body {
+  padding-left: 0;
+}
+
+.markdown-body .balloon-no-avatar .balloon-frame {
+  display: none;
+}
+
+.markdown-body .balloon-content {
+  padding: 0.85em 1.15em;
+}
+
+.markdown-body .balloon-content > :first-child {
+  margin-top: 0;
+}
+
+.markdown-body .balloon-content > :last-child {
+  margin-bottom: 0;
+}
+
+.markdown-body .balloon-content p {
+  margin-block-start: 0.45em;
+  margin-block-end: 0.45em;
+  text-indent: 0;
+}
+
+.markdown-body .balloon-content ul,
+.markdown-body .balloon-content ol {
+  margin-bottom: 0;
+}
+
+.markdown-body div.balloon.tone-blue {
+  --balloon-border-color: #5b98ff;
+  --balloon-accent-color: #d9e7ff;
+  --balloon-shadow-color: rgba(91, 152, 255, 0.12);
+}
+
+.markdown-body div.balloon.tone-green {
+  --balloon-border-color: #3ca978;
+  --balloon-accent-color: #daf4e8;
+  --balloon-shadow-color: rgba(60, 169, 120, 0.12);
+}
+
+.markdown-body div.balloon.tone-orange {
+  --balloon-border-color: #ee8b41;
+  --balloon-accent-color: #ffe8d4;
+  --balloon-shadow-color: rgba(238, 139, 65, 0.14);
+}
+
+.markdown-body div.balloon.tone-yellow {
+  --balloon-border-color: #facc15;
+  --balloon-accent-color: #fef3c7;
+  --balloon-shadow-color: rgba(250, 204, 21, 0.14);
+}
+
+.markdown-body div.balloon.tone-pink {
+  --balloon-border-color: #e071a5;
+  --balloon-accent-color: #ffe1ee;
+  --balloon-shadow-color: rgba(224, 113, 165, 0.14);
+}
+
+.markdown-body div.balloon.tone-gray {
+  --balloon-border-color: #8895a7;
+  --balloon-accent-color: #ecf0f5;
+  --balloon-shadow-color: rgba(136, 149, 167, 0.14);
+}
+
+@media (max-width: 767px) {
+  .markdown-body div.balloon {
+    grid-template-columns: minmax(72px, 96px) minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .markdown-body .balloon-figure {
+    width: min(100%, 96px);
+  }
+
+  .markdown-body .balloon-avatar {
+    border-radius: 11px;
+  }
+
+  .markdown-body .balloon-body {
+    --balloon-radius: 15px;
+    --balloon-tail-width: 22px;
+    --balloon-tail-top: 16px;
+    --balloon-tail-base: 18px;
+    --balloon-tail-tip-inset: 2px;
+    max-width: 100%;
+    padding-top: 0;
+  }
+
+  .markdown-body .balloon-bubble {
+    min-height: 60px;
+  }
+
+  .markdown-body .balloon-content {
+    padding: 0.75em 0.95em;
+  }
+}
+
+/* ------- ノート共通 ------- */
+
+.markdown-body div.note {
+  border-radius: 10px;
+  padding: 0 15px;
+  margin: 0.9em 0;
+}
+
+.note p:first-child::before {
+  font-family: "Font Awesome 7 Free";
+  font-weight: 900;
+  margin-right: 0.5em;
+}
+
+.note p:first-child {
+  text-indent: 0;
+}
+
+/* ------- ノート: type-caution（注意事項）------- */
+/*
+ * Tailwind rose カラー  https://tailwindcss.com/docs/colors
+ *   エリア背景    rose-100  #ffe4e6
+ *   枠線          rose-300  #fda4af
+ *   em 背景       rose-400  #fb7185
+ *   アクセント    rose-600  #e11d48  ← アイコン・strong・link・マスクアイコン
+ *   link hover    rose-700  #be123c
+ *   code 背景     rose-200  #fecdd3 / code 文字  rose-700  #be123c
+ */
+
+/* エリア */
+.markdown-body div.type-caution {
+  border: 2px solid #fda4af; /* rose-300 */
+  background: #ffe4e6; /* rose-100 */
+}
+
+/* アイコン（段落先頭） */
+.type-caution p:first-child::before {
+  content: "\f071";
+  color: #e11d48; /* rose-600 */
+}
+
+/* 強調文字 **text** */
+.type-caution strong {
+  color: #e11d48; /* rose-600 */
+}
+
+/* 大強調文字 ***text***（em のピル背景）
+   yellow と異なりピル背景が濃いため、ピル内テキストは白で統一 */
+.type-caution em {
+  background-color: #fb7185;
+} /* rose-400 */
+.type-caution em strong,
+.type-caution strong em {
+  color: #ffffff;
+}
+
+/* インラインcode */
+.type-caution code {
+  background: #fecdd3; /* rose-200 */
+  color: #be123c; /* rose-700 */
+}
+
+/* リンク */
+.type-caution a {
+  color: #e11d48;
+} /* rose-600 */
+.type-caution a:hover {
+  color: #be123c;
+} /* rose-700 */
+
+/* マスク（閉）: ピル背景・枠線・アイコン */
+.type-caution span.masked {
+  background-color: #fda4af; /* rose-300 */
+  border-color: #fda4af; /* rose-300 */
+}
+.type-caution span.masked::before {
+  color: #e11d48;
+} /* rose-600 */
+
+/* マスク（開）: 文字色・枠線・アイコン */
+.type-caution span.masked.open {
+  color: #e11d48;
+  border-color: #fecdd3;
+} /* rose-600 / rose-200 */
+.type-caution span.masked.open::before {
+  color: #fda4af;
+} /* rose-300 */
+
+/* blockquote 左ボーダー */
+.type-caution blockquote {
+  border-left-color: #fda4af;
+} /* rose-300 */
+
+/* u（下線）: 通常は gradient ハイライト、blockquote 内は border-bottom */
+.type-caution u {
+  background: linear-gradient(transparent 72%, #fecdd3 28%);
+} /* rose-200 */
+.type-caution blockquote u {
+  border-color: #fda4af;
+} /* rose-300 */
+
+/* ------- ノート: type-tips（補足・ヒント）------- */
+/*
+ * Tailwind yellow カラー  https://tailwindcss.com/docs/colors
+ *   エリア背景    yellow-100  #fef9c3
+ *   枠線          yellow-400  #facc15
+ *   em 背景       yellow-400  #facc15 / em 文字  yellow-900  #713f12
+ *   アクセント    yellow-700  #a16207  ← アイコン・strong・link・マスクアイコン
+ *   link hover    yellow-800  #854d0e
+ *   code 背景     yellow-200  #fef08a / code 文字  yellow-800  #854d0e
+ *   ※ yellow 系はピル背景が淡いため、em 内テキストは白ではなく yellow-900 を使用
+ */
+
+/* エリア */
+.markdown-body div.type-tips {
+  border: 2px solid #facc15; /* yellow-400 */
+  background: #fef9c3; /* yellow-100 */
+}
+
+/* アイコン */
+.type-tips p:first-child::before {
+  content: "\f5ad";
+  color: #a16207; /* yellow-700 */
+}
+
+/* 強調文字 */
+.type-tips strong {
+  color: #a16207; /* yellow-700 */
+}
+
+/* 大強調文字（yellow ピルは白文字だとコントラスト不足のため yellow-900 を使用） */
+.type-tips em {
+  background-color: #facc15;
+  color: #713f12;
+} /* yellow-400 / yellow-900 */
+.type-tips em strong,
+.type-tips strong em {
+  color: #713f12;
+} /* yellow-900 */
+
+/* インラインcode */
+.type-tips code {
+  background: #fef08a; /* yellow-200 */
+  color: #854d0e; /* yellow-800 */
+}
+
+/* リンク */
+.type-tips a {
+  color: #a16207;
+} /* yellow-700 */
+.type-tips a:hover {
+  color: #854d0e;
+} /* yellow-800 */
+
+/* マスク（閉） */
+.type-tips span.masked {
+  background-color: #fde047; /* yellow-300 */
+  border-color: #fde047; /* yellow-300 */
+}
+.type-tips span.masked::before {
+  color: #a16207;
+} /* yellow-700 */
+
+/* マスク（開） */
+.type-tips span.masked.open {
+  color: #a16207;
+  border-color: #fef08a;
+} /* yellow-700 / yellow-200 */
+.type-tips span.masked.open::before {
+  color: #fde047;
+} /* yellow-300 */
+
+/* blockquote 左ボーダー */
+.type-tips blockquote {
+  border-left-color: #facc15;
+} /* yellow-400 */
+
+/* u（下線） */
+.type-tips u {
+  background: linear-gradient(transparent 72%, #fef08a 28%);
+} /* yellow-200 */
+.type-tips blockquote u {
+  border-color: #facc15;
+} /* yellow-400 */
+
+/* リスト記号 */
+.type-tips ul li::before {
+  color: #a16207;
+} /* yellow-700 */
+
+/* ------- ノート: type-senior（上級者向け）------- */
+/*
+ * Tailwind purple カラー  https://tailwindcss.com/docs/colors
+ *   エリア背景    purple-100  #f3e8ff
+ *   枠線          purple-300  #d8b4fe
+ *   em 背景       purple-400  #c084fc
+ *   アクセント    purple-600  #9333ea  ← アイコン・strong・link・マスクアイコン
+ *   link hover    purple-700  #7e22ce
+ *   code 背景     purple-200  #e9d5ff / code 文字  purple-700  #7e22ce
+ */
+
+/* エリア */
+.markdown-body div.type-senior {
+  border: 2px solid #d8b4fe; /* purple-300 */
+  background: #f3e8ff; /* purple-100 */
+}
+
+/* アイコン */
+.type-senior p:first-child::before {
+  content: "\f6e2";
+  color: #9333ea; /* purple-600 */
+}
+
+/* 強調文字 */
+.type-senior strong {
+  color: #9333ea; /* purple-600 */
+}
+
+/* 大強調文字 */
+.type-senior em {
+  background-color: #c084fc;
+} /* purple-400 */
+.type-senior em strong,
+.type-senior strong em {
+  color: #ffffff;
+}
+
+/* インラインcode */
+.type-senior code {
+  background: #e9d5ff; /* purple-200 */
+  color: #7e22ce; /* purple-700 */
+}
+
+/* リンク */
+.type-senior a {
+  color: #9333ea;
+} /* purple-600 */
+.type-senior a:hover {
+  color: #7e22ce;
+} /* purple-700 */
+
+/* マスク（閉） */
+.type-senior span.masked {
+  background-color: #d8b4fe; /* purple-300 */
+  border-color: #d8b4fe; /* purple-300 */
+}
+.type-senior span.masked::before {
+  color: #9333ea;
+} /* purple-600 */
+
+/* マスク（開） */
+.type-senior span.masked.open {
+  color: #9333ea;
+  border-color: #e9d5ff;
+} /* purple-600 / purple-200 */
+.type-senior span.masked.open::before {
+  color: #d8b4fe;
+} /* purple-300 */
+
+/* blockquote 左ボーダー */
+.type-senior blockquote {
+  border-left-color: #d8b4fe;
+} /* purple-300 */
+
+/* u（下線） */
+.type-senior u {
+  background: linear-gradient(transparent 72%, #e9d5ff 28%);
+} /* purple-200 */
+.type-senior blockquote u {
+  border-color: #d8b4fe;
+} /* purple-300 */
+
+/* リスト記号 */
+.type-senior ul li::before {
+  color: #9333ea;
+} /* purple-600 */
+
+/* ------- コピーボタン ------- */
+
+.copy-btn {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 3px 8px;
+  font-size: 0.85em;
+  color: var(--code-pg-background);
+  opacity: 0.45;
+  transition:
+    opacity 0.2s,
+    color 0.2s;
+  z-index: 1;
+  line-height: 1.6;
+}
+
+.copy-btn:hover {
+  opacity: 1;
+}
+
+div.sourceCode:not([data-caption]) .copy-btn {
+  color: var(--code-pg-foreground);
+}
+
+/* ------- プログラムコードの装飾 ------- */
+
+/* キーワード: def, class, return, if, for, while, with, as, lambda, pass, yield... */
+code span.kw {
+  color: #0033b3;
+  font-weight: bold;
+}
+
+/* 制御フロー: if, elif, else, for, while, break, continue, return, try, except, finally, raise */
+code span.cf {
+  color: #316fa3;
+  font-weight: bold;
+}
+
+/* インポート: import, from */
+code span.im {
+  color: #7b36b0;
+  font-weight: bold;
+}
+
+/* 組み込み関数: print, len, range, isinstance, type, enumerate, str, int, float, list, dict, bool... */
+code span.bu {
+  color: #0070c1;
+}
+
+/* 関数名 */
+code span.fu {
+  color: #795e26;
+}
+
+/* 文字列 */
+code span.st {
+  color: #a31515;
+}
+
+/* 特殊文字列 (f-string の外側部分) */
+code span.ss {
+  color: #a31515;
+}
+
+/* 特殊文字 (f-string の {} 部分など) */
+code span.sc {
+  color: #24292e;
+  font-weight: bold;
+}
+
+/* Verbatim 文字列 */
+code span.vs {
+  color: #a31515;
+}
+
+/* 文字リテラル */
+code span.ch {
+  color: #a31515;
+}
+
+/* コメント */
+code span.co {
+  color: #6a9955;
+  font-style: italic;
+}
+
+/* ドキュメントコメント (docstring) */
+code span.do {
+  color: #6a9955;
+  font-style: italic;
+}
+
+/* アノテーション */
+code span.an {
+  color: #6a9955;
+}
+
+/* コメント変数 */
+code span.cv {
+  color: #6a9955;
+  font-style: italic;
+}
+
+/* 情報トークン */
+code span.in {
+  color: #6a9955;
+}
+
+/* 整数 */
+code span.dv {
+  color: #098900;
+}
+
+/* 小数 */
+code span.fl {
+  color: #098900;
+}
+
+/* 基数表記 (0xFF, 0b1010, 0o77) */
+code span.bn {
+  color: #098900;
+}
+
+/* 変数 */
+code span.va {
+  color: #001080;
+}
+
+/* 定数 (True, False, None) */
+code span.cn {
+  color: #0033b3;
+}
+
+/* データ型 */
+code span.dt {
+  color: #267f99;
+  font-weight: bold;
+}
+
+/* 演算子 */
+code span.op {
+  color: #383a42;
+  font-weight: bold;
+}
+
+/* 属性 */
+code span.at {
+  color: #7b36b0;
+}
+
+/* プリプロセッサ */
+code span.pp {
+  color: #7b36b0;
+}
+
+/* 拡張 */
+code span.ex {
+  color: #0070c1;
+}
+
+/* エラートークン */
+code span.er {
+  color: #cd3131;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+/* 警告トークン */
+code span.wa {
+  color: #af5f00;
+  font-style: italic;
+}
+
+/* アラート */
+code span.al {
+  color: #cd3131;
+  font-weight: bold;
+}
+
+/* その他 */
+code span.ot {
+  color: #24292e;
+}
+
+/* ------- ナビゲーション ------- */
+
+#g-nav {
+  position: fixed;
+  z-index: 999;
+  top: -9999px;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  transition: all 0.4s;
+}
+
+#g-nav.panelactive {
+  top: 0;
+}
+
+#g-nav.panelactive #g-nav-list {
+  z-index: 999;
+  width: 100%;
+  height: 100vh;
+  overflow: auto;
+}
+
+#g-nav li a {
+  color: #cccccc;
+  text-decoration: none;
+  padding: 8px;
+  font-weight: bold;
+  display: block;
+}
+
+#g-nav li a:hover {
+  color: white;
+  text-decoration: underline;
+}
+
+#g-nav ul {
+  margin-left: 0;
+  padding-left: 0;
+}
+
+#g-nav li {
+  list-style: none;
+  text-align: center;
+}
+
+#g-nav ul > li {
+  font-size: 24px;
+}
+
+#g-nav ul > li > ul > li {
+  font-size: 16px;
+}
+
+/* ------- ナビゲーションボタン ------- */
+
+.openbtn {
+  position: fixed;
+  z-index: 9999;
+  top: 10px;
+  right: 10px;
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  background: rgba(48, 104, 215, 0.8);
+  border-radius: 5px;
+}
+
+.openbtn span {
+  display: inline-block;
+  transition: all 0.4s;
+  position: absolute;
+  left: 14px;
+  height: 2px;
+  border-radius: 5px;
+  background: white;
+  width: 45%;
+}
+
+.openbtn span:nth-of-type(1) {
+  top: 13px;
+}
+
+.openbtn span:nth-of-type(2) {
+  top: 19px;
+}
+
+.openbtn span:nth-of-type(3) {
+  top: 25px;
+}
+
+.openbtn span:nth-of-type(3)::after {
+  content: "Index";
+  position: absolute;
+  top: 5px;
+  left: -4px;
+  color: #fff;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+}
+
+.openbtn.active span:nth-of-type(1) {
+  top: 14px;
+  left: 18px;
+  transform: translateY(6px) rotate(-45deg);
+  width: 30%;
+}
+
+.openbtn.active span:nth-of-type(2) {
+  opacity: 0;
+}
+
+.openbtn.active span:nth-of-type(3) {
+  top: 26px;
+  left: 18px;
+  transform: translateY(-6px) rotate(45deg);
+  width: 30%;
+}
+
+.openbtn.active span:nth-of-type(3)::after {
+  content: "Close";
+  transform: translateY(0) rotate(-45deg);
+  top: 5px;
+  left: 4px;
+}
+
+/* ------- 印刷時 ------- */
+
+@media print {
+  #g-nav,
+  .openbtn {
+    display: none;
+  }
+}

@@ -1,0 +1,13 @@
+from: markdown+fenced_divs
+to: html
+template: template.html
+html-math-method:
+  method: mathjax
+number-sections: true
+table-of-contents: true
+toc-depth: 2
+columns: 100
+standalone: true
+shift-heading-level-by: -1
+variables:
+  base-url: "https://takeshiwada1980.github.io/Programming3-2026/"
