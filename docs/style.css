@@ -371,6 +371,11 @@ div.note > pre {
   cursor: pointer;
 }
 
+.markdown-body span.masked:focus-visible {
+  outline: 3px solid var(--main-theme-color);
+  outline-offset: 2px;
+}
+
 .markdown-body span.masked::before {
   font-family: "Font Awesome 7 Free";
   content: "\f08e";
@@ -956,6 +961,12 @@ div.note > pre {
   opacity: 1;
 }
 
+.copy-btn:focus-visible {
+  opacity: 1;
+  outline: 3px solid currentColor;
+  outline-offset: 1px;
+}
+
 div.sourceCode:not([data-caption]) .copy-btn {
   color: var(--code-pg-foreground);
 }
@@ -1125,16 +1136,28 @@ code span.ot {
 #g-nav {
   position: fixed;
   z-index: 999;
-  top: -9999px;
+  top: 0;
   left: 0;
   width: 100%;
   height: 100vh;
   background: rgba(0, 0, 0, 0.8);
-  transition: all 0.4s;
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+  transition:
+    opacity 0.4s,
+    visibility 0s linear 0.4s;
 }
 
 #g-nav.panelactive {
-  top: 0;
+  visibility: visible;
+  opacity: 1;
+  pointer-events: auto;
+  transition-delay: 0s;
+}
+
+body.nav-open {
+  overflow: hidden;
 }
 
 #g-nav.panelactive #g-nav-list {
@@ -1186,7 +1209,15 @@ code span.ot {
   width: 50px;
   height: 50px;
   background: rgba(48, 104, 215, 0.8);
+  border: 0;
   border-radius: 5px;
+  padding: 0;
+  appearance: none;
+}
+
+.openbtn:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
 }
 
 .openbtn span {
@@ -1245,6 +1276,14 @@ code span.ot {
   transform: translateY(0) rotate(-45deg);
   top: 5px;
   left: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #g-nav,
+  .openbtn span,
+  .copy-btn {
+    transition-duration: 0.01ms;
+  }
 }
 
 /* ------- 印刷時 ------- */
