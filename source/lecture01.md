@@ -217,7 +217,7 @@ Reactは、ウェブアプリの開発者に対しては **高度な再利用性
 <div class="note type-tips">
 **トランスパイラによる「TypeScript」から「JavaScript」への変換**
 
-`prac00.ts` という TypeScriptプログラム があるとき、`tsc --target es6 prac00.ts` というコマンドで `prac00.js` という JavaScriptプログラム に変換できます。今回の授業後半で開発環境が構築できたら、実際にトランスパイルをしてもらいます。
+`prac00.ts` という TypeScriptプログラム は、TypeScriptコンパイラによって `prac00.js` という JavaScriptプログラム に変換できます。今回の授業後半では、プロジェクトに設定ファイルを用意して `npx tsc` で実際にトランスパイルをしてもらいます。
 
 ```typescript{.numberLines caption="変換前: prac00.ts（TypeScriptプログラム）"}
 function greetAndCalculate(name: string, a: number, b: number): string {
@@ -408,282 +408,202 @@ app.listen(port, () => {
 
 ## Node.js のインストール
 
-理由はさておき、**React や Next.js を使用したウェブウェブアプリの開発 (TyepScript から JavaScriptへの変換を含む) には Node.js 環境が事実上必須である** ことが分かったと思います。
+ここから、TypeScript の基礎学習と、自動テストのための **開発環境** を構築します。Windows PC と VSCode を使用します。環境構築も、この授業で身につけてほしいスキルのひとつです。
 
-ここでは、Windows PC に Node.js をインストールする手順について示します。なお、この講義資料に記載するプログラムは `Node.js v24 (LTS)` で動作確認をしています。特段の理由がない限り `v24` のバージョンを使用してください。
+単に操作をまねるだけでなく、**「何のために」「どこに」「何を用意するか」** を考えながら進めてください。最初は詳しく説明しますが、徐々に「プロジェクトのルートで実行」「`src` にファイルを作成」のような指示から、自分で必要な操作を判断できるようになってほしいと思います。
 
-- v24 は、2025年10月28日から「Active LTS」に移行し、2028年4月30日 までサポートが予定されています。**LTS** は <span class="masked">long-term support</span> の略語で「長期サポート」を意味します。
-- 既に Node.js をPCにインストール済みの場合、`v20`、`v22` を引き続き利用しても問題ありません。
+### 授業で使用するバージョン
 
-なお、既に Node.js をインストール済みの場合、再インストールする必要はありません。
+この授業では **Node.js 24 系列 (LTS)** と **TypeScript 6.0 系列** を使用します。以下は、2026年9月22日にコマンドで動作確認した組合せです。まずは、この組合せで環境をそろえてください。
 
-### インストーラのダウンロード
+| ツール・パッケージ | バージョン | 主な役割 |
+| :--- | :--- | :--- |
+| Node.js | 24.21.0 | JavaScriptの実行環境 |
+| npm | 11.9.0 | パッケージの管理 |
+| TypeScript | 6.0.3 | 型チェック、JavaScriptへの変換 |
+| @types/node | 24.13.6 | Node.jsのAPIに関する型情報 |
+| tsx | 4.23.15 | TypeScriptの変換と実行、変更時の再実行 |
+| Vitest | 5.0.1 | 自動テストの実行 |
+| Vite | 8.3.0 | Vitestが内部で利用する変換・読み込みの仕組み |
 
-Node.js の公式ページ ([https://nodejs.org/en/download/prebuilt-installer](https://nodejs.org/en/download/prebuilt-installer)) から Node.js の ***v24*** をダウンロードしてインストールしてください。
+**LTS** は <span class="masked">Long-Term Support</span> の略語で「長期サポート」を意味します。Node.js の「いちばん大きなバージョン番号」と「最新のLTS」は同じとは限りません。[公式のリリース一覧](https://nodejs.org/en/about/previous-releases)で確認できます。
 
-![img](figs/01//nodejs_01.png)
+既にNode.jsを入れている場合も、次の手順でバージョンを確認してください。以前の授業や個人開発で使った環境を、そのまま今回の標準環境と考えないようにしましょう。
 
-2025年9月25日現在、Node.js v24 系列の最新リリースは `v24.8.0` です。もし、**より新しいマイナーバージョンが公開されている場合**は、そちらを利用してください。また、講義資料に記載されているバージョン番号を読み替えてください。
+### インストーラのダウンロードと実行
 
-### インストーラの実行
+[Node.jsの公式ダウンロードページ](https://nodejs.org/en/download)で **24 系列、Windows、使用するPCのCPUに対応するもの** を選び、Windows用インストーラ (`.msi`) をダウンロードしてください。一般的なIntel/AMDのPCでは `x64` を選びます。ARMのPCでは `ARM64` なので注意してください。
 
-ダウンロードしたインストーラ `node-v24.8.0-x64.msi` を実行してください。インストーラからの要求があれば管理者権限を与えてください。**インストールに関する設定は「全てデフォルトのまま」で問題ありません (特に変更必要とする項目はありません)**。
+インストーラを実行し、基本的には標準の設定で進めてください。Node.jsとnpmをインストールします。追加のネイティブモジュール用ビルドツールは、今回の演習では必要ありません。インストール後、**開いていたVSCodeとターミナルを開きなおしてください**。
+
+<!-- 撮影予定: nodejs_01.png。旧画像はv20を示すため一時的に非表示。Windows用24系列の選択画面を撮り直す。 -->
 
 ### インストールできたことの確認
 
-PowerShell から以下のコマンドを実行し「**Node.js が問題なくインストールされていること**」「**Node.js に パス (path) が通っていること**」を確認してください。コマンドプロンプト (cmd) を使用すると、一部の操作やレスポンスが違ってくるので注意してください。
+PowerShellで、次のコマンドを実行してください。以降のコードブロックには、基本的に **入力するコマンドだけ** を記載します。
 
-```
-PS C:\Users\xxxx> node -v
-v24.8.0
-```
-
-なお、以下のコマンドで node のパス (=<span class="masked">Node.jsの本体が配置されているフォルダ位置</span>) が確認できます。
-
-```
-PS C:\Users\xxxx> where.exe node
-C:\Program Files\nodejs\node.exe
+```powershell
+node -v
+npm -v
+where.exe node
 ```
 
-## npm 関連の初期設定
+確認した環境では、それぞれ `v24.21.0`、`11.9.0`、Node.jsの実行ファイルのパスが表示されます。npmはまずNode.jsに付属する版を使い、この段階で無条件に最新版へ更新しないでください。通常のインストーラで導入した場合、パスは `C:\Program Files\nodejs\node.exe` のようになります。
 
-Node.js では「**npm (Node Package Manager)**」というツール使ってパッケージ (ライブラリ) の管理をします。ここでのパッケージとは「**JavaScript でアプリの開発するために使用する各種ライブラリのこと**」と考えてください。なお、パッケージは、ウェブ経由で取得するので npm を実行するときにはインターネットに接続している必要があります。
+`where.exe node` は <span class="masked">コマンドとして実行されるNode.jsが、どこにあるか</span> を調べるためのものです。見つからない場合はターミナルを開きなおし、インストール状態を確認してください。複数のパスが出る場合は、以前の環境やバージョン管理ツールが関係していないか確認します。原因を確認せずに、既存のツールを次々に削除しないでください。
 
-Node.js における npm は、Python における<span class="masked"> pip のようなもの</span> と考えてください。
+<div class="note type-caution">
+**PowerShellで npm.ps1 の実行が拒否される場合**
 
-### npm のバージョンアップ
+「このシステムではスクリプトの実行が無効になっている」のようなエラーの場合は、まず `npm.cmd -v` を試してください。以降も `npm` を `npm.cmd`、`npx` を `npx.cmd` に読み替えることで、PowerShellの実行ポリシーを変更せずに進められます。`node` はそのままです。
 
-次のコマンドで、グローバル環境での npm の最新版へのアップグレードと、そのバージョン確認を実行してください。
-2025年9月25日現在、npm の最新リリースは `11.6.1` です。
-
-```
-PS C:\Users\xxxx> npm install -g npm
-PS C:\Users\xxxx> npm -v
-11.6.1
-```
-
-ここで `npm install` は、npmパッケージをインストールするコマンドです。`-g` オプションは「**グローバル環境**」を指定しています。上記のコマンドは複数回実行しても問題ありません。
-
-なお、グローバル環境には **最低限のパッケージだけをインストールすることが推奨** されます。個別の開発で必要なパッケージは、後述する方法でプロジェクトフォルダのなかの `node_modules` フォルダに **ローカルインストール** することが推奨されます。
-
-<span class="masked">明示的に `-g` (または `--global`) オプションを付けない限り</span>、`npm` を実行したときはプロジェクトフォルダ内のローカル環境にインストールされます。
-
-### TypeScript のインストール
-
-次のコマンドにより、TypeScript を**グローバル環境**にインストールしてください。これにより、TypeScript を JavaScript にトランスパイルする `tsc` などのコマンドが使用可能になります。
-
-```
-PS C:\Users\xxxx> npm install -g typescript
-```
-
-ここが、うまくいかないときは、[Volta](https://volta.sh/) などの他のパッケージマネージャがインストールされている可能性があります。Volta をアンインストールするか、あるいは、以降のパッケージ管理を全て Volta に読み替えるなどで対応してください。
-
-### グローバル環境にインストールされたパッケージの確認
-
-グローバル環境にインストールされたパッケージの一覧は、`npm list -g --depth=0` コマンドで確認できます。以下は、実行結果の一例です。
-
-```
-PS C:\Users\xxxx> npm list -g --depth=0
-C:\Users\xxxx\AppData\Roaming\npm
-+-- @anthropic-ai/claude-code@2.0.0
-+-- @google/gemini-cli@0.6.1
-+-- @openai/codex@0.42.0
-+-- npm@11.6.1
-`-- typescript@5.9.2
-```
-
-### トランスパイルとJavaScriptプログラムの実行
-
-ここまでの環境構築により、Node.js環境で「**トランスパイル**」と「**JavaScriptプログラムの実行**」ができるようになりました。実際に、これらを試していきます。
-
-以下のTypeScriptプログラムを `test.ts` という名前でデスクトップ (`C:\Users\xxxx\Desktop>`) に保存してください。
-
-```typescript{.numberLines caption="test.ts（TypeScriptプログラム）"}
-function greetAndCalculate(name: string, a: number, b: number): string {
-  const sum: number = a + b;
-  return `Hello, ${name}! The sum of ${a} and ${b} is ${sum}.`;
-}
-
-const userName: string = "Alice";
-const x: number = 10;
-const y: number = 20;
-
-const result: string = greetAndCalculate(userName, x, y);
-console.log(result);
-```
-
-デスクトップ画面で `[Shift]` を押下しながら右クリックして「**ターミナルで開く**」を選択して PowerShell か コマンドプロンプト を開いてください。`ls` か `dir` のコマンドで `test.ts` が存在することを確認してください。
-
-![img](figs/01/ps_01.png)
-
-以下のコマンドで `test.ts` を `test.js` にトランスパイルしてください。ここで `--target es6` オプションは、ES6 (ES2015) の使用に準拠した JavaScript (ECMASCript) に変換することを明示したものです。
-
-```
-PS C:\Users\xxxx\Desktop> tsc --target es6 test.ts
-```
-
-デスクトップに `test.js` (JavaScriptプログラム) が生成されているので、適当なテキストエディタで開いて内容を確認してください。
-
-次に、以下のコマンド (`node test.js`) で実行してください。
-
-```
-PS C:\Users\xxxx\Desktop> node test.js
-Hello, Alice! The sum of 10 and 20 is 30.
-```
-
-ここで失敗する場合は「**PowerShellから、スクリプトが実行できるように設定されていない可能性**」があります。以下のコマンドでスクリプトの実行設定を変更して、ターミナルを開きなおして `tsc ...` を再実行してみてください。
-
-```
-C:\Users\xxxx> Set-ExecutionPolicy RemoteSigned -Scope CurrentUser -Force
-```
-
-#### 演習
-
-`--target e6` のようにオプションを指定しない場合、**「ES5」という古い仕様に準拠した JavaScriptプログラム** (= <span class="masked">Internet Explorer 11 のようなレガシーなブラウザでも動作する JavaScript プログラム</span>) が出力されます。実際に確認してみてください。
-
-また、そのプログラムでも、同様の実行結果 (=`Hello, Alice! The sum of 10 and 20 is 30.`) が得られることを確認してください。
-
-#### 定着確認
-
-- ライブラリのバージョンに関する文脈において「LTS」とは何の略語か英語で答えよ。
-    - 答え <span class="masked">Long-Term Support</span>
-- PCにインストールされている Node.js のバージョンを調べるコマンドを答えよ。
-    - 答え <span class="masked">`node -v`</span>
-- `hoge.js` というJavaScriptプログラムを Node.js 環境で実行するためのコマンドを答えよ。
-    - 答え <span class="masked">`node hoge.js`</span>
-- Node.js におけるパッケージ管理ツールのコマンド名を答えよ。
-    - 答え <span class="masked">`npm`</span>
-- カレントフォルダにある `test.ts` という TypeScriptプログラム を、`test.js` という JavaScriptプログラム 変換してカレントフォルダに出力したい。このためのコマンドを答えよ。
-    - 答え <span class="masked">`tsc test.ts`</span>
-- `npm install` コマンドでパッケージをインストールするとき、特にオプション指定しなければ、それは「グローバルインストール」になるか、それとも「ローカルインストール」になるか答えよ。
-    - 答え <span class="masked">ローカルインストール</span>
+「コマンドが見つからない」「ファイルが見つからない」は別の原因です。**エラーメッセージを読んで、何が失敗しているかを区別**しましょう。
+</div>
 
 ## TypeScriptの基礎学習のための環境構築
 
-TypeScriptの基礎学習用のプロジェクトフォルダを作成して「**環境の構築**」を行ないます。次回以降の授業でも継続的に使用していく予定なので (課題として提出してもらう可能性もあるので)、プロジェクトフォルダの位置や名前などには、十分に注意してください。
+### プロジェクトフォルダと作業位置
 
-### プロジェクトフォルダの作成
+適切な位置 (**OneDrive管理下はお勧めしません**) に `ts-playground` というフォルダを作成して、VSCodeで **そのフォルダ自体** を開いてください。次回以降も使用するプロジェクトです。
 
-適切な位置 (**OneDrive管理下はお勧めしません**) に、`learn-ts-basics` というプロジェクトフォルダを作成して VSCode で開いてください。なお、必ず `learn-ts-basics` が **VSCodeのワークスペースのトップフォルダ（ルートフォルダ）** となるようにしてください。
+例えば、作業用の親フォルダでターミナルを開いている場合、次のように操作できます。
 
-![img](figs/01/vscode_01.png)
-
-ターミナルから実行するのであれば、以下のようにしてください。この方法であれば、`learn-ts-basics` が確実に VSCodeのワークスペースのトップフォルダになります。
-
-```
-mkdir learn-ts-basics
-cd learn-ts-basics
+```powershell
+mkdir ts-playground
+cd ts-playground
 code .
 ```
 
-### TypeScriptの設定 (1)
+ここで `.` は <span class="masked">現在の作業フォルダ (カレントフォルダ)</span> を意味します。`code` コマンドが使えない場合は、VSCodeの「ファイル」→「フォルダーを開く」から開いてください。
 
-実際のReact開発に近しい環境を構築して、そこで TypeScript の基礎学習をしていきます。具体的には npm によるパッケージ追加や、ファイル変更を監視してのホットリロード設定 (=<span class="masked">自動的にトランスパイル、ビルドして再読み込みして実行すること</span>) などを行なった環境を構築して、TypeScript の基礎を学んでいきます。
+VSCodeのエクスプローラーの最上位が **TS-PLAYGROUND** になっていることを確認してください。この最上位のフォルダを、以降 **プロジェクトのルート** と呼びます。PCのドライブのルートとは異なります。
 
-まずは、**TypeScript に関する基本設定** から行なっていきます。
+VSCodeの「ターミナル」→「新しいターミナル」でPowerShellを開き、作業位置を確認してください。
 
-VSCodeで `[Ctrl]+[j]` のショートカットでターミナル (PowerShell) を開いて、以下のコマンドを実行してください。
-
+```powershell
+Get-Location
+Get-ChildItem
 ```
-tsc --init
+
+以降、特に断りがない限り、**コマンドはプロジェクトのルートで実行**します。エディタで開いているファイルの場所と、ターミナルの作業位置は同じとは限りません (初心者がよく混乱するところです)。
+
+<!-- 撮影予定: vscode_01.png。ルートフォルダとターミナルの作業位置を示す。 -->
+
+### npm とローカルインストール
+
+**npm** は、開発に使用するパッケージ (ライブラリやツール) を管理するものです。Pythonでの <span class="masked">pip</span> に近い役割があります。
+
+まず、プロジェクトのルートで次を実行してください。
+
+```powershell
+npm init -y
+npm install -D --save-exact typescript@6.0.3 @types/node@24.13.6
 ```
 
-`tsc` は先ほどのトランスパイルに使ったコマンドです。`tsc --init` のようにオプションをつけて実行すると、**トランスパイルに関する各種設定が記述された** `tsconfig.json` **という雛形ファイル**が作成されます。
+- `npm init -y` : プロジェクトの情報を記録する **`package.json`** を、標準的な内容で作成します。
+- `install` (省略形は `i`) : パッケージをインストールします。ダウンロード時にはインターネット接続が必要です。
+- `-D` (`--save-dev`) : 開発用の依存関係として `devDependencies` に記録します。
+- `--save-exact` : `package.json` に、バージョンの範囲ではなく **指定したバージョンそのもの** を記録します。
+- `@6.0.3` : 導入するバージョンの指定です。今回は、授業で確認した組合せを使用します。
 
-<div class="note type-caution">
-もし、VSCode のターミナルで `tsc` が見つからない旨のエラーがでた場合は、VSCodeを再起動して試してください。解決しないときは PC を再起動してください。
-</div>
+この操作は **ローカルインストール** です。`-g` を付けるグローバルインストールとは異なり、パッケージの本体は <span class="masked">このプロジェクトの `node_modules` フォルダ</span> に入ります。TypeScriptをグローバルにインストールする必要はありません。
 
-コマンド実行後、プロジェクトフォルダに `tsconfig.json` が作成されているはずなので、VSCode上で開いてください。大量の設定が羅列されていますが、大半がコメントアウトで無効になっています。
+作成されたファイル・フォルダを、VSCodeで確認してください。
 
-コメントアウトを含んでいると分かりずらいので **コメントされた文は全て「削除」して保存** してください。以下のような設定だけが残ると思います。これらは `tsc` コマンドによるトランスパイル (コンパイル) のオプション設定となります。 
+| 名前 | 役割 |
+| :--- | :--- |
+| `package.json` | プロジェクトの情報、直接使用するパッケージとバージョン指定、実行コマンドなど |
+| `package-lock.json` | 間接的に必要となるものも含め、実際に導入したパッケージのバージョンなどを記録 |
+| `node_modules` | インストールされたパッケージの本体 |
 
-```json{.numberLines caption="tsconfig.json（TypeScript関連の設定ファイル）"}
+`node_modules` の内部や `package-lock.json` を、手作業で書き換える必要はありません。`package.json` は、次のように編集することがあります。
+
+### package.json の設定
+
+`package.json` を、次の内容にしてください。今回は最小限の構成にそろえます。
+
+```json{.numberLines caption="package.json"}
 {
-  "compilerOptions": {
-    "module": "nodenext",
-    "target": "esnext",
-    "types": [],
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "strict": true,
-    "jsx": "react-jsx",
-    "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
-    "skipLibCheck": true
+  "name": "ts-playground",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "24.13.6",
+    "typescript": "6.0.3"
   }
 }
 ```
 
-JSONファイルでは <span class="masked">最後の項目以外には、末尾にカンマ (`,`)</span> が必要です。これを忘れるとエラーの原因となるので注意してください (VSCodeでエラーを表す波線が表示されます)。
+`"private": true` は、誤ってこのプロジェクトを **npmのパッケージとして公開** しないための設定です。GitHubの公開・非公開の設定とは関係ありません。
 
-#### 演習
+`"type": "module"` は、このプロジェクト内の `.js` ファイルを **ES Modules** として扱うための設定です。今後、ファイルを分けたプログラムで `import` / `export` を使います。詳しい構文は、そのときに学習します。
 
-`tsconfig.json` の各項目が意味することを「生成AI」を利用して簡単に把握してください。詳細に理解する必要はありません、ざっくりと理解してください。
+ここで、導入したTypeScriptを確認します。
 
-(プロンプトの例)
+```powershell
+npx tsc --version
+npm list --depth=0
+```
 
-> TypeScript の設定ファイル `tsconfig.json` を以下に示します。各項目の意味について TypeScript 初心者向けに概要を説明してください。 
+`Version 6.0.3` が表示されることと、2つのパッケージが指定したバージョンで入っていることを確認してください。**`npx tsc` は、このプロジェクトに入れたTypeScriptのコマンドを呼び出す**ために使用します。
 
-### TypeScriptの設定 (2)
+<div class="note type-caution">
+**npxで、追加インストールの確認が表示されたら**
 
-Typescriptの基礎学習用に `tsconfig.json` を次のようにカスタマイズしてください。
+この手順では、使うツールを先にローカルインストールします。`npx tsc` などで別のパッケージのインストールを求められたら、そのまま同意せず、作業フォルダと `npm list --depth=0` の結果を確認してください。`npx` には、ローカルにないパッケージを取得して実行する機能もあるためです。
+</div>
 
-```ts{.numberLines caption="tsconfig.json（TypeScript関連の設定ファイル）"}
+### TypeScriptの設定
+
+プロジェクトのルートで、設定の雛形を作成します。
+
+```powershell
+npx tsc --init
+```
+
+作成された **`tsconfig.json`** を開いてください。これは <span class="masked">TypeScriptの型チェックや、JavaScriptへの変換方法</span> を指定するファイルです。雛形の全項目を今すぐ覚える必要はありません。今回は、内容を次に置き換えて保存します。
+
+```json{.numberLines caption="tsconfig.json"}
 {
   "compilerOptions": {
-    "module": "nodenext",
-    "target": "esnext",
-    "outDir": "./dist" /* 追加 */,
-    "rootDir": "./src" /* 追加 */,
-    /* "types": [], // 削除 */
-    "sourceMap": true,
-    "declaration": true,
-    "declarationMap": true,
+    "target": "ES2023",
+    "lib": ["ES2023"],
+    "module": "NodeNext",
+    "moduleDetection": "force",
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "types": ["node"],
+    "strict": true,
     "noUncheckedIndexedAccess": true,
     "exactOptionalPropertyTypes": true,
-    "strict": true,
-    /* "jsx": "react-jsx", // 削除 */
     "verbatimModuleSyntax": true,
-    "isolatedModules": true,
-    "noUncheckedSideEffectImports": true,
-    "moduleDetection": "force",
+    "noEmitOnError": true,
+    "sourceMap": true,
     "skipLibCheck": true
-  } /* ここにカンマをつけないとダメ!!! → */,
-  "include": ["src/**/*"] /* 追加 */
+  },
+  "include": ["src/**/*.ts"]
 }
 ```
 
-ここで追加・削除した設定が項目の意味は次のとおりです。
+最初に理解してほしい項目は、次のとおりです。
 
-- `"outDir":"./dist"` : Typescript を変換して生成した JavaScriptファイル の出力先を `./dist` (destinationの略) に指定しています。<span class="masked">最終的にユーザーに配付するようなファイルの出力先フォルダ</span> として `dist` は、よく使われる名前なので覚えておいてください。
-- `"rootDir":"./src"` : トランスパイル対象のソースファイル (TypeScriptファイル) の「**ルート（基準となるフォルダ）**」を指定します。ここからの相対パス構造が、そのまま `outDir` に生成されるイメージです。
-  - 例： `src/foo/bar.ts` 👉 `dist/foo/bar.js`
-- `"types": []` : TypeScript に読み込ませる型定義を、明示的にリストで指定するオプションです。たとえば `"types": ["node", "jest"]` のように書くと、それらの型だけが使えるようになります。そのため、`[]` のようにすると「一切の型定義リストを読み込まない」という扱いになってしまいます (不便です)。一方で、この `"types"` の項目自体を記述しなければ、**必要な型が自動で読み込まれるようになるので** (そのほうがトラブルが少ないので)、ここでは項目ごと削除しておきます。
-- `"jsx": "react-jsx"` : React を使用するときに必要な設定です。まだ、現段階では React を使用しないのでコメントアウトしておきます。
-- `"include": ["src/**/*"]` : トランスパイルの対象とするファイルやディレクトリを指定しています。`**` は「すべてのサブフォルダ」、`*` は「すべてのファイル」を意味します。つまり、ここでは <span class="masked">プロジェクトフォルダ内の「`src`」フォルダのなかのファイルのみをコンパイル対象とする</span> という設定になります。
+- `rootDir` : ソースファイルの配置の基準を `src` にします。
+- `outDir` : 生成したJavaScriptを `dist` に出力します。例えば `src/foo/bar.ts` は <span class="masked">`dist/foo/bar.js`</span> になります。`dist` は distribution に由来する、生成物の置き場所によく使われる名前です。
+- `include` : 今回は `src` 内の `.ts` ファイルを対象にします。`**` はサブフォルダも対象とする指定です。
+- `types` : Node.jsの型情報を読み込みます。**TypeScript 6.0では、この項目を省略してもNode.jsの型情報が自動で追加されるわけではありません**。
+- `strict` : 厳密な型チェックを有効にします。
+- `noEmitOnError` : 型などにエラーがあるとき、新しいJSファイルを出力しません。ただし、以前に生成したJSを削除する設定ではありません。
 
-#### 定着確認
+`target` は変換先のJavaScriptの仕様、`lib` は型チェックで利用する標準APIの型情報を指定します。今回はNode.js 24で実行するための設定です。`module` と `package.json` の `type` は、ファイル間の読み込み方式に関係します。`sourceMap` は元のTSと生成したJSの対応情報を出力する設定です。
 
-- TypeScript のコンパイルオプションなどを記述する設定ファイル (JSONファイル) の名称を答えよ。
-    - 答え <span class="masked">`tsconfig.json`</span> 
+`tsconfig.json` はコメントも書けるJSON形式ですが、通常の `package.json` にはコメントを書けません。項目と項目の間のカンマにも注意してください。
 
-### フォルダの作成
+ルートに **`src` フォルダを作成**してください。まだ `.ts` ファイルがないため「入力ファイルがない」という診断が出る場合がありますが、次のファイルを作成した後に確認します。`dist` はコンパイル時に自動作成されます。
 
-現時点でプロジェクトフォルダのなかに `src` と `dist` のフォルダが存在していません。新規作成してください。
+### TSファイルの作成と、JSファイルへの変換・実行
 
-![img](figs/01/vscode_02.png)
-
-なお、VSCodeの **フォルダアイコン** や **ファイルアイコン** をいい感じにしたいときは、拡張機能の **Material Icon Theme** (識別子:`pkief.material-icon-theme`) をインストールしてください。プログラミング1の授業でも紹介ずみです。
-
-### TSファイルの作成とトランスパイルによるJSファイルの出力と実行
-
-ここまでの環境構築が問題なくできているかを確認していきます。`src` フォルダに `prac00.ts` というファイル (Practiceの略語) を作成して、以下の TypeScriptプログラム を貼り付けて**保存**してください。
+`src` に `prac00.ts` を作成し、次のプログラムを記述して保存してください。
 
 ```typescript{.numberLines caption="src/prac00.ts"}
 function greetAndCalculate(name: string, a: number, b: number): string {
@@ -699,150 +619,166 @@ const result: string = greetAndCalculate(userName, x, y);
 console.log(result);
 ```
 
-次に、トランスパイルして動作確認します。VSCodeのターミナル (`[Ctrl]+[J]`でオープン) から以下のコマンドを実行してください。
+ルートで次を実行します。
 
-- 先ほどは `tsc --target es6 prac00.ts` のように、`tsc` に引数を指定しましたが <span class="masked">カレントフォルダに `tsconfig.json` があり、その設定が参照される</span> ので引数は不要です。
-
-```
-tsc
+```powershell
+npx tsc
 ```
 
-この `tsc` コマンドによって、`src/prac00.ts` がトランスパイルされて、`dist/prac00.js` 出力されているはずです。VSCode で確認してください。
+この場合、`tsconfig.json` に従って変換します。**ファイル名は付けません**。TypeScript 6.0では、設定ファイルのある場所で `npx tsc src/prac00.ts` とすると、設定を無視する指定になっている旨のエラーになります。
 
-<div class="note type-senior">
-**TypeScriptコンパイル時の出力ファイル**
+`dist/prac00.js` を開き、元のTSと比較してください。**型の注釈がどうなったか**を確認しましょう。`.js.map` は元のソースとの対応情報です。設定に応じて `export {};` が付くこともあります。
 
-`tsc` を実行するすると、`dist` には `prac00.js` 以外にも `prac00.js.map`、`prac00.d.ts`、`prac00.d.ts.map` というファイルが同時に出力されていると思います。これらのファイルの内容が気になるときは、生成AIを使って深堀してください。
+つづいて、生成されたJavaScriptを実行します。
 
-**(プロンプト例)**
-
-> TypeScript ファイル `prac00.ts` を作成して、`tsc` でトランスパイルしたら、`prac00.js` の他に、`prac00.js.map`、`prac00.d.ts`、`prac00.d.ts.map` というファイルも生成されました。各ファイルの意味や役割について教えてください。
-
-</div>
-
-つづいて、トランスパイルによって生成された `dist/prac00.js` を実際に動作させてみます。以下のコマンドを実行してください。
-
-```
+```powershell
 node dist/prac00.js
 ```
 
-ここで `Hello, Alice! The sum of 10 and 20 is 30.` のような文字列が出力されれば、ここまでの設定が正しくできています。
-
-### 開発を効率的に行なうためのパッケージの追加
-
-ここまでの設定で、TypeScriptを書いて実行する「**最低限の環境**」が構築できました。
-
-ここからは **効率的にTypeScript開発を進めるための環境構築や設定** を進めていきます。React や Next.js を開発するときにも関係してくる内容となります (`package.json`など)。
-
-まず、効率的なTS開発に必要なパッケージ (ライブラリ) として `typescript`、`tsx`、`@types/node` を、**プロジェクトのローカル環境にインストール**していきます。なお、`typescript` については既にグローバル環境にインストール済みですが、改めてローカル環境にもインストールしておきます。
-
-- `typescript`: JavaScriptに静的型付けと他の機能を追加する言語とコンパイラです。
-- `tsx`: TypeScriptファイルを直接実行できるツールです。
-  - 通常の `tsc` 👉 `node` の手順を省略し、`tsx hoge.ts` で即実行ができます。
-  - ファイル変更を監視して自動再実行する便利な機能も備えています。
-- `@types/node`: Node.jsの型定義ファイルを提供し、TypeScript で Node.js を使用する際の型チェックとコード補完を可能にします。
-
-以下のコマンドで <span class="masked">3つのパッケージをまとめてインストールすること</span> ができます。
-
-```
-npm i -D typescript tsx @types/node
+```text
+Hello, Alice! The sum of 10 and 20 is 30.
 ```
 
-また、以下のコマンドでも同じことができます。
+**「変換するコマンド」と「実行するコマンド」は別**です。ここを曖昧にしないでください。
 
+#### 演習 (目標時間: 3分)
+
+`src/prac00.ts` の `x` を `11` に変更して保存してください。そのまま `node dist/prac00.js` を実行すると、結果は変わるでしょうか。予想してから確認してください。
+
+次に `npx tsc`、`node dist/prac00.js` の順に実行してください。先ほどとの違いを説明できますか。確認後は `x` を `10` に戻し、再度コンパイルしてください。
+
+### VSCodeで使用するTypeScriptをそろえる
+
+VSCodeにはTypeScriptの編集機能がありますが、**エディタで診断に使うTypeScriptと、ターミナルから呼ぶTypeScriptは別々に選択される**ことがあります。同じコードについて結果が食い違わないように設定します。
+
+少し分かりにくいところですが、ここまでに `npm` でTypeScriptをインストールしただけでは、**VSCodeの編集機能まで、そのTypeScriptに切り替わるとは限りません**。
+
+| TypeScriptを使う場面 | 使用するもの |
+| :--- | :--- |
+| ターミナルで `npx tsc` を実行する | このプロジェクトにインストールしたTypeScript 6.0.3 |
+| VSCodeでコードを編集し、補完候補や赤い波線を表示する | VSCodeの編集機能で選択されているTypeScript。標準ではVSCodeに付属する版 |
+
+バージョンが異なると、例えば **「ターミナルでは型チェックに通るのに、エディタでは赤い波線が出る」**、あるいはその逆が起こる場合があります。利用できる構文や設定項目、型の判定がバージョンによって変わるためです。
+
+未設定なら必ずエラーになるわけではありません。簡単なコードでは違いが出ず、気づかないこともあります。ここでは、編集時とコマンド実行時で <span class="masked">同じバージョンのTypeScriptを使い、診断の基準をそろえる</span> ために設定します。
+
+ルートに `.vscode` フォルダを作成し、その中に `settings.json` を作成してください。
+
+```json{.numberLines caption=".vscode/settings.json"}
+{
+  "js/ts.tsdk.path": "./node_modules/typescript/lib",
+  "js/ts.tsdk.promptToUseWorkspaceVersion": true
+}
 ```
-npm install --save-dev typescript tsx @types/node
+
+`js/ts.tsdk.path` は **使用したいTypeScriptの場所**、`js/ts.tsdk.promptToUseWorkspaceVersion` は **そのワークスペース版を使うか確認する案内を有効にする設定**です。後者の `true` 自体が「ワークスペース版を選択済み」という意味ではありません。
+
+**先に `settings.json` から `src/prac00.ts` のタブへ切り替え、コード部分をクリックしてください。JSONファイルを開いたままでは、次のTypeScript用コマンドは表示されません。**
+
+`src/prac00.ts` を開いた状態で `[Ctrl]+[Shift]+[P]` から **「TypeScript: Select TypeScript Version」(TypeScriptのバージョンを選択)** を実行し、**「Use Workspace Version」(ワークスペースのバージョンを使用)** を選択します。**6.0.3** であることを確認してください。設定ファイルを置いただけで、選択まで済んだと思い込まないようにしましょう。
+
+#### 設定できたことの確認
+
+**エラーが表示されないことだけでは、同じバージョンを使っている証拠にはなりません**。次の2か所を照合してください。
+
+1. プロジェクトのルートのターミナルで `npx tsc --version` を実行し、**`Version 6.0.3`** と表示されることを確認します。これはコマンド側の確認です。
+2. `prac00.ts` を開き、もう一度 **「TypeScript: Select TypeScript Version」** を開きます。現在選択されている項目には **先頭に丸印 (`•`)** が付きます。丸印が付いた **「Use Workspace Version」** のバージョンが **6.0.3**、場所がプロジェクト内の `node_modules/typescript/lib` であることを確認してください。確認後は `[Esc]` で閉じて構いません。
+
+両方のバージョンが一致したら、`npx tsc --noEmit` で型チェックし、VSCodeの `[Ctrl]+[Shift]+[M]` で「問題」パネルも確認します。現在の `prac00.ts` と設定ファイルにエラーが残っていないことを確かめてください。`--noEmit` は、JSを出力せずにチェックだけを行なう指定です。
+
+TypeScript 7用の拡張機能などを既に使用している場合は、このワークスペースでは無効にして、標準のTypeScript編集機能で6.0.3を選んでください。選択できない場合は、ルートフォルダ、パッケージの導入、VSCodeの組み込み「TypeScript and JavaScript Language Features」が有効かを確認します。
+
+<div class="note type-tips">
+**この操作はファイルを作るたびに必要？**
+
+**同じプロジェクトでは、通常は一度選択すれば十分です**。選択結果はVSCode内部にワークスペース単位で保存されるため、新しい `.ts` ファイルを作成するたびに選び直す必要はありません。同じフォルダを開き直したときも維持されます。
+
+`settings.json` にはTypeScriptの場所などを記録しますが、「ワークスペース版を使う」という選択自体はVSCode内部に保存されます。そのため、**別のプロジェクトや別のPCで開くときは、選択を改めて確認**してください。
+</div>
+
+<!-- 撮影予定: TypeScriptのワークスペース版6.0.3の選択、および「問題」パネル。 -->
+
+## 開発を効率的に行なうための設定
+
+### tsx と Vitest の追加
+
+ルートで、次を実行してください。
+
+```powershell
+npm install -D --save-exact tsx@4.23.15 vitest@5.0.1 vite@8.3.0
 ```
 
-ここで `i` または `install` はパッケージの「インストール操作」を意味します。`-D` または `--save-dev` は、<span class="masked">開発のときだけに使うパッケージ</span> (=プロダクトとしての出力には含めないパッケージ) としてインストールすることを意味します。
+**tsx** は、TypeScriptの変換と実行をまとめて行なうツールです。**Vitest** は、期待したとおりにプログラムが動くかを、自動的に確認するためのツールです。どちらも、このプロジェクトの開発用パッケージとして追加します。
 
-コマンド実行後、プロジェクトフォルダのなかに `node_modules` フォルダと、`package.json` と `package-lock.json` という2個のファイルが自動作成されたことを確認してください。
+Vitestが使用する **Vite** も、確認したバージョンを明示して入れます。今はViteでウェブアプリを作成する操作は必要ありません。
 
-![img](figs/01/vscode_03.png)
+`package.json` に `scripts` を追加し、全体を次の状態にしてください。`devDependencies` は上のインストール操作で追加されます。
 
-`node_modules` フォルダには、`npm install` (=もしくは `npm i`) コマンドで <span class="masked">インストールされたパッケージ (本体) と、そのパッケージと依存関係にあるパッケージ (本体)</span> が格納されています。基本的に、皆さんがこの `node_modules` フォルダを操作することはありません。
-
-`package.json` と `package-lock.json` は <span class="masked">自分のプロジェクトが依存するパッケージ (=外部ライブラリ) を管理するため</span> のファイルになります。Pythonでいうところの `requirements.txt` $+\ \alpha$ が記述されたファイルと考えてください。
-
-- `package.json`: プロジェクトの基本情報、設定・構成情報などを記述します。
-  - </span>依存関係のセクション (`"devDependencies"` や `"dependencies"` の項目) は `npm install` コマンドなどを実行すると <span class="masked">自動追記</span> されますが、`"scripts"` などの項目は必要に応じて手動で追記や編集をします。
-  - インストールされたパッケージとそのバージョンの一覧を保持します。
-  - スクリプトコマンド（`npm run` で実行できるコマンド）を定義します。詳しくは後述します。
-- `package-lock.json`: インストールされた全てのパッケージの正確なバージョンと依存関係のツリーを記録するもので、基本的に皆さんが編集することはありません。
-
-#### 定着確認
-
-- Node.js 環境で、アプリ開発時だけに使用するライブラリとして「tsx」をローカルインストールしたい。これを実行するコマンドを答えよ。
-    - 答え <span class="masked">`npm install --save-dev tsx` または `npm i -D tsx`</span>
-- Node.js 環境において、`npm` コマンドでライブラリをローカルインストールしたとき、それらは何という名前のフォルダにインストールされるか答えよ。
-    - 答え <span class="masked">`node_modules`</span>
-- Node.js 環境において、`npm` コマンドでライブラリをローカルインストールしたとき、その情報が記録される2つのファイルの名称を答えよ。
-  - 答え <span class="masked">`package.json` および `package-lock.json`</span>
-- Node.js 環境において、スクリプトコマンドを記述するファイルは `package.json`、 `package-lock.json`、`tsconfig.json` のうちどれか、答えよ。
-  - 答え <span class="masked">`package.json`</span>
-
-### TypeScriptの直接実行
-
-以上の環境構築により、トランスパイルせずに TypeScript を直接実行できるようになりました。次のようにコマンドを実行してみてください。`npx` をつけることを忘れないようにしてください。
-
+```json{.numberLines caption="package.json"}
+{
+  "name": "ts-playground",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
+  "devDependencies": {
+    "@types/node": "24.13.6",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "vitest": "5.0.1",
+    "vite": "8.3.0"
+  }
+}
 ```
+
+`scripts` は、よく使うコマンドに名前を付けるための項目です。例えば `npm run build` で `tsc` を実行できます。**npmのスクリプト内では、ローカルに導入したコマンドを使用できるので `npx` は不要**です。
+
+| 操作 | コマンド | 確認・生成するもの |
+| :--- | :--- | :--- |
+| コンパイル | `npm run build` | 型などを確認し、`dist` にJSを出力 |
+| 型チェック | `npm run typecheck` | 型などを確認。JSは出力しない |
+| TSの実行 | `npx tsx src/prac00.ts` | 変換して実行。型チェックはしない |
+| 自動テスト | `npm run test:run` | テストを1回実行し、結果を表示して終了 |
+| テストの監視実行 | `npm test` | 変更を監視し、テストを再実行 |
+
+### TypeScriptの実行と型チェック
+
+次を実行し、先ほどと同じ結果になることを確認してください。
+
+```powershell
 npx tsx src/prac00.ts
+npm run typecheck
 ```
 
-![img](figs/01/vscode_09.png)
+`tsx` では、事前に自分でJSファイルを生成する操作を省略できます。ただし、**内部で変換しているのであって、型をそのまま実行しているわけではありません。また、tsx自身は型チェックを行ないません**。
 
-また、以下のように `watch` オプションを指定すると、`src/prac00.ts` を監視して、ファイルの保存を検出するたびに即座に再実行してくれます。終了したいときは、ターミナルで `[Ctrl]+[C]` を入力します。
+`npm run typecheck` は、問題がなければスクリプト名やコマンドの表示だけで終了します。「何もエラーが出なかった」ことを確認してください。
 
-```
+#### 演習 (目標時間: 3分)
+
+`prac00.ts` の `const x: number = 10;` を、一時的に `const x: number = "10";` に変えて保存してください。
+
+- VSCodeは、どこに何を指摘するでしょうか。
+- `npm run typecheck` と `npx tsx src/prac00.ts` は、それぞれどうなるでしょうか。
+
+予想してから実行してください。型チェックではエラーになり、tsxでは実行されて、数値の加算とは異なる結果になります。**実行できたことと、型が正しいことは別**だと確認できたら、`10` に戻し、型チェックとビルドをやり直してください。
+
+ファイルを保存するたびに通常のプログラムを再実行したい場合は、次を使います。
+
+```powershell
 npx tsx watch src/prac00.ts
 ```
 
-**(プロンプト例)**
+終了は `[Ctrl]+[C]` です。これは変更監視による **再実行** です。後で扱うブラウザ画面の更新などと区別しておきましょう。
 
-> Node.js の文脈で、`npx` ってなんですか？ `npm` とは何が違うのですか？初学者向けに解説してください。
+### VSCodeから現在のTSファイルを実行
 
-#### 定着確認
-
-- tsx がインストールされている環境で `src/hoge.ts` を実行するためのコマンドを答えよ。
-   - 答え <span class="masked">`npx tsx src/hoge.ts`</span>
-- tsx を利用して、`src/fuga.ts` を変更保存するたびに自動で再実行されるようにするコマンドを答えよ。
-   - 答え <span class="masked">`npx tsx watch src/fuga.ts`</span>
-
-
-### 開発を効率的に行なうための設定
-
-#### package.json の編集
-
-`package.json` を以下のように変更してください。各ライブラリのバージョンは、各自の環境に読み替えてください。
-
-```json{.numberLines caption="package.json (変更前)"}
-{
-  "devDependencies": {
-    "@types/node": "^24.5.2",
-    "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
-  }
-}
-```
-
-```json{.numberLines caption="package.json (変更後)"}
-{
-  "name": "learn-ts-basics",
-  "version": "1.0.0",
-  "type": "module",
-  "devDependencies": {
-    "@types/node": "^24.5.2",
-    "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
-  }
-}
-```
-
-- `"type": "module"` : この設定により、`import` や `export` の構文が使用できるようになります。一方で `require()` が使用できなくなります。React や Next.js で開発するときは `require` ではなく `import/export` を使用するため、現段階からそれに慣れておきます。
-
-#### tasks.json の新規作成
-
-次のようにプロジェクトフォルダのルートに `.vscode/tasks.json` を新規作成してください。
+`.vscode/tasks.json` を次の内容で作成してください。ターミナルでの実行方法を確認してから、ショートカットも使えるようにします。
 
 ```json{.numberLines caption=".vscode/tasks.json"}
 {
@@ -851,8 +787,11 @@ npx tsx watch src/prac00.ts
     {
       "label": "Run Current TypeScript File",
       "type": "shell",
-      "command": "npx",
-      "args": ["tsx", "${relativeFile}"],
+      "command": "npx.cmd",
+      "args": ["tsx", "${file}"],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
       "group": {
         "kind": "build",
         "isDefault": true
@@ -868,17 +807,143 @@ npx tsx watch src/prac00.ts
 }
 ```
 
-上記の設定を行うと、VSCode 上で **アクティブなTypeScriptファイル** を対象に `[Ctrl]+[Shift]+[B]` を押下するだけで `npx tsx` コマンドを実行できるようになります。`[B]` は Build (ビルド) の意味です。
+`src/prac00.ts` を開いて **保存してから** `[Ctrl]+[Shift]+[B]` を押してください。今回はビルド用のショートカットに、tsxによる実行を割り当てています。型チェックや `dist` への出力は行ないません。
 
-![img](figs/01/vscode_10.png)
+`${file}` は開いているファイルのパス、`${workspaceFolder}` はプロジェクトのルートです。JSONなど別のファイルを開いていると、そのファイルが実行対象になってしまうので注意してください。後で作る **`.test.ts` はこのショートカットで実行せず、Vitestで実行**します。
+
+### Vitest と VSCode拡張機能の動作確認
+
+まずは、**テストツールが動く環境になっていること**を確認します。テストを使って設計・実装を進める練習は、その後に行ないます。
+
+ルートに **`vitest.config.js`** を作成してください。これはVitest専用の設定ファイルで、今回はJavaScriptで記述します。
+
+```javascript{.numberLines caption="vitest.config.js"}
+import { defineConfig } from "vitest/config";
+
+export default defineConfig({
+  test: {
+    include: ["src/**/*.test.ts"],
+    environment: "node",
+  },
+});
+```
+
+`include` で **`src` 内の `.test.ts` だけをテスト対象** にします。`environment` はテストするコードをNode.jsの環境で動かす指定です。`tsconfig.json` の `include` はTypeScriptの対象、こちらの `include` はVitestの対象であり、役割が違います。
+
+`src` に `environment.test.ts` を作成してください。
+
+```typescript{.numberLines caption="src/environment.test.ts"}
+import { expect, test } from "vitest";
+
+test("10と20の合計が30になる", () => {
+  expect(10 + 20).toBe(30);
+});
+```
+
+`test` はテストの名前と処理を登録し、`expect(...).toBe(...)` は <span class="masked">実際の値が、期待した値と一致するか</span> を確認します。`import` や `() => { ... }` の詳しい構文は後で学びますが、ここでは「テスト名」「実際の値」「期待値」がどれかを確認してください。
+
+ルートで、次の2つを実行します。
+
+```powershell
+npm run typecheck
+npm run test:run
+```
+
+型チェックでエラーがなく、テスト結果に **1つのファイル・1つのテストの成功** が表示されれば、コマンド側の準備はできています。Vitestは `.test.ts` などをテストとして検出します。今回はテストも `src` に置くので、TypeScriptの型チェックの対象にもなります。
+
+この構成では `npm run build` によってテスト用のJSも `dist` に出力されます。**上の設定でテスト対象を限定するため、元のテストと生成物が二重に実行されることを防げます**。テスト用のJSを `node` で直接実行する必要もありません。
+
+つづいて、VSCodeの拡張機能から **[Vitest](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) (識別子: `vitest.explorer`)** をインストールしてください。**npmで入れるVitest本体と、VSCodeの拡張機能は別**です。拡張機能だけを入れても、このプロジェクトにVitest本体が導入されるわけではありません。
+
+1. VSCodeで `ts-playground` を開いた状態で、左側の **テスト (Testing)** ビューを開いてください。
+2. `environment.test.ts` と、その中のテストが表示されることを確認してください。表示されない場合はテストの更新 (Refresh Tests) を試してください。
+3. テスト横の実行ボタンから実行し、成功することを確認してください。
+4. 期待値だけを `30` から `31` に変えて保存し、再実行してください。**失敗になり、期待値と実際の値の違いを確認できること**を確かめます。
+5. `30` に戻して保存し、再実行して成功に戻してください。
+6. 継続実行 (Continuous Run) を有効にし、同じ変更・保存で結果が更新されることも確認します。終わったら停止してください。
+
+意図的に失敗させるのは、**間違いがある場合に、実際にテストが知らせてくれること**まで確認するためです。期待値を変えて失敗を作る操作は、ここではツールの動作確認のために行なっています。普段の開発で、テストを通すためだけに期待値を都合よく変えてはいけません。
+
+<!-- 撮影予定: Vitest拡張の導入、テスト一覧、成功、期待値と実際の値の差、継続実行。 -->
+
+<div class="note type-caution">
+**テストが見つからない・実行できないとき**
+
+最初に、ターミナルで `npm run test:run` が成功するか確認してください。こちらも失敗するなら、まずパッケージ、ファイル名、保存、作業フォルダを調べます。コマンドでは成功するのにVSCodeだけ失敗する場合は、開いたフォルダ、拡張機能が有効か、ワークスペースの信頼状態を確認し、「出力」パネルのVitest関連ログを読みます。自分で作成したこのプロジェクトについて信頼を設定してください。
+
+「問題」パネルで赤い波線が出る場合は、TypeScriptの選択バージョンと型チェックも確認してください。**テストの成功と、エディタの型エラーの解消は、両方確認する必要があります**。
+</div>
+
+### 環境構築の完了確認
+
+次の状態になっているか確認してください。`node_modules` と `dist` の内部は一部を省略しています。
+
+```text
+ts-playground/
+├─ .vscode/
+│  ├─ settings.json
+│  └─ tasks.json
+├─ src/
+│  ├─ prac00.ts
+│  └─ environment.test.ts
+├─ dist/                    ← ビルドで生成
+├─ node_modules/            ← npmで導入
+├─ package.json
+├─ package-lock.json
+├─ tsconfig.json
+└─ vitest.config.js
+```
+
+- `npx tsc --version` と、VSCodeが使うTypeScriptが、どちらも **6.0.3**。
+- `npm run typecheck` と `npm run build` が成功する。
+- `node dist/prac00.js`、`npx tsx src/prac00.ts`、VSCodeのショートカットで、同じ結果が出る。
+- `npm run test:run` とVSCodeのテスト実行が成功する。意図的な失敗と、その修正も確認できた。
+- 変更したコードを元に戻し、**設定ファイル・TSファイルに赤い波線が残っていない**。
 
 ### 練習
 
-コンソール (標準出力) に `Hi, Bob!` のような文字列を出力するプログラム (`src/prac00a.ts`) を作成して、実際に実行してください。
+コンソールに `Hi, Bob!` と出力するプログラムを **`src/prac00a.ts`** に作成し、実行してください。変数に `Bob` を代入して `console.log()` で文字列を組み立てればOKです。ファイル作成から実行までの操作を、自分で判断して取り組んでください。
 
-- プログラムは `src/prac00.ts` を参考に作成してください。
-- `greetAndCalculate` のような関数を定義する必要はありません。適当な変数に `Bob` を代入して `console.log()` で文字列結合して出力すればOKです。
 - 解答例は[こちら](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/01/prac00a.ts)。
+
+#### 定着確認
+
+- LTSとは何の略語か、英語で答えよ。
+  - **答え**: <span class="masked">Long-Term Support</span>
+- Node.jsのバージョンを確認するコマンドを答えよ。
+  - **答え**: <span class="masked">`node -v`</span>
+- `dist/prac00.js` をNode.jsで実行するコマンドを答えよ。作業位置はプロジェクトのルートとする。
+  - **答え**: <span class="masked">`node dist/prac00.js`</span>
+- パッケージの管理に使用するツールの名前を答えよ。
+  - **答え**: <span class="masked">npm</span>
+- `npm install` に `-g` を付けない場合、通常はローカルとグローバルのどちらにインストールされるか。
+  - **答え**: <span class="masked">ローカル</span>
+- ローカルに導入したパッケージの本体が入るフォルダ名を答えよ。
+  - **答え**: <span class="masked">`node_modules`</span>
+- パッケージの依存関係を記録する2つのファイル名を答えよ。
+  - **答え**: <span class="masked">`package.json` と `package-lock.json`</span>
+- `npm run` で実行するコマンドを登録するファイルと、その項目名を答えよ。
+  - **答え**: <span class="masked">`package.json` の `scripts`</span>
+- TypeScriptのコンパイル設定を記述するファイル名と、この資料の設定を使ってJSを生成するコマンドを答えよ。
+  - **答え**: <span class="masked">`tsconfig.json`、`npx tsc` (または `npm run build`)</span>
+- ローカルに導入済みのtsxで `src/hoge.ts` を実行するコマンドを答えよ。
+  - **答え**: <span class="masked">`npx tsx src/hoge.ts`</span>
+- `src/hoge.ts` の保存ごとに再実行するコマンドを答えよ。
+  - **答え**: <span class="masked">`npx tsx watch src/hoge.ts`</span>
+- 「tsxで実行できれば、型チェックも成功している」。この説明は適切か、不適切か。
+  - **答え**: <span class="masked">不適切</span>
+  - **解説**: <span class="masked">tsx自身は型チェックを行なわない。`npm run typecheck` でも確認する。</span>
+- 「VitestのVSCode拡張を入れたので、プロジェクトにVitest本体を入れる必要はない」。この説明は適切か、不適切か。
+  - **答え**: <span class="masked">不適切</span>
+  - **解説**: <span class="masked">VSCode拡張は操作するための窓口であり、プロジェクトにはnpmでVitest本体を導入する。</span>
+
+### 環境構築の参考資料
+
+- [Node.jsのリリース一覧](https://nodejs.org/en/about/previous-releases)
+- [TypeScript 6.0の変更点](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-6-0.html)
+- [VSCodeで使うTypeScriptの選択](https://code.visualstudio.com/docs/typescript/typescript-compiling#_using-newer-typescript-versions)
+- [tsxと型チェック](https://tsx.hirok.io/typescript)
+- [Vitestの導入](https://vitest.dev/guide/)、[VSCode拡張機能](https://marketplace.visualstudio.com/items?itemName=vitest.explorer)
 
 ## Git/GitHub管理
 
@@ -892,12 +957,18 @@ npx tsx watch src/prac00.ts
 以下のように `.gitignore` を作成して保存してください。
 
 ```text{.numberLines caption=".gitignore"}
-/node_modules
+/node_modules/
+/dist/
+/.vitest/
 ```
 
-現状で以下のようなプロジェクトフォルダの構成になっているはずです。
+`dist` は再生成できるビルド結果、`.vitest` はテスト関連の生成物の保存先として使われることがあるため、これらも管理対象外にします。一方、`package.json`、`package-lock.json`、設定ファイル、`src` のコードとテストはGitで管理してください。
 
-![img](figs/01/vscode_05.png)
+<!-- 撮影予定: vscode_05.png。新しい環境構築のファイル構成とGit管理対象に合わせる。 -->
+
+現状のプロジェクトフォルダの構成は、前の「環境構築の完了確認」と照合してください。
+
+<!-- 旧構成の画像: figs/01/vscode_05.png。撮り直し後に再掲。 -->
 
 以下の手順で、このプロジェクトフォルダを GitHub に Public なリポジトリとして発行してください。
 
@@ -915,9 +986,9 @@ npx tsx watch src/prac00.ts
 
 開発環境の構築は、**一度操作しただけでは理解も定着もしないので (授業時間外に) 再度構築してみてください**。
 
-ローカル環境 (ローカルリポジトリ) は、エクスプローラから `.git` を削除すれば完全に消去できます。GitHubリポジトリはウェブブラウザから操作して削除することができます。
+既存のプロジェクトを残して、別の空フォルダで構築しなおしてください。詳しい操作を見なくても、必要なファイルの配置とコマンド実行を判断できるか確認しましょう。`.git` の削除はGitの履歴・管理情報を消す操作であり、開発環境全体を削除する操作ではありません。
 
-- 参照: [リポジトリの削除](https://takeshiwada1980.github.io/Programming1-2025/lecture14.html#リポジトリの削除) @ プログラミング1
+また、作成済みの `package.json` と `package-lock.json` がそろっているプロジェクトでは、`npm ci` によってロックファイルに記録した依存関係を再インストールできます。初回の構築と、記録からの復元の違いも確認してください。`npm ci` は既存の `node_modules` を置き換えますが、ソースコードを削除する操作ではありません。
 
 ### 補足： フォーマッタのインストール と おまけ
 
@@ -1091,6 +1162,240 @@ console.log(`Todo 1 => ${todo.name}（優先度:${todo.priority})`);
     - 答え <span class="masked">`console.log(JSON.stringify(todo, null, 2));`</span> 
 - ウェブアプリ開発の文脈で「JSON」とは何の略語か英語で答えよ。
     - 答え <span class="masked">JavaScript Object Notation</span> 
+
+## 小さなテスト駆動開発を体験する
+
+ここまでで、TypeScriptのプログラムと自動テストを動かす環境ができました。次は、**「どう動いてほしいか」を先にテストで表してから、プログラムを実装する**ことに挑戦します。
+
+これを **テスト駆動開発 (TDD: Test-Driven Development)** と呼びます。基本的には、次のサイクルを小さく繰り返します。
+
+1. **Red** : 期待する動作をテストに書き、まだ実装できていないために **失敗すること** を確認する。
+2. **Green** : テストが成功するように、必要な実装をする。
+3. **Refactor** : テストの成功を保ちながら、コードの読みやすさなどを改善する。
+
+完成コードを先に貼り付けず、**各段階で予測・実行・確認してから**先へ進んでください。目標時間は **35〜45分** です。途中で調べたり、寄り道したりしても構いません。
+
+### まず、期待する動作を決める
+
+Todoアプリの「優先度」を判定する、小さな関数を作ります。今回は次の仕様にします。
+
+- 関数名は `isValidPriority`。`number` 型の値を1個受け取る。
+- 優先度として有効なのは **1〜3の整数**。有効なら `true`、それ以外なら `false` を返す。
+- 不適切な値を、勝手に丸めたり範囲内に直したりしない。
+
+例えば、`2` は有効です。では `0`、`3`、`1.5` はどうでしょうか。**コードを書く前に、それぞれの期待する結果を考えてください**。
+
+ここで「範囲外なら `false` を返す」は、私たちが決めた **設計上の判断** です。値を補正する、例外を投げる、といった設計もあり得ますが、この関数では判定結果を返します。画面にエラーメッセージを出す処理などは、呼び出す側の役割として分けておきます。
+
+### 関数とテストを別のファイルに置く
+
+`ts-playground` の `src` に、次の **2つのファイル** を作成してください。既存の `environment.test.ts` は、そのまま残して構いません。
+
+```text
+ts-playground/
+└─ src/
+   ├─ priority.ts       ← 判定する関数
+   └─ priority.test.ts  ← その関数のテスト
+```
+
+まず `priority.ts` に、関数の名前・引数・戻り値だけを用意します。中身はまだ未完成で、何を渡しても `false` を返します。
+
+```typescript{.numberLines caption="src/priority.ts (仮の実装)"}
+export function isValidPriority(value: number): boolean {
+  return false;
+}
+```
+
+- `value: number` : 数値を1個受け取る。
+- `): boolean` : 戻り値の型は <span class="masked">真偽値 (`true` または `false`)</span>。
+- `export` : この関数を、別のファイルから利用できるようにする。
+
+PythonやC言語で学んだ「引数を受け取って、値を返す関数」と同じ考え方です。TypeScriptの関数の詳しい書き方は、今後の講義でも扱います。
+
+次に、**「2を渡すとtrueになる」** というテストを `priority.test.ts` に書きます。
+
+```typescript{.numberLines caption="src/priority.test.ts (最初のテスト)"}
+import { expect, test } from "vitest";
+import { isValidPriority } from "./priority.js";
+
+test("優先度2は有効", () => {
+  expect(isValidPriority(2)).toBe(true);
+});
+```
+
+`import` は別のファイルやパッケージから機能を読み込む文です。ここでは、Vitestの機能と、自分で定義した関数を読み込んでいます。
+
+<div class="note type-tips">
+**priority.ts を作ったのに、importでは priority.js？**
+
+今回の `NodeNext` の設定では、JSへ変換した後にNode.jsが読み込むファイル名に合わせて、**相対importに `.js` を書きます**。TypeScriptは型チェック時に対応する `priority.ts` を参照でき、Vitestでもこの構成でテストできます。`src` に `priority.js` を手作業で作る必要はありません。
+</div>
+
+`test("名前", () => { ... })` の `() => { ... }` は、**テスト実行時に行なう処理を、関数として渡す書き方**です。今回は、この内側に確認したい処理を書きます。
+
+### Red：意図した理由で失敗することを確認
+
+VSCodeのテストビューから `priority.test.ts` のテストを実行してください。ターミナルでは、プロジェクトのルートで次を実行できます。
+
+```powershell
+npm run test:run -- src/priority.test.ts
+```
+
+`--` より後ろは、npmからテストツールに渡す引数です。ここでは、今回のファイルだけを対象にします。テストは **`Ctrl+Shift+B` やtsxではなく、Vitestで実行**してください。
+
+結果は **1件失敗** となり、期待値 (`Expected`) が `true`、実際の値 (`Received`) が `false` と表示されるはずです。
+
+これは、テストが動作し、**未完成の関数が仕様を満たしていないことを検出できた**という状態です。「ファイルが見つからない」「構文エラーで起動できない」は、ここで確認したい失敗とは異なります。失敗したという表示だけで満足せず、**失敗の理由を読んでください**。
+
+### Green：まず1件を成功させる
+
+`priority.ts` を次のように変更して保存し、同じテストを再実行してください。
+
+```typescript{.numberLines caption="src/priority.ts (最初の成功)"}
+export function isValidPriority(value: number): boolean {
+  return true;
+}
+```
+
+**1件成功** になりました。ただし、この実装が「1〜3の整数だけを有効とする」という仕様を満たしていないことは分かりますね🤔
+
+ここでは、テストを小さく始めるために、意図的に単純な実装にしています。**テストが成功しても、まだテストしていない条件については何も確認できていません**。
+
+#### 定着確認
+
+- 「2を渡すとtrueになる」というテストが成功した。この結果から、0や4を渡した場合の動作も正しいと判断できる。この説明は適切か、不適切か。
+  - **答え**: <span class="masked">不適切</span>
+  - **解説**: <span class="masked">確認したのは2に対する結果だけ。常にtrueを返す関数でも、そのテストは成功する。</span>
+
+### 境界と、その外側をテストする
+
+有効範囲の端に当たる `1` と `3`、その外側の `0` と `4` についても確認します。このように、条件が切り替わる境目を意識して調べることが重要です。
+
+**今あるテストを消さずに**、`priority.test.ts` の末尾へ次を追加してください。
+
+```typescript{.numberLines caption="src/priority.test.ts (境界のテストを追記)"}
+test("下限の1は有効", () => {
+  expect(isValidPriority(1)).toBe(true);
+});
+
+test("上限の3は有効", () => {
+  expect(isValidPriority(3)).toBe(true);
+});
+
+test("下限より小さい0は無効", () => {
+  expect(isValidPriority(0)).toBe(false);
+});
+
+test("上限より大きい4は無効", () => {
+  expect(isValidPriority(4)).toBe(false);
+});
+```
+
+現在の実装で、どのテストが失敗するかを予測してから実行してください。**3件成功・2件失敗** になるはずです。
+
+次に、関数を **1以上かつ3以下の場合にtrueを返す** ように変更してみてください。`&&` はC言語と同じ「かつ」で、Pythonの `and` に相当します。
+
+取り組んでから、次の実装例と比較してください。
+
+```typescript{.numberLines caption="src/priority.ts (範囲の判定)"}
+export function isValidPriority(value: number): boolean {
+  return value >= 1 && value <= 3;
+}
+```
+
+これで **5件成功** になります。ここで、仕様をもう一度読み直してください。**まだ確認していない条件はありませんか？**
+
+### 数値型なら、適切な入力なのか？
+
+仕様は「1〜3の **整数**」でした。`number` 型では、`1.5` のような小数も扱えます。したがって <span class="masked">型チェックに通ることと、用途に適した値であること</span> は同じではありません。
+
+まず、実装には触れずに次のテストを追加してください。
+
+```typescript{.numberLines caption="src/priority.test.ts (小数のテストを追記)"}
+test("範囲内でも小数の1.5は無効", () => {
+  expect(isValidPriority(1.5)).toBe(false);
+});
+```
+
+実行して、**5件成功・1件失敗** となることを確認してください。失敗を確認したら、整数かどうかも調べるように関数を変更します。
+
+整数の判定には **`Number.isInteger(value)`** が使えます。整数なら `true`、そうでなければ `false` を返します。例えば `Number.isInteger(2)` は `true`、`Number.isInteger(1.5)` は `false` です。
+
+```typescript{.numberLines caption="src/priority.ts (整数の判定を追加)"}
+export function isValidPriority(value: number): boolean {
+  if (!Number.isInteger(value)) {
+    return false;
+  }
+  return value >= 1 && value <= 3;
+}
+```
+
+`!` はC言語と同じ否定で、Pythonの `not` に相当します。整数でなければ先に `false` を返し、整数の場合に範囲を判定しています。保存して再実行し、**6件成功** に戻ることを確認してください。
+
+### Refactor：動作を保ってコードを整理する
+
+今の関数は、次のように「整数である」「1以上」「3以下」という条件をまとめることもできます。
+
+```typescript{.numberLines caption="src/priority.ts (整理後)"}
+export function isValidPriority(value: number): boolean {
+  return Number.isInteger(value) && value >= 1 && value <= 3;
+}
+```
+
+この変更では **仕様も、テストの期待値も変えません**。保存後、6件が引き続き成功することを確認してください。確認済みの動作を壊していないか、すぐに調べられるのが自動テストの利点です。なお、行数が短ければ必ず良いというわけではなく、読みやすさも判断してください。
+
+最後に、次を実行します。
+
+```powershell
+npm run typecheck
+npm run build
+npm run test:run
+```
+
+`environment.test.ts` を残しており、他にテストを追加していなければ、最後の結果は **2ファイル・7件成功** になります。VSCodeの「問題」パネルにもエラーが残っていないことを確認してください。
+
+### 演習3：テストが見逃す条件を考える (目標時間: 5分)
+
+関数の `value <= 3` を、一時的に `value < 3` に変えたら、どのテストが失敗するでしょうか。予想を書いてから、実際に変更・保存・実行して確かめてください。確認後は元に戻し、すべて成功することを確認します。
+
+もしテストが `2` と `1.5` の2つしかなかったら、この間違いに気づけるでしょうか。**テストの数だけでなく、どんな条件を選んだかが重要**だと説明できるようになってください。
+
+余裕があれば、負の数や別の小数など、自分で入力を選んでテストを追加してください。期待値を決めた理由も説明してください。
+
+### AIのコードを評価するときにも使う
+
+AIが `return value >= 1 && value <= 3;` というコードを提案したとします。ぱっと見では正しそうでも、「整数」という条件が抜けています。**人間が仕様を読み、見落としそうな条件を選んで検証すること**が大切です。
+
+AIに相談するときも、先に「入力」「期待する結果」「その理由」を自分で考えてください。例えば、次のように使えます。
+
+> 優先度として1〜3の整数だけを受け付ける関数を作っています。私が考えたテスト入力と期待値は以下のとおりです。見落としている条件があれば、完成コードを出さずに質問してください。
+
+失敗したときは、実装の誤りだけでなく **テストの期待値や仕様の解釈が誤っていないか** も調べます。ただ緑色の成功表示にするために期待値を変更するのではなく、仕様に立ち戻って判断してください。
+
+今回扱ったのは、`number` 型の値を受け取る小さな関数です。ユーザー入力や外部データでは、文字列や未入力なども考慮が必要になります。**外部から来た値が、型注釈を書くだけで自動検証されるわけではありません**。そのような入力の検証や、通信・保存の失敗時の振る舞いは、今後の開発で段階的に扱います。
+
+#### 定着確認
+
+- TDDでは、これから実装する動作のテストを先に書き、意図した理由で失敗することを確認する。この説明は適切か、不適切か。
+  - **答え**: <span class="masked">適切</span>
+- この関数に `number` 型を指定しても、1.5が渡されることを型チェックだけでは防げない。その理由を答えよ。
+  - **答え**: <span class="masked">number型は整数だけでなく、小数も扱うため。</span>
+- 優先度の下限と上限、およびそれぞれのすぐ外側として、今回使った整数を答えよ。
+  - **答え**: <span class="masked">下限1・上限3、範囲外の0・4。</span>
+- `value <= 3` を `value < 3` に誤って変更した場合、今回のどの入力のテストが失敗するか。
+  - **答え**: <span class="masked">3を入力する「上限の3は有効」のテスト。</span>
+- Refactorの段階では、実装に合わせてテストの期待値も変更する。この説明は適切か、不適切か。
+  - **答え**: <span class="masked">不適切</span>
+  - **解説**: <span class="masked">期待する動作は維持し、コードの構造などを改善する。今回の整理では期待値を変えない。</span>
+- 不適切な優先度を渡した場合に、今回の関数はプログラムを停止させるか、それとも何かを返すか。
+  - **答え**: <span class="masked">falseを返す。停止させたり、値を補正したりはしない設計。</span>
+- AIが実装とテストの両方を作り、そのテストが全て成功すれば、仕様の見落としはないと判断できる。この説明は適切か、不適切か。
+  - **答え**: <span class="masked">不適切</span>
+  - **解説**: <span class="masked">実装とテストの両方が同じ条件を見落としている可能性がある。仕様と照合し、確認する条件や期待値を評価する必要がある。</span>
+
+- 参考: [Vitestのtest](https://vitest.dev/api/test)、[Number.isInteger](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/isInteger)
+
+<!-- 撮影予定: priority.test.tsのRed、Green、境界テストの失敗、継続実行、最後の2ファイル7件成功。 -->
 
 ## 授業時間外学習
 
