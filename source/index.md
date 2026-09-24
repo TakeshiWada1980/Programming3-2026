@@ -8,7 +8,8 @@ var:
 
 ## 資料 INDEX
 
-- 第01回講義 09月25日(金) [資料](lecture01.html) <font size="-1">Node.js & TypeScript開発環境の構築</font>
+- 第01回講義 09月25日(金) [資料](lecture01.html)&ensp; <font size="-1">Node.js & TypeScript 開発環境の構築</font>
+- 第02回講義 10月02日(金) 資料&ensp; ***小テスト1*** <font size="-1">TypeScript 基礎</font>
 
 
 ## 参考資料
