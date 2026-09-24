@@ -448,9 +448,16 @@ div.note > pre {
   text-align: center;
 }
 
-.markdown-body ul p {
+/* Pandoc が本文を p で囲む場合も、li 直下の本文と開始位置を揃える */
+.markdown-body ul > li > p {
+  margin-block-start: 0;
+  margin-block-end: 0;
+  text-indent: inherit;
+}
+
+/* 同じ項目内に複数の段落がある場合は、段落間の余白だけ残す */
+.markdown-body ul > li > p + p {
   margin-block-start: 0.2em;
-  margin-block-end: 0.2em;
 }
 
 /* ul の直接の子 li のみに適用（子孫セレクタによる ol > li への漏れを防ぐ） */
