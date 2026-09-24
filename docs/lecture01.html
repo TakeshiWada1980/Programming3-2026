@@ -154,7 +154,7 @@ class="toc-section-number">8.4</span> オブジェクトのコンソール出力
 class="toc-section-number">8.5</span> オブジェクトのコンソール出力 (2)</a></li>
 </ul></li>
 <li><a href="#小さなテスト駆動開発を体験する" id="toc-小さなテスト駆動開発を体験する"><span
-class="toc-section-number">9</span> 小さなテスト駆動開発を体験する</a>
+class="toc-section-number">9</span> 小さな「テスト駆動開発」を体験する</a>
 <ul>
 <li><a href="#まず期待する動作を決める" id="toc-まず期待する動作を決める"><span
 class="toc-section-number">9.1</span> まず、期待する動作を決める</a></li>
@@ -600,9 +600,25 @@ class="toc-section-number">9.9</span> AIのコードを評価するときにも�
       <li>認証・認可の概念を踏まえた、セキュアなウェブアプリを設計・運用できる。</li>
       <li>ホスティングサービスを利用し、ウェブアプリをデプロイ・公開できる。</li>
       </ol>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>この授業で目指してほしいのは、<strong>単に自分の手でアプリを実装できるようになることではありません</strong>。実際にアプリを設計・実装し、テストし、修正するという実経験を通して
+      <span
+      class="masked">「どのような仕組みで実現されているのか」や「どこで、どのような問題が起こりうるのか」</span>
+      を理解できるようになることです。</p>
+      <p>実際に、手を動かして実装する経験をしてみると、正常に動く場合だけでなく、<strong>入力が不正だったらどうなるのか</strong>、<strong>通信や保存に失敗したらどうするのか</strong>、<strong>仕様を変更したときにどこへ影響が及ぶのか</strong>、といった問題が見えてきます。こうした問題や例外を知っているからこそ、AI
+      に対しても、単に「XXを作って」と依頼するのではなく、「この場合はこう扱う」「ここではこの問題が想定されるのでこうして」「この条件を満たしていることをテストする」といった、異常系に対する各種想定を含んだ設計を与えられるようになります。</p>
+      </div>
+      <div class="balloon char-01 face-01 tone-pink">
+      <p>重要なのは、コードを書くことそのものではなく、<strong>実装を経験したからこそ見えてくる「起こりうる問題」や「判断すべきこと」を、仕様や設計条件として言語化してAIに与える設計力</strong>
+      です。そして、AIが提案した実装を理解し、テストし、評価し、必要に応じて改善できることです。</p>
+      <p>この授業では「<strong>プログラミング</strong>」を単なる実装技能としてではなく、<strong><u>ソフトウェアを設計し、判断し、その成果に責任を持つための基礎となる力</u></strong>
+      として身につけてほしいと考えています。</p>
+      </div>
       <h2 data-number="1.5" id="成績評価法"><span class="header-section-number">1.5</span>
       成績評価法</h2>
-      <p><strong>総合成績</strong>（学年末の最終成績）は、次のように評価します。シラバスからの抜粋です。</p>
+      <p><strong>総合成績</strong>（学年末の最終成績）は、次のように評価します。<a
+      href="https://www.ct.omu.ac.jp/studies/classes/syllabus-reg/">シラバス</a>
+      からの抜粋です。</p>
       <ol type="1">
       <li>各達成目標に対する到達度を、<strong>課題</strong>
       <strong><em>70%</em></strong>、<strong>小テスト</strong> <strong><em>30%</em></strong>
@@ -611,8 +627,11 @@ class="toc-section-number">9.9</span> AIのコードを評価するときにも�
       </ol>
       <ul>
       <li>中間試験や期末試験などの筆記形式の定期試験は <strong>実施しません</strong>。</li>
-      <li>小テストは、授業開始直後に実施するので、余裕をもって IP室
-      に入室するようにしてください。</li>
+      <li>小テストは、授業開始直後に実施するので、余裕をもって IP室 に入室するようにしてください。
+      <ul>
+      <li>小テストは、主として講義資料内の「定着確認」から出題します
+      (そのままではなく類題や解答形式の変更を含みます)。</li>
+      </ul></li>
       </ul>
       <div class="note type-tips">
       <p><strong>小テストを受験できなかった場合の救済措置 (重要🚨)</strong></p>
@@ -1779,9 +1798,7 @@ ts-playground@1.0.0 C:\Users\xxxx\ts-playground
       <strong>テストを書き、実行し、失敗の理由を読む</strong> ところから経験しておきましょう。</p>
       <ul>
       <li>参考: <a
-      href="https://microsoft.github.io/code-with-engineering-playbook/automated-testing/unit-testing/">Microsoftの開発手引き：単体テスト</a>、<a
-      href="https://docs.github.com/en/actions/get-started/continuous-integration">GitHub
-      Actionsの継続的インテグレーション</a></li>
+      href="https://www.youtube.com/results?search_query=ソフトウェアテスト">YouTube検索「ソフトウェアテスト」</a></li>
       </ul>
       </div>
       <p><strong>package.json</strong> の <strong>scripts</strong>
@@ -2045,6 +2062,13 @@ npm run test:run</code></pre>
       Tests  1 passed (1)
    Start at  16:14:54
    Duration  352ms</code></pre>
+      <p>**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i></p>
+      <blockquote>
+      <p>ソフトウェアテストって何のために必要なんですか。プログラムを見れば分かるのに、わざわざテストコード書いて面倒なだけだと思います。しかも、プログラムを変更するたびにテストコードも併せて書き直さないといけないし。</p>
+      </blockquote>
+      <blockquote>
+      <p>ソフトウェアテストやテスト駆動開発なんて、実際に実務で使っているんですか？体験しておく価値なんてあるんですか？生成AIで実装させることが主流になっていく時代に。</p>
+      </blockquote>
       <h3 data-number="6.4.1" id="vscode-の拡張機能を利用"><span
       class="header-section-number">6.4.1</span> VSCode の拡張機能を利用</h3>
       <p>つづいて、VSCodeの拡張機能から <strong><a
@@ -2295,11 +2319,13 @@ npm run test:run</code></pre>
       <code>console.log()</code>、<code>console.error()</code>、<code>console.warn()</code>、<code>console.info()</code>、<code>console.debug()</code>
       などが存在します。これらは、C言語の <span class="masked"><code>fprintf(stdout, ...)</code> や
       <code>fprintf(stderr, ...)</code></span> のように使い分けます。</p>
+      <div class="balloon char-01 face-02 tone-yellow">
       <p>実行環境によっては、ログレベル (log, error, warn…)
-      に応じて「色分け」や「装飾付き」で出力されたり、フィルタリング機能 (=<span
-      class="masked">特定のレベル以上のメッセージのみを表示する機能</span>)
-      が提供されます。しかし、最初のうちは細かな使い分けは考えずに <code>console.log()</code>
-      だけの使用 (もしくは <code>console.error()</code> との2つの使い分け) で十分です。</p>
+      に応じて「<strong>色分け</strong>」や「<strong>装飾付き</strong>」で出力されたり、フィルタリング機能
+      (＝特定のレベル以上のメッセージのみを表示する機能) が提供されます。</p>
+      <p>でも、まずは細かな使い分けは考えずに <code>console.log()</code> だけの使用 (もしくは
+      <code>console.error()</code> との2つの使い分け) で十分です。</p>
+      </div>
       <p>例えば、<code>name</code> と <code>priority</code>
       という2つの変数の値を出力したいときは、以下のように <span class="masked">カンマ区切り</span>
       で記述します (可変長引数としてコンソールメソッドに与えます)。<code>src/prac01.ts</code>
@@ -2510,7 +2536,7 @@ npm run test:run</code></pre>
       </ul></li>
       </ul>
       <h1 data-number="9" id="小さなテスト駆動開発を体験する"><span
-      class="header-section-number">9</span> 小さなテスト駆動開発を体験する</h1>
+      class="header-section-number">9</span> 小さな「テスト駆動開発」を体験する</h1>
       <p>ここまでで、TypeScriptのプログラムと自動テストを動かす環境ができました。次は、<strong>「どう動いてほしいか」を先にテストで表してから、プログラムを実装する</strong>ことに挑戦します。</p>
       <p>これを <strong>テスト駆動開発 (TDD: Test-Driven Development)</strong>
       と呼びます。「自動テストを使うこと」と「TDDで開発すること」は同じではありません。実装後にテストを書くこともありますが、今回は
@@ -2526,6 +2552,10 @@ npm run test:run</code></pre>
       </ol>
       <p>完成コードを先に貼り付けず、<strong>各段階で予測・実行・確認してから</strong>先へ進んでください。目標時間は
       <strong>35〜45分</strong> です。途中で調べたり、寄り道したりしても構いません。</p>
+      <ul>
+      <li>参考: <a
+      href="https://www.youtube.com/results?search_query=テスト駆動開発">YouTube検索「テスト駆動開発」</a></li>
+      </ul>
       <h2 data-number="9.1" id="まず期待する動作を決める"><span
       class="header-section-number">9.1</span> まず、期待する動作を決める</h2>
       <p>Todoアプリの「優先度」を判定する、小さな関数を作ります。今回は次の仕様にします。</p>
@@ -2766,9 +2796,9 @@ npm run test:run</code></pre>
       <h1 data-number="10" id="授業時間外学習"><span class="header-section-number">10</span>
       授業時間外学習</h1>
       <ul>
-      <li>本科目は「<strong>学修単位科目</strong>」です。今回の講義内容 +アルファ に関して
-      <strong>4時間相当の授業時間外学習</strong>
-      に取り組んでください。疑問点や不明点などを「生成AI」で調べて深掘りしたり、C言語やPythonプログラムを
+      <li>本科目は「<strong>学修単位科目</strong>」です。各回の講義資料は、4時間相当の授業時間外学習を含めて
+      <strong>標準的な学生が学習に「6時間」を要する内容</strong>
+      で構成しています。疑問点や不明点などを「生成AI」で調べて深掘りしたり、C言語やPythonプログラムを
       TypeScript に移植したりすることをお勧めします。
       <ul>
       <li>何を学べばよいか分からない人は<a
@@ -2777,7 +2807,7 @@ npm run test:run</code></pre>
       <li>参考: <a href="https://typescriptbook.jp/">サバイバルTypeScript</a> TypeScript
       の入門ページです。</li>
       </ul></li>
-      <li>次回の授業のはじめに「<strong>小テスト</strong>」を実施します。主に「定着確認」から出題します。筆記用具を持参してください。</li>
+      <li>次回の授業のはじめに「<strong>小テスト</strong>」を実施します。筆記用具を忘れず持参してください。</li>
       </ul>
       <!-- ---------------------------------------- -->
     </main>
