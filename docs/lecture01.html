@@ -359,6 +359,7 @@ class="toc-section-number">9.9</span> AIのコードを評価するときにも�
       </div>
       <h3 data-number="1.3.1" id="定着確認"><span class="header-section-number">1.3.1</span>
       定着確認</h3>
+      <p>選択肢問題では、正解を選ぶだけでではなく「他の選択肢は、どこが違うのか」も説明できることが理想です。</p>
       <ul>
       <li><p>「<strong>ハンズオン形式</strong>」の学習の説明として、最も適切なものを選択肢から答えよ。<strong>答え</strong>:
       <span class="masked">B</span></p>
@@ -430,9 +431,9 @@ class="toc-section-number">9.9</span> AIのコードを評価するときにも�
       <li><strong>A</strong>. TypeScript は JavaScript
       に型の情報を記述・検査する仕組みなどを加えた言語である</li>
       <li><strong>B</strong>. TypeScript は JavaScript
-      の実行速度を上げるための言語で、型の検査は実行してから行う</li>
+      に型の情報を加え、実行中に渡される値を型注釈どおりか自動で検査する言語である</li>
       <li><strong>C</strong>. TypeScript は JavaScript
-      の文法を使うが、ウェブアプリのサーバ側の処理だけに使える言語である</li>
+      に型の情報を加え、型が合わない値を実行時に正しい型へ自動変換する言語である</li>
       </ul></li>
       <li><p>「<strong>React</strong>」の主な機能・役割として、最も適切なものを選択肢から答えよ。
       <strong>答え</strong>: <span class="masked">B</span></p>
@@ -452,7 +453,7 @@ class="toc-section-number">9.9</span> AIのコードを評価するときにも�
       <li><strong>A</strong>. Next.js は React
       に代わるUIライブラリであり、両者は原則として別々のアプリで利用する</li>
       <li><strong>B</strong>. Next.js は React
-      のコードを別の言語に翻訳する道具であり、アプリ開発の枠組みは提供しない</li>
+      の画面に見た目を追加する部品集であり、ページの構成やサーバ側の処理は扱わない</li>
       <li><strong>C</strong>. Next.js は React
       を基盤に、ページの構成やサーバ側の処理なども扱うフレームワークである</li>
       </ul></li>
@@ -756,6 +757,8 @@ class="toc-section-number">9.9</span> AIのコードを評価するときにも�
 <span id="cb1-11"><a href="#cb1-11"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(result)<span class="op">;</span></span></code></pre></div>
       <p>▲ と ▼ を見比べると、型情報 (<code>string</code> や <code>number</code>)
       の有無の違いが分かると思います。</p>
+      <p>なお、TypeScriptでは、値などから型を判断する <strong>型推論</strong>
+      によって、型の注釈を省略できる場合もあります。「型名を毎回書くこと」と「実行前に型を検査できること」は別です。ここでは、型を意識して読む練習のため、注釈を明記しています。</p>
       <div class="sourceCode" id="cb2" data-caption="After: prac00.js（JavaScriptプログラム）"><pre
       class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">function</span> <span class="fu">greetAndCalculate</span>(name<span class="op">,</span> a<span class="op">,</span> b) {</span>
 <span id="cb2-2"><a href="#cb2-2"></a>    <span class="kw">const</span> sum <span class="op">=</span> a <span class="op">+</span> b<span class="op">;</span></span>
@@ -777,11 +780,13 @@ class="toc-section-number">9.9</span> AIのコードを評価するときにも�
       <strong>答え</strong>: <span class="masked">B</span></p>
       <ul>
       <li><strong>A</strong>. TypeScript は、JavaScript
-      とは異なる文法を一から覚える必要がある、無関係な言語である。</li>
+      のすべての変数に型名の明記を必須とし、型名を省略したコードは受け付けない言語である。</li>
       <li><strong>B</strong>. TypeScript は、JavaScript
       を基に、静的な型の検査などの仕組みを加えた言語である。</li>
       <li><strong>C</strong>. TypeScript は、JavaScript
-      のコードを保存・共有するためのウェブサービスである。</li>
+      の実行時に型を検査し、型が一致しない処理を停止させる仕組みを加えた言語である。</li>
+      <li><strong>解説</strong>: <span
+      class="masked">型名を省略できる「型推論」もあります。また、TypeScriptの型注釈は、実行時の入力検証のためのコードにはなりません。</span></li>
       </ul></li>
       <li><p>JavaScript のファイルの「拡張子」を、ドットを含めて答えよ。 <strong>答え</strong>:
       <span class="masked"><code>.js</code></span></p></li>
@@ -975,24 +980,29 @@ class="toc-section-number">9.9</span> AIのコードを評価するときにも�
 <span id="cb7-10"><a href="#cb7-10"></a>  app.run(host<span class="op">=</span><span class="st">&#39;0.0.0.0&#39;</span>, port<span class="op">=</span><span class="dv">8000</span>)</span></code></pre></div>
       <p>JavaScriptでは <a href="https://www.google.com/search?q=Express.jsとは">Express.js</a>
       というフレームワークを使って、次のようにウェブアプリのバックエンドを構築することができます。</p>
-      <p>このプログラムは、Node.js がインストールされた環境で <code>node app.js</code>
-      というコマンドで実際に実行できます。逆に、<strong>ウェブブラウザ上では実行できないタイプの
+      <p>このプログラムは、Node.js に加えて Express をインストールした環境で
+      <code>node app.js</code> というコマンドで実際に実行できます。以下は CommonJS
+      方式の例なので、後で作る <code>"type": "module"</code>
+      のプロジェクトで試す場合は、ファイル名を <code>app.cjs</code> として
+      <code>npm install express</code> の後に <code>node app.cjs</code>
+      で実行してください。逆に、<strong>ウェブブラウザ上では実行できないタイプの
       JavaScriptプログラム</strong> となっています。</p>
       <div class="sourceCode" id="cb8" data-caption="app.js"><pre
-      class="sourceCode numberSource python numberLines"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1"></a>const express <span class="op">=</span> require(<span class="st">&#39;express&#39;</span>)<span class="op">;</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>const app <span class="op">=</span> express()<span class="op">;</span></span>
-<span id="cb8-3"><a href="#cb8-3"></a>const port <span class="op">=</span> <span class="dv">8000</span><span class="op">;</span></span>
+      class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><span id="cb8-1"><a href="#cb8-1"></a><span class="kw">const</span> express <span class="op">=</span> <span class="pp">require</span>(<span class="st">&#39;express&#39;</span>)<span class="op">;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a><span class="kw">const</span> app <span class="op">=</span> <span class="fu">express</span>()<span class="op">;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a><span class="kw">const</span> port <span class="op">=</span> <span class="dv">8000</span><span class="op">;</span></span>
 <span id="cb8-4"><a href="#cb8-4"></a></span>
-<span id="cb8-5"><a href="#cb8-5"></a>app.get(<span class="st">&#39;/&#39;</span>, (req, res) <span class="op">=&gt;</span> {</span>
-<span id="cb8-6"><a href="#cb8-6"></a>  res.send(<span class="st">&#39;hello&#39;</span>)<span class="op">;</span></span>
+<span id="cb8-5"><a href="#cb8-5"></a>app<span class="op">.</span><span class="fu">get</span>(<span class="st">&#39;/&#39;</span><span class="op">,</span> (req<span class="op">,</span> res) <span class="kw">=&gt;</span> {</span>
+<span id="cb8-6"><a href="#cb8-6"></a>  res<span class="op">.</span><span class="fu">send</span>(<span class="st">&#39;hello&#39;</span>)<span class="op">;</span></span>
 <span id="cb8-7"><a href="#cb8-7"></a>})<span class="op">;</span></span>
 <span id="cb8-8"><a href="#cb8-8"></a></span>
-<span id="cb8-9"><a href="#cb8-9"></a>app.listen(port, () <span class="op">=&gt;</span> {</span>
-<span id="cb8-10"><a href="#cb8-10"></a>  console.log(`Server running at http:<span class="op">//</span>localhost:${port}`)<span class="op">;</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>app<span class="op">.</span><span class="fu">listen</span>(port<span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`Server running at http://localhost:</span><span class="sc">${</span>port<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span>
 <span id="cb8-11"><a href="#cb8-11"></a>})<span class="op">;</span></span></code></pre></div>
-      <p>なお、Pythonで本格的なバックエンド開発をする際には、Flask ではなく <a
+      <p>なお、Pythonで本格的なバックエンド開発をする際には、Flask に加えて <a
       href="https://www.google.com/search?q=Djangoとは">Django (ジャンゴ)</a> や <a
-      href="https://fastapi.tiangolo.com/ja/">FastAPI</a> というフレームワークが利用されます。</p>
+      href="https://fastapi.tiangolo.com/ja/">FastAPI</a>
+      というフレームワークも選択肢になります。</p>
       </div>
       <h3 data-number="3.2.2" id="node.js-が求められる理由2"><span
       class="header-section-number">3.2.2</span> Node.js が求められる理由2</h3>
@@ -1032,12 +1042,12 @@ class="toc-section-number">9.9</span> AIのコードを評価するときにも�
       が動作することの利点として、最も適切なものを選択肢から答えよ。 <strong>答え</strong>: <span
       class="masked">B</span></p>
       <ul>
-      <li><strong>A</strong>. 利用者が使うOSごとに、JavaScript
-      のソースコードを必ず別の言語へ書き直せる。</li>
+      <li><strong>A</strong>.
+      ブラウザがJavaScriptを実行する前に、利用者のPCにNode.jsを自動でインストールしてくれる。</li>
       <li><strong>B</strong>.
       利用者が対応するブラウザを使えれば、専用の言語実行環境を別途導入せずにアプリを利用できる。</li>
       <li><strong>C</strong>.
-      ウェブアプリの開発者も、エディタやビルド用ツールなどの開発環境を一切用意する必要がなくなる。</li>
+      利用者のPCに開発者と同じnpmパッケージを導入すれば、ブラウザの種類や対応機能を確認せずに使える。</li>
       </ul></li>
       <li><p>HTMLタグ <code>&lt;script src="hoge.js"&gt;&lt;/script&gt;</code>
       の役割として、最も適切なものを選択肢から答えよ。 <strong>答え</strong>: <span
@@ -1046,7 +1056,8 @@ class="toc-section-number">9.9</span> AIのコードを評価するときにも�
       <li><strong>A</strong>. 指定した JavaScript ファイルをブラウザに読み込ませ、実行させる。</li>
       <li><strong>B</strong>. 指定した JavaScript
       ファイルの内容を、コードの文字列としてページ本文に表示する。</li>
-      <li><strong>C</strong>. 指定した JavaScript ファイルを TypeScript に変換して保存する。</li>
+      <li><strong>C</strong>. 指定した JavaScript
+      ファイルをサーバ側で実行し、その出力だけをブラウザに表示する。</li>
       </ul></li>
       <li><p>通常のウェブブラウザは、<code>: number</code> などの TypeScript
       固有の型注釈を含むコードを、そのまま JavaScript
@@ -1060,10 +1071,10 @@ class="toc-section-number">9.9</span> AIのコードを評価するときにも�
       で作ったプログラムを、この授業の方法でブラウザ上で動かす順序として、適切なものを選択肢から答えよ。
       <strong>答え</strong>: <span class="masked">C</span></p>
       <ul>
-      <li><strong>A</strong>. TypeScript ファイルの拡張子を <code>.html</code>
-      に変更し、そのファイルをブラウザで開く。</li>
-      <li><strong>B</strong>. TypeScript ファイルをブラウザで実行したあと、実行結果を JavaScript
-      に変換する。</li>
+      <li><strong>A</strong>. TypeScript ファイルの拡張子だけを <code>.js</code>
+      に変更し、型注釈は残したままHTMLから読み込ませる。</li>
+      <li><strong>B</strong>. PCにTypeScriptをインストールすれば、型注釈を含む <code>.ts</code>
+      ファイルをHTMLからそのまま読み込ませられる。</li>
       <li><strong>C</strong>. TypeScript を JavaScript に変換し、HTMLから生成された JavaScript
       を読み込ませる。</li>
       </ul></li>
@@ -1084,8 +1095,8 @@ class="toc-section-number">9.9</span> AIのコードを評価するときにも�
       HTMLをブラウザの画面に表示することと、表示中のページの文字色を直接変更すること</li>
       <li><strong>B</strong>.
       バックエンドのプログラムを実行することと、フロントエンド開発のビルドや開発ツールを実行すること</li>
-      <li><strong>C</strong>. TypeScript の型注釈をブラウザに理解させることと、Java
-      のプログラムを実行すること</li>
+      <li><strong>C</strong>.
+      開発者のPCでTypeScriptを変換することと、利用者のブラウザ内で画面を直接操作すること</li>
       </ul></li>
       <li><p>バックエンドを Node.js で開発する利点として、最も適切なものを答えよ。
       <strong>答え</strong>: <span class="masked">A</span></p>
@@ -1244,6 +1255,8 @@ C:\Program Files\nodejs\node.exe</code></pre>
       <p>この最上位のフォルダを、以降 <strong>プロジェクトのルート</strong>
       と呼びます。以降、特に断りがない限り、<strong>コマンドはプロジェクトのルートで実行</strong>します。エディタで開いているファイルの場所と、ターミナルの作業位置は同じとは限りません
       (初心者がよく混乱するところです)。</p>
+      <p>例えば「<code>src</code> にファイルを作成する」と指示されたら、<strong>保存先は
+      <code>ts-playground/src</code></strong> です。</p>
       <div class="note type-caution">
       <p>プロジェクトルートが ts-playground
       の親フォルダなどになっている場合は、VSCodeを閉じて、再度、ts-playground
@@ -1275,7 +1288,8 @@ npm i -D --save-exact typescript@6.0.3 @types/node@24.13.6</code></pre>
       <li><code>i</code> は、<code>install</code> の略表記です。</li>
       <li><code>-D</code> は <code>--save-dev</code>
       の略表記で、開発用のライブラリとしてインストールするための指示です。</li>
-      <li><code>--save-exact</code> : は、指定したバージョンでインストールするための指示です。</li>
+      <li><code>--save-exact</code> : は、<code>package.json</code>
+      にバージョンの範囲ではなく、インストールしたバージョンそのものを記録するための指示です。</li>
       </ul></li>
       </ul>
       <div class="balloon char-01 face-05 tone-blue">
@@ -1324,10 +1338,10 @@ npm i -D --save-exact typescript@6.0.3 @types/node@24.13.6</code></pre>
       <ul>
       <li><strong>A</strong>. プロジェクトの情報を記録する <code>package.json</code>
       を、標準的な内容で作成する</li>
-      <li><strong>B</strong>. TypeScript
-      と、この授業で今後使うすべてのパッケージを自動で導入する</li>
-      <li><strong>C</strong>. プロジェクト内の TypeScript ファイルを、まとめて JavaScript
-      に変換する</li>
+      <li><strong>B</strong>. 既存の <code>package.json</code>
+      に記録されたパッケージを読み取り、<code>node_modules</code> に導入する</li>
+      <li><strong>C</strong>. TypeScriptの変換設定を記録する <code>tsconfig.json</code>
+      を、標準的な内容で作成する</li>
       </ul></li>
       <li><p><code>npm init -y</code> を実行して <code>package.json</code>
       ができれば、続くインストールコマンドを実行しなくても TypeScript
@@ -1345,16 +1359,17 @@ npm i -D --save-exact typescript@6.0.3 @types/node@24.13.6</code></pre>
       <li><strong>A</strong>. PC全体で共通して利用するため、グローバル環境へインストールする</li>
       <li><strong>B</strong>.
       このプロジェクトの開発用の依存パッケージとして記録し、インストールする</li>
-      <li><strong>C</strong>.
-      パッケージをダウンロードするだけにし、プロジェクトへの記録と導入は行わない</li>
+      <li><strong>C</strong>. 通常の依存パッケージとして <code>dependencies</code>
+      に記録し、開発時以外にも必要なものとして扱う</li>
       </ul></li>
       <li><p><code>--save-exact</code> の役割として、最も適切なものを選択肢から答えよ。
       <strong>答え</strong>: <span class="masked">C</span></p>
       <ul>
-      <li><strong>A</strong>.
-      プロジェクトのソースコードを、インストール前に自動でバックアップする</li>
+      <li><strong>A</strong>. <code>package.json</code>
+      には更新可能な範囲を記録し、<code>package-lock.json</code>
+      にだけ正確なバージョンを記録する</li>
       <li><strong>B</strong>.
-      次回のインストール時に、指定したバージョンを必ず最新版へ置き換える</li>
+      指定したバージョンを現在のプロジェクトだけでなく、グローバル環境にもそろえて記録する</li>
       <li><strong>C</strong>. <code>package.json</code>
       に、バージョンの範囲ではなく指定したバージョンそのものを記録する</li>
       <li><strong>解説</strong>: <span class="masked">例えば <code>typescript</code> のバージョンを
@@ -1471,11 +1486,11 @@ ts-playground@1.0.0 C:\Users\xxxx\ts-playground
       <strong>答え</strong>: <span class="masked">A</span></p>
       <ul>
       <li><strong>A</strong>.
-      開発作業やプログラムの動作に、そのパッケージが提供する機能を必要としており、パッケージがないと必要な処理を行えなかったり、正常に開発・実行できなかったりする</li>
+      開発作業にそのパッケージの機能を必要としており、導入されていないと型チェックなどの必要な作業を行えない</li>
       <li><strong>B</strong>.
-      そのパッケージが、開発者に代わってアプリケーションの仕様やソースコードをすべて自動的に決定する</li>
-      <li><strong>C</strong>.
-      そのパッケージを導入すると、同じPC上にあるすべてのプロジェクトへ自動的に同じ設定が適用される</li>
+      開発作業にそのパッケージの機能を必要としているので、完成したアプリの利用者にも必ず同じパッケージの導入が必要になる</li>
+      <li><strong>C</strong>. パッケージ名を <code>package.json</code>
+      に記録しておけば、本体をインストールしなくても、その機能を使用できる</li>
       </ul></li>
       </ul>
       <h2 data-number="5.4" id="typescript-の設定"><span class="header-section-number">5.4</span>
@@ -1530,6 +1545,10 @@ ts-playground@1.0.0 C:\Users\xxxx\ts-playground
       <li><code>noEmitOnError</code> :
       型などにエラーがあるとき、新しいJSファイルを出力しないようにする設定です。</li>
       </ul>
+      <p>ただし、<code>noEmitOnError</code> は
+      <strong>以前に生成したJSを削除する設定ではありません</strong>。変換に失敗しても古い
+      <code>dist/prac00.js</code>
+      が残っていれば、それを実行できてしまいます。「実行できた」だけで判断せず、変換が成功したことも確認してください。</p>
       <hr />
       <p>つづいて、上記の設定にあわせてプロジェクトルートに <code>src</code>
       というフォルダを作成してください。なお、<code>dist</code>
@@ -1603,11 +1622,10 @@ ts-playground@1.0.0 C:\Users\xxxx\ts-playground
       <ul>
       <li><strong>A</strong>. <code>npm</code> はパッケージの導入・管理などに使い、<code>npx</code>
       はパッケージが提供するコマンドの実行に使う</li>
-      <li><strong>B</strong>. <code>npm</code>
-      はTypeScriptのプログラムだけを実行し、<code>npx</code>
-      はJavaScriptのプログラムだけを実行する</li>
-      <li><strong>C</strong>. <code>npm</code> はグローバルインストール専用で、<code>npx</code>
-      はローカルインストール専用である</li>
+      <li><strong>B</strong>. <code>npm</code> はパッケージの導入・管理に使い、<code>npx</code>
+      はコマンドを実行する前に毎回そのパッケージを最新版へ更新する</li>
+      <li><strong>C</strong>. <code>npm</code> はパッケージの導入・管理に使い、<code>npx</code>
+      はローカルのパッケージを無視してグローバルのコマンドだけを実行する</li>
       </ul></li>
       <li><p><code>npx</code>
       は、インストール済みのパッケージだけでなく、必要に応じてパッケージを一時的に取得してコマンドを実行することもある。この説明は「適切」か「不適切」か答えよ。
@@ -1616,10 +1634,11 @@ ts-playground@1.0.0 C:\Users\xxxx\ts-playground
       ファイルの役割として、適切なものを選択肢から答えよ。 <strong>答え</strong>: <span
       class="masked">B</span></p>
       <ul>
-      <li><strong>A</strong>. <code>console.log</code>
-      が出力した文字列を、実行のたびに追記して保存する</li>
+      <li><strong>A</strong>.
+      変換前に判定した型の情報を保持し、Node.jsが実行時に値の型を検査するために使う</li>
       <li><strong>B</strong>. 生成したJavaScriptと元のソースコードとの対応情報を保持する</li>
-      <li><strong>C</strong>. プロジェクトにインストールしたパッケージの一覧を保持する</li>
+      <li><strong>C</strong>.
+      元のTypeScriptの変更を検知し、生成済みのJavaScriptを自動更新するために使う</li>
       </ul></li>
       <li><p><code>dist/prac00.js</code> を Node.js で実行するためのコマンドを答えよ。
       <strong>答え</strong>: <span class="masked"><code>node dist/prac00.js</code></span></p></li>
@@ -1746,6 +1765,25 @@ ts-playground@1.0.0 C:\Users\xxxx\ts-playground
       は、期待したとおりにプログラムが動くかを、自動的に確認するためのツールです
       (TypeScriptのテスト駆動開発の定石ツールです)。</li>
       </ul>
+      <div class="note type-tips">
+      <p><strong>ソフトウェアテストは、開発の現場でも日常的な仕事です</strong></p>
+      <p>実際の開発では、新機能を作るだけでなく、<strong>「この機能のテストを作って」「この不具合が再発したら検出できるテストを追加して」</strong>
+      と依頼されることがあります。新人のうちから、既存のテストを実行したり、仕様を読んで確認項目を考えたり、小さなテストを追加したりする仕事を任されることもあります。テストは、開発者にとっても身につけておくべき基本スキルです。</p>
+      <p>画面を操作して確認するテストもありますが、今回学ぶのは
+      <strong>確認する処理をコードにして、繰り返し実行できる「自動テスト」</strong>
+      です。一度動いた機能でも、その後の修正で壊れることがあります。テストを残しておくと、<span
+      class="masked">変更後も、以前できていたことができるか</span>
+      を確認しやすくなります。このような確認を <strong>回帰テスト</strong> と呼びます。</p>
+      <p>例えば、GitHub
+      Actionsでは、コードの変更を共有したときにテストを自動実行する仕組みも作れます。まずは自分のPCで
+      <strong>テストを書き、実行し、失敗の理由を読む</strong> ところから経験しておきましょう。</p>
+      <ul>
+      <li>参考: <a
+      href="https://microsoft.github.io/code-with-engineering-playbook/automated-testing/unit-testing/">Microsoftの開発手引き：単体テスト</a>、<a
+      href="https://docs.github.com/en/actions/get-started/continuous-integration">GitHub
+      Actionsの継続的インテグレーション</a></li>
+      </ul>
+      </div>
       <p><strong>package.json</strong> の <strong>scripts</strong>
       の項目を次のように書き換えてください (追加時に、末尾のカンマの付け忘れに注意)。</p>
       <div class="sourceCode" id="cb24" data-caption="package.json に追加する内容"><pre
@@ -1867,10 +1905,12 @@ npm run dev src/prac00.ts</code></pre>
       <li><p><code>tsx watch</code> による「監視」の意味として、適切なものを選択肢から答えよ。
       <strong>答え</strong>: <span class="masked">B</span></p>
       <ul>
-      <li><strong>A</strong>. エディタで入力中の文字を常に型チェックし、誤りを自動修正すること</li>
+      <li><strong>A</strong>.
+      対象ファイルの変更を監視し、型チェックに合格した場合だけプログラムを再実行すること</li>
       <li><strong>B</strong>.
       対象ファイルなどの変更を監視し、保存による変更を検出するとプログラムを再実行すること</li>
-      <li><strong>C</strong>. プログラムを実行せず、利用者が操作を終えるまで待機し続けること</li>
+      <li><strong>C</strong>.
+      実行結果を監視し、期待した答えと異なっていた場合にテスト失敗として報告すること</li>
       </ul></li>
       <li><p><code>npm run dev src/prac00.ts</code>
       の監視実行を停止するとき、ターミナルで使うキー操作を答えよ。 <strong>答え</strong>: <span
@@ -1888,10 +1928,10 @@ npm run dev src/prac00.ts</code></pre>
       <ul>
       <li><strong>A</strong>.
       型の整合性を確認する作業と、プログラムを実際に動かして結果を確認する作業の両方が必要だから</li>
-      <li><strong>B</strong>.
-      型チェックを実行するたびにプログラムが削除されるので、次のコマンドで復元する必要があるから</li>
-      <li><strong>C</strong>. tsx
-      が行った型チェックの結果を、TypeScriptコンパイラが表示し直す必要があるから</li>
+      <li><strong>B</strong>. 型チェックで生成された <code>dist</code>
+      内のJavaScriptを、tsxが読み込んで実行する仕組みだから</li>
+      <li><strong>C</strong>.
+      最初に型チェックを一度通しておけば、その後の変更もtsxが同じ基準で型チェックしてくれるから</li>
       </ul></li>
       </ul>
       <h3 data-number="6.2.2" id="演習-1"><span class="header-section-number">6.2.2</span> 演習</h3>
@@ -1903,7 +1943,16 @@ npm run dev src/prac00.ts</code></pre>
       <ul>
       <li>npm run typecheck で型エラーが検出されることを確認してください。</li>
       <li>npm run dev src/prac00.ts で、問題なく実行できることを確認してください。</li>
+      <li>ただし、<strong>実行できることと、計算結果が意図どおりであることは別</strong>です。合計は
+      <code>30</code> と <code>1020</code> のどちらになったでしょうか。<span class="masked">文字列の
+      <code>"10"</code> と数値の <code>20</code> に <code>+</code>
+      を使うと、ここでは文字列の連結になり <code>1020</code> となります。<code>: number</code>
+      と書いても、実行時に <code>"10"</code> が数値の <code>10</code>
+      へ自動変換されるわけではありません。</span></li>
       </ul></li>
+      <li>確認後は <code>[Ctrl]+[C]</code> で監視実行を停止し、<code>const x: number = 10;</code>
+      に戻して保存してください。<code>npm run typecheck</code>
+      で型エラーがなくなったことを確認してから、先へ進んでください。</li>
       </ul>
       <h2 data-number="6.3" id="vscode-から現在のtsファイルを実行"><span
       class="header-section-number">6.3</span> VSCode から現在のTSファイルを実行</h2>
@@ -1968,6 +2017,12 @@ npm run dev src/prac00.ts</code></pre>
       class="masked">実際の値が、期待した値と一致するか</span> を確認します。<code>import</code> や
       <code>() =&gt; { ... }</code>
       の詳しい構文は後で学びますが、ここでは「テスト名」「実際の値」「期待値」がどれかを確認してください。</p>
+      <p><code>expect(10 + 20)</code> の内側が
+      <strong>実際に計算する式</strong>、<code>.toBe(30)</code> の <code>30</code> が
+      <strong>期待値</strong> です。期待値は「今のコードを動かしたら何が出たか」ではなく、<span
+      class="masked">仕様として、どう動いてほしいか</span>
+      から決めます。この例はツールの動作確認用なので足し算を直接書いています。後半では、自分で作った関数の戻り値を検査します。</p>
+      <p>また、型チェックとテストの役割は異なります。例えば、足し算をするはずの処理を引き算にしても、数値どうしの計算なので型エラーにはなりません。<strong>型の整合性はTypeScriptで、選んだ条件での動作はテストで</strong>確認します。</p>
       <p>テストを実行するためにターミナルから、次の2つを実行してください。</p>
       <pre><code>npm run typecheck
 npm run test:run</code></pre>
@@ -2030,6 +2085,38 @@ npm run test:run</code></pre>
       <li><code>30</code> に戻して保存し、再実行して成功に戻してください。</li>
       </ol>
       <p>意図的に失敗させるのは、<strong>間違いがある場合に、実際にテストが知らせてくれること</strong>まで確認するためです。期待値を変えて失敗を作る操作は、ここではツールの動作確認のために行なっています。普段の開発で、テストを通すためだけに期待値を都合よく変えてはいけません。</p>
+      <h3 data-number="6.4.2" id="定着確認-8"><span class="header-section-number">6.4.2</span>
+      定着確認</h3>
+      <ul>
+      <li><code>expect(10 + 20).toBe(30)</code> の <code>30</code>
+      は何を表すか。最も適切なものを選択肢から答えよ。 <strong>答え</strong>: <span
+      class="masked">B</span>
+      <ul>
+      <li><strong>A</strong>. テストツールが実行結果を読み取り、自動的に記録した値</li>
+      <li><strong>B</strong>. この計算で得られるべき結果として、テストを書く側が指定した値</li>
+      <li><strong>C</strong>.
+      計算結果が異なっていた場合に、テストツールが結果を置き換えるための値</li>
+      </ul></li>
+      <li>「10と20を足す」という仕様に対し、<code>expect(10 - 20).toBe(30)</code>
+      が失敗した。対応として、最も適切なものを選択肢から答えよ。 <strong>答え</strong>: <span
+      class="masked">C</span>
+      <ul>
+      <li><strong>A</strong>. 実際の値は <code>-10</code> なので、期待値を <code>-10</code>
+      に変更してテストを成功させる</li>
+      <li><strong>B</strong>. 型チェックが成功していれば計算も正しいので、このテストを削除する</li>
+      <li><strong>C</strong>.
+      仕様と式を照合し、引き算になっている箇所を足し算に直して再実行する</li>
+      </ul></li>
+      <li>一度成功したテストを、コードの修正後にも繰り返し実行する目的として、最も適切なものを選択肢から答えよ。
+      <strong>答え</strong>: <span class="masked">A</span>
+      <ul>
+      <li><strong>A</strong>.
+      以前できていた処理が、今回の変更によって壊れていないか確認するため</li>
+      <li><strong>B</strong>.
+      期待値を修正後の実行結果に合わせて更新し、仕様の変更を自動承認するため</li>
+      <li><strong>C</strong>. 既存のテストが成功すれば、新機能についての確認は不要になるため</li>
+      </ul></li>
+      </ul>
       <h2 data-number="6.5" id="環境構築の完了確認"><span class="header-section-number">6.5</span>
       環境構築の完了確認</h2>
       <p>次の状態になっているか確認してください。<code>node_modules</code> と <code>dist</code>
@@ -2066,7 +2153,7 @@ npm run test:run</code></pre>
       <li>解答例は<a
       href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/01/prac00a.ts">こちら</a>。</li>
       </ul>
-      <h3 data-number="6.6.1" id="定着確認-8"><span class="header-section-number">6.6.1</span>
+      <h3 data-number="6.6.1" id="定着確認-9"><span class="header-section-number">6.6.1</span>
       定着確認</h3>
       <ul>
       <li>LTSとは何の略語か、英語で答えよ。
@@ -2252,6 +2339,11 @@ npm run test:run</code></pre>
       <li>生成AIあるいはウェブ検索を利用して <a
       href="https://www.google.com/search?q=ISO8601形式">ISO8601形式</a>
       について概要を把握してください。</li>
+      <li>今回のNode.jsでは、末尾が <code>Z</code> の日時が出力されます。<code>Z</code> は <span
+      class="masked">UTC (協定世界時)</span>
+      を表します。上記の作り方ではPCのローカル時刻を指定するため、日本時間のPCなら、<code>14:15</code>
+      が <code>05:15</code>
+      と表示されます。<strong>月の指定の間違いと、時差による表示の違いを分けて</strong>確認してください。</li>
       </ul></li>
       </ul>
       <div class="note type-tips">
@@ -2264,7 +2356,7 @@ npm run test:run</code></pre>
 <span id="cb37-2"><a href="#cb37-2"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
 <span id="cb37-3"><a href="#cb37-3"></a>  <span class="dt">char</span> name<span class="op">[</span><span class="dv">50</span><span class="op">]</span> <span class="op">=</span> <span class="st">&quot;TypeScriptの勉強&quot;</span><span class="op">;</span></span>
 <span id="cb37-4"><a href="#cb37-4"></a>  <span class="dt">int</span> priority <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb37-5"><a href="#cb37-5"></a>  fprintf<span class="op">(</span>stdout<span class="op">,</span> <span class="st">&quot;</span><span class="sc">%s</span><span class="st">, </span><span class="sc">%d\n</span><span class="st">&quot;</span><span class="op">,</span> name<span class="op">,</span> priority<span class="op">);</span></span>
+<span id="cb37-5"><a href="#cb37-5"></a>  fprintf<span class="op">(</span>stdout<span class="op">,</span> <span class="st">&quot;</span><span class="sc">%s</span><span class="st"> </span><span class="sc">%d\n</span><span class="st">&quot;</span><span class="op">,</span> name<span class="op">,</span> priority<span class="op">);</span></span>
 <span id="cb37-6"><a href="#cb37-6"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
 <span id="cb37-7"><a href="#cb37-7"></a><span class="op">}</span></span></code></pre></div>
       </div>
@@ -2314,7 +2406,8 @@ npm run test:run</code></pre>
       などのライブラリを使わずに、Date型オブジェクトを「2025/10/02 14:15」や「2025年10月02日
       14時15分」のような書式で出力する方法について<strong>調べて実装</strong>してください。また、実行して、結果を確認してください。</p></li>
       <li><p>実装例は<a
-      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/01/prac01a.ts">こちら</a>。</p></li>
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/01/prac01a.ts">こちら</a>。この例は「2025年10月2日
+      11時45分」を出力するので、上記の指定に合わせて時刻と月・日のゼロ埋めを変更してください。</p></li>
       </ul>
       <h2 data-number="8.4" id="オブジェクトのコンソール出力-1"><span
       class="header-section-number">8.4</span> オブジェクトのコンソール出力 (1)</h2>
@@ -2337,12 +2430,17 @@ npm run test:run</code></pre>
 <span id="cb41-2"><a href="#cb41-2"></a>  name<span class="op">:</span> <span class="st">&quot;TypeScriptの勉強&quot;</span><span class="op">,</span> <span class="co">// name = &quot;...&quot; ではない点に要注意</span></span>
 <span id="cb41-3"><a href="#cb41-3"></a>  priority<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="co">// priority = &quot;...&quot; ではない点に要注意</span></span>
 <span id="cb41-4"><a href="#cb41-4"></a>}<span class="op">;</span></span>
-<span id="cb41-5"><a href="#cb41-5"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`Todo 1 =&gt; </span><span class="sc">${</span>todo<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs">（優先度:</span><span class="sc">${</span>todo<span class="op">.</span><span class="at">priority</span><span class="sc">}</span><span class="vs">)`</span>)<span class="op">;</span></span></code></pre></div>
+<span id="cb41-5"><a href="#cb41-5"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`Todo 1 =&gt; </span><span class="sc">${</span>todo<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs">（優先度:</span><span class="sc">${</span>todo<span class="op">.</span><span class="at">priority</span><span class="sc">}</span><span class="vs">）`</span>)<span class="op">;</span></span></code></pre></div>
       <p>オブジェクトリテラル記法では <span class="masked"><code>=</code> ではなく <code>:</code>
       で値を与えること</span> に注意してください
       (<strong>初心者がよく間違える/混乱するところです</strong>)。</p>
-      <p>また、オブジェクトのプロパティ (属性、フィールド) には、<strong>第06行目</strong>
+      <p>また、オブジェクトのプロパティ (属性、フィールド) には、<strong>第05行目</strong>
       のようにドット (<code>.</code>) を使ってアクセスができます。</p>
+      <p>ここで、<code>const todo</code> としていても、<code>todo.priority = 2;</code> のように
+      <strong>プロパティの値を変更することはできます</strong>。<code>const</code> が禁止するのは
+      <span class="masked"><code>todo = ...</code> のように、変数自体へ別の値を再代入すること</span>
+      です。「<code>const</code>
+      にしたらオブジェクトの中身もすべて変更できなくなる」と混同しないようにしてください。</p>
       <h2 data-number="8.5" id="オブジェクトのコンソール出力-2"><span
       class="header-section-number">8.5</span> オブジェクトのコンソール出力 (2)</h2>
       <p>オブジェクト全体を出力したいとき (オブジェクトの内容を確認したいとき) は
@@ -2366,7 +2464,7 @@ npm run test:run</code></pre>
       <p>なお、JSON文字列に変換するとプロパティ (例えば <code>name</code> ) が <span
       class="masked">ダブルクォーテーションで囲まれて出力される</span>
       など、直接出力した場合と差異があるので注意してください。</p>
-      <h3 data-number="8.5.1" id="定着確認-9"><span class="header-section-number">8.5.1</span>
+      <h3 data-number="8.5.1" id="定着確認-10"><span class="header-section-number">8.5.1</span>
       定着確認</h3>
       <ul>
       <li>文字列型で「Reactの予習」という値を持った定数 <code>name</code>
@@ -2380,16 +2478,16 @@ npm run test:run</code></pre>
       <li>答え <span class="masked"><code>const priority: number = 2</code></span></li>
       </ul></li>
       <li>上記の <code>name</code> と <code>priority</code> を使用して
-      <code>Reactの勉強（優先度:2)</code>
+      <code>Reactの予習（優先度:2）</code>
       を得るテンプレート文字列を記述せよ。なお、コンソールメソッドで出力する必要はない。
       <ul>
-      <li>答え <span class="masked"><code>`${name}（優先度:${priority})`</code></span></li>
+      <li>答え <span class="masked"><code>`${name}（優先度:${priority}）`</code></span></li>
       </ul></li>
       <li>上記の <code>name</code> と <code>priority</code> と同様の型と値を持ったプロパティを有する
       <code>todo</code> というオブジェクトを、オブジェクトリテラル記法で記述せよ。
       <ul>
-      <li>答え <span class="masked">講義資料内の <code>prac01.ts</code>
-      を参照してください。</span></li>
+      <li>答え <span
+      class="masked"><code>const todo = { name: "Reactの予習", priority: 2 };</code></span></li>
       </ul></li>
       <li>上記の <code>todo</code> オブジェクトを、タブやインデントで整形された JSON
       に変換してコンソール出力せよ。
@@ -2401,12 +2499,24 @@ npm run test:run</code></pre>
       <ul>
       <li>答え <span class="masked">JavaScript Object Notation</span></li>
       </ul></li>
+      <li><code>const todo = { name: "Reactの予習", priority: 2 };</code> のあとで
+      <code>todo.priority = 3;</code> とすると、<code>const</code>
+      への再代入としてエラーになる。この説明は「適切」か「不適切」か答えよ。 <strong>答え</strong>:
+      <span class="masked">不適切</span>
+      <ul>
+      <li><strong>解説</strong>: <span
+      class="masked">この操作はプロパティの変更です。<code>todo</code>
+      自体に別のオブジェクトを再代入しているわけではありません。</span></li>
+      </ul></li>
       </ul>
       <h1 data-number="9" id="小さなテスト駆動開発を体験する"><span
       class="header-section-number">9</span> 小さなテスト駆動開発を体験する</h1>
       <p>ここまでで、TypeScriptのプログラムと自動テストを動かす環境ができました。次は、<strong>「どう動いてほしいか」を先にテストで表してから、プログラムを実装する</strong>ことに挑戦します。</p>
       <p>これを <strong>テスト駆動開発 (TDD: Test-Driven Development)</strong>
-      と呼びます。基本的には、次のサイクルを小さく繰り返します。</p>
+      と呼びます。「自動テストを使うこと」と「TDDで開発すること」は同じではありません。実装後にテストを書くこともありますが、今回は
+      <strong>先に期待する動作をテストで示し、その失敗を確認してから実装する順序</strong>
+      を体験します。</p>
+      <p>基本的には、次のサイクルを小さく繰り返します。</p>
       <ol type="1">
       <li><strong>Red</strong> : 期待する動作をテストに書き、まだ実装できていないために
       <strong>失敗すること</strong> を確認する。</li>
@@ -2426,7 +2536,7 @@ npm run test:run</code></pre>
       <li>不適切な値を、勝手に丸めたり範囲内に直したりしない。</li>
       </ul>
       <p>例えば、<code>2</code> は「有効」と判断します。一方で
-      <code>0</code>、<code>3</code>、<code>1.5</code>
+      <code>0</code>、<code>4</code>、<code>1.5</code>
       は「無効」と判断します。<strong>コードを書く前に、まずは、自分で、それぞれについて期待する結果
       (ここでは有効/無効) を考えてください</strong>。</p>
       <p>ここで「範囲外なら <code>false</code> を返す」というのは、自分で決めた
@@ -2435,7 +2545,7 @@ npm run test:run</code></pre>
       <h2 data-number="9.2" id="関数とテストを別のファイルに置く"><span
       class="header-section-number">9.2</span> 関数とテストを別のファイルに置く</h2>
       <p><code>ts-playground</code> の <code>src</code> に、次の <strong>2つのファイル</strong>
-      を作成してください。既存の <code>environment.test.ts</code> は、そのまま残して構いません。</p>
+      を作成してください。既存の <code>prac00.test.ts</code> は、そのまま残して構いません。</p>
       <pre class="text"><code>ts-playground/
 └─ src/
    ├─ priority.ts       ← 判定する関数
@@ -2497,7 +2607,7 @@ npm run test:run</code></pre>
       <p><strong>1件成功</strong>
       になりました。ただし、この実装が「1〜3の整数だけを有効とする」という仕様を満たしていないことは分かりますね🤔</p>
       <p>ここでは、テストを小さく始めるために、意図的に単純な実装にしています。<strong>テストが成功しても、まだテストしていない条件については何も確認できていません</strong>。</p>
-      <h3 data-number="9.4.1" id="定着確認-10"><span class="header-section-number">9.4.1</span>
+      <h3 data-number="9.4.1" id="定着確認-11"><span class="header-section-number">9.4.1</span>
       定着確認</h3>
       <ul>
       <li>「2を渡すとtrueになる」というテストが成功した。この結果から、0や4を渡した場合の動作も正しいと判断できる。この説明は適切か、不適切か。
@@ -2585,7 +2695,7 @@ npm run test:run</code></pre>
       <pre><code>npm run typecheck
 npm run build
 npm run test:run</code></pre>
-      <p><code>environment.test.ts</code> を残しており、他にテストを追加していなければ、最後の結果は
+      <p><code>prac00.test.ts</code> を残しており、他にテストを追加していなければ、最後の結果は
       <strong>2ファイル・7件成功</strong>
       になります。VSCodeの「問題」パネルにもエラーが残っていないことを確認してください。</p>
       <h2 data-number="9.8" id="演習3テストが見逃す条件を考える-目標時間-5分"><span
@@ -2609,7 +2719,7 @@ npm run test:run</code></pre>
       も調べます。ただ緑色の成功表示にするために期待値を変更するのではなく、仕様に立ち戻って判断してください。</p>
       <p>今回扱ったのは、<code>number</code>
       型の値を受け取る小さな関数です。ユーザー入力や外部データでは、文字列や未入力なども考慮が必要になります。<strong>外部から来た値が、型注釈を書くだけで自動検証されるわけではありません</strong>。そのような入力の検証や、通信・保存の失敗時の振る舞いは、今後の開発で段階的に扱います。</p>
-      <h3 data-number="9.9.1" id="定着確認-11"><span class="header-section-number">9.9.1</span>
+      <h3 data-number="9.9.1" id="定着確認-12"><span class="header-section-number">9.9.1</span>
       定着確認</h3>
       <ul>
       <li>TDDでは、これから実装する動作のテストを先に書き、意図した理由で失敗することを確認する。この説明は適切か、不適切か。
