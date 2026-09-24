@@ -1138,6 +1138,85 @@ code span.ot {
   color: #24292e;
 }
 
+/* ------- PowerShell: 濃紺背景用の配色 ------- */
+
+/* Pandocは言語クラスを外側のdivではなくpre/codeに付ける。 */
+div.sourceCode:has(> pre.powershell) {
+  --code-pg-background: #012456;
+  --code-pg-foreground: #f1f5f9;
+  --code-ln-foreground: #a6b8cf;
+}
+
+.markdown-body pre.sourceCode.powershell {
+  background-color: #012456;
+}
+
+.markdown-body pre.sourceCode.powershell code {
+  color: #f1f5f9;
+  background: transparent;
+}
+
+div.sourceCode:has(> pre.powershell)[data-caption]::before {
+  background: #071a35;
+  color: #f1f5f9;
+}
+
+div.sourceCode:has(> pre.powershell) .copy-btn {
+  color: #f1f5f9;
+  opacity: 0.8;
+}
+
+div.sourceCode:has(> pre.powershell) .copy-btn:is(:hover, :focus-visible) {
+  opacity: 1;
+}
+
+/* 通常文字・演算子・未分類トークン */
+.markdown-body pre.powershell code span {
+  color: #f1f5f9;
+}
+
+/* キーワード・制御・型・インポート */
+.markdown-body pre.powershell code :is(.kw, .cf, .dt, .im, .at, .pp) {
+  color: #c4b5fd;
+}
+
+/* コマンド・関数 */
+.markdown-body pre.powershell code :is(.fu, .bu, .ex) {
+  color: #fde68a;
+}
+
+/* 文字列とエスケープ */
+.markdown-body pre.powershell code :is(.st, .ss, .vs, .ch, .sc) {
+  color: #a7f3d0;
+}
+
+/* 変数 */
+.markdown-body pre.powershell code .va {
+  color: #7dd3fc;
+}
+
+/* 数値・定数 */
+.markdown-body pre.powershell code :is(.dv, .fl, .bn, .cn) {
+  color: #fdba74;
+}
+
+/* コメント: 暗い背景でも読める明度を確保 */
+.markdown-body pre.powershell code :is(.co, .do, .an, .cv, .in) {
+  color: #a6b8cf;
+}
+
+.markdown-body pre.powershell code :is(.er, .al) {
+  color: #fda4af;
+}
+
+.markdown-body pre.powershell code .wa {
+  color: #fde68a;
+}
+
+.markdown-body pre.powershell code > span > a {
+  color: #a6b8cf;
+}
+
 /* ------- ナビゲーション ------- */
 
 #g-nav {

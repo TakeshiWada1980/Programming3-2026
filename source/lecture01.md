@@ -1807,7 +1807,7 @@ export function isValidPriority(value: number): boolean {
 
 最後に、次を実行します。
 
-```
+```powershell
 npm run typecheck
 npm run build
 npm run test:run
