@@ -538,9 +538,9 @@ if __name__ == '__main__':
 
 JavaScriptでは [Express.js](https://www.google.com/search?q=Express.jsとは) というフレームワークを使って、次のようにウェブアプリのバックエンドを構築することができます。
 
-このプログラムは、Node.js がインストールされた環境で `node app.js` というコマンドで実際に実行できます。逆に、**ウェブブラウザ上では実行できないタイプの JavaScriptプログラム** となっています。
+このプログラムは、Node.js に加えて Express をインストールした環境で `node app.js` というコマンドで実際に実行できます。以下は CommonJS 方式の例なので、後で作る `"type": "module"` のプロジェクトで試す場合は、ファイル名を `app.cjs` として `npm install express` の後に `node app.cjs` で実行してください。逆に、**ウェブブラウザ上では実行できないタイプの JavaScriptプログラム** となっています。
 
-```python{.numberLines caption="app.js"}
+```javascript{.numberLines caption="app.js"}
 const express = require('express');
 const app = express();
 const port = 8000;
@@ -554,7 +554,7 @@ app.listen(port, () => {
 });
 ```
 
-なお、Pythonで本格的なバックエンド開発をする際には、Flask ではなく [Django (ジャンゴ)](https://www.google.com/search?q=Djangoとは) や [FastAPI](https://fastapi.tiangolo.com/ja/) というフレームワークが利用されます。
+なお、Pythonで本格的なバックエンド開発をする際には、Flask に加えて [Django (ジャンゴ)](https://www.google.com/search?q=Djangoとは) や [FastAPI](https://fastapi.tiangolo.com/ja/) というフレームワークも選択肢になります。
 
 </div>
 
@@ -741,7 +741,7 @@ npm i -D --save-exact typescript@6.0.3 @types/node@24.13.6
 - `npm i -D --save-exact ...` : 指定したバージョンのライブラリ (パッケージ) を **「現在のプロジェクト」にローカルインストール** します。
   - `i` は、`install` の略表記です。
   - `-D` は `--save-dev` の略表記で、開発用のライブラリとしてインストールするための指示です。
-  - `--save-exact` : は、指定したバージョンでインストールするための指示です。
+  - `--save-exact` : は、`package.json` にバージョンの範囲ではなく、インストールしたバージョンそのものを記録するための指示です。
 
 
 ::: {.balloon .char-01 .face-05 .tone-blue}
@@ -1178,6 +1178,7 @@ npm run dev src/prac00.ts
 - src/prac00.ts の **第07行目** の `const x: number = 10;` を `const x: number = "10";` に書き換えてください。
   - npm run typecheck で型エラーが検出されることを確認してください。
   - npm run dev src/prac00.ts で、問題なく実行できることを確認してください。
+- 確認後は `[Ctrl]+[C]` で監視実行を停止し、`const x: number = 10;` に戻して保存してください。`npm run typecheck` で型エラーがなくなったことを確認してから、先へ進んでください。
 
 ### VSCode から現在のTSファイルを実行
 
@@ -1462,7 +1463,7 @@ let deadline: Date = new Date(2025, 10, 2, 14, 15);
 int main() {
   char name[50] = "TypeScriptの勉強";
   int priority = 3;
-  fprintf(stdout, "%s, %d\n", name, priority);
+  fprintf(stdout, "%s %d\n", name, priority);
   return 0;
 }
 ```
@@ -1513,7 +1514,7 @@ Pythonとは異なり、`$`マークをつけなければいけない点に、�
 
 - 生成AIあるいはウェブ検索を利用して、`dayjs` や `moment` などのライブラリを使わずに、Date型オブジェクトを「2025/10/02 14:15」や「2025年10月02日 14時15分」のような書式で出力する方法について**調べて実装**してください。また、実行して、結果を確認してください。
 
-- 実装例は[こちら](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/01/prac01a.ts)。
+- 実装例は[こちら](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/01/prac01a.ts)。この例は「2025年10月2日 11時45分」を出力するので、上記の指定に合わせて時刻と月・日のゼロ埋めを変更してください。
 
 ### オブジェクトのコンソール出力 (1)
 
@@ -1530,12 +1531,12 @@ const todo = {
   name: "TypeScriptの勉強", // name = "..." ではない点に要注意
   priority: 3, // priority = "..." ではない点に要注意
 };
-console.log(`Todo 1 => ${todo.name}（優先度:${todo.priority})`);
+console.log(`Todo 1 => ${todo.name}（優先度:${todo.priority}）`);
 ```
 
 オブジェクトリテラル記法では <span class="masked">`=` ではなく `:` で値を与えること</span> に注意してください (**初心者がよく間違える/混乱するところです**)。
 
-また、オブジェクトのプロパティ (属性、フィールド) には、**第06行目** のようにドット (`.`) を使ってアクセスができます。
+また、オブジェクトのプロパティ (属性、フィールド) には、**第05行目** のようにドット (`.`) を使ってアクセスができます。
 
 ### オブジェクトのコンソール出力 (2)
 
@@ -1564,10 +1565,10 @@ console.log(`Todo 1 => ${todo.name}（優先度:${todo.priority})`);
     - 答え <span class="masked">`const name: string = "Reactの予習"`</span> 
 - 数値型で「2」という値を持った定数 `priority` を宣言する文を記述せよ。ここでは、型を明示すること。
     - 答え <span class="masked">`const priority: number = 2`</span> 
-- 上記の `name` と `priority` を使用して `Reactの勉強（優先度:2)` を得るテンプレート文字列を記述せよ。なお、コンソールメソッドで出力する必要はない。
-    - 答え <span class="masked">`` `${name}（優先度:${priority})` ``</span> 
+- 上記の `name` と `priority` を使用して `Reactの予習（優先度:2）` を得るテンプレート文字列を記述せよ。なお、コンソールメソッドで出力する必要はない。
+    - 答え <span class="masked">`` `${name}（優先度:${priority}）` ``</span>
 - 上記の `name` と `priority` と同様の型と値を持ったプロパティを有する `todo` というオブジェクトを、オブジェクトリテラル記法で記述せよ。
-    - 答え <span class="masked">講義資料内の `prac01.ts` を参照してください。</span>
+    - 答え <span class="masked">`const todo = { name: "Reactの予習", priority: 2 };`</span>
 - 上記の `todo` オブジェクトを、タブやインデントで整形された JSON に変換してコンソール出力せよ。
     - 答え <span class="masked">`console.log(JSON.stringify(todo, null, 2));`</span> 
 - ウェブアプリ開発の文脈で「JSON」とは何の略語か英語で答えよ。
@@ -1593,13 +1594,13 @@ Todoアプリの「優先度」を判定する、小さな関数を作ります�
 - 優先度として有効なのは **1〜3の整数**。有効なら `true`、それ以外なら `false` を返す。
 - 不適切な値を、勝手に丸めたり範囲内に直したりしない。
 
-例えば、`2` は「有効」と判断します。一方で `0`、`3`、`1.5` は「無効」と判断します。**コードを書く前に、まずは、自分で、それぞれについて期待する結果 (ここでは有効/無効) を考えてください**。
+例えば、`2` は「有効」と判断します。一方で `0`、`4`、`1.5` は「無効」と判断します。**コードを書く前に、まずは、自分で、それぞれについて期待する結果 (ここでは有効/無効) を考えてください**。
 
 ここで「範囲外なら `false` を返す」というのは、自分で決めた **設計上の判断** であることに注意してください。現場では、値を補正する、例外を投げる、といった設計もあり得ますが、この関数では判定結果を返すものとします。画面にエラーメッセージを出す処理などは、呼び出す側の役割として分けておきます。
 
 ### 関数とテストを別のファイルに置く
 
-`ts-playground` の `src` に、次の **2つのファイル** を作成してください。既存の `environment.test.ts` は、そのまま残して構いません。
+`ts-playground` の `src` に、次の **2つのファイル** を作成してください。既存の `prac00.test.ts` は、そのまま残して構いません。
 
 ```text
 ts-playground/
@@ -1762,7 +1763,7 @@ npm run build
 npm run test:run
 ```
 
-`environment.test.ts` を残しており、他にテストを追加していなければ、最後の結果は **2ファイル・7件成功** になります。VSCodeの「問題」パネルにもエラーが残っていないことを確認してください。
+`prac00.test.ts` を残しており、他にテストを追加していなければ、最後の結果は **2ファイル・7件成功** になります。VSCodeの「問題」パネルにもエラーが残っていないことを確認してください。
 
 ### 演習3：テストが見逃す条件を考える (目標時間: 5分)
 
