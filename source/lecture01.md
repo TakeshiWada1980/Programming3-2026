@@ -874,7 +874,7 @@ ts-playground@1.0.0 C:\Users\xxxx\ts-playground
 
 **<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
 
-> `npm list --depth=0` というコマンドの意味を初心者向けに解説してください。
+> 私はPythonとC言語を学んだ高専3年生で、いまはTypeScriptの開発環境を構築しています。プロジェクトのフォルダで `npm list --depth=0` を実行するよう指示されました。このコマンドが何を確認するものか、`--depth=0` の意味とあわせて説明してください。短い出力例を示し、パッケージ名とバージョンをどこで確認できるか教えてください。
 
 #### 定着確認
 
@@ -1149,17 +1149,37 @@ npm のスクリプト内では、ローカルに導入したコマンドを使�
 :::
 
 
-| 操作 | コマンド | 実行される内容 |
-| :--- | :--- | :--- |
-| TSの実行 | **npm run dev** src/prac00.ts | 変更を監視し、TS を実行 |
-| コンパイル | **npm run build** | 型などを確認し、dist に JS を出力 |
-| 型チェック | **npm run typecheck** | 型などを確認。JS は出力しない |
-| 自動テスト | **npm run test:run** | テストを1回実行し、結果を表示して終了 |
-| テストの監視実行 | **npm run test** | 変更を監視し、テストを再実行 |
+**package.json** に登録したコマンドは、次のように使い分けます。
 
-**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
+- **TypeScript プログラムを実行する**ときは、次のコマンドを使います。**src/prac00.ts** を変更して保存すると、自動的に再実行されます。
 
-> `npm list --depth=0` というコマンドの意味を初心者向けに解説してください。
+  ```
+  npm run dev src/prac00.ts
+  ```
+
+- **JavaScript ファイルを生成する**ときは、次のコマンドを使います。型などを確認し、生成した JavaScript を **dist** フォルダに出力します。
+
+  ```
+  npm run build
+  ```
+
+- **型チェックだけを行なう**ときは、次のコマンドを使います。JavaScript ファイルは出力しません。
+
+  ```
+  npm run typecheck
+  ```
+
+- **テストを1回実行する**ときは、次のコマンドを使います。結果が表示されると終了します。
+
+  ```
+  npm run test:run
+  ```
+
+- **変更のたびにテストを実行する**ときは、次のコマンドを使います。変更を監視しながら、テストを再実行します。
+
+  ```
+  npm run test
+  ```
 
 ### TypeScript の型チェックと実行
 
@@ -1216,7 +1236,9 @@ npm run dev src/prac00.ts
 
 ### VSCode から現在のTSファイルを実行
 
-`.vscode/tasks.json` を次の内容で作成してください。ターミナルでの実行方法を確認してから、ショートカットも使えるようにします。
+ここまでは、ターミナルにコマンドを入力して TypeScript プログラムを実行してきました。つづいて、VSCode で開いているプログラムを、ショートカットから実行できるように設定していきます。
+
+プロジェクトルートの **.vscode** フォルダに **tasks.json** を作成し、次の設定を記述して保存してください。
 
 ```json{.numberLines caption=".vscode/tasks.json"}
 {
@@ -1245,7 +1267,9 @@ npm run dev src/prac00.ts
 }
 ```
 
-`src/prac00.ts` を開いて **保存してから** `[Ctrl]+[Shift]+[B]` を押してください。今回はビルド用のショートカットに、tsxによる実行を割り当てています。型チェックや `dist` への出力は行ないません。
+設定できたら、**src/prac00.ts** を開き、**保存してから** `[Ctrl]+[Shift]+[B]` を押してください。ターミナルから実行したときと、同じ結果が得られることを確認してください。
+
+なお、今回はビルド用のショートカットに、tsx による実行を割り当てています。この操作では、型チェックや **dist** フォルダへの出力は行ないません。
 
 `${file}` は開いているファイルのパス、`${workspaceFolder}` はプロジェクトのルートです。JSONなど別のファイルを開いていると、そのファイルが実行対象になってしまうので注意してください。
 
@@ -1318,6 +1342,8 @@ PS C:\Users\xxxx\ts-playground> npm run test:run
 > ソフトウェアテストやテスト駆動開発なんて、実際に実務で使っているんですか？体験しておく価値なんてあるんですか？生成AIで実装させることが主流になっていく時代に。
 
 #### VSCode の拡張機能を利用
+
+**補足: 2026/09/26 時点で Vitest の拡張機能が意図したように機能しないケースが報告されています。講義資料に従って設定しても、意図したように機能しない場合は、このセクションは読み飛ばしてください。**
 
 つづいて、VSCodeの拡張機能から **[Vitest](https://marketplace.visualstudio.com/items?itemName=vitest.explorer) (識別子: `vitest.explorer`)** をインストールしてください。
 
@@ -1634,12 +1660,13 @@ console.log(`Todo 1 => ${todo.name}（優先度:${todo.priority}）`);
     - 答え <span class="masked">`const name: string = "Reactの予習"`</span> 
 - 数値型で「2」という値を持った定数 `priority` を宣言する文を記述せよ。ここでは、型を明示すること。
     - 答え <span class="masked">`const priority: number = 2`</span> 
-- 上記の `name` と `priority` を使用して `Reactの予習（優先度:2）` を得るテンプレート文字列を記述せよ。なお、コンソールメソッドで出力する必要はない。
-    - 答え <span class="masked">`` `${name}（優先度:${priority}）` ``</span>
-- 上記の `name` と `priority` と同様の型と値を持ったプロパティを有する `todo` というオブジェクトを、オブジェクトリテラル記法で記述せよ。
-    - 答え <span class="masked">`const todo = { name: "Reactの予習", priority: 2 };`</span>
-- 上記の `todo` オブジェクトを、タブやインデントで整形された JSON に変換してコンソール出力せよ。
-    - 答え <span class="masked">`console.log(JSON.stringify(todo, null, 2));`</span> 
+
+- TypeScriptで、文字列型の定数 `name` に `"Reactの予習"`、数値型の定数 `priority` に `2` が代入されている。この2つの定数を使用し、`Reactの予習（優先度:2）` という文字列を得るテンプレート文字列を記述せよ。なお、コンソールへ出力する文は不要とする。 **答え**: <span class="masked">`` `${name}（優先度:${priority}）` ``</span>
+
+- TypeScriptで、文字列型のプロパティ `name` に `"Reactの予習"`、数値型のプロパティ `priority` に `2` を持つオブジェクトを、オブジェクトリテラル記法で定数 `todo` に代入する文を記述せよ。 **答え**: <span class="masked">`const todo = { name: "Reactの予習", priority: 2 };`</span>
+
+- TypeScriptで `const todo = { name: "Reactの予習", priority: 2 };` と定義されている。この `todo` を、改行とスペース2文字のインデントで整形したJSON文字列に変換し、コンソールへ出力する文を記述せよ。 **答え**: <span class="masked">`console.log(JSON.stringify(todo, null, 2));`</span>
+
 - ウェブアプリ開発の文脈で「JSON」とは何の略語か英語で答えよ。
     - 答え <span class="masked">JavaScript Object Notation</span> 
 

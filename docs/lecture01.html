@@ -1474,7 +1474,10 @@ ts-playground@1.0.0 C:\Users\xxxx\ts-playground
 └── typescript@6.0.3</code></pre>
       <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
       <blockquote>
-      <p><code>npm list --depth=0</code> というコマンドの意味を初心者向けに解説してください。</p>
+      <p>私はPythonとC言語を学んだ高専3年生で、いまはTypeScriptの開発環境を構築しています。プロジェクトのフォルダで
+      <code>npm list --depth=0</code>
+      を実行するよう指示されました。このコマンドが何を確認するものか、<code>--depth=0</code>
+      の意味とあわせて説明してください。短い出力例を示し、パッケージ名とバージョンをどこで確認できるか教えてください。</p>
       </blockquote>
       <h3 data-number="5.3.2" id="定着確認-5"><span class="header-section-number">5.3.2</span>
       定着確認</h3>
@@ -1841,46 +1844,24 @@ ts-playground@1.0.0 C:\Users\xxxx\ts-playground
       のスクリプト内では、ローカルに導入したコマンドを使用できるので、<strong>package.json</strong>
       の <strong>scripts</strong> の項目内で <code>npx</code> の記載は不要です。</p>
       </div>
-      <table>
-      <thead>
-      <tr>
-      <th style="text-align: left;">操作</th>
-      <th style="text-align: left;">コマンド</th>
-      <th style="text-align: left;">実行される内容</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr>
-      <td style="text-align: left;">TSの実行</td>
-      <td style="text-align: left;"><strong>npm run dev</strong> src/prac00.ts</td>
-      <td style="text-align: left;">変更を監視し、TS を実行</td>
-      </tr>
-      <tr>
-      <td style="text-align: left;">コンパイル</td>
-      <td style="text-align: left;"><strong>npm run build</strong></td>
-      <td style="text-align: left;">型などを確認し、dist に JS を出力</td>
-      </tr>
-      <tr>
-      <td style="text-align: left;">型チェック</td>
-      <td style="text-align: left;"><strong>npm run typecheck</strong></td>
-      <td style="text-align: left;">型などを確認。JS は出力しない</td>
-      </tr>
-      <tr>
-      <td style="text-align: left;">自動テスト</td>
-      <td style="text-align: left;"><strong>npm run test:run</strong></td>
-      <td style="text-align: left;">テストを1回実行し、結果を表示して終了</td>
-      </tr>
-      <tr>
-      <td style="text-align: left;">テストの監視実行</td>
-      <td style="text-align: left;"><strong>npm run test</strong></td>
-      <td style="text-align: left;">変更を監視し、テストを再実行</td>
-      </tr>
-      </tbody>
-      </table>
-      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
-      <blockquote>
-      <p><code>npm list --depth=0</code> というコマンドの意味を初心者向けに解説してください。</p>
-      </blockquote>
+      <p><strong>package.json</strong> に登録したコマンドは、次のように使い分けます。</p>
+      <ul>
+      <li><p><strong>TypeScript
+      プログラムを実行する</strong>ときは、次のコマンドを使います。<strong>src/prac00.ts</strong>
+      を変更して保存すると、自動的に再実行されます。</p>
+      <pre><code>npm run dev src/prac00.ts</code></pre></li>
+      <li><p><strong>JavaScript
+      ファイルを生成する</strong>ときは、次のコマンドを使います。型などを確認し、生成した JavaScript
+      を <strong>dist</strong> フォルダに出力します。</p>
+      <pre><code>npm run build</code></pre></li>
+      <li><p><strong>型チェックだけを行なう</strong>ときは、次のコマンドを使います。JavaScript
+      ファイルは出力しません。</p>
+      <pre><code>npm run typecheck</code></pre></li>
+      <li><p><strong>テストを1回実行する</strong>ときは、次のコマンドを使います。結果が表示されると終了します。</p>
+      <pre><code>npm run test:run</code></pre></li>
+      <li><p><strong>変更のたびにテストを実行する</strong>ときは、次のコマンドを使います。変更を監視しながら、テストを再実行します。</p>
+      <pre><code>npm run test</code></pre></li>
+      </ul>
       <h2 data-number="6.2" id="typescript-の型チェックと実行"><span
       class="header-section-number">6.2</span> TypeScript の型チェックと実行</h2>
       <p>次のコマンドを実行し、先ほどと同じ結果になることを確認してください。</p>
@@ -1973,37 +1954,42 @@ npm run dev src/prac00.ts</code></pre>
       </ul>
       <h2 data-number="6.3" id="vscode-から現在のtsファイルを実行"><span
       class="header-section-number">6.3</span> VSCode から現在のTSファイルを実行</h2>
-      <p><code>.vscode/tasks.json</code>
-      を次の内容で作成してください。ターミナルでの実行方法を確認してから、ショートカットも使えるようにします。</p>
-      <div class="sourceCode" id="cb27" data-caption=".vscode/tasks.json"><pre
-      class="sourceCode numberSource json numberLines"><code class="sourceCode json"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">{</span></span>
-<span id="cb27-2"><a href="#cb27-2"></a>  <span class="dt">&quot;version&quot;</span><span class="fu">:</span> <span class="st">&quot;2.0.0&quot;</span><span class="fu">,</span></span>
-<span id="cb27-3"><a href="#cb27-3"></a>  <span class="dt">&quot;tasks&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb27-4"><a href="#cb27-4"></a>    <span class="fu">{</span></span>
-<span id="cb27-5"><a href="#cb27-5"></a>      <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Run Current TypeScript File&quot;</span><span class="fu">,</span></span>
-<span id="cb27-6"><a href="#cb27-6"></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;shell&quot;</span><span class="fu">,</span></span>
-<span id="cb27-7"><a href="#cb27-7"></a>      <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;npx.cmd&quot;</span><span class="fu">,</span></span>
-<span id="cb27-8"><a href="#cb27-8"></a>      <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;tsx&quot;</span><span class="ot">,</span> <span class="st">&quot;${file}&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
-<span id="cb27-9"><a href="#cb27-9"></a>      <span class="dt">&quot;options&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb27-10"><a href="#cb27-10"></a>        <span class="dt">&quot;cwd&quot;</span><span class="fu">:</span> <span class="st">&quot;${workspaceFolder}&quot;</span></span>
-<span id="cb27-11"><a href="#cb27-11"></a>      <span class="fu">},</span></span>
-<span id="cb27-12"><a href="#cb27-12"></a>      <span class="dt">&quot;group&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb27-13"><a href="#cb27-13"></a>        <span class="dt">&quot;kind&quot;</span><span class="fu">:</span> <span class="st">&quot;build&quot;</span><span class="fu">,</span></span>
-<span id="cb27-14"><a href="#cb27-14"></a>        <span class="dt">&quot;isDefault&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
-<span id="cb27-15"><a href="#cb27-15"></a>      <span class="fu">},</span></span>
-<span id="cb27-16"><a href="#cb27-16"></a>      <span class="dt">&quot;presentation&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb27-17"><a href="#cb27-17"></a>        <span class="dt">&quot;reveal&quot;</span><span class="fu">:</span> <span class="st">&quot;always&quot;</span><span class="fu">,</span></span>
-<span id="cb27-18"><a href="#cb27-18"></a>        <span class="dt">&quot;panel&quot;</span><span class="fu">:</span> <span class="st">&quot;dedicated&quot;</span><span class="fu">,</span></span>
-<span id="cb27-19"><a href="#cb27-19"></a>        <span class="dt">&quot;echo&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
-<span id="cb27-20"><a href="#cb27-20"></a>      <span class="fu">},</span></span>
-<span id="cb27-21"><a href="#cb27-21"></a>      <span class="dt">&quot;problemMatcher&quot;</span><span class="fu">:</span> <span class="ot">[]</span></span>
-<span id="cb27-22"><a href="#cb27-22"></a>    <span class="fu">}</span></span>
-<span id="cb27-23"><a href="#cb27-23"></a>  <span class="ot">]</span></span>
-<span id="cb27-24"><a href="#cb27-24"></a><span class="fu">}</span></span></code></pre></div>
-      <p><code>src/prac00.ts</code> を開いて <strong>保存してから</strong>
+      <p>ここまでは、ターミナルにコマンドを入力して TypeScript
+      プログラムを実行してきました。つづいて、VSCode
+      で開いているプログラムを、ショートカットから実行できるように設定していきます。</p>
+      <p>プロジェクトルートの <strong>.vscode</strong> フォルダに <strong>tasks.json</strong>
+      を作成し、次の設定を記述して保存してください。</p>
+      <div class="sourceCode" id="cb32" data-caption=".vscode/tasks.json"><pre
+      class="sourceCode numberSource json numberLines"><code class="sourceCode json"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">{</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="dt">&quot;version&quot;</span><span class="fu">:</span> <span class="st">&quot;2.0.0&quot;</span><span class="fu">,</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>  <span class="dt">&quot;tasks&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>    <span class="fu">{</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a>      <span class="dt">&quot;label&quot;</span><span class="fu">:</span> <span class="st">&quot;Run Current TypeScript File&quot;</span><span class="fu">,</span></span>
+<span id="cb32-6"><a href="#cb32-6"></a>      <span class="dt">&quot;type&quot;</span><span class="fu">:</span> <span class="st">&quot;shell&quot;</span><span class="fu">,</span></span>
+<span id="cb32-7"><a href="#cb32-7"></a>      <span class="dt">&quot;command&quot;</span><span class="fu">:</span> <span class="st">&quot;npx.cmd&quot;</span><span class="fu">,</span></span>
+<span id="cb32-8"><a href="#cb32-8"></a>      <span class="dt">&quot;args&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;tsx&quot;</span><span class="ot">,</span> <span class="st">&quot;${file}&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb32-9"><a href="#cb32-9"></a>      <span class="dt">&quot;options&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb32-10"><a href="#cb32-10"></a>        <span class="dt">&quot;cwd&quot;</span><span class="fu">:</span> <span class="st">&quot;${workspaceFolder}&quot;</span></span>
+<span id="cb32-11"><a href="#cb32-11"></a>      <span class="fu">},</span></span>
+<span id="cb32-12"><a href="#cb32-12"></a>      <span class="dt">&quot;group&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb32-13"><a href="#cb32-13"></a>        <span class="dt">&quot;kind&quot;</span><span class="fu">:</span> <span class="st">&quot;build&quot;</span><span class="fu">,</span></span>
+<span id="cb32-14"><a href="#cb32-14"></a>        <span class="dt">&quot;isDefault&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb32-15"><a href="#cb32-15"></a>      <span class="fu">},</span></span>
+<span id="cb32-16"><a href="#cb32-16"></a>      <span class="dt">&quot;presentation&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb32-17"><a href="#cb32-17"></a>        <span class="dt">&quot;reveal&quot;</span><span class="fu">:</span> <span class="st">&quot;always&quot;</span><span class="fu">,</span></span>
+<span id="cb32-18"><a href="#cb32-18"></a>        <span class="dt">&quot;panel&quot;</span><span class="fu">:</span> <span class="st">&quot;dedicated&quot;</span><span class="fu">,</span></span>
+<span id="cb32-19"><a href="#cb32-19"></a>        <span class="dt">&quot;echo&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb32-20"><a href="#cb32-20"></a>      <span class="fu">},</span></span>
+<span id="cb32-21"><a href="#cb32-21"></a>      <span class="dt">&quot;problemMatcher&quot;</span><span class="fu">:</span> <span class="ot">[]</span></span>
+<span id="cb32-22"><a href="#cb32-22"></a>    <span class="fu">}</span></span>
+<span id="cb32-23"><a href="#cb32-23"></a>  <span class="ot">]</span></span>
+<span id="cb32-24"><a href="#cb32-24"></a><span class="fu">}</span></span></code></pre></div>
+      <p>設定できたら、<strong>src/prac00.ts</strong> を開き、<strong>保存してから</strong>
       <code>[Ctrl]+[Shift]+[B]</code>
-      を押してください。今回はビルド用のショートカットに、tsxによる実行を割り当てています。型チェックや
-      <code>dist</code> への出力は行ないません。</p>
+      を押してください。ターミナルから実行したときと、同じ結果が得られることを確認してください。</p>
+      <p>なお、今回はビルド用のショートカットに、tsx
+      による実行を割り当てています。この操作では、型チェックや <strong>dist</strong>
+      フォルダへの出力は行ないません。</p>
       <p><code>${file}</code> は開いているファイルのパス、<code>${workspaceFolder}</code>
       はプロジェクトのルートです。JSONなど別のファイルを開いていると、そのファイルが実行対象になってしまうので注意してください。</p>
       <h2 data-number="6.4" id="vitest-と-vscode-拡張機能の動作確認"><span
@@ -2011,25 +1997,25 @@ npm run dev src/prac00.ts</code></pre>
       <p>まずは、<strong>テストツールが動く環境になっていること</strong>を確認します。テストを使って設計・実装を進める練習は、その後に行ないます。</p>
       <p>プロジェクトルートに <strong>vitest.config.js</strong>
       を新規作成してください。これはVitest専用の設定ファイルで、今回はJavaScriptで記述します。</p>
-      <div class="sourceCode" id="cb28" data-caption="vitest.config.js"><pre
-      class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><span id="cb28-1"><a href="#cb28-1"></a><span class="im">import</span> { defineConfig } <span class="im">from</span> <span class="st">&quot;vitest/config&quot;</span><span class="op">;</span></span>
-<span id="cb28-2"><a href="#cb28-2"></a></span>
-<span id="cb28-3"><a href="#cb28-3"></a><span class="im">export</span> <span class="im">default</span> <span class="fu">defineConfig</span>({</span>
-<span id="cb28-4"><a href="#cb28-4"></a>  <span class="dt">test</span><span class="op">:</span> {</span>
-<span id="cb28-5"><a href="#cb28-5"></a>    <span class="dt">include</span><span class="op">:</span> [<span class="st">&quot;src/**/*.test.ts&quot;</span>]<span class="op">,</span></span>
-<span id="cb28-6"><a href="#cb28-6"></a>    <span class="dt">environment</span><span class="op">:</span> <span class="st">&quot;node&quot;</span><span class="op">,</span></span>
-<span id="cb28-7"><a href="#cb28-7"></a>  }<span class="op">,</span></span>
-<span id="cb28-8"><a href="#cb28-8"></a>})<span class="op">;</span></span></code></pre></div>
+      <div class="sourceCode" id="cb33" data-caption="vitest.config.js"><pre
+      class="sourceCode numberSource javascript numberLines"><code class="sourceCode javascript"><span id="cb33-1"><a href="#cb33-1"></a><span class="im">import</span> { defineConfig } <span class="im">from</span> <span class="st">&quot;vitest/config&quot;</span><span class="op">;</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a></span>
+<span id="cb33-3"><a href="#cb33-3"></a><span class="im">export</span> <span class="im">default</span> <span class="fu">defineConfig</span>({</span>
+<span id="cb33-4"><a href="#cb33-4"></a>  <span class="dt">test</span><span class="op">:</span> {</span>
+<span id="cb33-5"><a href="#cb33-5"></a>    <span class="dt">include</span><span class="op">:</span> [<span class="st">&quot;src/**/*.test.ts&quot;</span>]<span class="op">,</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a>    <span class="dt">environment</span><span class="op">:</span> <span class="st">&quot;node&quot;</span><span class="op">,</span></span>
+<span id="cb33-7"><a href="#cb33-7"></a>  }<span class="op">,</span></span>
+<span id="cb33-8"><a href="#cb33-8"></a>})<span class="op">;</span></span></code></pre></div>
       <p><code>include</code> で <strong><code>src</code> 内の <code>.test.ts</code>
       だけをテスト対象</strong> にします。<code>environment</code>
       はテストするコードをNode.jsの環境で動かすための指定です。</p>
       <p><code>src</code> に <code>prac00.test.ts</code> を作成してください。</p>
-      <div class="sourceCode" id="cb29" data-caption="src/prac00.test.ts"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb29-1"><a href="#cb29-1"></a><span class="im">import</span> { expect<span class="op">,</span> test } <span class="im">from</span> <span class="st">&quot;vitest&quot;</span><span class="op">;</span></span>
-<span id="cb29-2"><a href="#cb29-2"></a></span>
-<span id="cb29-3"><a href="#cb29-3"></a><span class="fu">test</span>(<span class="st">&quot;10と20の合計が30になる&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb29-4"><a href="#cb29-4"></a>  <span class="fu">expect</span>(<span class="dv">10</span> <span class="op">+</span> <span class="dv">20</span>)<span class="op">.</span><span class="fu">toBe</span>(<span class="dv">30</span>)<span class="op">;</span></span>
-<span id="cb29-5"><a href="#cb29-5"></a>})<span class="op">;</span></span></code></pre></div>
+      <div class="sourceCode" id="cb34" data-caption="src/prac00.test.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb34-1"><a href="#cb34-1"></a><span class="im">import</span> { expect<span class="op">,</span> test } <span class="im">from</span> <span class="st">&quot;vitest&quot;</span><span class="op">;</span></span>
+<span id="cb34-2"><a href="#cb34-2"></a></span>
+<span id="cb34-3"><a href="#cb34-3"></a><span class="fu">test</span>(<span class="st">&quot;10と20の合計が30になる&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb34-4"><a href="#cb34-4"></a>  <span class="fu">expect</span>(<span class="dv">10</span> <span class="op">+</span> <span class="dv">20</span>)<span class="op">.</span><span class="fu">toBe</span>(<span class="dv">30</span>)<span class="op">;</span></span>
+<span id="cb34-5"><a href="#cb34-5"></a>})<span class="op">;</span></span></code></pre></div>
       <p><code>test</code> はテストの名前と処理を登録し、<code>expect(...).toBe(...)</code> は <span
       class="masked">実際の値が、期待した値と一致するか</span> を確認します。<code>import</code> や
       <code>() =&gt; { ... }</code>
@@ -2071,6 +2057,8 @@ npm run test:run</code></pre>
       </blockquote>
       <h3 data-number="6.4.1" id="vscode-の拡張機能を利用"><span
       class="header-section-number">6.4.1</span> VSCode の拡張機能を利用</h3>
+      <p><strong>補足: 2026/09/26 時点で Vitest
+      の拡張機能が意図したように機能しないケースが報告されています。講義資料に従って設定しても、意図したように機能しない場合は、このセクションは読み飛ばしてください。</strong></p>
       <p>つづいて、VSCodeの拡張機能から <strong><a
       href="https://marketplace.visualstudio.com/items?itemName=vitest.explorer">Vitest</a> (識別子:
       <code>vitest.explorer</code>)</strong> をインストールしてください。</p>
@@ -2259,10 +2247,10 @@ npm run test:run</code></pre>
       に設定します。<code>node_modules</code> には (パッケージのインストール状況によっては)
       何千ものファイルが含まれるため、必ず <code>.gitignore</code> に含めるようにしてください。</p>
       <p>以下のように <code>.gitignore</code> を作成して保存してください。</p>
-      <div class="sourceCode" id="cb33" data-caption=".gitignore"><pre
-      class="sourceCode numberSource text numberLines"><code class="sourceCode"><span id="cb33-1"><a href="#cb33-1"></a>/node_modules/*</span>
-<span id="cb33-2"><a href="#cb33-2"></a>/dist/*</span>
-<span id="cb33-3"><a href="#cb33-3"></a>/.vitest/*</span></code></pre></div>
+      <div class="sourceCode" id="cb38" data-caption=".gitignore"><pre
+      class="sourceCode numberSource text numberLines"><code class="sourceCode"><span id="cb38-1"><a href="#cb38-1"></a>/node_modules/*</span>
+<span id="cb38-2"><a href="#cb38-2"></a>/dist/*</span>
+<span id="cb38-3"><a href="#cb38-3"></a>/.vitest/*</span></code></pre></div>
       <p><code>dist</code> は再生成できるビルド結果、<code>.vitest</code>
       はテスト関連の生成物の保存先として使われることがあるため、これらも管理対象外にします。一方、<code>package.json</code>、<code>package-lock.json</code>、設定ファイル、<code>src</code>
       のコードとテストはGitで管理してください。</p>
@@ -2335,12 +2323,12 @@ npm run test:run</code></pre>
       <code>[Ctrl]+[Shift]+[B]</code> のショートカットから行なうことができます
       (基本操作として覚えておいてください)。</li>
       </ul>
-      <div class="sourceCode" id="cb34" data-caption="prac01.ts (コンソールメソッドの基本)"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb34-1"><a href="#cb34-1"></a><span class="co">// 文字列型 (string type) の変数 name の宣言と初期化</span></span>
-<span id="cb34-2"><a href="#cb34-2"></a><span class="kw">let</span> name<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;TypeScriptの勉強&quot;</span><span class="op">;</span></span>
-<span id="cb34-3"><a href="#cb34-3"></a><span class="co">// 数値型 (number type) の変数 priority の宣言と初期化</span></span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="kw">let</span> priority<span class="op">:</span> <span class="dt">number</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb34-5"><a href="#cb34-5"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(name<span class="op">,</span> priority)<span class="op">;</span> <span class="co">// console.log は可変長引数を受け取り可能</span></span></code></pre></div>
+      <div class="sourceCode" id="cb39" data-caption="prac01.ts (コンソールメソッドの基本)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb39-1"><a href="#cb39-1"></a><span class="co">// 文字列型 (string type) の変数 name の宣言と初期化</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a><span class="kw">let</span> name<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;TypeScriptの勉強&quot;</span><span class="op">;</span></span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="co">// 数値型 (number type) の変数 priority の宣言と初期化</span></span>
+<span id="cb39-4"><a href="#cb39-4"></a><span class="kw">let</span> priority<span class="op">:</span> <span class="dt">number</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(name<span class="op">,</span> priority)<span class="op">;</span> <span class="co">// console.log は可変長引数を受け取り可能</span></span></code></pre></div>
       <p>(すこし分かりづらいですが) 以下のようにスペースで区切られて <code>name</code> と
       <code>priority</code> の値が出力されます。</p>
       <pre><code>TypeScriptの勉強 3</code></pre>
@@ -2348,10 +2336,10 @@ npm run test:run</code></pre>
       (<i class="fa-solid fa-stopwatch"></i>5分)</h3>
       <p><code>src/prac01.ts</code> に、次のような Date型 (日付・日時型) の変数
       <code>deadline</code> を追加して、コンソールメソッドで出力してください。</p>
-      <div class="sourceCode" id="cb36" data-caption="Date型の変数"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb36-1"><a href="#cb36-1"></a><span class="co">// Date型の変数 deadline の宣言と初期化</span></span>
-<span id="cb36-2"><a href="#cb36-2"></a><span class="co">// 2025年10月2日 14:15 で初期化したつもり</span></span>
-<span id="cb36-3"><a href="#cb36-3"></a><span class="kw">let</span> deadline<span class="op">:</span> <span class="bu">Date</span> <span class="op">=</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2025</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">14</span><span class="op">,</span> <span class="dv">15</span>)<span class="op">;</span></span></code></pre></div>
+      <div class="sourceCode" id="cb41" data-caption="Date型の変数"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb41-1"><a href="#cb41-1"></a><span class="co">// Date型の変数 deadline の宣言と初期化</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="co">// 2025年10月2日 14:15 で初期化したつもり</span></span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="kw">let</span> deadline<span class="op">:</span> <span class="bu">Date</span> <span class="op">=</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2025</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">14</span><span class="op">,</span> <span class="dv">15</span>)<span class="op">;</span></span></code></pre></div>
       <ul>
       <li><code>new Date(...)</code> による初期化において、<span class="masked">Month (月)
       の扱いに注意が必要なこと</span> に気づけたでしょうか？
@@ -2377,14 +2365,14 @@ npm run test:run</code></pre>
       <code>型名 変数名 = 初期値;</code> のように変数宣言しましたが、TypeScriptでは <span
       class="masked"><code>変数名 : 型名 = 初期値;</code></span> のようにするので注意してください
       (順番が逆になることに慣れてください)。</p>
-      <div class="sourceCode" id="cb37" data-caption="prac01.c"><pre
-      class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb37-1"><a href="#cb37-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
-<span id="cb37-2"><a href="#cb37-2"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
-<span id="cb37-3"><a href="#cb37-3"></a>  <span class="dt">char</span> name<span class="op">[</span><span class="dv">50</span><span class="op">]</span> <span class="op">=</span> <span class="st">&quot;TypeScriptの勉強&quot;</span><span class="op">;</span></span>
-<span id="cb37-4"><a href="#cb37-4"></a>  <span class="dt">int</span> priority <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb37-5"><a href="#cb37-5"></a>  fprintf<span class="op">(</span>stdout<span class="op">,</span> <span class="st">&quot;</span><span class="sc">%s</span><span class="st"> </span><span class="sc">%d\n</span><span class="st">&quot;</span><span class="op">,</span> name<span class="op">,</span> priority<span class="op">);</span></span>
-<span id="cb37-6"><a href="#cb37-6"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
-<span id="cb37-7"><a href="#cb37-7"></a><span class="op">}</span></span></code></pre></div>
+      <div class="sourceCode" id="cb42" data-caption="prac01.c"><pre
+      class="sourceCode numberSource c numberLines"><code class="sourceCode c"><span id="cb42-1"><a href="#cb42-1"></a><span class="pp">#include </span><span class="im">&lt;stdio.h&gt;</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a><span class="dt">int</span> main<span class="op">()</span> <span class="op">{</span></span>
+<span id="cb42-3"><a href="#cb42-3"></a>  <span class="dt">char</span> name<span class="op">[</span><span class="dv">50</span><span class="op">]</span> <span class="op">=</span> <span class="st">&quot;TypeScriptの勉強&quot;</span><span class="op">;</span></span>
+<span id="cb42-4"><a href="#cb42-4"></a>  <span class="dt">int</span> priority <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb42-5"><a href="#cb42-5"></a>  fprintf<span class="op">(</span>stdout<span class="op">,</span> <span class="st">&quot;</span><span class="sc">%s</span><span class="st"> </span><span class="sc">%d\n</span><span class="st">&quot;</span><span class="op">,</span> name<span class="op">,</span> priority<span class="op">);</span></span>
+<span id="cb42-6"><a href="#cb42-6"></a>  <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb42-7"><a href="#cb42-7"></a><span class="op">}</span></span></code></pre></div>
       </div>
       <h2 data-number="8.2" id="変数宣言キーワード"><span class="header-section-number">8.2</span>
       変数宣言キーワード</h2>
@@ -2405,10 +2393,10 @@ npm run test:run</code></pre>
       は、初期化以降、書き換えられる予定がないので、以下のように記述することが強く推奨されます
       (<strong>モダンTypeScript
       においてコード品質や可読性を高めるためのガイドラインとなっています</strong>)。</p>
-      <div class="sourceCode" id="cb38" data-caption="prac01.ts"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">const</span> name<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;TypeScriptの勉強&quot;</span><span class="op">;</span></span>
-<span id="cb38-2"><a href="#cb38-2"></a><span class="kw">const</span> priority<span class="op">:</span> <span class="dt">number</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb38-3"><a href="#cb38-3"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(name<span class="op">,</span> priority)<span class="op">;</span></span></code></pre></div>
+      <div class="sourceCode" id="cb43" data-caption="prac01.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb43-1"><a href="#cb43-1"></a><span class="kw">const</span> name<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;TypeScriptの勉強&quot;</span><span class="op">;</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="kw">const</span> priority<span class="op">:</span> <span class="dt">number</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(name<span class="op">,</span> priority)<span class="op">;</span></span></code></pre></div>
       <p>小テストや課題においても、変更されることがない変数 (定数) については <code>const</code>
       で宣言してください。<code>let</code> や <code>var</code>
       による冗長な変数宣言は<strong>誤答または減点</strong>とします。</p>
@@ -2418,10 +2406,10 @@ npm run test:run</code></pre>
       class="masked">f文字列</span>
       に相当するものです。バッククォートで囲んで「<code>$</code>マーク」と「波括弧」を組み合わせて使用します。</p>
       <p>テンプレート文字列の使用例を以下に示します。</p>
-      <div class="sourceCode" id="cb39" data-caption="prac01.ts (テンプレート文字列の利用)"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb39-1"><a href="#cb39-1"></a><span class="kw">const</span> name<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;TypeScriptの勉強&quot;</span><span class="op">;</span></span>
-<span id="cb39-2"><a href="#cb39-2"></a><span class="kw">const</span> priority<span class="op">:</span> <span class="dt">number</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb39-3"><a href="#cb39-3"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`Todo 1 =&gt; </span><span class="sc">${</span>name<span class="sc">}</span><span class="vs">（優先度:</span><span class="sc">${</span>priority<span class="sc">}</span><span class="vs">）`</span>)<span class="op">;</span> <span class="co">// テンプレート文字列</span></span></code></pre></div>
+      <div class="sourceCode" id="cb44" data-caption="prac01.ts (テンプレート文字列の利用)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb44-1"><a href="#cb44-1"></a><span class="kw">const</span> name<span class="op">:</span> <span class="dt">string</span> <span class="op">=</span> <span class="st">&quot;TypeScriptの勉強&quot;</span><span class="op">;</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a><span class="kw">const</span> priority<span class="op">:</span> <span class="dt">number</span> <span class="op">=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb44-3"><a href="#cb44-3"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`Todo 1 =&gt; </span><span class="sc">${</span>name<span class="sc">}</span><span class="vs">（優先度:</span><span class="sc">${</span>priority<span class="sc">}</span><span class="vs">）`</span>)<span class="op">;</span> <span class="co">// テンプレート文字列</span></span></code></pre></div>
       <p>以下のような出力が得られます。</p>
       <pre><code>Todo 1 =&gt; TypeScriptの勉強（優先度:3）</code></pre>
       <p>Pythonとは異なり、<code>$</code>マークをつけなければいけない点に、十分に注意してください。</p>
@@ -2451,12 +2439,12 @@ npm run test:run</code></pre>
       <p>さきほどの <code>prac01.ts</code> は、以下のような
       <strong>オブジェクトリテラル記法</strong> (オブジェクトを直接的に記述する方法)
       で、以下のように書き換えることができます。</p>
-      <div class="sourceCode" id="cb41" data-caption="prac01.ts (テンプレート文字列の利用)"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb41-1"><a href="#cb41-1"></a><span class="kw">const</span> todo <span class="op">=</span> {</span>
-<span id="cb41-2"><a href="#cb41-2"></a>  name<span class="op">:</span> <span class="st">&quot;TypeScriptの勉強&quot;</span><span class="op">,</span> <span class="co">// name = &quot;...&quot; ではない点に要注意</span></span>
-<span id="cb41-3"><a href="#cb41-3"></a>  priority<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="co">// priority = &quot;...&quot; ではない点に要注意</span></span>
-<span id="cb41-4"><a href="#cb41-4"></a>}<span class="op">;</span></span>
-<span id="cb41-5"><a href="#cb41-5"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`Todo 1 =&gt; </span><span class="sc">${</span>todo<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs">（優先度:</span><span class="sc">${</span>todo<span class="op">.</span><span class="at">priority</span><span class="sc">}</span><span class="vs">）`</span>)<span class="op">;</span></span></code></pre></div>
+      <div class="sourceCode" id="cb46" data-caption="prac01.ts (テンプレート文字列の利用)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb46-1"><a href="#cb46-1"></a><span class="kw">const</span> todo <span class="op">=</span> {</span>
+<span id="cb46-2"><a href="#cb46-2"></a>  name<span class="op">:</span> <span class="st">&quot;TypeScriptの勉強&quot;</span><span class="op">,</span> <span class="co">// name = &quot;...&quot; ではない点に要注意</span></span>
+<span id="cb46-3"><a href="#cb46-3"></a>  priority<span class="op">:</span> <span class="dv">3</span><span class="op">,</span> <span class="co">// priority = &quot;...&quot; ではない点に要注意</span></span>
+<span id="cb46-4"><a href="#cb46-4"></a>}<span class="op">;</span></span>
+<span id="cb46-5"><a href="#cb46-5"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`Todo 1 =&gt; </span><span class="sc">${</span>todo<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs">（優先度:</span><span class="sc">${</span>todo<span class="op">.</span><span class="at">priority</span><span class="sc">}</span><span class="vs">）`</span>)<span class="op">;</span></span></code></pre></div>
       <p>オブジェクトリテラル記法では <span class="masked"><code>=</code> ではなく <code>:</code>
       で値を与えること</span> に注意してください
       (<strong>初心者がよく間違える/混乱するところです</strong>)。</p>
@@ -2493,42 +2481,40 @@ npm run test:run</code></pre>
       <h3 data-number="8.5.1" id="定着確認-10"><span class="header-section-number">8.5.1</span>
       定着確認</h3>
       <ul>
-      <li>文字列型で「Reactの予習」という値を持った定数 <code>name</code>
-      を宣言する文を記述せよ。ここでは、型を明示すること。
+      <li><p>文字列型で「Reactの予習」という値を持った定数 <code>name</code>
+      を宣言する文を記述せよ。ここでは、型を明示すること。</p>
       <ul>
       <li>答え <span class="masked"><code>const name: string = "Reactの予習"</code></span></li>
       </ul></li>
-      <li>数値型で「2」という値を持った定数 <code>priority</code>
-      を宣言する文を記述せよ。ここでは、型を明示すること。
+      <li><p>数値型で「2」という値を持った定数 <code>priority</code>
+      を宣言する文を記述せよ。ここでは、型を明示すること。</p>
       <ul>
       <li>答え <span class="masked"><code>const priority: number = 2</code></span></li>
       </ul></li>
-      <li>上記の <code>name</code> と <code>priority</code> を使用して
-      <code>Reactの予習（優先度:2）</code>
-      を得るテンプレート文字列を記述せよ。なお、コンソールメソッドで出力する必要はない。
-      <ul>
-      <li>答え <span class="masked"><code>`${name}（優先度:${priority}）`</code></span></li>
-      </ul></li>
-      <li>上記の <code>name</code> と <code>priority</code> と同様の型と値を持ったプロパティを有する
-      <code>todo</code> というオブジェクトを、オブジェクトリテラル記法で記述せよ。
-      <ul>
-      <li>答え <span
-      class="masked"><code>const todo = { name: "Reactの予習", priority: 2 };</code></span></li>
-      </ul></li>
-      <li>上記の <code>todo</code> オブジェクトを、タブやインデントで整形された JSON
-      に変換してコンソール出力せよ。
-      <ul>
-      <li>答え <span
-      class="masked"><code>console.log(JSON.stringify(todo, null, 2));</code></span></li>
-      </ul></li>
-      <li>ウェブアプリ開発の文脈で「JSON」とは何の略語か英語で答えよ。
+      <li><p>TypeScriptで、文字列型の定数 <code>name</code> に
+      <code>"Reactの予習"</code>、数値型の定数 <code>priority</code> に <code>2</code>
+      が代入されている。この2つの定数を使用し、<code>Reactの予習（優先度:2）</code>
+      という文字列を得るテンプレート文字列を記述せよ。なお、コンソールへ出力する文は不要とする。
+      <strong>答え</strong>: <span
+      class="masked"><code>`${name}（優先度:${priority}）`</code></span></p></li>
+      <li><p>TypeScriptで、文字列型のプロパティ <code>name</code> に
+      <code>"Reactの予習"</code>、数値型のプロパティ <code>priority</code> に <code>2</code>
+      を持つオブジェクトを、オブジェクトリテラル記法で定数 <code>todo</code>
+      に代入する文を記述せよ。 <strong>答え</strong>: <span
+      class="masked"><code>const todo = { name: "Reactの予習", priority: 2 };</code></span></p></li>
+      <li><p>TypeScriptで <code>const todo = { name: "Reactの予習", priority: 2 };</code>
+      と定義されている。この <code>todo</code>
+      を、改行とスペース2文字のインデントで整形したJSON文字列に変換し、コンソールへ出力する文を記述せよ。
+      <strong>答え</strong>: <span
+      class="masked"><code>console.log(JSON.stringify(todo, null, 2));</code></span></p></li>
+      <li><p>ウェブアプリ開発の文脈で「JSON」とは何の略語か英語で答えよ。</p>
       <ul>
       <li>答え <span class="masked">JavaScript Object Notation</span></li>
       </ul></li>
-      <li><code>const todo = { name: "Reactの予習", priority: 2 };</code> のあとで
+      <li><p><code>const todo = { name: "Reactの予習", priority: 2 };</code> のあとで
       <code>todo.priority = 3;</code> とすると、<code>const</code>
       への再代入としてエラーになる。この説明は「適切」か「不適切」か答えよ。 <strong>答え</strong>:
-      <span class="masked">不適切</span>
+      <span class="masked">不適切</span></p>
       <ul>
       <li><strong>解説</strong>: <span
       class="masked">この操作はプロパティの変更です。<code>todo</code>
@@ -2583,10 +2569,10 @@ npm run test:run</code></pre>
       <p>まず <code>priority.ts</code>
       に、関数の名前・引数・戻り値だけを用意します。中身はまだ未完成で、何を渡しても
       <code>false</code> を返します。</p>
-      <div class="sourceCode" id="cb45" data-caption="src/priority.ts (仮の実装)"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb45-1"><a href="#cb45-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">isValidPriority</span>(value<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">boolean</span> {</span>
-<span id="cb45-2"><a href="#cb45-2"></a>  <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb45-3"><a href="#cb45-3"></a>}</span></code></pre></div>
+      <div class="sourceCode" id="cb50" data-caption="src/priority.ts (仮の実装)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb50-1"><a href="#cb50-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">isValidPriority</span>(value<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">boolean</span> {</span>
+<span id="cb50-2"><a href="#cb50-2"></a>  <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb50-3"><a href="#cb50-3"></a>}</span></code></pre></div>
       <ul>
       <li><code>value: number</code> : 数値を1個受け取る。</li>
       <li><code>): boolean</code> : 戻り値の型は <span class="masked">真偽値 (<code>true</code>
@@ -2596,13 +2582,13 @@ npm run test:run</code></pre>
       <p>PythonやC言語で学んだ「引数を受け取って、値を返す関数」と同じ考え方です。TypeScriptの関数の詳しい書き方は、今後の講義でも扱います。</p>
       <p>次に、<strong>「2を渡すとtrueになる」</strong> というテストを <code>priority.test.ts</code>
       に書きます。</p>
-      <div class="sourceCode" id="cb46" data-caption="src/priority.test.ts (最初のテスト)"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb46-1"><a href="#cb46-1"></a><span class="im">import</span> { expect<span class="op">,</span> test } <span class="im">from</span> <span class="st">&quot;vitest&quot;</span><span class="op">;</span></span>
-<span id="cb46-2"><a href="#cb46-2"></a><span class="im">import</span> { isValidPriority } <span class="im">from</span> <span class="st">&quot;./priority.js&quot;</span><span class="op">;</span></span>
-<span id="cb46-3"><a href="#cb46-3"></a></span>
-<span id="cb46-4"><a href="#cb46-4"></a><span class="fu">test</span>(<span class="st">&quot;優先度2は有効&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb46-5"><a href="#cb46-5"></a>  <span class="fu">expect</span>(<span class="fu">isValidPriority</span>(<span class="dv">2</span>))<span class="op">.</span><span class="fu">toBe</span>(<span class="kw">true</span>)<span class="op">;</span></span>
-<span id="cb46-6"><a href="#cb46-6"></a>})<span class="op">;</span></span></code></pre></div>
+      <div class="sourceCode" id="cb51" data-caption="src/priority.test.ts (最初のテスト)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb51-1"><a href="#cb51-1"></a><span class="im">import</span> { expect<span class="op">,</span> test } <span class="im">from</span> <span class="st">&quot;vitest&quot;</span><span class="op">;</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a><span class="im">import</span> { isValidPriority } <span class="im">from</span> <span class="st">&quot;./priority.js&quot;</span><span class="op">;</span></span>
+<span id="cb51-3"><a href="#cb51-3"></a></span>
+<span id="cb51-4"><a href="#cb51-4"></a><span class="fu">test</span>(<span class="st">&quot;優先度2は有効&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb51-5"><a href="#cb51-5"></a>  <span class="fu">expect</span>(<span class="fu">isValidPriority</span>(<span class="dv">2</span>))<span class="op">.</span><span class="fu">toBe</span>(<span class="kw">true</span>)<span class="op">;</span></span>
+<span id="cb51-6"><a href="#cb51-6"></a>})<span class="op">;</span></span></code></pre></div>
       <p><code>import</code>
       は別のファイルやパッケージから機能を読み込む文です。ここでは、Vitestの機能と、自分で定義した関数を読み込んでいます。</p>
       <div class="note type-tips">
@@ -2630,10 +2616,10 @@ npm run test:run</code></pre>
       <h2 data-number="9.4" id="greenまず1件を成功させる"><span
       class="header-section-number">9.4</span> Green：まず1件を成功させる</h2>
       <p><code>priority.ts</code> を次のように変更して保存し、同じテストを再実行してください。</p>
-      <div class="sourceCode" id="cb48" data-caption="src/priority.ts (最初の成功)"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb48-1"><a href="#cb48-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">isValidPriority</span>(value<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">boolean</span> {</span>
-<span id="cb48-2"><a href="#cb48-2"></a>  <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
-<span id="cb48-3"><a href="#cb48-3"></a>}</span></code></pre></div>
+      <div class="sourceCode" id="cb53" data-caption="src/priority.ts (最初の成功)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb53-1"><a href="#cb53-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">isValidPriority</span>(value<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">boolean</span> {</span>
+<span id="cb53-2"><a href="#cb53-2"></a>  <span class="cf">return</span> <span class="kw">true</span><span class="op">;</span></span>
+<span id="cb53-3"><a href="#cb53-3"></a>}</span></code></pre></div>
       <p><strong>1件成功</strong>
       になりました。ただし、この実装が「1〜3の整数だけを有効とする」という仕様を満たしていないことは分かりますね🤔</p>
       <p>ここでは、テストを小さく始めるために、意図的に単純な実装にしています。<strong>テストが成功しても、まだテストしていない条件については何も確認できていません</strong>。</p>
@@ -2654,33 +2640,33 @@ npm run test:run</code></pre>
       についても確認します。このように、条件が切り替わる境目を意識して調べることが重要です。</p>
       <p><strong>今あるテストを消さずに</strong>、<code>priority.test.ts</code>
       の末尾へ次を追加してください。</p>
-      <div class="sourceCode" id="cb49"
+      <div class="sourceCode" id="cb54"
       data-caption="src/priority.test.ts (境界のテストを追記)"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">test</span>(<span class="st">&quot;下限の1は有効&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb49-2"><a href="#cb49-2"></a>  <span class="fu">expect</span>(<span class="fu">isValidPriority</span>(<span class="dv">1</span>))<span class="op">.</span><span class="fu">toBe</span>(<span class="kw">true</span>)<span class="op">;</span></span>
-<span id="cb49-3"><a href="#cb49-3"></a>})<span class="op">;</span></span>
-<span id="cb49-4"><a href="#cb49-4"></a></span>
-<span id="cb49-5"><a href="#cb49-5"></a><span class="fu">test</span>(<span class="st">&quot;上限の3は有効&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb49-6"><a href="#cb49-6"></a>  <span class="fu">expect</span>(<span class="fu">isValidPriority</span>(<span class="dv">3</span>))<span class="op">.</span><span class="fu">toBe</span>(<span class="kw">true</span>)<span class="op">;</span></span>
-<span id="cb49-7"><a href="#cb49-7"></a>})<span class="op">;</span></span>
-<span id="cb49-8"><a href="#cb49-8"></a></span>
-<span id="cb49-9"><a href="#cb49-9"></a><span class="fu">test</span>(<span class="st">&quot;下限より小さい0は無効&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb49-10"><a href="#cb49-10"></a>  <span class="fu">expect</span>(<span class="fu">isValidPriority</span>(<span class="dv">0</span>))<span class="op">.</span><span class="fu">toBe</span>(<span class="kw">false</span>)<span class="op">;</span></span>
-<span id="cb49-11"><a href="#cb49-11"></a>})<span class="op">;</span></span>
-<span id="cb49-12"><a href="#cb49-12"></a></span>
-<span id="cb49-13"><a href="#cb49-13"></a><span class="fu">test</span>(<span class="st">&quot;上限より大きい4は無効&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb49-14"><a href="#cb49-14"></a>  <span class="fu">expect</span>(<span class="fu">isValidPriority</span>(<span class="dv">4</span>))<span class="op">.</span><span class="fu">toBe</span>(<span class="kw">false</span>)<span class="op">;</span></span>
-<span id="cb49-15"><a href="#cb49-15"></a>})<span class="op">;</span></span></code></pre></div>
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">test</span>(<span class="st">&quot;下限の1は有効&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb54-2"><a href="#cb54-2"></a>  <span class="fu">expect</span>(<span class="fu">isValidPriority</span>(<span class="dv">1</span>))<span class="op">.</span><span class="fu">toBe</span>(<span class="kw">true</span>)<span class="op">;</span></span>
+<span id="cb54-3"><a href="#cb54-3"></a>})<span class="op">;</span></span>
+<span id="cb54-4"><a href="#cb54-4"></a></span>
+<span id="cb54-5"><a href="#cb54-5"></a><span class="fu">test</span>(<span class="st">&quot;上限の3は有効&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb54-6"><a href="#cb54-6"></a>  <span class="fu">expect</span>(<span class="fu">isValidPriority</span>(<span class="dv">3</span>))<span class="op">.</span><span class="fu">toBe</span>(<span class="kw">true</span>)<span class="op">;</span></span>
+<span id="cb54-7"><a href="#cb54-7"></a>})<span class="op">;</span></span>
+<span id="cb54-8"><a href="#cb54-8"></a></span>
+<span id="cb54-9"><a href="#cb54-9"></a><span class="fu">test</span>(<span class="st">&quot;下限より小さい0は無効&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb54-10"><a href="#cb54-10"></a>  <span class="fu">expect</span>(<span class="fu">isValidPriority</span>(<span class="dv">0</span>))<span class="op">.</span><span class="fu">toBe</span>(<span class="kw">false</span>)<span class="op">;</span></span>
+<span id="cb54-11"><a href="#cb54-11"></a>})<span class="op">;</span></span>
+<span id="cb54-12"><a href="#cb54-12"></a></span>
+<span id="cb54-13"><a href="#cb54-13"></a><span class="fu">test</span>(<span class="st">&quot;上限より大きい4は無効&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb54-14"><a href="#cb54-14"></a>  <span class="fu">expect</span>(<span class="fu">isValidPriority</span>(<span class="dv">4</span>))<span class="op">.</span><span class="fu">toBe</span>(<span class="kw">false</span>)<span class="op">;</span></span>
+<span id="cb54-15"><a href="#cb54-15"></a>})<span class="op">;</span></span></code></pre></div>
       <p>現在の実装で、どのテストが失敗するかを予測してから実行してください。<strong>3件成功・2件失敗</strong>
       になるはずです。</p>
       <p>次に、関数を <strong>1以上かつ3以下の場合にtrueを返す</strong>
       ように変更してみてください。<code>&amp;&amp;</code> はC言語と同じ「かつ」で、Pythonの
       <code>and</code> に相当します。</p>
       <p>取り組んでから、次の実装例と比較してください。</p>
-      <div class="sourceCode" id="cb50" data-caption="src/priority.ts (範囲の判定)"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb50-1"><a href="#cb50-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">isValidPriority</span>(value<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">boolean</span> {</span>
-<span id="cb50-2"><a href="#cb50-2"></a>  <span class="cf">return</span> value <span class="op">&gt;=</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> value <span class="op">&lt;=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb50-3"><a href="#cb50-3"></a>}</span></code></pre></div>
+      <div class="sourceCode" id="cb55" data-caption="src/priority.ts (範囲の判定)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb55-1"><a href="#cb55-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">isValidPriority</span>(value<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">boolean</span> {</span>
+<span id="cb55-2"><a href="#cb55-2"></a>  <span class="cf">return</span> value <span class="op">&gt;=</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> value <span class="op">&lt;=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb55-3"><a href="#cb55-3"></a>}</span></code></pre></div>
       <p>これで <strong>5件成功</strong>
       になります。ここで、仕様をもう一度読み直してください。<strong>まだ確認していない条件に気づけたでしょうか。</strong></p>
       <h2 data-number="9.6" id="数値型なら適切な入力なのか"><span
@@ -2690,24 +2676,24 @@ npm run test:run</code></pre>
       class="masked">型チェックに通ることと、用途に適した値であること</span>
       は同じではありません。</p>
       <p>まず、実装には触れずに次のテストを追加してください。</p>
-      <div class="sourceCode" id="cb51"
+      <div class="sourceCode" id="cb56"
       data-caption="src/priority.test.ts (小数のテストを追記)"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">test</span>(<span class="st">&quot;範囲内でも小数の1.5は無効&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb51-2"><a href="#cb51-2"></a>  <span class="fu">expect</span>(<span class="fu">isValidPriority</span>(<span class="fl">1.5</span>))<span class="op">.</span><span class="fu">toBe</span>(<span class="kw">false</span>)<span class="op">;</span></span>
-<span id="cb51-3"><a href="#cb51-3"></a>})<span class="op">;</span></span></code></pre></div>
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb56-1"><a href="#cb56-1"></a><span class="fu">test</span>(<span class="st">&quot;範囲内でも小数の1.5は無効&quot;</span><span class="op">,</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb56-2"><a href="#cb56-2"></a>  <span class="fu">expect</span>(<span class="fu">isValidPriority</span>(<span class="fl">1.5</span>))<span class="op">.</span><span class="fu">toBe</span>(<span class="kw">false</span>)<span class="op">;</span></span>
+<span id="cb56-3"><a href="#cb56-3"></a>})<span class="op">;</span></span></code></pre></div>
       <p>実行して、<strong>5件成功・1件失敗</strong>
       となることを確認してください。失敗を確認したら、整数かどうかも調べるように関数を変更します。</p>
       <p>整数の判定には <strong><code>Number.isInteger(value)</code></strong> が使えます。整数なら
       <code>true</code>、そうでなければ <code>false</code> を返します。例えば
       <code>Number.isInteger(2)</code> は <code>true</code>、<code>Number.isInteger(1.5)</code> は
       <code>false</code> です。</p>
-      <div class="sourceCode" id="cb52" data-caption="src/priority.ts (整数の判定を追加)"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb52-1"><a href="#cb52-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">isValidPriority</span>(value<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">boolean</span> {</span>
-<span id="cb52-2"><a href="#cb52-2"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="bu">Number</span><span class="op">.</span><span class="fu">isInteger</span>(value)) {</span>
-<span id="cb52-3"><a href="#cb52-3"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
-<span id="cb52-4"><a href="#cb52-4"></a>  }</span>
-<span id="cb52-5"><a href="#cb52-5"></a>  <span class="cf">return</span> value <span class="op">&gt;=</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> value <span class="op">&lt;=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb52-6"><a href="#cb52-6"></a>}</span></code></pre></div>
+      <div class="sourceCode" id="cb57" data-caption="src/priority.ts (整数の判定を追加)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb57-1"><a href="#cb57-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">isValidPriority</span>(value<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">boolean</span> {</span>
+<span id="cb57-2"><a href="#cb57-2"></a>  <span class="cf">if</span> (<span class="op">!</span><span class="bu">Number</span><span class="op">.</span><span class="fu">isInteger</span>(value)) {</span>
+<span id="cb57-3"><a href="#cb57-3"></a>    <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb57-4"><a href="#cb57-4"></a>  }</span>
+<span id="cb57-5"><a href="#cb57-5"></a>  <span class="cf">return</span> value <span class="op">&gt;=</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> value <span class="op">&lt;=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb57-6"><a href="#cb57-6"></a>}</span></code></pre></div>
       <p><code>!</code> はC言語と同じ否定で、Pythonの <code>not</code>
       に相当します。整数でなければ先に <code>false</code>
       を返し、整数の場合に範囲を判定しています。保存して再実行し、<strong>6件成功</strong>
@@ -2715,16 +2701,16 @@ npm run test:run</code></pre>
       <h2 data-number="9.7" id="refactor動作を保ってコードを整理する"><span
       class="header-section-number">9.7</span> Refactor：動作を保ってコードを整理する</h2>
       <p>今の関数は、次のように「整数である」「1以上」「3以下」という条件をまとめることもできます。</p>
-      <div class="sourceCode" id="cb53" data-caption="src/priority.ts (整理後)"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb53-1"><a href="#cb53-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">isValidPriority</span>(value<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">boolean</span> {</span>
-<span id="cb53-2"><a href="#cb53-2"></a>  <span class="cf">return</span> <span class="bu">Number</span><span class="op">.</span><span class="fu">isInteger</span>(value) <span class="op">&amp;&amp;</span> value <span class="op">&gt;=</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> value <span class="op">&lt;=</span> <span class="dv">3</span><span class="op">;</span></span>
-<span id="cb53-3"><a href="#cb53-3"></a>}</span></code></pre></div>
+      <div class="sourceCode" id="cb58" data-caption="src/priority.ts (整理後)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb58-1"><a href="#cb58-1"></a><span class="im">export</span> <span class="kw">function</span> <span class="fu">isValidPriority</span>(value<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">boolean</span> {</span>
+<span id="cb58-2"><a href="#cb58-2"></a>  <span class="cf">return</span> <span class="bu">Number</span><span class="op">.</span><span class="fu">isInteger</span>(value) <span class="op">&amp;&amp;</span> value <span class="op">&gt;=</span> <span class="dv">1</span> <span class="op">&amp;&amp;</span> value <span class="op">&lt;=</span> <span class="dv">3</span><span class="op">;</span></span>
+<span id="cb58-3"><a href="#cb58-3"></a>}</span></code></pre></div>
       <p>この変更では
       <strong>仕様も、テストの期待値も変えません</strong>。保存後、6件が引き続き成功することを確認してください。確認済みの動作を壊していないか、すぐに調べられるのが自動テストの利点です。なお、行数が短ければ必ず良いというわけではなく、読みやすさも判断してください。</p>
       <p>最後に、次を実行します。</p>
-      <div class="sourceCode" id="cb54"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>npm run typecheck</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>npm run build</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>npm run test<span class="op">:</span>run</span></code></pre></div>
+      <div class="sourceCode" id="cb59"><pre class="sourceCode powershell"><code class="sourceCode powershell"><span id="cb59-1"><a href="#cb59-1" aria-hidden="true" tabindex="-1"></a>npm run typecheck</span>
+<span id="cb59-2"><a href="#cb59-2" aria-hidden="true" tabindex="-1"></a>npm run build</span>
+<span id="cb59-3"><a href="#cb59-3" aria-hidden="true" tabindex="-1"></a>npm run test<span class="op">:</span>run</span></code></pre></div>
       <p><code>prac00.test.ts</code> を残しており、他にテストを追加していなければ、最後の結果は
       <strong>2ファイル・7件成功</strong>
       になります。VSCodeの「問題」パネルにもエラーが残っていないことを確認してください。</p>
