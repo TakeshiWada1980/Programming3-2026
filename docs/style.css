@@ -162,6 +162,23 @@ h2 .header-section-number {
   padding: 0.25em 0.5em;
 }
 
+@media screen and (max-width: 767px) {
+  .markdown-body table {
+    display: block;
+    width: max-content;
+    /* 左右の余白（各0.5em）と枠線を含めて本文幅に収める */
+    max-width: calc(100% - 1em);
+    box-sizing: border-box;
+    overflow-x: auto;
+  }
+
+  .markdown-body table th,
+  .markdown-body table td {
+    /* 名前や日付を折り返して列を縮めず、必要な幅は横スクロールで表示する */
+    white-space: nowrap;
+  }
+}
+
 /* ------- 図 ------- */
 
 .markdown-body figure {
