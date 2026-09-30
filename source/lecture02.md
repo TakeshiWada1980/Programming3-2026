@@ -1,7 +1,7 @@
 ---
 var:
-  header-title: "2025-3I プログラミング3 第02回 講義資料"
-  header-date: "2025年10月09日（木）5・6時限"
+  header-title: "2026-3I プログラミング3 第02回 講義資料"
+  header-date: "2026年10月02日（金）1時限"
 ---
 
 # 第02回 3I-プログラミング3
@@ -25,7 +25,7 @@ var:
 - Todoアプリ開発（Reactによるフロントエンド開発）のチュートリアル
 - Todoアプリのカスタマイズや作り込み → **後期前半の大課題**
 
-まずは、次のような「📝**Todoアプリの開発** (Reactを採用したフロントエンド開発)」目標とします。
+まずは、次のような「📝**Todoアプリの開発** (Reactを採用したフロントエンド開発)」を目標とします。
 
 - [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/) (ギリギリ合格水準のレベル、点数で言えば60点😨)
 - [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/2) (ここまで内容を理解して開発できたら90点🎉)
@@ -91,7 +91,7 @@ priority = "High";
 <div class="note type-tips">
 **PythonやJavaScriptは動的型付け言語**
 
-プログラミング1で学んだ **Python** や **JavaScript** は「動的型付け言語」であり、次のようなコードを記述をしても問題ありません。
+プログラミング1で学んだ **Python** や **JavaScript** は「動的型付け言語」であり、次のようなコードを記述しても問題ありません。
 
 ```python{.numberLines caption="type.py (Python)"}
 name = 'TypeScriptの勉強' # 文字列で初期化した変数を...
@@ -127,7 +127,7 @@ TypeScriptの主要な「型」としては、次のようなものがありま�
 - `number` : 数値型。<span class="masked">「整数型」と「浮動小数点型」</span> の区別はありません。
 - `boolean` : 真偽値型 (ブール型)。`true` と `false` の2値だけを扱います。
     - Python では <span class="masked">`True` と `False` のように真偽値のリテラルは大文字開始</span> でしたが、TypeScript では **先頭が小文字** になることに注意してください。 
-- `Date` : 日時型。厳密には TyepScript / JavaScreipt の **組込みクラス** である `Data` のインスタンス (オブジェクト) の型で「日付」と「時刻」を扱うときに使用します。
+- `Date` : 日時型。厳密には TypeScript / JavaScript の **組込みクラス** である `Date` のインスタンス (オブジェクト) の型で「日付」と「時刻」を扱うときに使用します。
 
 #### 定着確認
 
@@ -234,7 +234,7 @@ let deadline: Date = new Date(2025, 9, 2, 14, 15);
 
 さらに詳しく結果を考察・確認していきます。
 
-まずは「**Month (月)**」について <span class="masked">「9月だろう」と推測していたものの出力結果が違った</span> ことに気づいたでしょうか。TypeScript / JavaScrfipt の `Date` クラスの仕様上、第2引数は **ゼロオリジン** で `0` から `11` によって **Month (月)** を与えるようになっています (ややこしいですが、そのような仕様なので仕方がありません)。
+まずは「**Month (月)**」について <span class="masked">「9月だろう」と推測していたものの出力結果が違った</span> ことに気づいたでしょうか。TypeScript / JavaScript の `Date` クラスの仕様上、第2引数は **ゼロオリジン** で `0` から `11` によって **Month (月)** を与えるようになっています (ややこしいですが、そのような仕様なので仕方がありません)。
 
 では、第2引数に `12` を与えるとどうなるのか (<span class="masked">コンパイルエラーになるのか、実行時エラーになるのか、あるいは別の動作をするのか</span>) を予想したうえで実際に試してみてください。プログラミング1 の授業から、繰り返し伝えていますが、このように発想を広げて自ら検証してみることは非常に大事です。
 
@@ -267,7 +267,7 @@ console.log(`Timezone: ${timeZone}`);
 
 ここでは <span class="masked">JS/TSの実行環境によってタイムゾーンが変わること</span> に注意してください。
 
-特にウェブアプリのバックエンドを、クラウドサーバ や Dockerなどのコンテナ で構築する場合、タイムゾーンは一般に `Timezone: UTC` となります。一方で、**フロントエンドのタイムゾーンは利用者環境 (OS) によって違ってくることに注意してください。**。
+特にウェブアプリのバックエンドを、クラウドサーバ や Dockerなどのコンテナ で構築する場合、タイムゾーンは一般に `Timezone: UTC` となります。一方で、**フロントエンドのタイムゾーンは利用者環境 (OS) によって違ってくることに注意してください**。
 
 ### 解説: 日時の整形出力
 
@@ -275,7 +275,7 @@ console.log(`Timezone: ${timeZone}`);
 
 <hr>
 
-ウェブ検索を利用して「Date型の日時を整形出力する方法」について探す場合は「[JavaScript Date フォーマット](https://www.google.com/search?q=JavaScreipt+Date+フォーマット)」などをキーワードにします。検索キーワードは <span class="masked">「TypeScript」ではなく「JavaScript」</span> としたほうが情報のヒット率が高くなります。
+ウェブ検索を利用して「Date型の日時を整形出力する方法」について探す場合は「[JavaScript Date フォーマット](https://www.google.com/search?q=JavaScript+Date+フォーマット)」などをキーワードにします。検索キーワードは <span class="masked">「TypeScript」ではなく「JavaScript」</span> としたほうが情報のヒット率が高くなります。
 
 TypeScript固有の内容でなければ「JavaScript」をキーワードに使うことも方法として覚えておいてください。
 
@@ -296,7 +296,7 @@ GitHub Copilot を利用して解決を試みる場合は、以下のように <
 > console.log(deadline);  
 > \`\`\`
 
-ここでは、生成AIから次のような回答 (コード) が得られた仮定とします。
+ここでは、生成AIから次のような回答 (コード) が得られたと仮定します。
 
 ```typescript{.numberLines caption="src/prac04.ts"}
 let deadline: Date = new Date(2025, 9, 2, 14, 15);
@@ -339,7 +339,7 @@ console.log(`${year}/${month}/${day} ${hours}:${minutes}`);
 Pythonで、先の `prac04.ts` と同様のプログラムを書くと次のようになります。
 
 ```python{.numberLines caption="Pythonにおける日付の扱い"}
-from datetime import datetime # 日時を扱うための datatime ライブラリ
+from datetime import datetime # 日時を扱うための datetime ライブラリ
 deadline = datetime(2024, 10, 2, 11, 45)
 print(deadline.strftime('%Y/%m/%d %H:%M'))
 ```
@@ -453,7 +453,7 @@ function comp(a: number, b: number ): boolean { ... }
 function printWord(word: string): void { ... }
 ```
 
-戻り値が「ない」ことは <sapn>`void`</sapn> で表現します。
+戻り値が「ない」ことは <span>`void`</span> で表現します。
 
 <hr>
 
@@ -539,7 +539,7 @@ console.log(str);
 
 ### dayjsライブラリのインストール
 
-プロジェクフォルダに dayjs をローカルインストールするために、以下のコマンドを実行してください。
+プロジェクトフォルダに dayjs をローカルインストールするために、以下のコマンドを実行してください。
 
 ```
 npm i dayjs
@@ -596,10 +596,10 @@ learn-ts-basics@1.0.0 C:\Users\xxxx\Documents\learn-ts-basics
 
 #### 定着確認
 
-- アプリのの実行時に使用する `uuid` というライブラリを、プロジェクトフォルダにローカルインストールしたい。これを実行するコマンドを答えよ。
+- アプリの実行時に使用する `uuid` というライブラリを、プロジェクトフォルダにローカルインストールしたい。これを実行するコマンドを答えよ。
     - 答え <span class="masked">`npm i uuid` または `npm install uuid`</span>
 - アプリの開発時だけに使用する `@types/uuid` というライブラリを、プロジェクトフォルダにローカルインストールしたい。これを実行するコマンドを答えよ。
-    - 答え <span class="masked">`npm i -D uuid` または `npm install --save-dev @types/uuid`</span>
+    - 答え <span class="masked">`npm i -D @types/uuid` または `npm install --save-dev @types/uuid`</span>
 
 ### dayjsライブラリの利用
 
@@ -854,7 +854,7 @@ print(todo2)
 
 なお、`types.ts` では <span class="masked">`Todo` に `export` キーワード</span> を付けることを忘れないようにしてください。
 
-```typescript{.numberLines caption="src/prac07.ts (utils/types.tsの読込み)"}
+```typescript{.numberLines caption="src/prac07.ts (types.tsの読込み)"}
 import type { Todo } from "./types.js";
 
 // Todo型のオブジェクトを作成
@@ -897,7 +897,7 @@ export const printTodo = (todo: Todo): void => {
 
 **第02行目**でTodo型の定義をインポートしています。<span class="masked">相対パスによる指定</span> になるので (`types.ts` は1つ上の階層に存在するので) `from ../types.js` となります。
 
-**第04行目**では、アロー関数として `printTodo` を定義してしています。`(todo: Todo)` のように Todo型の値を、**仮引数** `todo` として受け取るように記述しています。
+**第04行目**では、アロー関数として `printTodo` を定義しています。`(todo: Todo)` のように Todo型の値を、**仮引数** `todo` として受け取るように記述しています。
 
 **(プロンプト例)**
 
@@ -964,7 +964,7 @@ export const printTodo = (todo: Todo): void => {
 
 ### 引数の分割代入
 
-さらに、次の **第04行目** ように <span class="masked">引数の受け取りに分割代入を適用すること</span> ができます。このテクニックも**React開発のなかで頻繁に利用される**ので「何が行なわれているのか
+さらに、次の **第04行目** のように <span class="masked">引数の受け取りに分割代入を適用すること</span> ができます。このテクニックも**React開発のなかで頻繁に利用される**ので「何が行なわれているのか
 」を正しく読み取れるようになってください。ウェブの解説や、生成AIが出力するサンプルコードでも、引数の分割代入が使用されていることが多いです。
 
 ```typescript{.numberLines caption="printTodo.ts (引数の分割代入)"}
@@ -1011,7 +1011,7 @@ Todo型の引数 (1個) を受け取って「現在時刻が期限 (`deadline`) 
 
 Todo型の引数 (1個) を受け取って、完了済みであれば `【済】基礎物理3の宿題`、未完了で期限を過ぎていなければ `【未】基礎物理3の宿題 (期限まで残りXX時間)`、期限を過ぎていれば `【未】基礎物理3の宿題 (期限をXX時間超過)` のような文字列を返す関数 (アロー関数形式で、上記の演習と同じファイル内に記述) を実装してください。また、その関数が適切に動作をすることを確認する簡単なテストコードを `prac03.ts` に記述してください。
 
-- 戻り値の文字列の内容はカスタイマイズやアレンジ歓迎です。
+- 戻り値の文字列の内容はカスタマイズやアレンジ歓迎です。
 
 ## 等価演算子と不等価演算子
 
@@ -1019,7 +1019,7 @@ Todo型の引数 (1個) を受け取って、完了済みであれば `【済】
 
 TypeScript (および JavaScript) において「数値型」や「文字列型」などの[プリミティブ型](https://chatgpt.com/share/67051f9c-5e2c-8011-bdc6-bd23f6f43e8a)の値を比較するときは、一般に `===` (**厳密等価演算子**) を使用することが推奨されます。
 
-言語仕様としては `==` (**等価演算**) も使用可能ですが、こちらは比較の際に <span class="masked">暗黙の型変換が適用</span> されることがあり、その挙動について十分な理解がないままに使用するとバグの原因となります。
+言語仕様としては `==` (**等価演算子**) も使用可能ですが、こちらは比較の際に <span class="masked">暗黙の型変換が適用</span> されることがあり、その挙動について十分な理解がないままに使用するとバグの原因となります。
 
 ```typescript{.numberLines caption="厳密等価演算子を使った比較"}
 console.log(3150 === "3150"); // false
@@ -1045,7 +1045,7 @@ console.log("1,2,3" == [1, 2, 3]); // true
 
 オブジェクトの「参照」とは、C言語で言えば「**ポインタ**」、Pythonで言えば「**オブジェクトID**」に相当するものです。
 
-例えば、以下の `todo1` と `todo2` は、同じ値のプロパティを持っていますが、**それぞれ別のオブジェクト** (つまり、異なる「参照」、C言語的に言えば異なる「アドレス」、Pythont的に言えば異なる「オブジェクトID」) であるため、**第17行目** の出力は <span class="masked">`false`</span> となります。
+例えば、以下の `todo1` と `todo2` は、同じ値のプロパティを持っていますが、**それぞれ別のオブジェクト** (つまり、異なる「参照」、C言語的に言えば異なる「アドレス」、Python的に言えば異なる「オブジェクトID」) であるため、**第17行目** の出力は <span class="masked">`false`</span> となります。
 
 ```typescript{.numberLines caption="src/comp1.ts"}
 import type { Todo } from "./types.js";
@@ -1069,7 +1069,7 @@ console.log(todo1 === todo2); // 比較結果は「false」
 
 一方で、次の `comp2.ts` の **第17行目** の出力は <span class="masked">`true`</span> となります。
 
-**第12行目** の `todo2 = todo1` で行われるのは、いわゆる「**浅いコピー** (Shallow Copy) = 参照のコピー」であるため、そのような結果になります。この「**浅いコピー**」についてはPG1の[第13回講語](https://takeshiwada1980.github.io/Programming1-2024/lecture13.html#リストの浅いコピーと深いコピー)で丁寧に解説しているので再読してください。
+**第12行目** の `todo2 = todo1` で行われるのは、いわゆる「**浅いコピー** (Shallow Copy) = 参照のコピー」であるため、そのような結果になります。この「**浅いコピー**」についてはPG1の[第13回講義](https://takeshiwada1980.github.io/Programming1-2024/lecture13.html#リストの浅いコピーと深いコピー)で丁寧に解説しているので再読してください。
 
 ```typescript{.numberLines caption="src/comp2.ts"}
 import type { Todo } from "./types.js";
@@ -1186,7 +1186,7 @@ const style = todo.isDone ? "text-gray-500 line-through" : "text-slate-800";
 
 ## Reactにおける状態 (オブジェクト) の変更の検知 ～概要～
 
-Reactでは「**極めて大雑排に言えば、＜オブジェクト＞の状態が変更されたことを検知してライブラリ (React) が自動でウェブ画面を書き換える**」ということが行われます (画面=[DOM (Document Object Model)](https://www.google.com/search?q=Domとは)。 
+Reactでは「**極めて大雑把に言えば、＜オブジェクト＞の状態が変更されたことを検知してライブラリ (React) が自動でウェブ画面を書き換える**」ということが行われます (画面=[DOM (Document Object Model)](https://www.google.com/search?q=Domとは))。
 
 ここでの **＜オブジェクト＞** とは、例えば、ここまで何度も登場している `todo` です。そのオブジェクトの「状態が変更された」とは、例えば `name` や `isDone` などの **プロパティ (属性) に変更が生じた** ということを意味します。
 
@@ -1260,7 +1260,7 @@ const updatedTodo: Todo = {
   deadline: todo.deadline, // todo の値を引き継ぐ
 };
 
-// todo と updatedTodo の todo の参照が「異なること」を確認
+// todo と updatedTodo の参照が「異なること」を確認
 console.log(todo !== updatedTodo); // true であれば OK
 ```
 
@@ -1288,7 +1288,7 @@ const updatedTodo: Todo = {
 };
 ```
 
-上記の場合、priority は `3` に更新されますが、`name` は `todo` の値 (`TypeScriptの勉強"`) で上書きされてしまいます。
+上記の場合、priority は `3` に更新されますが、`name` は `todo` の値 (`"TypeScriptの勉強"`) で上書きされてしまいます。
 
 **(プロンプト例)**
 
@@ -1298,7 +1298,7 @@ const updatedTodo: Todo = {
 
 次のプログラムにつづけて、`isDone` が `true` に変更されたオブジェクトを変数 `updatedTodo` に得てください。
 
-ただし、Reactが `todo` との差異を検知可能なように `updatedTodo` の参照は、`todo` の参照とは異なるようにしてください。。また、スプレッド構文を使用して記述してください。
+ただし、Reactが `todo` との差異を検知可能なように `updatedTodo` の参照は、`todo` の参照とは異なるようにしてください。また、スプレッド構文を使用して記述してください。
 
 ```typescript{.numberLines caption="演習"}
 import type { Todo } from "./types.js";
@@ -1318,9 +1318,9 @@ const todo: Todo = {
 
 - 次回の授業のはじめに「**小テスト**」を実施します。筆記用具を持参してください。
 - 本科目は「**学修単位科目**」です。今回の講義内容 +アルファ に関して **4時間相当の授業時間外学習** に取り組んでください。
-  - この講義資料を再読・熟読し「不明な用語」や「理解が十分な用語」があればインターネットや、ChatGPTなどの生成AIを利用して解決してください。また、興味関心を持ったトピックについて、ウェブ、生成AI、YouTube動画などを利用して知識を広げ、理解を深めてください。
+  - この講義資料を再読・熟読し「不明な用語」や「理解が不十分な用語」があればインターネットや、ChatGPTなどの生成AIを利用して解決してください。また、興味関心を持ったトピックについて、ウェブ、生成AI、YouTube動画などを利用して知識を広げ、理解を深めてください。
   - 特に **(プロンプト例)** を示しているものについては、実際に生成AIにプロンプトを投げ、さらに対話を重ねることで、知識の幅を広げるだけでなく、理解をより深く確かなものにしてください。
   - 講義資料内の「演習」に再度取り組んでください。演習内容は、授業時間中に1回取り組むだけでは定着しないので注意してください。
-- 次回の授業では「配列」について取り上げ、`map` や `filter` などの **配列操作メソッド** (高階関数) を扱います。これらは React で頻度に使われるものになります。予習することを強く推奨します。
+- 次回の授業では「配列」について取り上げ、`map` や `filter` などの **配列操作メソッド** (高階関数) を扱います。これらは React で頻繁に使われるものになります。予習することを強く推奨します。
   - YouTube検索: [TypeScript map](https://www.youtube.com/results?search_query=typescript+map)
 
