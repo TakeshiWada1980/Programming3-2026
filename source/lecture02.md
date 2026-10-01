@@ -8,63 +8,156 @@ var:
 
 ## 今回の授業概要と連絡
 
-本科目は学修単位科目です。大学の授業と同様に **1回の授業あたり4時間相当の授業時間外学習** を前提としたボリューム、展開速度となっています。いろいろと忙しいとは思いますが、時間を確保して取り組んでください。
+本科目は学修単位科目です。大学の授業と同様に <font color="deeppink"><b>1回の授業あたり4時間相当の授業時間外学習</b></font> を前提としたボリューム、展開速度となっています。いろいろと忙しいとは思いますが、時間を確保して取り組んでください。
 
-### 小テスト❶
+### 小テスト1
 
-小テスト❶を実施します。
+「小テスト1」を実施します。
 
 ### ここまでの流れ
 
 後期中間試験ぐらいまでの授業の流れ (予定)
 
 - モダンTypeScript基礎学習のための環境構築 ***済***
-- TypeScript基礎学習 **← 今回と次回の授業のメイン**
-    - **React / Next.js 開発に関連する文法や機能だけを集中的に学びます**。
-- Reactを使ったTodoアプリのための環境構築
-- Todoアプリ開発（Reactによるフロントエンド開発）のチュートリアル
-- Todoアプリのカスタマイズや作り込み → **後期前半の大課題**
+- TypeScript基礎学習 <font color="deeppink"><b>← 今回と次回の授業のメイン</b></font>
+    - **<u>React / Next.js 開発に関連する文法や機能だけを集中的に学びます</u>**。
+- React を用いた「Todoアプリ」開発のための環境構築
+- Todoアプリの設計・実装 (Reactによるフロントエンド) のチュートリアル
+- Todoアプリのカスタマイズや作り込み → 📝**後期前半の大課題**
 
-まずは、次のような「📝**Todoアプリの開発** (Reactを採用したフロントエンド開発)」を目標とします。
+まずは、しばらく、次のような「Todoアプリ」を開発することを目標として授業が展開します。
 
-- [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/) (ギリギリ合格水準のレベル、点数で言えば60点😨)
-- [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/2) (ここまで内容を理解して開発できたら90点🎉)
+- [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/) (チュートリアルそのままに近いもの)
+- [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/2) (内容を理解して機能追加やカスタマイズされたもの)
 
 ## 前回の復習
 
-前回の授業内容の重要部分の復習と、プラスアルファの解説をしていきます。
+第01回講義の重要部分の「復習」と「プラスアルファの解説」をしていきます。
 
 ### プログラムの実行
 
-プロジェクトに `src/prac01.ts` のような TypeScript ファイルがあるとき、ターミナルから `npx tsx src/prac01.ts` というコマンドを入力すれば、プログラムを実行することができました。
+前回作成した **ts-playground** フォルダを VSCode で開いてください。
 
-また、`.vscode/tasks.json` が適切に設定されていれば `[Ctrl]+[Shift]+[B]` というショートカットからもプログラムが実行できました。
+::: {.balloon .char-01 .face-02 .tone-yellow}
+今回も、特に断りがない限り、**コマンドはプロジェクトフォルダのルート** (= `package.json` ゆや `tsconfig.json` などのファイルが配置されている最上位階層) で実行してください。
+:::
 
-- 実際に、前回作成したプログラム (`src/prac01.ts`など) が、問題なく実行できることを確認してください。
+プロジェクトに `src/prac00.ts` のような TypeScript ファイルがあるとき、ターミナル (VSCodeでは `[Ctrl]+[J]` でオープン) から、次のようなコマンドを入力して、プログラムを実行することができました。
 
-**(プロンプト例)**
+```
+npx tsx src/prac00.ts
+```
 
-> Node.js における `npx` と `tsx` というコマンドの意味を教えてください。また `npx tsx src/prac01.ts` というコマンドの解釈について教えてください。
+また、`.vscode/tasks.json` が適切に設定されていれば、当該ファイルのタブがアクティブな状態で `[Ctrl]+[Shift]+[B]` というショートカットでもプログラムの実行できました。
+
+- 実際に、前回作成したプログラム (`src/prac00.ts`など) が、問題なく実行できることを確認してください。
+
+また、次のようなコマンドで「型チェック」と「テストの実行」ができました。
+
+```
+npm run typecheck
+npm run test:run -- src/prac00.test.ts
+```
+
+#### 実行確認1
+
+`npm run typecheck` コマンドは、**tsconfig.json** の **include** の項目で指定された `"src/**/*.ts"` にマッチするすべてのファイルを対象に型チェックを実行します。
+
+型に関する問題がなければ、以下のように何も表示されません。
+
+```
+PS C:\Users\xxxx\ts-playground> npm run typecheck
+
+> ts-playground@1.0.0 typecheck
+> tsc --noEmit
+```
+
+問題があるときは、以下のようにタイプエラーとなる箇所と内容が出力されます。
+
+```
+PS C:\Users\xxxx\ts-playground> npm run typecheck
+
+> ts-playground@1.0.0 typecheck
+> tsc --noEmit
+
+src/prac00.ts:7:7 - error TS2322: Type 'number' is not assignable to type 'string'.
+
+7 const x: string = 10;
+        ~
+
+src/prac00.ts:10:52 - error TS2345: Argument of type 'string' is not assignable to parameter of type 'number'.
+
+10 const result: string = greetAndCalculate(userName, x, y);
+```
+
+#### 実行確認2
+
+`npm run test:run -- src/prac00.test.ts` コマンドは、Vitest というソフトウェアテストツールを使用して、**src/prac00.test.ts** に記述されているテストコードを実行します。
+
+テストをパス (合格) した場合は、以下のような表示 (グリーン) となります。
+
+```
+PS C:\Users\xxxx\ts-playground> npm run test:run -- src/prac00.test.ts
+
+> ts-playground@1.0.0 test:run
+> vitest run src/prac00.test.ts
+
+
+ RUN  v5.0.1 C:/Users/xxxx/ts-playground
+
+ ✓ src/prac00.test.ts (1 test) 6ms
+   ✓ 10と20の合計が30になる 3ms
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  17:31:48
+   Duration  614ms (transform 43%, import 35%, worker 17%, tests 5%)
+```
+
+また、VSCode の [Vitest の拡張機能](lecture01.html#vitest-と-vscode-拡張機能の動作確認) からもテストが実行できます。
+
+![img](figs/02/vitest_01.png)
+
+![img](figs/02/vitest_02.png)
+
+
+#### 定着確認
+
+- **package.json** の **scripts** に `"typecheck": "tsc --noEmit"` と登録されているプロジェクトにおいて、JavaScript ファイルを生成せずに、TypeScript ファイル「型チェック」だけを行なうコマンドを答えよ。
+  - **答え**: <span class="masked">`npm run typecheck`</span>
+- **package.json**  **scripts** に `"test:run": "vitest run"` と登録されているプロジェクトにおいて、**src/priority.test.ts** のテストだけを1回実行するコマンドを答えよ。
+  - **答え**: <span class="masked">`npm run test:run -- src/priority.test.ts`</span>
+- コマンド `npx tsx src/prac01.ts` を実行して正常終了すれば、型チェックもテストも成功したと判断できる。この説明は「適切」か「不適切」か答えよ。
+  - **答え**: <span class="masked">不適切。プログラムの実行、型チェック、テストは別の確認である。</span>
+
 
 ### 静的型付け
 
-前回講義において、**TypeScriptは「静的型付け言語」であり、変数宣言時には次のようにコロン (`:`) につづけて型** (`string` や `number`) **を示す必要がある**、と解説しました。
+前回講義では「**TypeScript は『静的型付け言語』であり、実行前に型の整合性を確認できる**」と解説しました。変数の型を明示するときは、次のように変数名のあとにコロン (`:`) と型 (`string` や `number`) を記述します。
+
+:::{.balloon .char-01 .face-02 .tone-yellow}
+この `: string` や `: number` のような記述を **型注釈 (Type Annotation)** と呼びます。
+
+:::
+
+型注釈を省略しても型を推論できる場合がありますが、まずは型注釈を付けた例で復習していきます。
 
 ```typescript{.numberLines caption="明示的な型指定"}
 let name: string = "TypeScriptの勉強"; // : string で 文字列型を明示
 let priority: number = 3; // : number で 数値型を明示
 ```
 
-ここで「**変数に静的な型付けがされる**」とは、(簡単に言えば) 変数宣言後、<span class="masked">その変数には宣言時に示した型以外の値を (基本的には) 代入できない</span>ように制約がかかるということになります。
+ここで「**変数に静的な型付けがされる**」とは、(簡単に言えば) 変数宣言後、<span class="masked">その変数には宣言時に示した型以外の値を (基本的には) 代入できない</span> ように制約がかかるということになります。
 
-例えば、`name: string = ...` のように変数宣言された `name` には <span class="masked">文字列型 (string型) 以外の値を入れること</span> はできず、また、`priority: number = ...` のように変数宣言した `priority` には数値型 (number型) 以外の値を入れることはできないという制約がかかります。
+例えば、`name: string = ...` のように変数宣言された `name` には <u>**文字列型 (string 型) 以外の値を入れることはできず**</u> 、また、同様に `priority` には数値型 (number 型) 以外の値を入れることはできないという制約がかかります。
 
-**(プロンプト例)**
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
 
 > 静的型付け言語って、何がうれしいのですか？変数に指定の型しか格納できないような制約は不便ではないですか？
 
+#### 演習 (型エラーが検出されているときの詳細確認)
 
-VSCode で `src/prac02.ts` を新規作成し、以下のコードを貼付けると **第05行目** と **第08行目** にエラーを示す**赤色の波下線**がつくことを確認してください。
+VSCode で `src/prac02.ts` を新規作成し、以下のコード (＝**型に関する問題があるコード**) を貼付けてください。
 
 ```typescript{.numberLines caption="src/prac02.ts (トランスパイルエラー)"}
 let name: string = "TypeScriptの勉強";
@@ -76,20 +169,54 @@ name = 4649;
 // string型の値 ("High") を代入
 priority = "High";
 ```
-
+すると、VSCode 上で **第05行目** と **第08行目** に、次のようにエラーを示す**赤色の波下線**がつくことを確認してください。
 
 ![img](figs/02/vscode_02.png)
 
-また、`[Ctrl]+[J]` でターミナルを開き、`tsc src/prac02.ts` というコマンドでトランスパイルすると `error TS2322: Type 'string' is not assignable to type 'number'.` などのエラーが発生することを確認してください。
+また、「赤波線」にカーソルを重ねると、以下のようなメッセージが表示されることを確認して下さい。
 
-なお、TypeScript / JavaScript では、慣例的に「変数名」や「ローカルな定数名」は <span class="masked">キャメルケース (小文字はじまり)</span> を原則とするので覚えておいてください。
+> 型 'number' を型 'string' に割り当てることはできません。
 
-**(プロンプト例)**
+---
 
-> TypeScriptで `let name: string = "ほげ"; name= 4649;` のようなプログラムを書いたとき、`tsc hoge.ts` では型のエラーが発生するのに、`npx tsx hoge.ts` では問題なく実行できるのは何故ですか？
+つづいて、VSCode のターミナルから `npm run typecheck` を実行し、以下のように **型エラー (タイプエラー) が検出されること** を確認してください。
 
-<div class="note type-tips">
-**PythonやJavaScriptは動的型付け言語**
+```
+PS C:\Users\xxxx\ts-playground> npm run typecheck
+
+> ts-playground@1.0.0 typecheck
+> tsc --noEmit
+
+src/prac02.ts:5:1 - error TS2322: Type 'number' is not assignable to type 'string'.
+
+5 name = 4649;
+  ~~~~
+
+src/prac02.ts:8:1 - error TS2322: Type 'string' is not assignable to type 'number'.
+
+8 priority = "High";
+  ~~~~~~~~
+
+Found 2 errors in the same file, starting at: src/prac02.ts:5
+```
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
+
+> `tsc --noEmit` を実行したときに出力される `error TS2322: Type 'number' is not assignable to type 'string'.` の「TS2322」ってなんですか？
+
+::: {.balloon .char-01 .face-01 .tone-pink}
+`npm run typecheck` コマンドで型エラーが検出されることを確認できたら、`src/prac02.ts` の **第05行目と第08行目の代入文をコメントアウト**して下さい。そして、再度 `npm run typecheck` を実行して、型エラーが検出されなくなることを確認して下さい。
+
+現在の設計では **src 内の全ての TypeScript ファイル** を型チェックするように設定しているので、意図的に作ったエラーを残してくると、以降の演習の型チェックにも影響してしまいます。
+:::
+
+なお、TypeScript / JavaScript では、慣例的に「変数名」や「ローカルな定数名」は <span class="masked">キャメルケース (小文字はじまり)</span> で命名することを原則とするので覚えておいてください。
+
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
+
+> TypeScriptで `const name: string = 320;` と書くと、`tsc --noEmit` による型チェックは失敗するのに、`tsx` は問題なく実行できました。型注釈は実行時にどのように扱われるのですか？Python や C言語 との違いも交えて説明してください。
+
+::: {.note .type-tips}
+**Python や JavaScript は「動的型付け言語」**
 
 プログラミング1で学んだ **Python** や **JavaScript** は「動的型付け言語」であり、次のようなコードを記述しても問題ありません。
 
@@ -105,20 +232,30 @@ name = 4649; // 整数型の値で上書き可能
 
 C/C++言語は「静的型付け言語」なので、上記のようなプログラムはコンパイルエラーとなります。
 
-</div>
+:::
 
 
-<div class="note type-tips">
-**命名規則**
+::: {.note .type-tips}
+**代表的な命名規則**
 
-- 「**キャメルケース**」とは <span class="masked">小文字で開始して単語区切りに大文字</span> を使用する命名規則です。
-    - キャメルケースの例: `newName`、`isDone`
+プログラムでは、変数名や関数名、クラス名などに複数の単語を組み合わせることがあります。その際、<span class="masked">単語の区切り方</span> にはいくつか代表的な命名規則があります。
 
-- 「**パスカルケース**」とは **大文字で開始して単語区切りにも大文字** を使用する命名規則です。
-    - パスカルケースの例: `NewName`、`IsDone`
+- 「**キャメルケース（camelCase）**」とは、先頭の単語を小文字で始め、2語目以降の先頭を大文字にする命名規則です。
+  - 例: `newName`、`isDone`、`studentCount`
+  - JavaScript や TypeScript では、変数名や関数名などでよく利用されます。
 
-その他、スネークケースなどがあります。
-</div>
+- 「**パスカルケース（PascalCase）**」とは、すべての単語の先頭を大文字にする命名規則です。
+  - 例: `NewName`、`IsDone`、`StudentList`
+  - JavaScript や TypeScript では、クラス名や React のコンポーネント名などでよく利用されます。
+
+- 「**スネークケース（snake_case）**」とは、単語の間をアンダースコア（`_`）で区切る命名規則です。
+  - 例: `new_name`、`is_done`、`student_count`
+  - Python では、変数名や関数名などでよく利用されます。
+
+このほか、`NEW_NAME` のように大文字とアンダースコアを組み合わせる書き方もあります。定数名などで利用されることがあります。
+
+使用する命名規則は、プログラミング言語やライブラリ、開発チームなどによって変わってきます。どの規則が絶対に正しいというものではなく、<span class="masked">その環境で一般的に使われている命名規則</span> に従い、同じ種類の名前では書き方を統一することが重要となります。
+:::
 
 
 TypeScriptの主要な「型」としては、次のようなものがあります。なお、`null` と `undefined` については、あとの授業で扱います。
@@ -131,21 +268,48 @@ TypeScriptの主要な「型」としては、次のようなものがありま�
 
 #### 定着確認
 
-- TypeScriptにおいて「真偽値」を扱う型を答えよ。プログラム内の表記形式で答えること。
-    - 答え <span class="masked">`boolean`</span> 
-- TypeScriptにおいて「文字列」を扱う型を答えよ。プログラム内の表記形式で答えること。
-    - 答え <span class="masked">`string`</span> 
+- TypeScript において、`let name: string = "TypeScript の勉強";` の `: string` のように、型を明示する記述の名称を答えよ。
+    - **答え** <span class="masked">型注釈 (Type Annotation)</span>
+- TypeScriptにおいて「真偽値」を扱う型の名称を答えよ。プログラム内の表記形式で答えること。
+    - **答え** <span class="masked">`boolean`</span>
+- TypeScriptにおいて「文字列」を扱う型の名称を答えよ。プログラム内の表記形式で答えること。
+    - **答え** <span class="masked">`string`</span>
 - TypeScriptにおいて、浮動小数点数や整数を扱う型を答えよ。プログラム内の表記形式で答えること。
-    - 答え <span class="masked">`number`</span> 
-- TypeScript / JavaScript において、「変数名」や「ローカルな定数名」の表記は慣例的に `？？？` が使用される。`？？？` にあてはまる語として最も適切なのは「キャメルケース」「パスカルケース」「スネークケース」「ハンガリアン記法」のうち、どれか。
-    - 答え <span class="masked">キャメルケース</span> 
+    - **答え** <span class="masked">`number`</span>
+- TypeScript / JavaScript において、「変数名」や「ローカルな定数名」の表記は慣例的に (　　　　　) が使用される。括弧ににあてはまる語として最も適切なのは「キャメルケース」「パスカルケース」「スネークケース」「ハンガリアン記法」のうち、どれか。
+    - **答え** <span class="masked">キャメルケース</span>
 
+- TypeScript において、`let isDone: ??? = false;` の `???` に入る型名を答えよ。
+    - **答え** <span class="masked">`boolean`</span>
+- TypeScript において、`let message: ??? = "false";` の `???` に入る型名を答えよ。
+    - **答え** <span class="masked">`string`。引用符で囲まれた `"false"` は文字列であり、真偽値の `false` とは異なる。</span>
+- TypeScript において、整数値の `3` と小数 (浮動小数点数) の `3.5` を扱うとき、それらに適した型名をそれぞれ答えよ。
+    - **答え** <span class="masked">どちらも `number`。整数と浮動小数点数で型名を分けない。</span>
+- TypeScript で「真偽値型の変数を初期化する記述」として適切な選択肢を選択せよ。**答え**: <span class="masked">C</span>
+
+    - **A**: `let isDone: boolean = False;`
+    - **B**: `let isDone: boolean = "false";`
+    - **C**: `let isDone: boolean = false;`
+    - **D**: `let isDone: boolean = 0;`
+- TypeScript で、日時を扱う変数を `let deadline: ??? = new Date(2026, 9, 2, 14, 15);` と宣言する。`???` に入る型名を答えよ。
+    - **答え** <span class="masked">`Date`。先頭の `D` は大文字。</span>
+- 「student」と「count」を組み合わせ、キャメルケースで変数名を記述せよ。
+    - **答え** <span class="masked">`studentCount`</span>
+- 「student」と「list」を組み合わせ、パスカルケースで名前を記述せよ。
+    - **答え** <span class="masked">`StudentList`</span>
+- 「student」と「count」を組み合わせ、スネークケースで変数名を記述せよ。
+    - **答え** <span class="masked">`student_count`</span>
+
+- 命名規則についての説明として、適切な選択肢を選択せよ。**答え**: <span class="masked">B</span>
+    - **A**: どの言語でも、変数名には必ずキャメルケースを使う。
+    - **B**: その言語や開発チームで一般的な規則に従い、同じ種類の名前では書き方を統一する。
+    - **C**: 同じプロジェクトの変数名でも、キャメルケースとスネークケースを自由に混ぜる。
 
 ### 型推論
 
-ここまで「**TypeScriptでは、変数や定数の宣言時に「型」を明示する必要がある**」と説明してきました。しかし、実際には「**型推論**」という機能があり、(ユーザーが明示的に「型」を記述しなくても) <span class="masked">初期値から型を推論 (推測) して自動的に静的型付け</span> を行なうことができます。
+ここまでの例では型を明示してきましたが、TypeScriptには **型推論** (Type Inference) という機能があります。型を記述しなくても、<span class="masked">初期値などから型を推論 (推測) して静的な型を決める</span> ことができます。型の記述を省略することと、型の検査をしなくなることは別です。
 
-例えば、以下のTypeScriptプログラムは `:string` や `:number` を明示していませんが、問題なくトランスパイルされます (VSCodeのエディタにもエラーは表示されません)。変数 `name` は `"TypeScriptの勉強"` という初期値から <span class="masked">文字列型であると推論され、自動的に文字列型に型付け</span> されます。同様に`priority` は数値型に型付けされます。
+例えば、以下の TypeScript プログラムでは、変数に `: string` や `: number` を明示的に指定していません。それでも問題なくトランスパイルでき、VS Code のエディタにもエラーは表示されません。これは、TypeScript が初期値をもとに変数の型を自動的に判断するためです。例えば、`name` は `"TypeScriptの勉強"` という初期値から <span class="masked">`string` 型であると推論</span>されます。同様に、`priority` は数値の初期値から `number` 型であると推論されます。
 
 ```typescript{.numberLines caption="src/prac02.ts"}
 let name = "TypeScriptの勉強";
@@ -156,73 +320,222 @@ let priority = 3;
 
 ![img](figs/02/vscode_03.png)
 
-また、次のように `typeof` を使って推論された型を確認することもできます。実際に実行して、どのような結果が得られるか確認してください。<span class="masked">`typeof(name)` ではなく `typeof name` </span> のように使用する点に注意してください。
+一方、以下のように `typeof name` と記述すると、**JavaScript の `typeof` 演算子による実行時の型判定結果** を文字列として取得できます。例えば、文字列に対しては `"string"`、数値に対しては `"number"` が返されます。
 
-```typescript{.numberLines caption="src/prac02.ts (推論された型の確認)"}
+なお、`typeof` は関数ではなく単項演算子なので、通常は `typeof name` のように括弧を付けずに記述します。`typeof(name)` と書くこともできますが、この括弧は関数呼び出しを意味するものではありません。
+
+```typescript{.numberLines caption="src/prac02.ts (実行時の値の種類の確認)"}
 let name = "TypeScriptの勉強";
 let priority = 3;
 console.log(`name の型は ${typeof name} です`);
 console.log(`priority の型は ${typeof priority} です`);
 ```
 
-なお、変数が <span class="masked">初期値を持たないとき</span> や、**関数を定義するとき** などは**明示的に型を記述する必要があります**。学習の初期段階では、練習のために明示的に型を記述することをおすすめします。
+型推論は関数の戻り値などにも働きます。ただし、型を推論できる情報が十分にない場合は、明示する必要があります。この授業では、関数が何を受け取り、何を返すかを意識する練習として、**関数の引数と戻り値の型は基本的に明記**していきます。
+
+
+:::{.note .type-senior}
+**中級者向け**
+
+`typeof` で得られる結果は、TypeScript がコンパイル時に推論・検査する静的な型そのものでは**ありません**。「TypeScript の静的型」と「JavaScript の `typeof` が実行時に返す分類」は別のものとして区別してください。
+
+TypeScript の型情報は、主にプログラムを実行する前の型チェックに利用されます。一方、typeof は JavaScript の演算子であり、プログラムの実行時に、その時点の値を一定の規則で分類した結果を返します。
+
+例えば、TypeScript 上では配列に `string[]` という型を付けることができますが、実行時に `typeof` を適用すると `"object"` が返されます。このように、両者は一対一に対応するものではないことに注意してください。
+:::
 
 #### 定着確認
 
-- TypeScriptにおいて、変数 `hoge` の型をコンソール出力したい。`` `console.log(`変数 hoge の型は ${？？？} です`);` `` の `？？？` に記述すべき適切な語を答えよ。
-    - 答え <span class="masked">`typeof hoge`</span> 
+- TypeScript において、`let hoge = 3;` と宣言した変数の実行時の値の種類をコンソール出力したい。`` `console.log(`変数 hoge の型は ${???} です`);` `` の `???` に記述すべき適切な語を答えよ。
+    - **答え** <span class="masked">`typeof hoge`</span>
+- TypeScript において、`let name = "React の予習";` のように型注釈を省略しても、初期値などから型を自動的に判断する機能の名称を答えよ。
+    - **答え** <span class="masked">型推論 (Type Inference)</span>
+- TypeScript において、`let name = "React の予習";`、`let priority = 3;`、`let isDone = false;` と宣言した。それぞれの変数について、推論される型名を答えよ。
+    - **答え** <span class="masked">`name` は `string`、`priority` は `number`、`isDone` は `boolean`。</span>
+- TypeScript において、`let priority = 3;` と宣言した後、`priority = "High";` と記述した。この代入について適切な選択肢を選択せよ。
+    - **A**: 型注釈がないので、型チェックでは問題が検出されない。
+    - **B**: `priority` は `number` 型と推論されるので、文字列の代入は型エラーとなる。
+    - **C**: 代入した値に合わせて、`priority` の静的な型が `string` に変わる。
+    - **答え** <span class="masked">B。型注釈を省略しても、型の検査がなくなるわけではない。</span>
+- 「TypeScript で型注釈を省略すると、JavaScript と同様にコンパイル時の型チェックを受けなくなる」。この説明は適切か、不適切か。
+    - **答え** <span class="masked">不適切。型注釈を省略しても、TypeScript が型を推論し、その型に基づいて型チェックが行われる。</span>
+- VSCode で TypeScript の変数 `let priority = 3;` の静的な型を確認したい。エディタ上でどのような操作をすればよいか答えよ。
+    - **答え** <span class="masked">変数名 `priority` にカーソルを合わせ、表示される型情報を確認する。</span>
+- TypeScript において、`let name = "React の予習";` と宣言した。`typeof name` が返す値を、文字列リテラルの形式で答えよ。
+    - **答え** <span class="masked">`"string"`</span>
+- TypeScript において、`let priority = 3;` と宣言した。`typeof priority` を評価したとき、①得られる値、②その値自身の型を答えよ。
+  - **答え** <span class="masked">① `"number"`、② `string`（文字列型）。</span>
+- JavaScript の `typeof` について、適切な選択肢を選択せよ。
+    - **A**: 関数なので、必ず `typeof(name)` と記述する。
+    - **B**: 演算子なので、`typeof name` と記述できる。`typeof(name)` と書いても、関数呼び出しではない。
+    - **C**: TypeScript だけで利用できる型チェック専用の命令 (文) である。
+    - **答え** <span class="masked">B</span>
+- TypeScript の型推論・型チェックと、JavaScript の `typeof` が値を分類するタイミングを、それぞれ答えよ。
+    - **答え** <span class="masked">型推論・型チェックはプログラムの実行前。`typeof` による値の分類はプログラムの実行時。</span>
+
+### 関数とテストの読み方
+
+この先は、処理を関数にまとめて、その戻り値を Vitest を使用して確認していきます。その準備として、[前回講義](lecture01.html#refactor動作を保ってコードを整理する) で記述した **src/priority.ts** の「完成状態」を見直してください。
+
+```typescript{.numberLines caption="src/priority.ts (前回の完成状態)"}
+export function isValidPriority(value: number): boolean {
+  return Number.isInteger(value) && value >= 1 && value <= 3;
+}
+```
+
+PythonやC言語と同様に、関数は「**引数を受け取って処理し、戻り値を返す**」という単位で考えます。この例の読み方は次のとおりです。
+
+- `function isValidPriority` : 関数の名前を定義する。Python の `def` に相当するのが `function` です。
+- `(value: number)` : 数値を1個受け取り、関数のなかでは `value` という名前で使う。
+- `: boolean` : 戻り値は真偽値。戻り値の型は <span class="masked">引数の丸括弧を閉じたあと</span> に書きます。
+- `return ...` : 計算した値を呼び出した側へ返す。画面やコンソールに表示する命令ではありません。
+- `export` : 別のファイルからこの関数を読み込めるようにする。
+
+前回講義では **src/priority.test.ts** に、次のようなテストコードを記述しました。
+
+```typescript{.numberLines caption="src/priority.test.ts"}
+import { expect, test } from "vitest";
+import { isValidPriority } from "./priority.js";
+
+test("優先度2は有効", () => {
+  expect(isValidPriority(2)).toBe(true);
+});
+
+test("下限の1は有効", () => {
+  expect(isValidPriority(1)).toBe(true);
+});
+
+test("上限の3は有効", () => {
+  expect(isValidPriority(3)).toBe(true);
+});
+
+test("下限より小さい0は無効", () => {
+  expect(isValidPriority(0)).toBe(false);
+});
+
+test("上限より大きい4は無効", () => {
+  expect(isValidPriority(4)).toBe(false);
+});
+
+test("範囲内でも小数の1.5は無効", () => {
+  expect(isValidPriority(1.5)).toBe(false);
+});
+```
+
+ここで、**第05行目の **`isValidPriority(2)` が、関数の呼出しで、`2` が引数として渡す値です。
+
+`expect` に渡しているのは <span class="masked">関数から返ってきた値</span>、`toBe(true)` の `true` は <span class="masked">仕様から考えた期待値</span> でした。
+
+また、`test` の第2引数の `() => { ... }` も関数です。これは **アロー関数** という書き方で、括弧内に引数がなく、波括弧内にテストするときの処理を書いています。詳しい書き方は後で解説しますが、テストコードでは、この形を繰り返し使います。
+
+#### 演習: テストを追加する
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+この先、自分で定義した関数の動作を Vitest で確認する場面が何度も出てきます。その準備として、ここでは前回講義で記述した「優先度判定」を題材に、「**関数を呼び出し、その戻り値を期待値と比較するソフトウェアテスト**」の書き方について復習します。
+:::
+
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
+
+> ソフトウェア開発の文脈における「テスト」って何ですか？「関数を呼び出し、その戻り値を期待値と比較する」ってどういうことですか？プログラミング初心者にも分かるように解説して下さい。
+
+**src/priority.test.ts** の末尾に、次の2件の「テストケース」を追加してください。既に同様のテストを書いている場合は、期待値とその理由を照合してください。
+
+```typescript{.numberLines caption="src/priority.test.ts (末尾に追加)" startFrom="28"}
+test("負の優先度は無効", () => {
+  expect(isValidPriority(-1)).toBe(false);
+});
+
+test("上限より少し大きい小数も無効", () => {
+  expect(isValidPriority(3.1)).toBe(false);
+});
+```
+
+変更を保存して型チェックとテストを実行してください。
+
+```
+npm run typecheck
+npm run test:run -- src/priority.test.ts
+```
+
+前回の 6 件に上記の 2 件だけを追加した場合は、**8 件成功** になるはずです。以降、随所で実装とテストを組み合わせて動作を確かめていきます。
+
+#### 定着確認
+
+- `function isValidPriority(value: number): boolean` の「引数の型」と「戻り値の型」を答えよ。
+  - **答え**: <span class="masked">引数の型は `number`、戻り値の型は `boolean`</span>
+- Vitest の `expect(isValidPriority(0)).toBe(false)` について、「テスト対象の関数 `isValidPriority` に渡す値 (実引数)」と「期待している戻り値」をそれぞれ答えよ。
+  - **答え**: <span class="masked">関数に渡す値は `0`、期待する戻り値は `false`</span>
+
+- TypeScript で定義した関数を、別のファイルから読み込めるようにしたい。関数の定義に付けるキーワードを答えよ。
+  - **答え**: <span class="masked">`export`</span>
+
+- 「優先度は 1〜3 の整数だけを有効とする」という仕様の関数 `isValidPriority` を Vitest でテストする。`expect(isValidPriority(3.1)).toBe(???);` の `???` に入る期待値を答えよ。
+  - **答え**: <span class="masked">`false`。`3.1` は上限の `3` を超えており、整数でもない。</span>
+
 
 ### オブジェクトの初期化
 
-TypeScript / JavaScript では、複数の変数をグループ化して (束ねて) <span class="masked">オブジェクト</span> という単位で扱うという解説をしました (参考:[前回講義](lecture01.html#オブジェクトのコンソール出力-1))。ここでの「オブジェクト」とは、既に学習済みの Pythonの「**辞書 (またはクラスのインスタンス)**」や <span class="masked">C言語の「構造体」のようなもの</span> と考えてください。
+TypeScript / JavaScript では、複数の変数をグループ化して (束ねて) <span class="masked">オブジェクト</span> という単位で扱うという解説をしました (参考: [前回の講義](lecture01.html#オブジェクトのコンソール出力-1) )。ここでの「オブジェクト」とは、既に学習済みの Pythonの「**辞書 (またはクラスのインスタンス)**」や <span class="masked">C言語の「構造体」のようなもの</span> と考えてください。
 
-オブジェクトは、次のような「**オブジェクトリテラル記法**」で初期化することができました。
+オブジェクトは、次のような「**オブジェクトリテラル記法**」で初期化することができました。ここでは、新しいTodoの例として **2026年10月11日 00:45** の期限を設定します。
+
+- **src/prac03.ts** を新規作成して貼り付け、保存してください。
 
 ```typescript{.numberLines caption="src/prac03.ts (オブジェクトリテラル記法によるオブジェクトの生成)"}
 const todo = {
   name: "TypeScriptの勉強",
   priority: 3,
   isDone: false,
-  deadline: new Date(2025, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 ```
 
-この際、各プロパティ (属性) は `キー: 値` という形式で定義され、<span class="masked">カンマ `,` </span> で区切って記述します。学習初期には **以下のような記述ミスが非常に多い** ので注意してください。
+:::{.note .type-caution}
+**オブジェクトリテラル記法の注意**
+
+オブジェクトリテラルでは、各プロパティ（属性）を `キー: 値` の形式で定義し、複数のプロパティを <span class="masked">カンマ（`,`）</span> で区切ります。
+
+ここで注意したいのは、**変数への代入とは書き方が異なる**ことです。代入では `=` を使いますが、オブジェクトのプロパティ定義では `:` を使います。また、各プロパティは文ではないため、区切りには `;` ではなく `,` を使います。
+
+学習初期には、次のような記述ミスが非常に多く見られます。
 
 ```typescript{.numberLines caption="src/prac03.ts (記述ミス)"}
 const todo = {
   name = "TypeScriptの勉強";  // 正しくは name : "..."
   priority = 3;
   isDone = false;  // 正しくは ; ではなく , で属性を区切る
-  deadline = new Date(2025, 9, 11, 9, 45);
+  deadline = new Date(2026, 9, 11, 9, 45);
 };
 ```
+:::
 
 オブジェクトを **JSON形式** に変換して整形してコンソール出力するためには <span class="masked">`console.log(JSON.stringify(todo, null, 2))`</span> のようにすることも前回に学びました。
 
-なお `console.log(typeof todo)` による出力は <span class="masked">`object`</span> となります。
+記述ミスの例を試した場合は、正しいオブジェクトリテラルに戻してから先へ進んでください。なお `console.log(typeof todo)` による出力は <span class="masked">`object`</span> となります。
 
 ## 前回講義の「演習」の解答例と解説
 
 ### 問題の確認
 
-前回講義で、次のような[演習問題](lecture01.html#演習2-10分)に取り組んでもらいました。
+前回講義では、**src/prac01.ts** について、次のような [演習問題](lecture01.html#演習2-10分) に取り組んでもらいました。ここは第01回の解説なので、日時も前回と同じ2025年の例を使います。
 
+> **演習2**\
+> 次のような Date型 (日付・日時型) の変数 `deadline` を追加して、コンソールメソッドで出力してください。また、`dayjs` や `moment` などのライブラリを使わずに「**2025/10/02 14:15**」や「**2025年10月02日 14時15分**」のようにコンソールに出力する方法について調べてください。
+>
+>
+>  ```typescript{.numberLines caption="Date型の変数"}
+> // Date型の変数 deadline の宣言と初期化
+> let deadline: Date = new Date(2025, 9, 2, 14, 15);
+> ```
 
-次のような Date型 (日付・日時型) の変数 `deadline` を追加して、コンソールメソッドで出力してください。また、`dayjs` や `moment` などのライブラリを使わずに「**2025/10/02 14:15**」や「**2025年10月02日 14時15分**」のようにコンソールに出力する方法について調べてください。
-
-
-```typescript{.numberLines caption="Date型の変数"}
-// Date型の変数 deadline の宣言と初期化
-let deadline: Date = new Date(2025, 9, 2, 14, 15);
-```
+- 前回の演習1では「月 (Month)」に `10` を指定して11月になることを確認しましたが、以下は **10月を表す `9` に修正した状態** です。
 
 上記について、実際に取り組んでもらって、**皆さんそれぞれが「自分なりの解決策」を見つけていること**を前提に解説していきます。
 
 
 ### 解説: 月 (Month) の扱いについて
 
-まず、これまでのプログラミングの経験から、例えば `Date(2025, 9, 2, 14, 15)` とすれば、おそらく「2025年9月2日 14時15分」という日時で初期化された値が、変数 `deadline` に格納されるのだろう・・・と推測したと思います。
+まず、`new Date(2025, 9, 2, 14, 15)` の第2引数の `9` は、9月ではなく **10月** を表します。前回の演習で確認した、月の指定方法を思い出してください。
 
 しかし、実際に `console.log(deadline)` のように書いてコンソール出力すると、次のような結果になることが確認できたと思います。
 
@@ -230,7 +543,7 @@ let deadline: Date = new Date(2025, 9, 2, 14, 15);
 2025-10-02T05:15:00.000Z
 ```
 
-上記のような日時表記は[ISO8601形式](https://www.google.com/search?q=ISO8601とは)とよばれる書式 (フォーマット) となります。私たちの日常生活では登場することは少ないですが、コンピュータやネットの世界ではオーソドックスな日時の表記法になっています。
+上記のような日時表記は [ISO8601形式](https://www.google.com/search?q=ISO8601とは) とよばれる書式 (フォーマット) となります。私たちの日常生活では登場することは少ないですが、コンピュータやネットの世界ではオーソドックスな日時の表記法になっています。
 
 さらに詳しく結果を考察・確認していきます。
 
@@ -245,14 +558,59 @@ console.log(deadline);
 
 これから開発しようとしている「Todoアプリ」において、タスクの期限 (deadline) が、1ヵ月ずれて扱われることは致命的なので注意してください。
 
+#### 定着確認
+
+- TypeScript / JavaScript の `Date` クラスでは、月を表す番号を `0` から数え始める。このように `0` を起点として数える方式の名称を答えよ。
+  - **答え**: <span class="masked">ゼロオリジン</span>
+- `new Date(年, 月, 日, 時, 分)` の形で、同じ年の 1 月から 12 月を指定するとき、第 2 引数に与える整数の範囲を答えよ。
+  - **答え**: <span class="masked">`0` から `11`。</span>
+- TypeScript / JavaScript で、`new Date(年, 月, 日, 時, 分)` の第 2 引数に与える値として、1 月と 12 月を表す値をそれぞれ答えよ。
+  - **答え**: <span class="masked">1 月は `0`、12 月は `11`。</span>
+- TypeScript / JavaScript の `new Date(2025, 9, 2, 14, 15)` が、実行環境のローカル時刻として表す年月日を答えよ。
+  - **答え**: <span class="masked">2025 年 10 月 2 日。</span>
+- TypeScript / JavaScript で、実行環境のローカル時刻として 2025 年 10 月 2 日 14:15 を指定したい。`new Date(2025, ???, 2, 14, 15)` の `???` に入る値を答えよ。
+  - **答え**: <span class="masked">`9`</span>
+- TypeScript / JavaScript で、2025 年 10 月 2 日を指定するつもりで `new Date(2025, 10, 2, 14, 15)` と記述した。実際に指定される月と、意図した月にするための修正を答えよ。
+  - **答え**: <span class="masked">実際には 11 月になる。第 2 引数の `10` を `9` に変更する。</span>
+- TypeScript / JavaScript の `new Date(2025, 12, 31, 11, 45)` の動作について、適切な選択肢を選択せよ。
+  - **A**: 月が `0` から `11` の範囲外なので、型チェックでエラーになる。
+  - **B**: 月が範囲外なので、実行時にエラーが発生して処理が止まる。
+  - **C**: 月の超過分が年に繰り上がり、翌年の日時を表すオブジェクトが作られる。
+  - **答え**: <span class="masked">C</span>
+- TypeScript / JavaScript の `new Date(2025, 12, 31, 11, 45)` が、実行環境のローカル時刻として表す年月日を答えよ。
+  - **答え**: <span class="masked">2026 年 1 月 31 日。月の番号 `11` が 12 月で、その次の `12` は翌年の 1 月として扱われる。</span>
+- `2025-10-02T05:15:00.000Z` のような日時の表記形式の名称を答えよ。
+  - **答え**: <span class="masked">ISO 8601 形式。</span>
+
 ### 解説: 時刻 (タイムゾーン) の扱いについて
 
-次に時刻について `Date(2025, 9, 2, 14, 15)` とすれば「**14:15**」になると推測したと思いますが、実際の出力は <span class="masked">`05:15:00.000`</span> となりました。「**9時間のずれ**」が生じています。
+次に、「時刻」の扱いについて確認します。
 
-つまり、`Date` の **第4引数** と **第5引数** を日本のローカル時刻で与えたものの、`deadline` には **協定世界時** (**UTC: Universal time coordinated**) の日時 (時刻) が記録される仕組みになっています。これも、ややこしいと感じるかもしれませんが、仕様なので仕方ありません。
+`new Date(2025, 9, 2, 14, 15)` と記述すると、「**14:15**」を表す Date オブジェクトが作られると考えたと思います。実際、この形式では、年・月・日・時・分を **実行環境のローカル時刻** として指定します。
 
-<div class="note type-tips">
-**JS / TS 実行環境のタイムゾーンを確認する方法**
+したがって、日本時間 (**JST**) の環境で実行した場合、「2025年10月2日 14:15（日本時間）」を表す Date オブジェクトが作成されます。
+
+ところが、今回 Node.js で Date オブジェクトを `console.log` によって直接出力すると、時刻の部分が <span class="masked">`05:15:00.000`</span> と表示されました。予想していた `14:15` から **9時間ずれている**ように見えます。
+
+これは、Node.js が Date オブジェクトをコンソールに表示する際、**UTC（Coordinated Universal Time、協定世界時）に変換した表記を使用するため** です。
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+日本標準時（JST）は、UTC より9時間進んでいるため、「日本時間 (JST) 14:15」は9時間分だけ戻り「UTC 05:15」のようになります。つまり、**「日本時間の 14:15」と「UTC の 05:15」は、表し方が異なるだけで同じ瞬間**を表しています。
+:::
+
+ここで重要なのは、Date オブジェクトの中に「14:15 (JST)」という文字列や、「この時刻は日本時間である」という **タイムゾーン情報がそのまま保存されているわけではない** という点です。Date オブジェクトは、内部では**ある瞬間（時点）を表す数値**を保持しています。
+
+その同じ時点を、日本時間 (JST) として表示すれば `14:15`、UTC として表示すれば `05:15` になります。
+
+したがって、TypeScript/JavaScript において Date を扱うときは、
+
+- **Date オブジェクトを作成するときに、どのタイムゾーンとして解釈されるのか**
+- **Date オブジェクトを表示するときに、どのタイムゾーンで表示されるのか**
+
+を分けて考えることが重要となります。
+
+::: {.note .type-tips}
+**現在の実行環境におけるタイムゾーンを確認する方法**
 
 現在の JS / TS の実行環境 (Node.jsやウェブブラウザ) が認識しているタイムゾーンは、次のコードで確認することができます。
 
@@ -263,38 +621,57 @@ console.log(`Timezone: ${timeZone}`);
 
 おそらく、皆さんの実行環境では `Timezone: Asia/Tokyo` のようにコンソール出力されると思います。
 
-</div>
+:::
 
 ここでは <span class="masked">JS/TSの実行環境によってタイムゾーンが変わること</span> に注意してください。
 
 特にウェブアプリのバックエンドを、クラウドサーバ や Dockerなどのコンテナ で構築する場合、タイムゾーンは一般に `Timezone: UTC` となります。一方で、**フロントエンドのタイムゾーンは利用者環境 (OS) によって違ってくることに注意してください**。
 
+#### 定着確認
+
+
+- 世界の時刻を表す基準として使われる「UTC」の日本語名を答えよ。
+  - **答え**: <span class="masked">協定世界時。</span>
+- 日本標準時（JST）は UTC と比べて、何時間進んでいるか、または遅れているか答えよ。
+  - **答え**: <span class="masked">9 時間進んでいる。</span>
+- 日本時間（JST）の 2025 年 10 月 2 日 14:15 と同じ瞬間を、UTC の年月日と時刻で表せ。
+  - **答え**: <span class="masked">2025 年 10 月 2 日 05:15（UTC）。</span>
+- UTC の 2025 年 10 月 2 日 18:00 と同じ瞬間を、日本時間（JST）の年月日と時刻で表せ。
+  - **答え**: <span class="masked">2025 年 10 月 3 日 03:00（JST）。9 時間進めるため、日付も翌日になる。</span>
+- TypeScript / JavaScript の `new Date(2025, 9, 2, 14, 15)` において、指定した年月日・時刻がどのように解釈されるか、適切なものを選択せよ。
+  - **A**: 実行環境のローカル時刻として解釈される。
+  - **B**: UTC（協定世界時）の時刻として解釈される。
+  - **答え**: <span class="masked">A</span>
+- TypeScript / JavaScript の Date オブジェクトが内部で保持している情報として、最も適切なものを選択せよ。
+  - **A**: `"2025/10/02 14:15 JST"` のような、年月日・時刻・タイムゾーンを含む文字列。
+  - **B**: ある瞬間（時点）を表す数値。
+  - **C**: ある瞬間（時点）を表す数値と、その時点のタイムゾーン情報。
+  - **答え**: <span class="masked">B。Date オブジェクト自身は、JST や UTC といったタイムゾーン情報を保持しているわけではない。</span>
+
+- 日本時間（JST）の環境と UTC の環境で、それぞれ `new Date(2025, 9, 2, 14, 15)` を実行した。「引数が同じなので、作成される Date オブジェクトは同じ瞬間を表す」。この説明は適切か、不適切か。
+  - **答え**: <span class="masked">不適切。引数は実行環境のローカル時刻として解釈されるため、日本時間の 14:15 と UTC の 14:15 は別の瞬間を表す。</span>
+
 ### 解説: 日時の整形出力
 
 次に、Date型の変数の内容を「**YYYY/MM/DD HH:MM**」のような形式で整形出力する方法について考えていきます。ただし、まずは **外部ライブラリを使用しない前提** とします。
 
-<hr>
+::: {.balloon .char-01 .face-02 .tone-yellow}
 
-ウェブ検索を利用して「Date型の日時を整形出力する方法」について探す場合は「[JavaScript Date フォーマット](https://www.google.com/search?q=JavaScript+Date+フォーマット)」などをキーワードにします。検索キーワードは <span class="masked">「TypeScript」ではなく「JavaScript」</span> としたほうが情報のヒット率が高くなります。
+ウェブ検索を利用して「Date型の日時を整形出力する方法」について探す場合は「[JavaScript Date フォーマット](https://www.google.com/search?q=JavaScript+Date+フォーマット)」などをキーワードにします。検索キーワードは「TypeScript」ではなく「JavaScript」としたほうが情報のヒット率が高くなります。
 
-TypeScript固有の内容でなければ「JavaScript」をキーワードに使うことも方法として覚えておいてください。
+TypeScript 固有の内容でなければ「JavaScript」をキーワードに使うことも方法として覚えておいてください。
+:::
 
-<hr>
+生成AIを利用して解決を試みる場合は、次のようなプロンプトを記述します。
 
-GitHub Copilot を利用して解決を試みる場合は、以下のように <span class="masked">処理内容を的確に表現したコメント</span> をプログラムに書くことでCopilotがコードを提案してくれます。
-
-![img](figs/02/vscode_01.png)
-
-<hr>
-
-次に、ChatGPT や Claude などの生成AIを利用して解決を試みる場合は、次のようなプロンプトを記述します。プロンプトのなかで、プログラムコード全体を **3連バッククォート ` ``` ` で囲む** ことで、より適切に読み込みされます。また、プロンプトのなかでもコードの断片は **バッククォートで囲むこと** が推奨されます。
-
-
-> 次に示す TypeScriptプログラムに続けて、変数 `deadline` の内容を「2025/10/02 11:45」のようにコンソールに整形出力するプログラムを書いてください。実行環境は Node.js、タイムゾーンは `Timezone: Asia/Tokyo` を想定し、外部ライブラリを使用しない前提で記述してください  
+> 次に示す TypeScript プログラムに続けて、変数 `deadline` の内容を「2025/10/02 14:15」のような形式でコンソールに出力するプログラムを書いてください。実行環境は Node.js、タイムゾーンは `Asia/Tokyo` を想定し、外部ライブラリは使用しないでください。\
+>
 > \`\`\`  
-> let deadline: Date = new Date(2025, 9, 2, 14, 15);
-> console.log(deadline);  
+> let deadline: Date = new Date(2025, 9, 2, 14, 15);\
+> console.log(deadline);\
 > \`\`\`
+
+- プロンプト内にプログラムコードを含める場合は、コード全体を **3連バッククォート（\`\`\`）で囲んでコードブロックとして示す** と、文章とコードの区別が明確になり、生成AIが内容を適切に読み取りやすくなります。また、文章中で変数名やコードの一部を示す場合は、**バッククォート（\`）で囲んでインラインコードとして記述する**ことを推奨します。
 
 ここでは、生成AIから次のような回答 (コード) が得られたと仮定します。
 
@@ -310,53 +687,49 @@ const minutes = String(deadline.getMinutes()).padStart(2, '0');
 console.log(`${year}/${month}/${day} ${hours}:${minutes}`);
 ```
 
-**第09行目**では、前回学習した[テンプレート文字列](lecture01.html#テンプレート文字列)が使用されています。提案されたプログラムを実行すると、次のように意図した結果を得ることができます。
+**第09行目**では、前回学習した [テンプレート文字列](lecture01.html#テンプレート文字列) が使用されています。提案されたプログラムを実行すると、次のように意図した結果を得ることができます。
 
 ```
 2025/10/02 14:15
 ```
 
-生成AIを利用してプログラムを得たときには、動作確認後に <span class="masked">必ずプログラムの意味を理解</span> するように努めてください。「**プログラムの意味は分からないけど、なんか動いているのでOK**」では、ソフトウェアエンジニアを目指す人間としてダメダメ🤪です
+::: {.balloon .char-01 .face-01 .tone-pink}
 
-> プロの通訳や翻訳家を目指している学生が、生成AIに翻訳させて、そのまま提出するのと同じくらいヤバいです。  
-> あるいは「電卓を使えば計算できるから $0.8\times 2 - 9.2$ を自力で計算できなくてもOK」という感覚ぐらいヤバいです。
+生成AIを利用してプログラムを得た場合は、動作確認だけで終わらせず、**そのコードが何をしているのか、なぜ動くのかを理解するように努めてください**。「**意味はよく分からないけれど、動いているのでOK**」では、ソフトウェアエンジニアを目指す人間としてダメダメです。
 
-例えば、**第06行目** では「`deadline.getHours()` メソッドで 値 (number型・ローカルタイムゾーンに基づいた「時」) を得て、それを `String()` で文字列 (string型) に変換して、さらに文字列の `padStart(2, "0")` メソッドで **ゼロ埋めの2文字幅** に変換している」ということを理解し、説明できる必要があります。
+これは、「旅行プランナー」が AI に旅程を作らせて、路線や乗り換え、所要時間の意味も分からないまま、そのまま顧客に渡すようなものです。通常どおり動くときは問題なくても、トラブルが起きた瞬間に何も判断できません。
+:::
 
-そのためには、生成AIに「**自分の解釈の確認をしてもらったり、不明点を追質問したり、コードを書いて実験したりすること**」が必要です。
+例えば、**第06行目** では
 
-(例)
+>「`deadline.getHours()` メソッドで 値 (number型・ローカルタイムゾーンに基づいた「時」) を得て、それを `String()` で文字列 (string型) に変換して、さらに文字列の `padStart(2, "0")` メソッドで **ゼロ埋めの2文字幅** に変換している」
 
-> 次に示すTypeScriptの第2行目では、deadline.getHours() メソッドで 値 (number型、ローカルタイムゾーンに基づいて変換された値) を得て、それを String() で文字列 (string型) に変換して、さらに文字列の padStart(2, "0") メソッドを利用してゼロ埋めの2文字幅に変換している、という解釈は正しいですか。  
-> \`\`\`  
-> let deadline: Date = new Date(2025, 9, 2, 14, 15);  
-> const hours = String(deadline.getHours()).padStart(2, "0");  
-> \`\`\`
+ということを理解し、説明できる必要があります。そのためには、生成AIに「**自分の解釈の確認をしてもらったり、不明点を追質問したり、コードを書いて実験したりすること**」が必要です。
 
-<div class="note type-tips">
-**Pythonで日時を扱って整形出力するには?**
+::: {.note .type-tips}
+**Python で日時を扱って整形出力するには?**
 
 Pythonで、先の `prac04.ts` と同様のプログラムを書くと次のようになります。
 
 ```python{.numberLines caption="Pythonにおける日付の扱い"}
 from datetime import datetime # 日時を扱うための datetime ライブラリ
-deadline = datetime(2024, 10, 2, 11, 45)
+deadline = datetime(2025, 10, 2, 14, 15)
 print(deadline.strftime('%Y/%m/%d %H:%M'))
 ```
 
-実際に実行してみてください ([paiza.io](https://paiza.io/ja)) 。<span class="masked">実行結果の違いに気づいた</span> でしょうか？
+実際に実行してみてください ( [paiza.io](https://paiza.io/ja) )。同じ日時を出力するために、<span class="masked">月の指定を `9` から `10` に変えていること</span> に気づけたでしょうか。
 
 - **Python** の `datetime` クラスでは、月 (Month) は `1` から `12` の整数で与えて初期化します。1月は `1`、2月は `2`、...、12月は `12` となります。
 - **JavaScript** (TypeScript) の `Date` クラスでは、月 (Month) は `0` から `11` の整数で与えて初期化します。1月は `0`、2月は `1`、...、12月は `11` となります。
 
-</div>
+:::
 
 ### 解説: 日時の整形出力 (関数化1)
 
 ここまでの内容で、次のようなコードでDate型のオブジェクトを「**2025/10/02 14:15**」のような形式で出力できることが分かりました。`deadline` の変数宣言キーワードを `let` から `const` に変更しています。
 
 ```typescript{.numberLines caption="src/prac05.ts (Date型の整形出力)"}
-const deadline: Date = new Date(2024, 10, 2, 11, 45);
+const deadline: Date = new Date(2025, 9, 2, 14, 15);
 
 const year = deadline.getFullYear();
 const month = String(deadline.getMonth() + 1).padStart(2, '0');
@@ -372,7 +745,7 @@ console.log(`${year}/${month}/${day} ${hours}:${minutes}`);
 例えば、Todo の「**作成日時**」を `createdAt` という変数に格納しておいて
 
 ```
-期日 2025/10/02 14:45 (登録日: 2025/09/25 09:45)
+期限 2025/10/02 14:15 (登録日 2025/09/25 09:45)
 
 ```
 ...のように出力したいとします。
@@ -434,20 +807,20 @@ console.log(str);
 
 TypeScriptでは、関数の定義に `function` キーワードを使用します (Pythonでは <span class="masked">`def`</span> を使用しました)。そして、丸括弧で囲んで関数内で使用する**引数を型付きで与えて**、さらに、**戻り値の型を記述**します。
 
-特に、慣れるまでは「**戻り値の型を記述する位置が分かりづらい**」ので注意してください。
+特に、慣れるまでは「**戻り値の型を記述する位置が分かりづらい**」ので注意してください。他にも、いくつか関数記述のサンプルを見てみます。
 
-他にも、関数記述の例を見てみましょう。
+### 関数定義の例1
 
-**2個の数値型の引数**を受け取って、**真偽値型を戻り値**とする `comp` という関数のシグネチャ (=<span class="masked">関数の基本的な情報を定義する部分</span>) は次のようになります。
+**2 個の数値型の引数**を受け取って、**真偽値型を戻り値**とする `comp` という関数のシグネチャ (=<span class="masked">関数の基本的な情報を定義する部分</span>) は次のようになります。
 
 
 ```typescript{.numberLines caption="comp"}
 function comp(a: number, b: number ): boolean { ... }
 ```
 
-<hr>
+#### 関数定義の例2
 
-**1個の文字列型の引数**を受け取って、**戻り値を持たない** `printWord` という関数のシグネチャは次のようになります。TypeScript では、慣例的に関数名についても <span class="masked">キャメルケース</span> が使われます。
+**1 個の文字列型の引数**を受け取って、**戻り値を持たない** `printWord` という関数のシグネチャは次のようになります。TypeScript では、慣例的に関数名についても <span class="masked">キャメルケース</span> が使われます。
 
 ```typescript{.numberLines caption="printWord"}
 function printWord(word: string): void { ... }
@@ -455,7 +828,7 @@ function printWord(word: string): void { ... }
 
 戻り値が「ない」ことは <span>`void`</span> で表現します。
 
-<hr>
+#### 関数定義の例3
 
 **引数を受け取らず**、**数値型を戻り値**とする `dice` という関数のシグネチャは次のようになります。
 
@@ -465,40 +838,76 @@ function dice(): number { ... }
 
 なお、引数がないことを `function dice(void): number { ... }` のように `void` を使って明示することは <span class="masked">できません</span>。
 
-
 #### 定着確認
 
-- 引数を受け取らず、数値型を戻り値とする `dice` という関数のシグネチャを答えよ。
-- 1個の数値型の引数 (仮引数を `num` とする) を受け取り、文字列型を戻り値とする `num2str` という関数のシグネチャを答えよ。
-- 2個の文字列型の引数 (仮引数を `word1` と `word2` とする) を受け取り、真偽値型を戻り値とする `comp` という関数のシグネチャを答えよ。
-- 1個のDate型の引数 (仮引数を `birthday` とする) を受け取り、数値型を戻り値とする `getAge` という関数のシグネチャを答えよ。
+- TypeScript において、引数を受け取らず、数値型を戻り値とする `dice` という関数のシグネチャを、`function` キーワードを使って記述せよ。
+  - **答え**: <span class="masked">`function dice(): number { ... }`</span>
+- TypeScript において、1 個の数値型の引数 (仮引数を `num` とする) を受け取り、文字列型を戻り値とする `num2str` という関数のシグネチャを、`function` キーワードを使って記述せよ。
+  - **答え**: <span class="masked">`function num2str(num: number): string { ... }`</span>
+- TypeScript において、2 個の文字列型の引数 (仮引数を `word1` と `word2` とする) を受け取り、真偽値型を戻り値とする `comp` という関数のシグネチャを、`function` キーワードを使って記述せよ。
+  - **答え**: <span class="masked">`function comp(word1: string, word2: string): boolean { ... }`</span>
+- TypeScript において、1 個の Date 型の引数 (仮引数を `birthday` とする) を受け取り、数値型を戻り値とする `getAge` という関数のシグネチャを、`function` キーワードを使って記述せよ。
+  - **答え**: <span class="masked">`function getAge(birthday: Date): number { ... }`</span>
 
 ### アロー関数
 
-モダンTypeScriptでは `function` キーワードを使った関数定義よりも、`=>` を使用した ***アロー関数*** という関数定義が一般に使用されます (トレンドになっています)。<span class="masked">ウェブの情報も「アロー関数」で書かれていることが多い</span> ので、**基本的には** `=>` **によるアロー関数を使用**するようにしてください。
+以下のように Vitest のテストでも登場した `=>` を使う書き方が、***アロー関数*** です。
+
+```typescript{.numberLines caption="アロー関数"}
+test("優先度2は有効", () => {
+  expect(isValidPriority(2)).toBe(true);
+});
+```
+
+
+Reactのコードでも繰り返し使うため、この授業では以降、基本的にアロー関数で記述します。まずは、引数と戻り値を持つ普通の関数を書き換えてみます。
 
 先ほどの `date2str` は、次のようにアロー関数形式に書き換えができます。
 
-```typescript{.numberLines caption="書き換え前"}
+```typescript{.numberLines caption="Before: 書き換え前"}
 function date2str(dt: Date): string { ... }
 ```
 
-```typescript{.numberLines caption="書き換え後"}
+```typescript{.numberLines caption="After: 書き換え後"}
 const date2str = (dt: Date): string => { ... }
 ```
 
-実際にアロー関数形式に書き換えて、同じようにプログラムが動作することを確認してください。
+実際にアロー関数形式に書き換えて、これまでと同じようにプログラムが動作することを確認してください。
+
+さらに、前回作成した **src/priority.ts** の `isValidPriority` も、次のようにアロー関数形式へ書き換えて「**<u>これまでと同じように動作すること</u>」を確認してみてください。
+
+```typescript{.numberLines caption="src/priority.ts (アロー関数に書換え)"}
+export const isValidPriority = (value: number): boolean => {
+  return Number.isInteger(value) && value >= 1 && value <= 3;
+};
+```
+
+::: {.balloon .char-01 .face-02 .tone-yellow}
+「これまでと同じように動作することを確認する」といっても、特別に面倒な作業は必要ありません。すでにテストコードを書いているので、次のコマンドを実行し、エラーが出なければ、**書き換え後も以前と同じ動作が保たれていることを確認できた**といえます。
+
+```
+npm run typecheck
+npm run test:run -- src/priority.test.ts
+```
+
+これが、あらかじめテストコードを書いておくことの大きなメリットです。**プログラムの内部を書き換えても、これまで期待していた動作が壊れていないことをすぐに確認できます。** 今回のような書き換え(リファクタリング) では、テストコードのありがたみを特に実感できる場面になるとおもいます。
+:::
+
 
 #### 定着確認
 
-- 引数を受け取らず、数値型を戻り値とする `dice` という関数のシグネチャを「アロー関数形式」で答えよ。
-- 1個の数値型の引数 (仮引数を `num` とする) を受け取り、文字列型を戻り値とする `num2str` という関数のシグネチャを「アロー関数形式」で答えよ。
-- 2個の文字列型の引数 (仮引数を `word1` と `word2` とする) を受け取り、真偽値型を戻り値とする `comp` という関数のシグネチャを「アロー関数形式」で答えよ。
-- 1個のDate型の引数 (仮引数を `birthday` とする) を受け取り、数値型を戻り値とする `getAge` という関数のシグネチャを「アロー関数形式」で答えよ。
+- TypeScript において、引数を受け取らず、数値型を戻り値とする `dice` という関数のシグネチャを、`const` を使ったアロー関数形式で記述せよ。
+  - **答え**: <span class="masked">`const dice = (): number => { ... };`</span>
+- TypeScript において、1 個の数値型の引数 (仮引数を `num` とする) を受け取り、文字列型を戻り値とする `num2str` という関数のシグネチャを、`const` を使ったアロー関数形式で記述せよ。
+  - **答え**: <span class="masked">`const num2str = (num: number): string => { ... };`</span>
+- TypeScript において、2 個の文字列型の引数 (仮引数を `word1` と `word2` とする) を受け取り、真偽値型を戻り値とする `comp` という関数のシグネチャを、`const` を使ったアロー関数形式で記述せよ。
+  - **答え**: <span class="masked">`const comp = (word1: string, word2: string): boolean => { ... };`</span>
+- TypeScript において、1 個の Date 型の引数 (仮引数を `birthday` とする) を受け取り、数値型を戻り値とする `getAge` という関数のシグネチャを、`const` を使ったアロー関数形式で記述せよ。
+  - **答え**: <span class="masked">`const getAge = (birthday: Date): number => { ... };`</span>
 
 ### 関数を別ファイルに分離する
 
-関数 `date2str` は、他のプログラムからも使用する可能性があるので別ファイルに分けて記述します。`src` フォルダに `utils` (utilitiesの略) を作成して、そのなかに `date2str.ts` というファイルを作成して、 以下のように関数 `date2str` を抜き出して貼りつけて保存してください。
+関数 `date2str` は、他のプログラムからも使用する可能性があるので別ファイルに分けて記述します。**src/utils** (utilitiesの略) フォルダを作成して、そのなかに **date2str.ts** というファイルを作成して、 以下のように関数 `date2str` を抜き出して貼りつけて保存してください。
 
 ```typescript{.numberLines caption="src/utils/date2str.ts"}
 export const date2str = (dt: Date): string => {
@@ -514,10 +923,11 @@ export const date2str = (dt: Date): string => {
 ![img](figs/02/vscode_06.png)
 
 
+::: {.balloon .char-01 .face-02 .tone-yellow}
+`date2str.ts` の **第01行目** の先頭に <span class="masked">`export` というキーワード</span> をつけていることに着目してください。この `export` をつけた関数は **別ファイルに書かれたプログラムから呼び出すことが可能** となります。また関数以外にも、数値や文字列などを格納した変数や定数についても同様に作用します。
+:::
 
-ここで、`date2str.ts` の **第01行目** の先頭に <span class="masked">`export` というキーワード</span> をつけていることに着目してください。この `export` をつけた関数は **別ファイルに書かれたプログラムから呼び出すことが可能** となります。また関数以外にも、数値や文字列などを格納した変数や定数についても同様に作用します。
-
-実際に `src/utils/date2str.ts` に定義した関数 `date2str` が、別ファイルの `src/prac05.ts` から呼び出せることを確認します。`src/prac05.ts` を以下のように書き換え、動作することを確かめてください。
+**src/utils/date2str.ts** に定義した関数 `date2str` が、別ファイルの **src/prac05.ts** から呼び出せることを確認します。**src/prac05.ts** を以下のように書き換え、動作することを確かめてください。
 
 ```typescript{.numberLines caption="src/prac05.ts"}
 import { date2str } from "./utils/date2str.js"; // 関数date2strをインポート
@@ -531,87 +941,177 @@ console.log(str);
 
 上記の **第01行目** で、関数 `date2str` がインポートされ **第06行目** で呼び出されています。
 
-ここで注意してほしいことは `"./utils/date2str.ts";` ではなく `from "./utils/date2str.js";` のようにしている点です。これは、ビルド時に `date2str.ts` から `date2str.js` へ変換されることを前提としているためです。
+:::{.note .type-caution}
 
-## ライブラリのインストールと利用 
+ここで注意してほしいことは `"./utils/date2str.ts";` ではなく `from "./utils/date2str.js";` のようにしている点です。
 
-関数を自作してDate型を整形出力する方法について解説しました。ここからは **外部のライブラリ (パッケージ)** を利用して同様のことを行なってみます。ここでは[dayjs](https://www.npmjs.com/package/dayjs)というライブラリを使用します。
+これは、ビルド時に `date2str.ts` から `date2str.js` に変換されることを前提としているためです。
+:::
+
+#### 定着確認
+
+- TypeScript の **src/utils/date2str.ts** に定義した関数 `date2str` を、別のファイルから読み込めるようにしたい。`??? const date2str = (dt: Date): string => { ... };` の `???` に入るキーワードを答えよ。
+  - **答え**: <span class="masked">`export`</span>
+- TypeScript の **src/utils/date2str.ts** から `export` されている関数 `date2str` を、**src/prac05.ts** で使用したい。この授業の設定に従い、関数を読み込む `import` 文を記述せよ。
+  - **答え**: <span class="masked">`import { date2str } from "./utils/date2str.js";`</span>
+- 複数のプログラムで使用する関数 `date2str` を、各ファイルへコピーする代わりに別ファイルへ分離し、`export` / `import` で共有する利点として、適切な選択肢を選択せよ。
+  - **A**: 関数を修正するとき、共通の定義を修正すれば、読み込む側もその定義を利用できる。
+  - **B**: 関数を分離すると、呼び出すときに引数を渡す必要がなくなる。
+  - **C**: 関数を分離すると、戻り値が自動的にコンソール出力される。
+  - **答え**: <span class="masked">A。処理を各ファイルへ重複して記述せずに、同じ関数を再利用できる。</span>
+
+### 日時を整形する関数をテストする
+
+関数を別ファイルにしたので、通常のプログラムからも、テストからも読み込めます。**src/utils/date2str.test.ts** を作成し、次のコードを記述してください。前回の日時だけでなく、2026年の別の日時も確認します。
+
+```typescript{.numberLines caption="src/utils/date2str.test.ts"}
+import { expect, test } from "vitest";
+import { date2str } from "./date2str.js";
+
+test("前回の日時を年/月/日 時:分で整形する", () => {
+  const dt = new Date(2025, 9, 2, 14, 15);
+  expect(date2str(dt)).toBe("2025/10/02 14:15");
+});
+
+test("1桁の月・日・時・分をゼロ埋めする", () => {
+  const dt = new Date(2026, 0, 3, 4, 5);
+  expect(date2str(dt)).toBe("2026/01/03 04:05");
+});
+
+test("12月末の日時を整形する", () => {
+  const dt = new Date(2026, 11, 31, 23, 59);
+  expect(date2str(dt)).toBe("2026/12/31 23:59");
+});
+
+test("0時0分を00:00とする", () => {
+  const dt = new Date(2026, 9, 2, 0, 0);
+  expect(date2str(dt)).toBe("2026/10/02 00:00");
+});
+```
+
+```
+npm run typecheck
+npm run test:run -- src/utils/date2str.test.ts
+```
+
+テストの実行結果が **4 件成功 (passed)** となることを確認してください。
+
+`date2str` は、実行環境のタイムゾーンに合わせて日時を文字列にします。例えば、日本時間の環境では日本時間として、UTC の環境では UTC として表示します。**表示を常に日本時間にする関数ではない**ことに注意してください。
+
+今回のテストでは、`new Date(2026, 0, 3, 4, 5)` のように、日時を実行環境のローカル時刻として指定しています。その Date オブジェクトを、同じ環境の `date2str` で文字列にするので、作成時に指定した「1 月 3 日 04:05」が `"2026/01/03 04:05"` として出力されることを確認しています。
+
+#### 演習: テストが検出する誤りを確かめる
+
+1. **date2str.ts** の **第03行目** の `getMonth() + 1` を、一時的に `getMonth()` に変えてからテストしてみてください。月をそのまま表示してしまう誤りを検出できたでしょうか。確認後は元に戻してください。
+
+2. **第06行目** の「分」に関する処理で `padStart(2, "0")` を外してみてください。前回の14:15 の例だけでは見つからない間違いも、4:05 や 0:00 を加えると検出できることを確認してください。
+
+**上記の確認後は必ず元に戻し、4件成功にしてください**。
+
+#### 定着確認
+
+- Dateの `getMonth()` が `0` を返した。これは何月か答えよ。 **答え**: <span class="masked">1月。</span>
+- `String(5).padStart(2, "0")` の結果を、引用符で囲んで答えよ。 **答え**: <span class="masked">`"05"`</span>
+- 日時を「年/月/日 時:分」に整形する関数について「14:15」のテストだけでは分のゼロ埋めの誤りを見つけられない理由を答えよ。 **答え**: <span class="masked">15は最初から2桁なので、ゼロ埋めしなくても同じ表示になるため。</span>
+- 戻り値を検査するテストが成功するよう、関数の仕様ではなく現在の実行結果に合わせて期待値を変更した。この対応は「適切」か「不適切」か答えよ。 **答え**: <span class="masked">不適切。仕様と実装・期待値を照合して、どこが誤っているかを判断する。</span>
+
+## ライブラリのインストールと利用
+
+関数を自作して **Date型を整形出力する方法** について解説しました。ここからは **外部のライブラリ (パッケージ)** を利用して同様のことを行なってみます。ここでは [dayjs](https://www.npmjs.com/package/dayjs) というライブラリを使用します。
 
 ### dayjsライブラリのインストール
 
 プロジェクトフォルダに dayjs をローカルインストールするために、以下のコマンドを実行してください。
 
 ```
-npm i dayjs
+npm i --save-exact dayjs@1.11.23
 ```
 
-前回、[開発環境を構築するとき](lecture01.html#開発を効率的に行なうためのパッケージの追加)には `npm i -D typescript tsx @types/node` のように `-D` オプションを付けました。この `-D` (または `--save-dev` ) は <span class="masked">開発だけに使用するライブラリ (=トランスパイルされたあとのプログラムの実行には不要なライブラリ)</span> をインストールするときにつけます。ここで使用する `dayjs` は、実行時に使用するライブラリなので `-D` を **付けず** に `npm` を実行します。
+::: {.balloon .char-01 .face-05 .tone-blue}
+前回、[開発環境を構築するとき](lecture01.html#tsx-と-vitest-の追加) には `npm i -D --save-exact tsx@4.23.15` のように `-D` オプションを付けました。
 
-インストールされたことを以下のコマンドで確認してください。
+この `-D` (または `--save-dev` ) は、**<u>開発だけに使用するライブラリ</u>** (=トランスパイルされたあとのプログラムの実行には不要なライブラリ)をインストールするときにつけます。ここで使用する `dayjs` は、実行時にも使用するライブラリなので `-D` を **付けず** に `npm` を実行します。
+:::
 
-```
-npm list --depth=0
-```
-
-次のような応答が返ってくると思います。一覧に `dayjs@1.11.13` が含まれていることを確認してください。`@` 以降はバージョン番号なので、適宜、読み替えてください。
+正常に dayjs がインストールされたことを確認するために以下のコマンドを自移行してください。
 
 ```
 npm list --depth=0
-learn-ts-basics@1.0.0 C:\Users\xxxx\Documents\learn-ts-basics
-├── @types/node@24.5.2
-├── dayjs@1.11.18
-├── tsx@4.20.5
-└── typescript@5.9.2
 ```
 
-`-D` オプションをつけてインストールしたか、そうでないかは `package.json` の内容から確認することができます。VSCodeで `package.json` を確認すると `-D` を**付けて**インストールしたライブラリ (パッケージ) は `"devDependencies"` に記述されます。また、`-D` を**付けずに**インストールしたライブラリは `"dependencies"` に記述されます。
+次のような応答が返ってくると思います。一覧に `dayjs@1.11.23` が含まれていることを確認してください。第01回で導入したパッケージも残っていることを確認してください。
+
+```
+ts-playground@1.0.0 C:\Users\xxxx\Documents\ts-playground
+├── @types/node@24.13.6
+├── dayjs@1.11.23
+├── tsx@4.23.15
+├── typescript@6.0.3
+├── vite@8.3.0
+└── vitest@5.0.1
+```
+
+`-D` オプションをつけてインストールしたか、そうでないかは `package.json` の内容から確認することができます。VSCodeで `package.json` を確認すると
+
+-  `-D` を**付けて**インストールしたライブラリ (パッケージ) は **devDependencies** に記述されているはずです。
+- `-D` を**付けずに**インストールしたライブラリは **dependencies** に記述されているはずです。
 
 現段階ではまだ利用しませんが <span class="masked">バンドル</span> という処理をする際に、これらの情報が意味を持つようになります。
 
 ```json{.numberLines caption="package.json"}
 {
-  "name": "learn-ts-basics",
+  "name": "ts-playground",
   "version": "1.0.0",
+  "private": true,
   "type": "module",
+  "scripts": {
+    "dev": "tsx watch",
+    "build": "tsc",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest",
+    "test:run": "vitest run"
+  },
   "devDependencies": {
-    "@types/node": "^24.5.2",
-    "tsx": "^4.20.5",
-    "typescript": "^5.9.2"
+    "@types/node": "24.13.6",
+    "tsx": "4.23.15",
+    "typescript": "6.0.3",
+    "vite": "8.3.0",
+    "vitest": "5.0.1"
   },
   "dependencies": {
-    "dayjs": "^1.11.18"
+    "dayjs": "1.11.23"
   }
 }
 ```
 
-<div class="note type-tips">
-**バンドル (bundle)** とは、複数のJavaScriptファイルやその **依存関係** を「**1つのファイルにまとめる処理**」のことで、ウェブアプリケーションの配信と実行を効率化するために使用されます。主なバンドルツールには[webpack](https://www.google.com/search?q=webpackとは)、[Vite](https://www.google.com/search?q=Viteとは)、Turbopack、Parcel などがあります。
-</div>
+::: {.note .type-tips}
+**バンドル (bundle)** とは、複数のJavaScriptファイルや依存するコードを、配信しやすいファイルへまとめる処理です。用途によって複数のファイルへ分けて出力する場合もあります。詳しくは、Reactの開発環境を扱うときに説明します。
+:::
 
-<div class="note type-tips">
+::: {.note .type-tips}
 **依存 (dependency)** とは、そのアプリを正常に動作させるために (あるいは開発するために) 必要な外部のパッケージ (ライブラリ) のことを意味します。
 
-例えば `package.json` の `devDependencies` に記載されているのは、そのアプリを<span class="masked">開発 (コンパイルやビルドなど) するときだけに必要なパッケージ</span> になります。また、`dependencies` に記載されているのは、そのアプリを実行するために必要なパッケージになります。
-</div>
+例えば `package.json` の `devDependencies` に記載されているのは、そのアプリを <span class="masked">開発 (コンパイルやビルドなど) するときだけに必要なパッケージ</span> になります。また、`dependencies` に記載されているのは、そのアプリを実行するために必要なパッケージになります。
+:::
 
 #### 定着確認
 
-- アプリの実行時に使用する `uuid` というライブラリを、プロジェクトフォルダにローカルインストールしたい。これを実行するコマンドを答えよ。
-    - 答え <span class="masked">`npm i uuid` または `npm install uuid`</span>
-- アプリの開発時だけに使用する `@types/uuid` というライブラリを、プロジェクトフォルダにローカルインストールしたい。これを実行するコマンドを答えよ。
-    - 答え <span class="masked">`npm i -D @types/uuid` または `npm install --save-dev @types/uuid`</span>
+- アプリの実行時にも使用する `dayjs` というライブラリを、プロジェクトフォルダにローカルインストールしたい。これを実行するコマンドを答えよ。
+    - 答え <span class="masked">`npm i dayjs` または `npm install dayjs`</span>
+- アプリの開発時だけに使用する `vitest` というライブラリを、プロジェクトフォルダにローカルインストールしたい。これを実行するコマンドを答えよ。
+    - 答え <span class="masked">`npm i -D vitest` または `npm install --save-dev vitest`</span>
 
 ### dayjsライブラリの利用
 
 `npm` コマンドでインストールしたライブラリは `import xxxx from "yyyy";` や `import { xxx1, xxx2 } from "zzzz";` のようにインポートして使用します。
 
-dayjs は、次のようにインポートして使用します。
+dayjs は、次のようにインポートして使用します。**src/prac06.ts** を作成して試してみてください。
 
-```typescript{.numberLines caption="src/prac06.ts (dayjsのインポート)"}
+```typescript{.numberLines caption="src/prac06.ts (dayjsのインポートと利用)"}
 import dayjs from "dayjs"; // dayjsのインポート
 
-const deadline: Date = new Date(2025, 9, 2, 14, 15);
-const createdAt: Date = new Date(2025, 8, 25, 9, 45);
+const deadline: Date = new Date(2026, 9, 2, 14, 15);
+const createdAt: Date = new Date(2026, 8, 25, 9, 45);
 
 const str =
   `期限 ${dayjs(deadline).format("YYYY/MM/DD HH:mm")}` +
@@ -626,8 +1126,8 @@ console.log(str);
 import dayjs from "dayjs";
 
 const dtFmt = "YYYY/MM/DD HH:mm";
-const deadline: Date = new Date(2025, 9, 2, 14, 15);
-const createdAt: Date = new Date(2025, 8, 25, 9, 45);
+const deadline: Date = new Date(2026, 9, 2, 14, 15);
+const createdAt: Date = new Date(2026, 8, 25, 9, 45);
 
 const str =
   `期限 ${dayjs(deadline).format(dtFmt)}` +
@@ -640,26 +1140,61 @@ console.log(str);
 次のように「**曜日**」を含めた出力を得たい。そのような出力が得られるようにプログラムをアップデートしてください (**dayjsライブラリ**を使用することを前提とする)。
 
 ```
-期限 2025/10/02(木) 14:15(登録日 2025/09/25(木) 09:45)
+期限 2026/10/02(金) 14:15(登録日 2026/09/25(金) 09:45)
 ```
 
 - 生成AIやウェブ検索を利用して取り組んでください。
 
 
+#### Day.jsの出力もテストする
+
+ライブラリを使う場合も、フォーマットの指定ミスなどは起こります。**src/dayjs.test.ts** を作成してください。日本語の曜日を使うため、**dayjs/locale/ja.js** も読み込んでいます。
+
+```typescript{.numberLines caption="src/dayjs.test.ts"}
+import { expect, test } from "vitest";
+import dayjs from "dayjs";
+import "dayjs/locale/ja.js";
+import { date2str } from "./utils/date2str.js";
+
+test("自作関数とDay.jsで同じ形式の日時を得る", () => {
+  const dt = new Date(2026, 0, 3, 4, 5);
+  const expected = "2026/01/03 04:05";
+  expect(date2str(dt)).toBe(expected);
+  expect(dayjs(dt).format("YYYY/MM/DD HH:mm")).toBe(expected);
+});
+
+test("日本語の曜日を含めて表示する", () => {
+  const dt = new Date(2026, 9, 2, 14, 15);
+  expect(dayjs(dt).locale("ja").format("YYYY/MM/DD(ddd) HH:mm"))
+    .toBe("2026/10/02(金) 14:15");
+});
+```
+
+```
+npm run typecheck
+npm run test:run -- src/dayjs.test.ts
+```
+
+**2件成功** になることを確認します。`MM` は月、`mm` は分です。`locale("ja")` はここで作ったDay.jsのオブジェクトの表示言語を日本語にします。言語の指定とタイムゾーンの指定は別なので、これだけで日時が日本時間へ変換されるわけではありません。
+
+自作関数とライブラリの結果が一致するかだけでなく、**仕様から決めた期待値に一致するか** をそれぞれ確認している点も大切です。
+
+- 参考: [Day.jsの書式](https://day.js.org/docs/en/display/format)、[言語設定](https://day.js.org/docs/en/i18n/loading-into-nodejs)
+
 ## オブジェクトの型定義
 
-今回講義の[2.4 オブジェクトの初期化](lecture02.html#オブジェクトの初期化) では、次のようなオブジェクトリテラルを使用して `todo` を初期化しました。
+今回講義の[オブジェクトの初期化](lecture02.html#オブジェクトの初期化) では、次のようなオブジェクトリテラルを使用して `todo` を初期化しました。
 
 ```typescript{.numberLines caption="src/prac03.ts (オブジェクトリテラル記法によるオブジェクトの生成)"}
 const todo = {
   name: "TypeScriptの勉強",
   priority: 3,
   isDone: false,
-  deadline: new Date(2025, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 ```
 
-上記では、実は　推論によって `name` や `priority` などの **プロパティ (属性) の型付け** が行われています。実際に VSCode で `todo` にカーソルを合わせると次のように「推論された型」が確認できます。
+上記では、実は推論によって `name` や `priority` などの **プロパティ (属性) の型付け** が行われています。実際に VSCode で `todo` にカーソルを合わせると次のように「推論された型」が確認できます。
 
 ![img](figs/02/vscode_07.png)
 
@@ -679,7 +1214,7 @@ const todo1: Todo = {
   name: "TypeScriptの勉強",  // カンマで区切り
   priority: 3,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 // Todo型のオブジェクトを作成
@@ -687,7 +1222,7 @@ const todo2: Todo = {
   name: "基礎物理3の宿題",
   priority: 1,
   isDone: false,
-  deadline: new Date(2024, 9, 10, 16, 0),
+  deadline: new Date(2026, 9, 10, 16, 0),
 };
 
 console.log(JSON.stringify(todo1, null, 2));
@@ -696,36 +1231,36 @@ console.log(JSON.stringify(todo2, null, 2));
 
 なお、「**型定義**」では、各プロパティ (属性) が <span class="masked">セミコロン</span> で区切られている点に注意してください (一方で、オブジェクトリテラルでは各プロパティが **カンマ** で区切られています)。また、型名は慣例的に <span class="masked">大文字からはじめるパスカルケース</span> とする点に注意してください。
 
-上記のように **明示的な型付け** をすることで、プログラミングのなかで生じる様々なミスを早期発見できるという恩恵が得られます。例えば、型付けせずに以下のように `todo1` と `todo2` を定義すると、それに続く処理のなかで実行時エラーや予期せぬ結果の出力に悩まされる可能性が「大」です。
+上記のように **明示的な型付け** をすることで、プログラミングのなかで生じる様々なミスを早期発見できるという恩恵が得られます。例えば、以下のコードには型と合わない値と、プロパティ名の誤記があります。`: Todo` を付けることで、期待する構造と違う箇所をその場で検出できます。
 
 ```typescript{.numberLines caption="src/prac07.ts (抜粋・ミスありコード)" startFrom="10"}
 const todo1: Todo = {
   name: "TypeScriptの勉強",
   priority: "3",
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 const todo2: Todo = {
   name: "基礎物理3の宿題",
   priority: 1,
   isDone: false,
-  deadlien: new Date(2024, 9, 10, 16, 0),
+  deadlien: new Date(2026, 9, 10, 16, 0),
 };
 ```
 
-上記のコードの「**何が問題か**」に気付けるでしょうか。
+上記のコードの「**何が問題か**」に気づけたでしょうか。
 
-一方、もし明示的に型付けをしていれば、以下のように VSCode のエディタ画面上で**問題箇所をエラーとして表示**してくれるようになります (また `tsc` のタイミングでもコンパイルエラーとして出力してくれます)。
+VSCodeのエディタ画面上と `npm run typecheck` の両方で、問題箇所を確認してください。確認後は `priority: 3` と `deadline` に戻し、型エラーがなくなってから先へ進みます。
 
 ![img](figs/02/vscode_08.png)
 
 
 
-<div class="note type-tips">
+::: {.note .type-tips}
 **C言語バージョン**
 
-上記のプログラムを、C言語で「構造体」を使用して記述すると以下のようになります。実際にコードを試したい場合は[paiza.io](https://paiza.io/ja)を利用してください。
+上記のプログラムを、C言語で「構造体」を使用して記述すると以下のようになります。実際にコードを試したい場合は [paiza.io](https://paiza.io/ja) を利用してください。
 
 ```c{.numberLines caption="prac02.c"}
 #include <stdio.h>
@@ -748,7 +1283,7 @@ int main() {
     .priority = 3,
     .isDone = false,
     .deadline = {
-      .tm_year = 2024 - 1900,
+      .tm_year = 2026 - 1900,
       .tm_mon = 9,
       .tm_mday = 11,
       .tm_hour = 9,
@@ -762,7 +1297,7 @@ int main() {
     .priority = 1,
     .isDone = false,
     .deadline = {
-      .tm_year = 2024 - 1900,
+      .tm_year = 2026 - 1900,
       .tm_mon = 9,
       .tm_mday = 10,
       .tm_hour = 16,
@@ -777,9 +1312,9 @@ int main() {
   return 0;
 }
 ```
-</div>
+:::
 
-<div class="note type-tips">
+::: {.note .type-tips}
 **Pythonバージョン**
 
 上記のプログラムを、Pythonで「辞書型(`dict`)」を使用して記述すると以下のようになります。
@@ -791,14 +1326,14 @@ todo1 = {
   "name": "TypeScriptの勉強",
   "priority": 3,
   "isDone": False,
-  "deadline": datetime(2024, 10, 11, 9, 45)
+  "deadline": datetime(2026, 10, 11, 9, 45)
 }
 
 todo2 = {
   "name": "基礎物理3の宿題",
   "priority": 1,
   "isDone": False,
-  "deadline": datetime(2024, 10, 10, 16, 0)
+  "deadline": datetime(2026, 10, 10, 16, 0)
 }
 
 print(f"Todo 1: {todo1['name']}, Priority: {todo1['priority']}, Done: {todo1['isDone']}")
@@ -827,20 +1362,20 @@ todo1 = Todo(
   name="TypeScriptの勉強",
   priority=3,
   is_done=False,
-  deadline=datetime(2024, 10, 11, 9, 45)
+  deadline=datetime(2026, 10, 11, 9, 45)
 )
 
 todo2 = Todo(
   name="基礎物理3の宿題",
   priority=1,
   is_done=False,
-  deadline=datetime(2024, 10, 10, 16, 0)
+  deadline=datetime(2026, 10, 10, 16, 0)
 )
 
 print(todo1)
 print(todo2)
 ```
-</div>
+:::
 
 ### 型定義を別ファイルに分離する
 
@@ -848,7 +1383,7 @@ print(todo2)
 
 ![img](figs/02/vscode_09.png)
 
-実際に `types.ts` というファイルを作成して「**Todo型の定義**」をそこに移動してください。そして、 `prac07.ts` のなかで `import type { Todo } from "./types.js";` のようにインポートしてください。
+実際に **src/types.ts** というファイルを作成して「**Todo型の定義**」をそこに移動してください。そして、 `prac07.ts` のなかで `import type { Todo } from "./types.js";` のようにインポートしてください。
 
 - 型のインポートでは import **type** { Todo } from "./types.js" のように 「type」をつける点に注意してください。
 
@@ -862,7 +1397,7 @@ const todo1: Todo = {
   name: "TypeScriptの勉強", // カンマで区切り
   priority: 3,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 // Todo型のオブジェクトを作成
@@ -870,7 +1405,7 @@ const todo2: Todo = {
   name: "基礎物理3の宿題",
   priority: 1,
   isDone: false,
-  deadline: new Date(2024, 9, 10, 16, 0),
+  deadline: new Date(2026, 9, 10, 16, 0),
 };
 
 console.log(JSON.stringify(todo1, null, 2));
@@ -899,7 +1434,7 @@ export const printTodo = (todo: Todo): void => {
 
 **第04行目**では、アロー関数として `printTodo` を定義しています。`(todo: Todo)` のように Todo型の値を、**仮引数** `todo` として受け取るように記述しています。
 
-**(プロンプト例)**
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
 
 > 引数と仮引数の違いって何ですか？TypeScriptを例に解説してください。
 
@@ -919,8 +1454,8 @@ printTodo(todo2);
 実際に実行すると、次のような出力が得られます。
 
 ```
-(優先度: 3) TypeScriptの勉強 期日: 2024/10/11 09:45
-(優先度: 1) 基礎物理3の宿題 期日: 2024/10/10 16:00
+(優先度: 3) TypeScriptの勉強 期日: 2026/10/11 09:45
+(優先度: 1) 基礎物理3の宿題 期日: 2026/10/10 16:00
 ```
 
 ### 分割代入
@@ -999,27 +1534,123 @@ const person = { name: "鈴木", age: 30 };
 greet(person);
 ```
 
-#### 演習 (宿題: <i class="fa-solid fa-stopwatch"></i>20分) 
+### 現在時刻を引数にするとテストしやすい
 
-Todo型の引数 (1個) を受け取って「現在時刻が期限 (`deadline`) を過ぎている」かつ「未完了 (`isDone` が `false`)」のとき `true` 、そうでないときは `false` を返す関数を実装してください (アロー関数形式で別ファイルに記述してください)。また、その関数が適切に動作をすることを確認する簡単なテストコードを `prac03.ts` に記述してください。関数名と、それを記述するファイル名も、処理内容にあわせて適切に設定してください。
+Todoアプリでは「期限切れかどうか」を判定する関数も必要になります。関数の中で毎回 `new Date()` を呼ぶと、実行する時刻によって結果が変わります。昨日成功したテストが、今日は失敗することもあります。
 
-**(ヒント) 変数や関数、ファイルの命名にも「生成AI」を活用することができます**。
+ここでは、**Todoと、判定の基準にする時刻を引数として受け取る** 設計にします。通常の利用では `isOverdue(todo, new Date())` とし、テストでは `isOverdue(todo, 決めておいた日時)` と呼び出せます。関数に渡す値を決めることで、同じ条件を何度でも確認できます。
 
-> TypeScriptでXXXXアプリを開発しています。XXXXのような処理を行なう関数の名前を複数提案してください。
+#### 演習: 期限切れを判定する (宿題: <i class="fa-solid fa-stopwatch"></i>20分)
 
-#### 演習 (宿題: <i class="fa-solid fa-stopwatch"></i>20分)
+**src/utils/todoStatus.ts** に、次の仕様の `isOverdue` をアロー関数形式で実装し、exportしてください。Todo型は **src/types.ts** から読み込みます。
 
-Todo型の引数 (1個) を受け取って、完了済みであれば `【済】基礎物理3の宿題`、未完了で期限を過ぎていなければ `【未】基礎物理3の宿題 (期限まで残りXX時間)`、期限を過ぎていれば `【未】基礎物理3の宿題 (期限をXX時間超過)` のような文字列を返す関数 (アロー関数形式で、上記の演習と同じファイル内に記述) を実装してください。また、その関数が適切に動作をすることを確認する簡単なテストコードを `prac03.ts` に記述してください。
+- 引数は `todo: Todo` と `now: Date` の2個、戻り値は `boolean`。
+- 未完了で、`now` が `deadline` より後なら `true`。それ以外は `false`。
+- **期限とちょうど同じ時刻は、期限切れには含めない**。
+- 今回は有効なDateが渡される前提とし、引数のTodoやDateを変更しない。
 
-- 戻り値の文字列の内容はカスタマイズやアレンジ歓迎です。
+Dateの `getTime()` は、時点を表すミリ秒単位の数値を返します。2つの日時の前後関係は、この値を比較して調べられます。
+
+**src/utils/todoStatus.test.ts** を作成し、次のテストで動作を確認してください。スプレッド構文は後で扱うので、ここではテスト用Todoを2つ、普通のオブジェクトリテラルで作っています。
+
+```typescript{.numberLines caption="src/utils/todoStatus.test.ts"}
+import { expect, test } from "vitest";
+import type { Todo } from "../types.js";
+import { isOverdue } from "./todoStatus.js";
+
+const pending: Todo = {
+  name: "基礎物理3の宿題",
+  priority: 1,
+  isDone: false,
+  deadline: new Date(2026, 9, 2, 12, 0),
+};
+const completed: Todo = {
+  name: "基礎物理3の宿題",
+  priority: 1,
+  isDone: true,
+  deadline: new Date(2026, 9, 2, 12, 0),
+};
+
+test("未完了なら、期限を過ぎたときだけ期限切れになる", () => {
+  expect(isOverdue(pending, new Date(2026, 9, 2, 11, 59, 59, 999))).toBe(false);
+  expect(isOverdue(pending, new Date(2026, 9, 2, 12, 0))).toBe(false);
+  expect(isOverdue(pending, new Date(2026, 9, 2, 12, 0, 0, 1))).toBe(true);
+});
+
+test("完了済みなら、期限の前後によらず期限切れにはしない", () => {
+  expect(isOverdue(completed, new Date(2026, 9, 2, 11, 59, 59, 999))).toBe(false);
+  expect(isOverdue(completed, new Date(2026, 9, 2, 12, 0))).toBe(false);
+  expect(isOverdue(completed, new Date(2026, 9, 2, 12, 0, 0, 1))).toBe(false);
+});
+```
+
+Dateの第6引数は秒、第7引数はミリ秒です。1つのテストの中に複数の `expect` を書けます。このコードは **2件のテストで、6通りの条件** を確認しています。
+
+```
+npm run typecheck
+npm run test:run -- src/utils/todoStatus.test.ts
+```
+
+型チェックとテストが成功したら、一時的に「より後」を「以上」に書き換えてください。期限ちょうどの条件が、境界の間違いを検出できたでしょうか。確認後は元に戻します。
+
+- 実装例は[こちら](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/02/todoStatus1.ts)。**src/utils/todoStatus.ts** に記述するコードです。自分の実装と比較し、完了済みの場合と期限ちょうどの場合の判定を確認してください。
+
+#### 演習: 状態を文字列にする (宿題: <i class="fa-solid fa-stopwatch"></i>20分)
+
+同じ **src/utils/todoStatus.ts** に、`getTodoStatus(todo: Todo, now: Date): string` に相当するアロー関数を追加し、exportしてください。戻り値の仕様は次のとおりです。
+
+- 完了済み: `【済】基礎物理3の宿題`
+- 未完了で期限前、または期限ちょうど: `【未】基礎物理3の宿題 (期限まで残り1.5時間)` の形式。
+- 未完了で期限後: `【未】基礎物理3の宿題 (期限を0.5時間超過)` の形式。
+- 名前には `todo.name` を使い、時間数は **小数第1位まで** 表示する。期限ちょうどは `残り0.0時間`。1時間未満でも省略しない。
+- 期限切れかどうかの判定には、先に作った `isOverdue` を利用する。今回も有効なDateを前提とし、引数を変更しない。
+
+**ヒント**: 1時間は `60 * 60 * 1000` ミリ秒です。時間数の表示には `toFixed(1)` を利用できます。表示の丸めと、期限の前後の判定は別に行なってください。
+
+**src/utils/todoStatus.test.ts** のimportを `import { isOverdue, getTodoStatus } from "./todoStatus.js";` に変更し、末尾に次を追加してください。先ほどの `pending` と `completed` を使います。
+
+```typescript{.numberLines caption="src/utils/todoStatus.test.ts (末尾に追加)"}
+test("完了済みなら名前の前に済を付ける", () => {
+  expect(getTodoStatus(completed, new Date(2026, 9, 2, 13, 0)))
+    .toBe("【済】基礎物理3の宿題");
+});
+
+test("期限までの残り時間を小数第1位まで示す", () => {
+  expect(getTodoStatus(pending, new Date(2026, 9, 2, 10, 30)))
+    .toBe("【未】基礎物理3の宿題 (期限まで残り1.5時間)");
+});
+
+test("期限ちょうどは残り0.0時間とする", () => {
+  expect(getTodoStatus(pending, new Date(2026, 9, 2, 12, 0)))
+    .toBe("【未】基礎物理3の宿題 (期限まで残り0.0時間)");
+});
+
+test("期限後は超過時間を示す", () => {
+  expect(getTodoStatus(pending, new Date(2026, 9, 2, 12, 30)))
+    .toBe("【未】基礎物理3の宿題 (期限を0.5時間超過)");
+});
+```
+
+これで **6件成功** となることを確認します。さらに、名前が違うTodoや、期限前の30分、期限を1ミリ秒過ぎた場合など、自分で条件を選んでテストを追加してください。
+
+- 実装例は[こちら](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/02/todoStatus2.ts)。**src/utils/todoStatus.ts** に記述する 2 つの関数をまとめたコードです。自分の実装と比較し、時間数の表示と、期限の前後の判定を分けていることを確認してください。
+
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
+
+> TypeScriptでTodoの期限切れを判定する関数を作っています。Todoと現在時刻を引数で渡す設計と、関数内でnew Date()を呼ぶ設計では、自動テストの書きやすさがどう変わりますか？PythonとC言語を学んだ高専3年生向けに、短い例で説明してください。
 
 ## 等価演算子と不等価演算子
 
 ### 値の比較
 
-TypeScript (および JavaScript) において「数値型」や「文字列型」などの[プリミティブ型](https://chatgpt.com/share/67051f9c-5e2c-8011-bdc6-bd23f6f43e8a)の値を比較するときは、一般に `===` (**厳密等価演算子**) を使用することが推奨されます。
+TypeScript (および JavaScript) において「数値型」や「文字列型」などの **プリミティブ型** の値を比較するときは、一般に `===` (**厳密等価演算子**) を使用することが推奨されます。
 
-言語仕様としては `==` (**等価演算子**) も使用可能ですが、こちらは比較の際に <span class="masked">暗黙の型変換が適用</span> されることがあり、その挙動について十分な理解がないままに使用するとバグの原因となります。
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
+
+> JavaScript (TypeScript) における「プリミティブ型」とは何ですか？初心者向けに解説してください。
+
+
+言語仕様としては `==` (**等価演算子**) も使用可能ですが、こちらは比較の際に <span class="masked">暗黙の型変換が適用</span> されることがあり、<u>その挙動について十分な理解がないままに使用するとバグの原因</u>となります。
 
 ```typescript{.numberLines caption="厳密等価演算子を使った比較"}
 console.log(3150 === "3150"); // false
@@ -1032,20 +1663,47 @@ console.log(3150 == "3150"); // true
 console.log(0 == ""); // true
 console.log("1,2,3" == [1, 2, 3]); // true
 ```
-なお、**上記のサンプルコードは現在構築しているTypeScript環境では実行できません** (厳密な型チェックをする設定になっているためトランスパイルの段階でエラーとして扱われます)。試したいときは[TypeScript Playground](https://www.typescriptlang.org/play/)を利用してください。
+上記の例は、TypeScriptでは「異なる型を比較している」という型診断の対象になります (VSCode では赤波線が表示されます)。ただ、`tsx` コマンドは型チェックをしないので実行結果を確認することはできます。実行してみたい場合は一時的な TypeScript ファイル (`hoge.ts` など) に記述し、`npx tsx hoge.ts` のコマンドを実行して、結果を見比べてください。
 
+なお、確認後はその比較式をコメントアウトし、型チェックが通る状態に戻しておいてください。
 
-学習初期段階では `==` の使用を避け、`===` を使用する習慣をつけることが望ましいです。基本的には <span class="masked">`==` でなければ実現できない処理</span> は存在しません。`===` と必要に応じての明示的な型変換を組み合わせることで、あらゆる比較操作が可能です。
+::: {.balloon .char-01 .face-05 .tone-blue}
+学習初期段階では `==` の使用を避け、`===` を使用する習慣をつけることが望ましいです。
 
-同様に「等価ではないこと」を判定するためには `!==` (**厳密不等価演算子**) を使用するようにしてください (`!=` の使用は避けてください)。
+基本的には `==` でなければ実現できない処理は存在しません。`===` と必要に応じての明示的な型変換を組み合わせることで、あらゆる比較操作が可能です。
+:::
+
+同様に「<u>等価ではないこと</u>」を判定するためには `!==` (**厳密不等価演算子**) を使用するようにしてください (`!=` の使用は避けてください)。
+
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
+
+> JavaScript において `console.log(3150 === "3150")` は false、`console.log(3150 == "3150")` は true になる理由を解説してください。
+
+#### 定着確認
+
+- JavaScript / TypeScript の `===` 演算子の名称を答えよ。
+  - **答え**: <span class="masked">厳密等価演算子。</span>
+- JavaScript / TypeScript で、暗黙の型変換を行わずに「等しくないこと」を判定する演算子を記述せよ。
+  - **答え**: <span class="masked">`!==`（厳密不等価演算子）。</span>
+- JavaScript として実行した場合、`3150 === "3150"` と `3150 == "3150"` の結果をそれぞれ答えよ。
+  - **答え**: <span class="masked">前者の結果は `false`、後者の結果は `true`。`==` では暗黙の型変換が適用される。</span>
+- JavaScript として実行した場合、`0 === ""` と `0 == ""` の結果をそれぞれ答えよ。
+  - **答え**: <span class="masked">前者の結果は `false`、後者の結果は `true`。</span>
+- JavaScript / TypeScript の `==` と `===` の違いとして、適切な選択肢を選択せよ。
+  - **A**: `==` では暗黙の型変換が適用されることがあるが、`===` では適用されない。
+  - **B**: `===` では暗黙の型変換が適用されることがあるが、`==` では適用されない。
+  - **C**: どちらも文字列に変換してから比較する。
+  - **答え**: <span class="masked">A</span>
 
 ### オブジェクトの比較 (重要)
 
 厳密等価演算子 (`===`) あるいは等価演算子 (`==`) による「**オブジェクトの比較**」では、<span class="masked">オブジェクトの「参照」の比較</span> が行われ、参照が同じであれば `true`、そうでなければ `false` を返します。配列についても同様に「**参照の比較**」が行なわれます。
 
-オブジェクトの「参照」とは、C言語で言えば「**ポインタ**」、Pythonで言えば「**オブジェクトID**」に相当するものです。
+::: {.balloon .char-02 .face-05 .tone-yellow}
+TypeScript（JavaScript）におけるオブジェクトの「参照」は、C言語の **ポインタに近い概念** です。ただし、C言語のポインタのように、参照先のアドレスに対して加算・減算を行うなどの **ポインタ演算はできません**。
+:::
 
-例えば、以下の `todo1` と `todo2` は、同じ値のプロパティを持っていますが、**それぞれ別のオブジェクト** (つまり、異なる「参照」、C言語的に言えば異なる「アドレス」、Python的に言えば異なる「オブジェクトID」) であるため、**第17行目** の出力は <span class="masked">`false`</span> となります。
+例えば、以下の `todo1` と `todo2` は、同じ値のプロパティを持っていますが、**それぞれ別のオブジェクト** (つまり、異なる「参照」、C言語的に言えば異なる「アドレス」、Python的に言えば異なる「オブジェクトID」) であるため、**最後の比較式** の出力は <span class="masked">`false`</span> となります。
 
 ```typescript{.numberLines caption="src/comp1.ts"}
 import type { Todo } from "./types.js";
@@ -1054,22 +1712,22 @@ const todo1: Todo = {
   name: "TypeScriptの勉強",
   priority: 1,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 const todo2: Todo = {
   name: "TypeScriptの勉強",
   priority: 1,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 console.log(todo1 === todo2); // 比較結果は「false」
 ```
 
-一方で、次の `comp2.ts` の **第17行目** の出力は <span class="masked">`true`</span> となります。
+一方で、次の `comp2.ts` の **最後の比較式** の出力は <span class="masked">`true`</span> となります。
 
-**第12行目** の `todo2 = todo1` で行われるのは、いわゆる「**浅いコピー** (Shallow Copy) = 参照のコピー」であるため、そのような結果になります。この「**浅いコピー**」についてはPG1の[第13回講義](https://takeshiwada1980.github.io/Programming1-2024/lecture13.html#リストの浅いコピーと深いコピー)で丁寧に解説しているので再読してください。
+`const todo2 = todo1` は、**同じオブジェクトへの参照を別の変数にも代入する** 操作です。新しいオブジェクトは作りません。後で扱うスプレッド構文による浅いコピーとは区別してください。
 
 ```typescript{.numberLines caption="src/comp2.ts"}
 import type { Todo } from "./types.js";
@@ -1078,10 +1736,10 @@ const todo1: Todo = {
   name: "TypeScriptの勉強",
   priority: 1,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
-// ここで行なわれるのは「浅いコピー」、
+// 新しいオブジェクトは作らず、
 // つまり「参照」のコピーであることに注意
 const todo2 = todo1;
 
@@ -1094,6 +1752,31 @@ console.log(todo1.name);
 ```
 
 既にPG1で、同様の内容を学んできていると思うので理解できると思いますが `comp2.ts` の最後で `console.log(todo1.name);` を実行したとき、その出力は <span class="masked">「COBOLの勉強をする」</span> となります。
+
+#### 定着確認
+
+
+
+- JavaScript / TypeScript で、オブジェクト同士を `===` で比較するとき、比較されるものを答えよ。
+  - **答え**: <span class="masked">オブジェクトの参照。同じオブジェクトを参照しているかを比較する。</span>
+- JavaScript / TypeScript で、`const todo1 = { name: "React の予習" };` と `const todo2 = { name: "React の予習" };` をそれぞれ記述した。`todo1 === todo2` (厳密等価演算子による比較) の結果を答えよ。
+  - **答え**: <span class="masked">`false`。プロパティの値が同じでも、別々に作成されたオブジェクトなので参照が異なる。</span>
+- JavaScript / TypeScript で、`const todo1 = { priority: 1 };` と `const todo2 = { priority: 1 };` をそれぞれ記述した。`todo1 == todo2` (等価演算子による比較) の結果を答えよ。
+  - **答え**: <span class="masked">`false`。オブジェクト同士は `==` でも参照が比較され、プロパティの値が比較されるわけではない。</span>
+- JavaScript / TypeScript で、`const todo1 = { priority: 1 };` の後に `const todo2 = todo1;` と記述した。`todo1 === todo2` の結果を答えよ。
+  - **答え**: <span class="masked">`true`。両方の変数が同じオブジェクトを参照している。</span>
+- JavaScript / TypeScript で、`const todo1 = { name: "React の予習" };`、`const todo2 = todo1;`、`todo2.name = "TypeScript の復習";` の順に記述した。最後に `console.log(todo1.name);` を実行すると、何が出力されるか答えよ。
+  - **答え**: <span class="masked">`TypeScript の復習`。`todo2` を通して、`todo1` と共有しているオブジェクトのプロパティを変更している。</span>
+- JavaScript / TypeScript の `const todo1 = { priority: 1 };` に続けて、`const todo2 = todo1;` と記述した。この操作について、適切な選択肢を選択せよ。
+  - **A**: 同じプロパティを持つ、新しいオブジェクトを作成する。
+  - **B**: 同じオブジェクトへの参照を、別の変数にも代入する。
+  - **C**: オブジェクトを文字列へ変換して、別の変数に代入する。
+  - **答え**: <span class="masked">B</span>
+- JavaScript / TypeScript で、`const todo1 = { priority: 1 };`、`const todo2 = todo1;`、`todo2.priority = 3;` の順に記述した。変更後の `todo1 === todo2` の結果を答えよ。
+  - **答え**: <span class="masked">`true`。プロパティの値を変更しても、両方の変数は同じオブジェクトを参照している。</span>
+- JavaScript / TypeScript で、`const todo = { priority: 1 };` と宣言した。「`const` なので、`todo.priority = 3;` のようにプロパティを変更することもできない」。この説明は適切か、不適切か。
+  - **答え**: <span class="masked">不適切。`const` が禁止するのは変数自体への再代入であり、オブジェクトのプロパティの変更ではない。</span>
+
 
 ### オブジェクトの深い比較
 
@@ -1130,14 +1813,14 @@ const todo1: Todo = {
   name: "TypeScriptの勉強",
   priority: 1,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 const todo2: Todo = {
   name: "TypeScriptの勉強",
   priority: 1,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 console.log(todo1 === todo2); // 浅い比較 false
@@ -1145,6 +1828,67 @@ console.log(deepEqual(todo1, todo2)); // 深い比較 true
 ```
 
 実際に `utils/deepEqual.ts` を実装して実験してください。
+
+### オブジェクトの比較をVitestで確認する
+
+**src/utils/deepEqual.test.ts** を作成してください。今回は、同じ内容でも別のオブジェクトであることと、Todoの内容を比較する関数が動くことを確かめます。
+
+```typescript{.numberLines caption="src/utils/deepEqual.test.ts"}
+import { expect, test } from "vitest";
+import type { Todo } from "../types.js";
+import { deepEqual } from "./deepEqual.js";
+
+const todo1: Todo = {
+  name: "TypeScriptの勉強",
+  priority: 1,
+  isDone: false,
+  deadline: new Date(2026, 9, 11, 9, 45),
+};
+const todo2: Todo = {
+  name: "TypeScriptの勉強",
+  priority: 1,
+  isDone: false,
+  deadline: new Date(2026, 9, 11, 9, 45),
+};
+
+test("同じ内容でも別のオブジェクトである", () => {
+  expect(todo1).not.toBe(todo2);
+  expect(todo1).toEqual(todo2);
+  expect(deepEqual(todo1, todo2)).toBe(true);
+});
+
+test("参照を代入すると同じオブジェクトを指す", () => {
+  const other = todo1;
+  expect(other).toBe(todo1);
+  expect(deepEqual(todo1, other)).toBe(true);
+});
+
+test("期限だけが違えば同じ内容とは判定しない", () => {
+  const changed: Todo = {
+    name: "TypeScriptの勉強",
+    priority: 1,
+    isDone: false,
+    deadline: new Date(2026, 9, 11, 9, 46),
+  };
+  expect(deepEqual(todo1, changed)).toBe(false);
+});
+```
+
+```
+npm run typecheck
+npm run test:run -- src/utils/deepEqual.test.ts
+```
+
+**3件成功** になることを確認してください。オブジェクトに `toBe` を使うと同じ参照かを調べ、`toEqual` を使うと中身をたどって比較します。`.not` は「そうでないこと」の確認です。今回自作した `deepEqual` は **Todoの4つの項目専用** であり、どんなオブジェクトでも比較できる関数ではありません。
+
+なお、`toBe` の比較は厳密には `Object.is` に基づきます。数値の一部で `===` と扱いが異なるため、「常にまったく同じ比較」とは覚えないでください ([Vitestの比較](https://vitest.dev/api/expect.html#tobe))。
+
+#### 演習
+
+名前だけが違う場合、優先度だけが違う場合、完了状態だけが違う場合も、`deepEqual` が `false` を返すことを確認するテストを追加してください。関数の4つの比較条件が、それぞれ必要であることを確かめます。
+
+- 実装例は[こちら](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/02/deepEqual.test.ts)。
+  - **src/utils/deepEqual.test.ts** に記述するコードで、講義に掲載した 3 件と、演習で追加する 3 件をまとめています。比較する項目を 1 つだけ変え、残りの項目を同じ値にしていることを確認してください。追加後は **6 件成功** になることを確認してください。
 
 ### 三項演算子
 
@@ -1163,7 +1907,7 @@ const todo1: Todo = {
   name: "TypeScriptの勉強",
   priority: 3,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 const state = todo1.isDone ? "【済】" : "【未】"; // 条件演算子
@@ -1186,7 +1930,7 @@ const style = todo.isDone ? "text-gray-500 line-through" : "text-slate-800";
 
 ## Reactにおける状態 (オブジェクト) の変更の検知 ～概要～
 
-Reactでは「**極めて大雑把に言えば、＜オブジェクト＞の状態が変更されたことを検知してライブラリ (React) が自動でウェブ画面を書き換える**」ということが行われます (画面=[DOM (Document Object Model)](https://www.google.com/search?q=Domとは))。
+Reactでは、画面に反映したいデータを **state (状態)** として扱います。stateの更新関数で変更を伝えると、Reactが新しい状態に基づいて画面を描画します。詳しい使い方はReactの授業で扱いますが、その準備として、ここではオブジェクトの参照を理解しておきます ([React公式の説明](https://react.dev/learn/updating-objects-in-state))。
 
 ここでの **＜オブジェクト＞** とは、例えば、ここまで何度も登場している `todo` です。そのオブジェクトの「状態が変更された」とは、例えば `name` や `isDone` などの **プロパティ (属性) に変更が生じた** ということを意味します。
 
@@ -1200,7 +1944,7 @@ const todo1: Todo = {
   name: "TypeScriptの勉強",
   priority: 3,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 console.log(`■ 状態変更前`);
@@ -1217,20 +1961,20 @@ printTodo(todo1);
 
 ```
 ■ 状態変更前
-(優先度: 3) TypeScriptの勉強 期日: 2024/10/11 09:45
+(優先度: 3) TypeScriptの勉強 期日: 2026/10/11 09:45
 ■ 状態変更後
-(優先度: 1) COBOLの勉強をする 期日: 2024/10/11 09:45
+(優先度: 1) COBOLの勉強をする 期日: 2026/10/11 09:45
 ```
 
 しかし、**極めて重要なポイントとして**、**上記のような操作でオブジェクトのプロパティを変更しても**、Reactは <span class="masked">オブジェクトの状態に変更があったことを検知してくれません</span>。つまり、オブジェクトを変更しても、それを反映するようにウェブ画面の更新 (=再レンダリング) をしてくれません😭。
 
-Reactがオブジェクトの状態変更を検知しない理由は...
+元のオブジェクトを書き換えるだけでは、Reactにstateの更新を要求する操作にはならないためです。
 
-> Reactはオブジェクトの「**参照**」が変更されたときに、「オブジェクトが変更された」と検知・判断して画面の再レンダリングするという仕組みになっている (重要)
+> Reactでオブジェクトをstateとして扱うときは、元のオブジェクトを直接書き換えず、**新しいオブジェクトを作り、stateの更新関数へ渡す**のが基本です。新しい参照を作るだけで、自動的に画面が更新されるわけではありません。
 
-...ためです。さきほどの[6.2 オブジェクトの比較](lecture02.html#オブジェクトの比較-重要) の `comp2.ts` で示したように、`=` でコピーをしても「参照」は変化しません。また、プロパティを変更しても「参照」は変化しません。
+さきほどの[オブジェクトの比較](lecture02.html#オブジェクトの比較-重要) の `comp2.ts` で示したように、`=` でコピーをしても「参照」は変化しません。また、プロパティを変更しても「参照」は変化しません。
 
-**(プロンプト例)**
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
 
 > TypeScript (JavaScript) において、オブジェクトの「参照」とはなんですか。いまいちイメージがつかめません。
 
@@ -1248,7 +1992,7 @@ const todo: Todo = {
   name: "TypeScriptの勉強",
   priority: 1,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 // Reactの状態管理に適した
@@ -1290,9 +2034,9 @@ const updatedTodo: Todo = {
 
 上記の場合、priority は `3` に更新されますが、`name` は `todo` の値 (`"TypeScriptの勉強"`) で上書きされてしまいます。
 
-**(プロンプト例)**
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
 
-> Reactでオブジェクトの変更を検知するために「スプレッド構文」を使う必要があるのですが、「スプレッド構文」の文法や意味が分かりません。
+> Reactでstateのオブジェクトを更新するとき、元を直接変更せず、スプレッド構文で新しいオブジェクトを作る例を見ました。スプレッド構文の意味と、プロパティを書く順序の影響を、TypeScriptの短い例で説明してください。
 
 #### 定着確認
 
@@ -1307,19 +2051,68 @@ const todo: Todo = {
   name: "TypeScriptの勉強",
   priority: 1,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 // const updatedTodo: Todo =
 
 ```
 
+### スプレッド構文による変更をテストする
+
+変更処理も関数にすると、繰り返し使えます。**src/utils/completeTodo.ts** を作成してください。
+
+```typescript{.numberLines caption="src/utils/completeTodo.ts"}
+import type { Todo } from "../types.js";
+
+export const completeTodo = (todo: Todo): Todo => {
+  return { ...todo, isDone: true };
+};
+```
+
+**src/utils/completeTodo.test.ts** には、次を記述してください。「完了になる」ことに加えて、**元のTodoを書き換えていないこと** も確認します。
+
+```typescript{.numberLines caption="src/utils/completeTodo.test.ts"}
+import { expect, test } from "vitest";
+import type { Todo } from "../types.js";
+import { completeTodo } from "./completeTodo.js";
+
+test("元のTodoを保ち、完了済みの新しいTodoを返す", () => {
+  const todo: Todo = {
+    name: "TypeScriptの勉強",
+    priority: 1,
+    isDone: false,
+    deadline: new Date(2026, 9, 11, 9, 45),
+  };
+  const updated = completeTodo(todo);
+
+  expect(updated.isDone).toBe(true);
+  expect(todo.isDone).toBe(false);
+  expect(updated).not.toBe(todo);
+  expect(updated.name).toBe(todo.name);
+  expect(updated.priority).toBe(todo.priority);
+  expect(updated.deadline).toBe(todo.deadline);
+});
+```
+
+```
+npm run typecheck
+npm run test:run -- src/utils/completeTodo.test.ts
+```
+
+**1件成功** となることを確認してください。スプレッド構文は、1階層分のプロパティをコピーする **浅いコピー** です。新しいTodoは別の参照ですが、その中のDateまでは複製していないので、最後の `toBe` は成功します。
+
+#### 演習
+
+- 関数の処理を一時的に `todo.isDone = true; return todo;` にすると、どの確認が失敗するか分かったでしょうか。実行して確かめたら、元に戻してください。
+- 完了済みのTodoを渡した場合も、元の値を保ち、完了済みの別のオブジェクトを返すことを確認するテストを追加してください。
+
 ## 授業時間外学習
 
 - 次回の授業のはじめに「**小テスト**」を実施します。筆記用具を持参してください。
 - 本科目は「**学修単位科目**」です。今回の講義内容 +アルファ に関して **4時間相当の授業時間外学習** に取り組んでください。
   - この講義資料を再読・熟読し「不明な用語」や「理解が不十分な用語」があればインターネットや、ChatGPTなどの生成AIを利用して解決してください。また、興味関心を持ったトピックについて、ウェブ、生成AI、YouTube動画などを利用して知識を広げ、理解を深めてください。
-  - 特に **(プロンプト例)** を示しているものについては、実際に生成AIにプロンプトを投げ、さらに対話を重ねることで、知識の幅を広げるだけでなく、理解をより深く確かなものにしてください。
+  - 特に **<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例** を示しているものについては、実際に生成AIにプロンプトを投げ、さらに対話を重ねることで、知識の幅を広げるだけでなく、理解をより深く確かなものにしてください。
   - 講義資料内の「演習」に再度取り組んでください。演習内容は、授業時間中に1回取り組むだけでは定着しないので注意してください。
 - 次回の授業では「配列」について取り上げ、`map` や `filter` などの **配列操作メソッド** (高階関数) を扱います。これらは React で頻繁に使われるものになります。予習することを強く推奨します。
   - YouTube検索: [TypeScript map](https://www.youtube.com/results?search_query=typescript+map)
