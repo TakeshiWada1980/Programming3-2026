@@ -27,12 +27,12 @@ var:
 4. Todoアプリ開発（Reactによるフロントエンド開発）のチュートリアル
 5. Todoアプリのカスタマイズや作り込み → **後期前半の大課題**
 
-まずは、次のような「📝**Todoアプリの開発** (Reactを採用したフロントエンド開発)」目標とします。
+まずは、次のような「📝**Todoアプリの開発** (Reactを採用したフロントエンド開発)」を目標とします。
 
 - [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/) (ギリギリ合格水準のレベル、点数で言えば60点😨)
 - [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/2) (ここまで内容を理解して開発できたら90点🎉)
 
-## VSCodeの関連のTips
+## VSCode関連のTips
 
 次回に向けて、React開発に有用な拡張機能などをインストールしておいてください。
 
@@ -56,13 +56,13 @@ VSCodeの拡張機能として **Path Intellisense** (識別子:`christian-kohle
 
 ### React開発の支援機能
 
-React関連のコードスニペットを挿入する拡張機能として **ES7+React/Redux/Reac1t-Native snippets** (識別子: `dsznajder.es7-react-js-snippets`) を VScode にインストールしておいてください (次回以降の講義では、この拡張機能がインストールされている前提で解説している部分があります)。
+React関連のコードスニペットを挿入する拡張機能として **ES7+ React/Redux/React-Native snippets** (識別子: `dsznajder.es7-react-js-snippets`) を VSCode にインストールしておいてください (次回以降の講義では、この拡張機能がインストールされている前提で解説している部分があります)。
 
 この拡張機能を導入すると `rafce` と入力するだけで、**Reactコンポーネントのスニペット** (=プログラムコードの定型的な断片、雛形) をエディタに挿入してくれます。
 
 ![img](figs/03/vscode_04.png)
 
-この拡張機能の概要は[こちら](https://www.google.com/search?q=ES7%2BReact%2FRedux%2FReac1t-Native+snippets+おすすめ)を参照してください。
+この拡張機能の概要は[こちら](https://www.google.com/search?q=ES7%2BReact%2FRedux%2FReact-Native+snippets+おすすめ)を参照してください。
 
 ### コードチェックツールの拡張機能
 
@@ -84,7 +84,7 @@ React関連のコードスニペットを挿入する拡張機能として **ES7
 
 ## 前回の復習
 
-第02回講義の[Reactにおける状態 (オブジェクト) の変更の検知 ～概要～](lecture02.html#reactにおける状態-オブジェクト-の変更の検知-概要)について、ある程度、理解していることを前提とします。
+第02回講義の[Reactにおける状態 (オブジェクト) の変更の検知 ～概要～](lecture02.html#react-における状態-オブジェクト-の更新-概要)について、ある程度、理解していることを前提とします。
 
 - スプレッド構文などの理解が怪しい場合は、再度、前回の講義資料を読み直してください。
 
@@ -103,7 +103,7 @@ const todo: Todo = {
   name: "Learn TypeScript",
   priority: 3,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 // ▼▼▼ ここから
@@ -133,14 +133,14 @@ todo !== updatedTodo --->  false
   "name": "Learn COBOL",
   "priority": 1,
   "isDone": false,
-  "deadline": "2024-10-11T00:45:00.000Z"
+  "deadline": "2026-10-11T00:45:00.000Z"
 }
 ■ updatedTodoの内容
 {
   "name": "Learn COBOL",
   "priority": 1,
   "isDone": false,
-  "deadline": "2024-10-11T00:45:00.000Z"
+  "deadline": "2026-10-11T00:45:00.000Z"
 }
 ```
 
@@ -148,15 +148,15 @@ todo !== updatedTodo --->  false
 
 ![img](figs/03/obj_01.png)
 
-そのため、**第12行目 (❷)** と **第13行目 (➌)** は `updatedTodo` を対象に操作しているように見えますが、実際のところ、それは `todo` の「参照先」を変更していることにもなります。そのため、実行結果を確認すると、オリジナルの `todo` の `name` も <span class="masked">Learn COBOL</span> に変更されています。
+そのため、**第12行目 (➋)** と **第13行目 (➌)** は `updatedTodo` を対象に操作しているように見えますが、実際のところ、それは `todo` の「参照先」を変更していることにもなります。そのため、実行結果を確認すると、オリジナルの `todo` の `name` も <span class="masked">Learn COBOL</span> に変更されています。
 
 このようにオリジナルのデータ (`todo`) のプロパティを上書きすることから、このようなアプローチは「**状態直接操作**」や「**破壊的更新**」、「**ミュータブルなオブジェクト更新**」のように呼ばれます。
 
-この授業のなかでは、このようなオブジェクトの操作を <span class="masked">「ミュータブルなオブジェクト更新」</span> のように表現してきます。**ミュータブル (Mutable)** とは「可変な」「変更可能な」という意味になります。
+この授業のなかでは、このようなオブジェクトの操作を <span class="masked">「ミュータブルなオブジェクト更新」</span> のように表現していきます。**ミュータブル (Mutable)** とは「可変な」「変更可能な」という意味になります。
 
 #### イミュータブルなオブジェクト更新
 
-前回授業では、上記で示したミュータブルなオブジェクト更新とは**別に**、次の `immutableApproach.ts` のように「**スプレッド構文**」を使って[プロパティを更新した新たなオブジェクトを生成する方法](lecture02.html#reactが変更を検知可能なオブジェクトの生成)も解説しました。
+前回授業では、上記で示したミュータブルなオブジェクト更新とは**別に**、次の `immutableApproach.ts` のように「**スプレッド構文**」を使って[プロパティを更新した新たなオブジェクトを生成する方法](lecture02.html#状態の更新に使う新しいオブジェクトの生成)も解説しました。
 
 ```typescript{.numberLines caption="immutableApproach.ts"}
 import type { Todo } from "./types.js";
@@ -165,7 +165,7 @@ const todo: Todo = {
   name: "Learn TypeScript",
   priority: 3,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 // ▼▼▼ ここから
@@ -197,14 +197,14 @@ todo !== updatedTodo --->  true
   "name": "Learn TypeScript",
   "priority": 3,
   "isDone": false,
-  "deadline": "2024-10-11T00:45:00.000Z"
+  "deadline": "2026-10-11T00:45:00.000Z"
 }
 ■ updatedTodoの内容
 {
   "name": "Learn COBOL",
   "priority": 1,
   "isDone": false,
-  "deadline": "2024-10-11T00:45:00.000Z"
+  "deadline": "2026-10-11T00:45:00.000Z"
 }
 ```
 
@@ -224,7 +224,7 @@ updatedTodo.name = "Learn COBOL"; // ➋
 updatedTodo.priority = 1; // ➌
 ```
 
-なお、スプレッド構文は、Pythonにおける[アンパック](https://takeshiwada1980.github.io/Programming1-2023/lecture12.html#リストの扱いに関する補足②-アンパック)のようなものとイメージしてください。それでも、イメージがつかみづらいときは「生成AI」を利用してみてください。
+なお、スプレッド構文は、Pythonにおける[アンパック](https://takeshiwada1980.github.io/Programming1-2024/lecture12.html#リストの扱いに関する補足②-アンパック)のようなものとイメージしてください。それでも、イメージがつかみづらいときは「生成AI」を利用してみてください。
 
 **(プロンプト例)**
 
@@ -232,7 +232,7 @@ updatedTodo.priority = 1; // ➌
 
 ### React開発では「イミュータブルなオブジェクト更新」を使用
 
-[前回授業](lecture02.html#reactにおける状態-オブジェクト-の変更の検知-概要)で解説したように、Reactを使ったフロントエンド開発において「**オブジェクトのプロパティを変更するとき**」は、原則として <span class="masked">スプレッド構文を利用したイミュータブルなオブジェクト更新</span> を使用するように意識してください。
+[前回授業](lecture02.html#react-における状態-オブジェクト-の更新-概要)で解説したように、Reactを使ったフロントエンド開発において「**オブジェクトのプロパティを変更するとき**」は、原則として <span class="masked">スプレッド構文を利用したイミュータブルなオブジェクト更新</span> を使用するように意識してください。
 
 なぜならば、**React** では「**オブジェクトの参照が (以前と) 変化しているかどうか**」に基づいて <span class="masked">画面表示を更新するかどうか (再レンダリング・再描画するかどうか) を判断・最適化</span> しているためです。適切に画面が再レンダリングされなければ「内部的にデータが書き換わっていても、利用者が見ているウェブ画面上にはそれが反映されていない」という困った状態になります。
 
@@ -242,14 +242,14 @@ updatedTodo.priority = 1; // ➌
 2. 新しく生成されたオブジェクトは、元のオブジェクトとは **異なる参照**（C言語でいえばポインタ、Pythonで言えばオブジェクトID）を持つ。
 3. 新しく生成されたオブジェクトをReactの **状態 (state)** にセットする (主に [useStateフック](https://www.google.com/search?q=useStateとは) を利用)、あるいは、子コンポーネントの[Props](https://www.google.com/search?q=React+propsとは)(プロップス) に渡す。
     - `useState` や `Props` については次回以降に詳しく学びます。
-4. Reactは、Pros や state にセットされた **オブジェクトの参照の変化を検知** し、画面の再レンダリング ([DOM操作](https://www.google.com/search?q=DOM操作)) をする。
+4. Reactは、Props や state にセットされた **オブジェクトの参照の変化を検知** し、画面の再レンダリング ([DOM操作](https://www.google.com/search?q=DOM操作)) をする。
 
 
 なお、今回講義では「**配列**」を学びますが、配列についても「ミュータブルな更新」と「イミュータブルな更新」が存在します。こちらも同様に「**イミュータブルな配列更新**」をする必要があります (React開発の前提で)。
 
 #### 演習①
 
-イミュータブルなオブジェクト更新によって、期限を `Date(2024, 9, 30)`、完了フラグを `true` に変更したオブジェクトを `updatedTodo` に得るようにプログラムを追記してください。また、実際に結果を確認してください。
+イミュータブルなオブジェクト更新によって、期限を `new Date(2026, 9, 30)`、完了フラグを `true` に変更したオブジェクトを `updatedTodo` に得るようにプログラムを追記してください。また、実際に結果を確認してください。
 
 - ここではスプレッド構文を利用することを期待しています。
 
@@ -262,7 +262,7 @@ const todo: Todo = {
   name: "Learn TypeScript",
   priority: 3,
   isDone: false,
-  deadline: new Date(2024, 9, 11, 9, 45),
+  deadline: new Date(2026, 9, 11, 9, 45),
 };
 
 // ここを編集
@@ -280,7 +280,7 @@ printTodo(updatedTodo);
     - `assert.notEqual(todo, updatedTodo)` は、`todo` と `updatedTodo` の参照が異なるときは何もせず、参照が同じときには例外 (Error) を発生させます。
 - `utils/printTodo.ts` で定義している `printTodo` 関数について、**完了フラグ (**`isDone`**) の内容が表示されるようにアップデート** してください。
 
-- 解答例は[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/03/prac2-01.ts)
+- 解答例は[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/prac2-01.ts)
 
 ## 配列
 
@@ -320,14 +320,14 @@ export const initTodos: Todo[] = [
     name: "基礎物理学3の宿題",
     isDone: false,
     priority: 1,
-    deadline: new Date(2024, 10, 11),
+    deadline: new Date(2026, 10, 11),
   },
   {
     id: uuid(),
     name: "解析2の宿題",
     isDone: true,
     priority: 1,
-    deadline: new Date(2024, 10, 16, 17),
+    deadline: new Date(2026, 10, 16, 17),
   },
 ];
 ```
@@ -443,9 +443,9 @@ console.log(`${n}番目の位置に要素を挿入 => ` + insertedAtN);
 
 ### map による要素の更新
 
-モダンTypeScriptにおいて **イミュータブルに配列要素を更新** するためには、一般に <span class="masked">「アロー関数」と「map() メソッド」</span> を組み合わせて使用します。これは、プログラミング1 (Python) で学んだ「[ラムダ式](https://takeshiwada1980.github.io/Programming1-2024/lecture19.html#ラムダ式)と[map関数](https://takeshiwada1980.github.io/Programming1-2023/lecture19.html#mapとラムダ式の組み合わせ)の**組み合わせ**」に相当するものです。
+モダンTypeScriptにおいて **イミュータブルに配列要素を更新** するためには、一般に <span class="masked">「アロー関数」と「map() メソッド」</span> を組み合わせて使用します。これは、プログラミング1 (Python) で学んだ「[ラムダ式](https://takeshiwada1980.github.io/Programming1-2024/lecture19.html#ラムダ式)と[map関数](https://takeshiwada1980.github.io/Programming1-2024/lecture19.html#mapとラムダ式の組み合わせ)の**組み合わせ**」に相当するものです。
 
-例えば、「学年」を表す数値型の配列 `grade` から、HTML用に整形した文字列の配列 `gradeListItems` を得るためのイミュータブルな操作は、次のように記述できます。
+例えば、「学年」を表す数値型の配列 `grades` から、HTML用に整形した文字列の配列 `gradeListItems` を得るためのイミュータブルな操作は、次のように記述できます。
 
 ```typescript{.numberLines caption="prac2-05.ts"}
 const grades: number[] = [1, 2, 3, 4, 5]; // 学年
@@ -508,11 +508,11 @@ for (const grade of grades) { // ■■ ここを書き換えた ■■
 
 なお、`for (const grade of grades)` によって、ループ毎に変数 `grade` のなかには `1`、`2`、`3`… という値が格納されます。もし、**第01行目** で `const grades = [9, 1, 5]` としていれば、ループ変数である `grade`  には、ループ毎に `9`、`1`、`5` という値が格納されてfor文の内部の処理が実行されます。
 
-Python で書けば `for grade in grades:` ですね ([参照](https://takeshiwada1980.github.io/Programming1-2023/lecture08.html#pythonicなリストとfor文の組み合わせ))。
+Python で書けば `for grade in grades:` ですね ([参照](https://takeshiwada1980.github.io/Programming1-2024/lecture08.html#pythonicなリストとfor文の組み合わせ))。
 
 #### 第3形態 : 変換処理の関数化
 
-数値型の値 (例えば `3` ) を、整形された文字列型の値 (例えば `"<li>3年</li>"`) に変換するための処理を `func` として分離しました。また、**第08行目** で、それを `func(grade)` にように呼び出しています。
+数値型の値 (例えば `3` ) を、整形された文字列型の値 (例えば `"<li>3年</li>"`) に変換するための処理を `func` として分離しました。また、**第08行目** で、それを `func(grade)` のように呼び出しています。
 
 ```typescript{.numberLines caption="prac2-06.ts (第3形態)"}
 function func(grade: number): string {
@@ -528,7 +528,7 @@ for (const grade of grades) {
 
 #### 第4形態 : アロー関数化
 
-「function関数」を「アロー関数」に書き換えました。**第01行目** だけを書き換えました。
+「function関数」を「アロー関数」に書き換えました。**第01行目** と **第03行目** を書き換えました。
 
 ```typescript{.numberLines caption="prac2-06.ts  (第4形態)"}
 const func = (grade: number): string => { // ■■ アロー関数化 ■■ 
@@ -544,7 +544,7 @@ for (const grade of grades) {
 
 #### 第5形態 : mapメソッドの利用
 
-`for` を使って実行していた処理を、`map` を使った処理に書き換えました。第4形態の **第06行目** から **第09行目** までの処理が、ここでは **第05行目** の「1文だけ」でスッキリと記述できています。
+`for` を使って実行していた処理を、`map` を使った処理に書き換えました。第4形態の **第06行目** から **第09行目** までの処理が、ここでは **第06行目** の「1文だけ」でスッキリと記述できています。
 
 
 ```typescript{.numberLines caption="prac2-06.ts (第5形態)"}
@@ -575,7 +575,7 @@ const gradeListItems = grades.map((grade: number): string => {
 
 #### 第7形態 (省略形)
 
-アロー関数のなかの処理が `return ...;` の1文だけで構成できる場合は、以下のように「**波括弧**」と「`retuen`」を省略して書くこともできます。
+アロー関数のなかの処理が `return ...;` の1文だけで構成できる場合は、以下のように「**波括弧**」と「`return`」を省略して書くこともできます。
 
 ```typescript{.numberLines caption="prac2-06.ts (第7形態)"}
 const grades: number[] = [1, 2, 3, 4, 5];
@@ -638,11 +638,11 @@ console.log(formattedPriorities);
 [ '★', '★★★', '★★', '★★★' ]
 ```
 
-- 解答例は[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/03/prac2-07.ts)
+- 解答例は[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/prac2-07.ts)
 
 ### 配列のインデックス番号の参照
 
-次のプログラムの **第02行目** のように `map` に第2引数を設定すると、その変数には <span class="masked">ゼロオリジンのイデックス番号</span> が格納され、map内の処理で参照することができます。
+次のプログラムの **第02行目** のように `map` に渡すアロー関数に第2引数を設定すると、その変数には <span class="masked">ゼロオリジンのインデックス番号</span> が格納され、map内の処理で参照することができます。
 
 ```typescript{.numberLines caption="prac2-08.ts"}
 const arr = ["Python", "C言語", "TypeScript", "C#"];
@@ -670,7 +670,7 @@ console.log(arr2);
 
 ![img](figs/03/vscode_02.png)
 
-そのなかに、以下のように数値型の `id` というプロパティを新た追加した `Todo` 型 (＝ユーザ定義のオブジェクト型) を定義した `types.ts` というファイルを作成してください。
+そのなかに、以下のように数値型の `id` というプロパティを新たに追加した `Todo` 型 (＝ユーザ定義のオブジェクト型) を定義した `types.ts` というファイルを作成してください。
 
 ```typescript{.numberLines caption="src/pipeline/types.ts"}
 export type Todo = {
@@ -687,7 +687,7 @@ export type Todo = {
 ユーザ定義のオブジェクト型を要素に持った **配列の初期化** は次のように行ないます。`src/pipeline` フォルダのなかに `initTodos.ts` というファイルを新規作成して以下の内容を記述してください。
 
 ```typescript{.numberLines caption="src/pipeline/initTodos.ts"}
-import type { Todo } from "./types.ts";
+import type { Todo } from "./types.js";
 
 export const initTodos: Todo[] = [
   {
@@ -695,28 +695,28 @@ export const initTodos: Todo[] = [
     name: "React予習（YouTube）",
     isDone: false,
     priority: 1,
-    deadline: new Date(2024, 9, 24, 9, 0),
+    deadline: new Date(2026, 9, 24, 9, 0),
   },
   {
     id: 2,
     name: "TypeScriptの復習",
     isDone: true,
     priority: 2,
-    deadline: new Date(2024, 9, 30),
+    deadline: new Date(2026, 9, 30),
   },
   {
     id: 3,
     name: "基礎物理学3の宿題",
     isDone: false,
     priority: 1,
-    deadline: new Date(2024, 9, 20, 23, 59),
+    deadline: new Date(2026, 9, 20, 23, 59),
   },
   {
     id: 4,
     name: "知識科学概論の宿題",
     isDone: true,
     priority: 3,
-    deadline: new Date(2024, 9, 27),
+    deadline: new Date(2026, 9, 27),
   },
 ];
 ```
@@ -733,8 +733,8 @@ export const initTodos: Todo[] = [
 
 ここでは、特に **第07行目** に着目して読解してください。
 
-- **第10行目** では、前回講義で学習した[条件演算子 (三項演算子)](lecture02.html#条件演算子)を利用して、`isDone` が `true` のときだけ **【済】** の文字列が付加されるようにしています。
-- **第07行目** では、定数 `const` を宣言していますが、この定数を経由せずに直接的に文字列を `return` しても問題ありません。つまり ``return `<li>...</li>`;`` のようにしても問題ありません 。さらに、先に解説したように「波括弧」と「`return`」を省略することも可能です (これらは可読性とのトレードオフになります)。
+- **第10行目** では、前回講義で学習した[条件演算子 (三項演算子)](lecture02.html#三項演算子)を利用して、`isDone` が `true` のときだけ **【済】** の文字列が付加されるようにしています。
+- **第07行目** では、定数 `const` を宣言していますが、この定数を経由せずに直接的に文字列を `return` しても問題ありません。つまり ``return `<li>...</li>`;`` のようにしても問題ありません。さらに、先に解説したように「波括弧」と「`return`」を省略することも可能です (これらは可読性とのトレードオフになります)。
 
 ```typescript{.numberLines caption="src/pipeline/map01.ts"}
 import type { Todo } from "./types.js";
@@ -758,10 +758,10 @@ console.log(formattedTodos);
 
 ```
 [
-  '<li>[1] React予習（YouTube） 優先度1 (期限2024/10/24 09:00)</li>',
-  '<li>[2] TypeScriptの復習 優先度2 (期限2024/10/30 00:00)【済】</li>',
-  '<li>[3] 基礎物理学3の宿題 優先度1 (期限2024/10/20 23:59)</li>',
-  '<li>[4] 知識科学概論の宿題 優先度3 (期限2024/10/27 00:00)【済】</li>'
+  '<li>[1] React予習（YouTube） 優先度1 (期限2026/10/24 09:00)</li>',
+  '<li>[2] TypeScriptの復習 優先度2 (期限2026/10/30 00:00)【済】</li>',
+  '<li>[3] 基礎物理学3の宿題 優先度1 (期限2026/10/20 23:59)</li>',
+  '<li>[4] 知識科学概論の宿題 優先度3 (期限2026/10/27 00:00)【済】</li>'
 ]
 ```
 
@@ -781,7 +781,7 @@ console.log(formattedTodos);
 
 #### NG: ミュータブルな操作
 
-まずはNGな変更操作から確認していきます。次のプログラムの **第11行目** から **第16行目** までの処理は、**React開発ではNGなミュータブルな操作** となります。
+まずはNGな変更操作から確認していきます。次のプログラムの **第10行目** から **第15行目** までの処理は、**React開発ではNGなミュータブルな操作** となります。
 
 コンソール出力から確認できるように内部データとしては、`id` が `4` の「知識科学概論の宿題」の `isDone` は `false` に変更されていますが、このような操作ではReactで管理・描画されるウェブ画面上の表示は変更されません (Reactでのハマりポイントです)。
 
@@ -861,8 +861,8 @@ console.log(JSON.stringify(updatedTodos, null, 2));
 `targetId` で指定された Todo について `name` のプロパティを **イミュータブルに変更** するように、次のプログラムを完成させてください。
 
 ```typescript{.numberLines caption="演習 (3) src/pipeline/map05.ts"}
-import { Todo } from "./types";
-import { initTodos } from "./initTodos";
+import type { Todo } from "./types.js";
+import { initTodos } from "./initTodos.js";
 
 const targetId = 3;
 const newName = "電気電子回路1の課題";
@@ -871,7 +871,7 @@ const updatedTodos: Todo[] = [];
 console.log(JSON.stringify(updatedTodos, null, 2));
 ```
 
-- 解答例は[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/03/map05.ts)
+- 解答例は[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/map05.ts)
 
 ## オブジェクト配列のfilter操作 
 
@@ -888,7 +888,7 @@ filter メソッドは、配列の**各要素に対して条件**（=<span class
 ```typescript{.numberLines caption="src/pipeline/filter01.ts (filterの使用例)"}
 const numArr: number[] = [1, 2, 3, 4, 5, 6];
 const oddArr: number[] = numArr.filter((num) => {
-  return num % 2 === 1; // 奇数か? ture or false
+  return num % 2 === 1; // 奇数か? true or false
 });
 console.log(`numArr = ${numArr}`);
 console.log(`oddArr = ${oddArr}`);
@@ -907,9 +907,9 @@ oddArr = 1,3,5
 
 ### オブジェクト型の配列に対するfilterの適用
 
-`Todo` 型の配列である`initTodos` から「`isDone` **が** `false` **の要素だけを抽出した配列**」を得る処理は (=これは <span class="masked">`isDone` が `true` の要素を「削除」した配列を得る処理</span> と同義) は、`filter` を使って、次のように実装できます。
+`Todo` 型の配列である`initTodos` から「`isDone` **が** `false` **の要素だけを抽出した配列**」を得る処理 (=これは <span class="masked">`isDone` が `true` の要素を「削除」した配列を得る処理</span> と同義) は、`filter` を使って、次のように実装できます。
 
-```typescript{.numberLines caption="src/pipeline/filter02.ts (未完了タスク (=isDobeが「false」の要素)の抽出)"}
+```typescript{.numberLines caption="src/pipeline/filter02.ts (未完了タスク (=isDoneが「false」の要素)の抽出)"}
 import { initTodos } from "./initTodos.js";
 
 const updatedTodos = initTodos.filter((todo) => !todo.isDone);
@@ -932,7 +932,7 @@ console.log(JSON.stringify(updatedTodos, null, 2));
 
 #### 演習④
 
-Todoオブジェクトの配列のなかで「**未完了**」かつ「**期日 (**`deadline`**) が **`today` **を過ぎている**」に一致する要素を `overdueTodos` に得るように、次のプログラムを完成させてください。
+Todoオブジェクトの配列のなかで「**未完了**」かつ「**期日 (**`deadline`**) が **`today` **より前である**」に一致する要素を `overdueTodos` に得るように、次のプログラムを完成させてください。
 
 なお、適切な動作検証ができるように `initTodos` を適当に変更してください。
 
@@ -940,13 +940,13 @@ Todoオブジェクトの配列のなかで「**未完了**」かつ「**期日 
 import type { Todo } from "./types.js";
 import { initTodos } from "./initTodos.js";
 
-const today = new Date(2024, 9, 22);
+const today = new Date(2026, 9, 22);
 const overdueTodos: Todo[] = []; // 主にここを書き換え
 console.log("期日を過ぎている未完了Todoの一覧");
 console.log(JSON.stringify(overdueTodos, null, 2));
 ```
 
-- 解答例は[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/03/filter04.ts)
+- 解答例は[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/filter04.ts)
 
 ## オブジェクト配列のsort操作 
 
@@ -954,7 +954,7 @@ console.log(JSON.stringify(overdueTodos, null, 2));
 
 ### ソートキーを指定したオブジェクト配列の並び替え
 
-オブジェクト配列の並び替えるには、`sort`メソッドの引数に <span class="masked">ソートに使用するプロパティを使った「比較関数」</span> を与える必要があります。例えば、Todo を **優先度** (**優先順位**) の「昇順」にソートする処理は次のように実装できます。
+オブジェクト配列を並び替えるには、`sort`メソッドの引数に <span class="masked">ソートに使用するプロパティを使った「比較関数」</span> を与える必要があります。例えば、Todo を **優先度** (**優先順位**) の「昇順」にソートする処理は次のように実装できます。
 
 ```typescript{.numberLines caption="src/pipeline/sort01.ts (優先度で並び替え)"}
 import { initTodos } from "./initTodos.js";
@@ -967,7 +967,7 @@ console.log(JSON.stringify(initTodos, null, 2));
 console.log(JSON.stringify(sortedTodos, null, 2));
 ```
 
-実際に実行して、結果を確認してください (特に `iniTodos` の並び順は影響を受けていないことを確認してください)。
+実際に実行して、結果を確認してください (特に `initTodos` の並び順は影響を受けていないことを確認してください)。
 
 また、**第03行目** の `[...initTodos].sort` を `initTodos.sort` に変更すると <span class="masked">ミュータブルな操作になってしまうこと (つまり `initTodos` が変更されてしまうこと)</span> を実際に確認してください。
 
@@ -1003,11 +1003,11 @@ console.log(JSON.stringify(initTodos, null, 2));
 console.log(JSON.stringify(sortedTodos, null, 2));
 ```
 
-**第05-06行目** で「`a` と `b` の `isDone` が**違う**」ならば `isDone` が `false` のほうを「前」に配置するようにしています。また、**第07-08行目** で「`a` と `b` の `isDone` が**同じ**」ならば `deadline` が過去のほう (古いほう) のほうを「前」に配置するようにしています。
+**第05-06行目** で「`a` と `b` の `isDone` が**違う**」ならば `isDone` が `false` のほうを「前」に配置するようにしています。また、**第07-08行目** で「`a` と `b` の `isDone` が**同じ**」ならば `deadline` が過去のほう (古いほう) を「前」に配置するようにしています。
 
 #### 演習
 
-第1ソートキーを「優先度」、第2ソートキーを「期限」として `Todos` を並び替えるように実装してください。また、動作を確認してください (必要に応じて `initTodos` に編集を加えてください)。
+第1ソートキーを「優先度」、第2ソートキーを「期限」として `initTodos` を並び替えるように実装してください。また、動作を確認してください (必要に応じて `initTodos` に編集を加えてください)。
 
 ## メソッドチェーン (map・filter・sortの組み合わせ)
 
