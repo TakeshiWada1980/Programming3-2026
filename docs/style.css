@@ -267,6 +267,8 @@ h2 .header-section-number {
 
 div.sourceCode {
   position: relative;
+  /* 箇条書きの字下げをタイトル・コード先頭行へ継承させない。 */
+  text-indent: 0;
   overflow-x: auto;
   background-color: var(--code-pg-background);
   border-radius: 10px;
@@ -316,6 +318,7 @@ div.sourceCode[data-caption]::before {
 /* ------- プログラムコード::本体 ------- */
 
 .markdown-body pre {
+  text-indent: 0;
   background: var(--code-out-background);
   padding-top: 10px;
   padding-bottom: 10px;

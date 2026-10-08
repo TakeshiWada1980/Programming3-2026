@@ -11,8 +11,8 @@ var:
 - 第01回講義 09月25日(金) [資料](lecture01.html)&ensp; <font size="-1">Node.js & TypeScript 開発環境の構築</font>
 - 第02回講義 10月02日(金) [資料](lecture02.html)&ensp; ***小テスト1*** <font size="-1">TypeScript 基礎
 </font>
-- 第03回講義 10月09日(金) [資料](lecture03.html)&ensp; **_小テスト2_** <font size="-1">配列操作メソッド (map, filer, sort)</font>
-- 第04回講義 10月16日(金)  資料 &ensp; <font size="-1">React開発環境の構築, Todoアプリ開発1</font>
+- 第03回講義 10月09日(金) [資料](lecture03.html)&ensp; **_小テスト2_** <font size="-1">配列操作メソッド (map, filter, sort)</font>
+- 第04回講義 10月16日(金)  資料 &ensp; **_小テスト3_** <font size="-1">React開発環境の構築, Todoアプリ開発1</font>
 
 
 ## 参考資料

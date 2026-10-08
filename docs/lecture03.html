@@ -1,0 +1,2194 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta name="referrer" content="no-referrer" />
+
+    <script>
+      MathJax = {
+        chtml: {
+          displayAlign: "left",
+          displayIndent: "1em",
+        },
+      };
+    </script>
+
+    
+
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="site.js" defer></script>
+
+    <title>第03回 3I-プログラミング3</title>
+  </head>
+
+  <body>
+    <button
+      type="button"
+      class="openbtn"
+      aria-label="目次を開く"
+      aria-controls="g-nav"
+      aria-expanded="false"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="g-nav" aria-hidden="true">
+      <div id="g-nav-list">
+        <!-- ---------------------------------------- -->
+         <ul>
+<li><a href="#今回の授業概要と連絡" id="toc-今回の授業概要と連絡"><span
+class="toc-section-number">1</span> 今回の授業概要と連絡</a>
+<ul>
+<li><a href="#小テスト❷" id="toc-小テスト❷"><span class="toc-section-number">1.1</span>
+小テスト❷</a></li>
+<li><a href="#今回の達成目標" id="toc-今回の達成目標"><span class="toc-section-number">1.2</span>
+今回の達成目標</a></li>
+<li><a href="#ここまでの流れ" id="toc-ここまでの流れ"><span class="toc-section-number">1.3</span>
+ここまでの流れ</a></li>
+</ul></li>
+<li><a href="#前回の復習" id="toc-前回の復習"><span class="toc-section-number">2</span>
+前回の復習</a>
+<ul>
+<li><a href="#オブジェクトのプロパティを変更するための2つのアプローチ"
+id="toc-オブジェクトのプロパティを変更するための2つのアプローチ"><span
+class="toc-section-number">2.1</span>
+オブジェクトのプロパティを変更するための2つのアプローチ</a></li>
+<li><a href="#react-開発ではイミュータブルなオブジェクト更新を使用"
+id="toc-react-開発ではイミュータブルなオブジェクト更新を使用"><span
+class="toc-section-number">2.2</span> React
+開発では「イミュータブルなオブジェクト更新」を使用</a></li>
+</ul></li>
+<li><a href="#配列" id="toc-配列"><span class="toc-section-number">3</span> 配列</a>
+<ul>
+<li><a href="#導入" id="toc-導入"><span class="toc-section-number">3.1</span> 導入</a></li>
+<li><a href="#型と宣言" id="toc-型と宣言"><span class="toc-section-number">3.2</span>
+型と宣言</a></li>
+<li><a href="#参考-要素の追加と削除-ミュータブルな配列操作"
+id="toc-参考-要素の追加と削除-ミュータブルな配列操作"><span class="toc-section-number">3.3</span>
+参考: 要素の追加と削除 (ミュータブルな配列操作)</a></li>
+<li><a href="#要素の追加-イミュータブルな変更" id="toc-要素の追加-イミュータブルな変更"><span
+class="toc-section-number">3.4</span> 要素の追加 (イミュータブルな変更)</a></li>
+<li><a href="#map-による要素の更新" id="toc-map-による要素の更新"><span
+class="toc-section-number">3.5</span> map による要素の更新</a></li>
+<li><a href="#配列のインデックス番号の参照" id="toc-配列のインデックス番号の参照"><span
+class="toc-section-number">3.6</span> 配列のインデックス番号の参照</a></li>
+</ul></li>
+<li><a href="#オブジェクト配列の-map-操作" id="toc-オブジェクト配列の-map-操作"><span
+class="toc-section-number">4</span> オブジェクト配列の map 操作</a>
+<ul>
+<li><a href="#準備-型定義の変更" id="toc-準備-型定義の変更"><span
+class="toc-section-number">4.1</span> 準備 (型定義の変更)</a></li>
+<li><a href="#オブジェクト型の配列の初期化" id="toc-オブジェクト型の配列の初期化"><span
+class="toc-section-number">4.2</span> オブジェクト型の配列の初期化</a></li>
+<li><a href="#オブジェクト型の配列に対するmapの適用"
+id="toc-オブジェクト型の配列に対するmapの適用"><span class="toc-section-number">4.3</span>
+オブジェクト型の配列に対するmapの適用</a></li>
+<li><a href="#任意の配列要素のプロパティの変更" id="toc-任意の配列要素のプロパティの変更"><span
+class="toc-section-number">4.4</span> 任意の配列要素のプロパティの変更</a></li>
+<li><a href="#名前の更新を関数化してテストする" id="toc-名前の更新を関数化してテストする"><span
+class="toc-section-number">4.5</span> 名前の更新を関数化してテストする</a></li>
+</ul></li>
+<li><a href="#オブジェクト配列のfilter操作" id="toc-オブジェクト配列のfilter操作"><span
+class="toc-section-number">5</span> オブジェクト配列のfilter操作</a>
+<ul>
+<li><a href="#filterメソッドの基本的な使用法" id="toc-filterメソッドの基本的な使用法"><span
+class="toc-section-number">5.1</span> filterメソッドの基本的な使用法</a></li>
+<li><a href="#オブジェクト型の配列に対するfilterの適用"
+id="toc-オブジェクト型の配列に対するfilterの適用"><span class="toc-section-number">5.2</span>
+オブジェクト型の配列に対するfilterの適用</a></li>
+<li><a href="#期限切れの抽出を関数化してテストする"
+id="toc-期限切れの抽出を関数化してテストする"><span class="toc-section-number">5.3</span>
+期限切れの抽出を関数化してテストする</a></li>
+<li><a href="#第02回の関数を再利用する" id="toc-第02回の関数を再利用する"><span
+class="toc-section-number">5.4</span> 第02回の関数を再利用する</a></li>
+</ul></li>
+<li><a href="#オブジェクト配列のsort操作" id="toc-オブジェクト配列のsort操作"><span
+class="toc-section-number">6</span> オブジェクト配列のsort操作</a>
+<ul>
+<li><a href="#ソートキーを指定したオブジェクト配列の並び替え"
+id="toc-ソートキーを指定したオブジェクト配列の並び替え"><span class="toc-section-number">6.1</span>
+ソートキーを指定したオブジェクト配列の並び替え</a></li>
+<li><a href="#複数のソートキーを使ったオブジェクト配列の並び替え"
+id="toc-複数のソートキーを使ったオブジェクト配列の並び替え"><span
+class="toc-section-number">6.2</span> 複数のソートキーを使ったオブジェクト配列の並び替え</a></li>
+<li><a href="#並び替えを関数化してテストする" id="toc-並び替えを関数化してテストする"><span
+class="toc-section-number">6.3</span> 並び替えを関数化してテストする</a></li>
+</ul></li>
+<li><a href="#メソッドチェーン-mapfiltersortの組み合わせ"
+id="toc-メソッドチェーン-mapfiltersortの組み合わせ"><span class="toc-section-number">7</span>
+メソッドチェーン (map・filter・sortの組み合わせ)</a>
+<ul>
+<li><a href="#関数化" id="toc-関数化"><span class="toc-section-number">7.1</span> 関数化</a></li>
+</ul></li>
+<li><a href="#vscode関連のtips" id="toc-vscode関連のtips"><span class="toc-section-number">8</span>
+VSCode関連のTips</a>
+<ul>
+<li><a href="#vscodeの再読み込み" id="toc-vscodeの再読み込み"><span
+class="toc-section-number">8.1</span> VSCodeの再読み込み</a></li>
+<li><a href="#ファイルパス補完の拡張機能" id="toc-ファイルパス補完の拡張機能"><span
+class="toc-section-number">8.2</span> ファイルパス補完の拡張機能</a></li>
+<li><a href="#react開発の支援機能" id="toc-react開発の支援機能"><span
+class="toc-section-number">8.3</span> React開発の支援機能</a></li>
+<li><a href="#コードチェックツールの拡張機能" id="toc-コードチェックツールの拡張機能"><span
+class="toc-section-number">8.4</span> コードチェックツールの拡張機能</a></li>
+<li><a href="#tailwind用のインテリセンス" id="toc-tailwind用のインテリセンス"><span
+class="toc-section-number">8.5</span> Tailwind用のインテリセンス</a></li>
+</ul></li>
+<li><a href="#宿題" id="toc-宿題"><span class="toc-section-number">9</span> 宿題</a>
+<ul>
+<li><a href="#todo-アプリの操作につながる総合演習"
+id="toc-todo-アプリの操作につながる総合演習"><span class="toc-section-number">9.1</span> Todo
+アプリの操作につながる総合演習</a></li>
+</ul></li>
+</ul> 
+        <!-- ---------------------------------------- -->
+      </div>
+    </nav>
+
+    <header class="markdown-body">
+      <p>2026-3I プログラミング3 第03回 講義資料</p>
+      <p>2026年10月09日（金）1時限</p>
+    </header>
+
+    <main class="markdown-body">
+      <!-- ---------------------------------------- -->
+      <h1 data-number="1" id="今回の授業概要と連絡"><span class="header-section-number">1</span>
+      今回の授業概要と連絡</h1>
+      <p>本科目は「学修単位科目」です。1回の授業あたり「4時間相当の授業時間外学習」を前提としたボリュームと展開速度となっています。何かと忙しいとは思いますが、授業以外の時間も確保して取り組んでください。</p>
+      <h2 data-number="1.1" id="小テスト❷"><span class="header-section-number">1.1</span>
+      小テスト❷</h2>
+      <p>「小テスト❷」を実施します。筆記用具を準備しておいてください。</p>
+      <h2 data-number="1.2" id="今回の達成目標"><span class="header-section-number">1.2</span>
+      今回の達成目標</h2>
+      <ul>
+      <li><code>map</code>・<code>filter</code>・<code>sort</code> を使って「Todo
+      配列」の更新・抽出・並び替えができる。</li>
+      <li>元の配列や Todo
+      を変更せずに新しい配列を作り、元データと戻り値の参照の違いを説明できる。</li>
+      <li>配列の操作を関数にまとめ、用意した Vitest
+      のテストで、処理結果と元データが保たれていることを確認できる。</li>
+      </ul>
+      <h2 data-number="1.3" id="ここまでの流れ"><span class="header-section-number">1.3</span>
+      ここまでの流れ</h2>
+      <p>後期中間試験ぐらいまでの授業の流れ (予定)</p>
+      <ol type="1">
+      <li>モダンTypeScript基礎学習のための環境構築 <strong><em>済</em></strong></li>
+      <li>TypeScript基礎学習 <strong>← 前回と今回の授業のメイン</strong>
+      <ul>
+      <li><strong>React / Next.js 開発に関連する文法や機能だけを集中的に学びます</strong>。</li>
+      </ul></li>
+      <li>Reactを使ったTodoアプリのための環境構築 <strong>← 次回 (第03回講義)</strong></li>
+      <li>Todoアプリ開発（Reactによるフロントエンド開発）のチュートリアル
+      <ul>
+      <li><a href="https://takeshiwada1980.github.io/react-todo-app-demo/">こちら</a>
+      のような「✏️Todoアプリ」を実装・デプロイしていきます。</li>
+      </ul></li>
+      <li>Todoアプリのカスタマイズや作り込み 👉 <strong>後期前半の大課題</strong></li>
+      </ol>
+      <h1 data-number="2" id="前回の復習"><span class="header-section-number">2</span>
+      前回の復習</h1>
+      <p>第01回から使っている <strong>ts-playground</strong> を VSCode で開いてください。今回も
+      <strong>src</strong> フォルダのなかに TypeScript
+      のファイルを作成して、プロジェクトルートのターミナルから各種コマンドを実行します。</p>
+      <p>例えば <strong>npx tsx src/prac07.ts</strong> に対して、次のコマンドで動作確認
+      (型チェックと実行) できました。</p>
+      <pre><code>npm run typecheck
+npx tsx src/prac07.ts   </code></pre>
+      <ul>
+      <li><code>npm run typecheck</code> は、<strong>src</strong> フォルダのなかのすべての
+      <code>*.ts</code>
+      を対象に実行されます。演習途中の未完成なコードで型エラーが出ているときは、そのファイルを完成させてから先に進むようにしてください。</li>
+      </ul>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>前回の講義資料に従って <code>.vscode\tasks.json</code> を適切に記述できていれば、対象の
+      TypeScript ファイルのタブがアクティブな状態で <code>[Ctrl]+[Shift]+[B]</code>
+      の押下で動作確認することもできました。</p>
+      <p>また、<code>package.json</code>
+      を適切に記述できていれば、以下のコマンドでホットリロード（ファイルの変更を検知して、自動的に再実行する仕組み）を利用してプログラムを実行できました。</p>
+      <pre><code>npm run dev src/prac07.ts</code></pre>
+      </div>
+      <p>ここからは、前回講義の <a
+      href="lecture02.html#react-における状態-オブジェクト-の更新-概要">Reactにおける状態
+      (オブジェクト) の変更の検知 ～概要～</a> について、<u>ある程度、理解していることを前提</u>
+      とした解説になります。</p>
+      <ul>
+      <li><a href="lecture02.html#状態の更新に使う新しいオブジェクトの生成">スプレッド構文</a>
+      などの理解が怪しい場合は、再度、前回の講義資料を読み直してください。</li>
+      </ul>
+      <h2 data-number="2.1" id="オブジェクトのプロパティを変更するための2つのアプローチ"><span
+      class="header-section-number">2.1</span>
+      オブジェクトのプロパティを変更するための2つのアプローチ</h2>
+      <p>前回の講義では、ユーザー定義型の <strong><em>オブジェクトを更新</em></strong> する場合
+      (主として<strong>オブジェクトのプロパティ (属性) を変更</strong>する場合)
+      には、<strong>似ているようで大きく異なる2つの方法 (アプローチ)</strong>
+      が存在することを解説しました。</p>
+      <h3 data-number="2.1.1" id="その1-ミュータブルなオブジェクト更新"><span
+      class="header-section-number">2.1.1</span> その1: ミュータブルなオブジェクト更新</h3>
+      <p>1つめに示した<strong>ミュータブルなオブジェクト更新</strong>
+      (<strong>mutableApproach.ts</strong>) は、次のように <span
+      class="masked">オブジェクトの属性を直接的に変更する方法</span> でした。</p>
+      <div class="sourceCode" id="cb3" data-caption="mutableApproach.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="kw">const</span> todo<span class="op">:</span> Todo <span class="op">=</span> {</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  name<span class="op">:</span> <span class="st">&quot;Learn TypeScript&quot;</span><span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>  priority<span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>  isDone<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>  deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">45</span>)<span class="op">,</span></span>
+<span id="cb3-8"><a href="#cb3-8"></a>}<span class="op">;</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a></span>
+<span id="cb3-10"><a href="#cb3-10"></a><span class="co">// ▼▼▼ ここから</span></span>
+<span id="cb3-11"><a href="#cb3-11"></a><span class="kw">const</span> updatedTodo <span class="op">=</span> todo<span class="op">;</span> <span class="co">// ➊</span></span>
+<span id="cb3-12"><a href="#cb3-12"></a>updatedTodo<span class="op">.</span><span class="at">name</span> <span class="op">=</span> <span class="st">&quot;Learn COBOL&quot;</span><span class="op">;</span> <span class="co">// ➋</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>updatedTodo<span class="op">.</span><span class="at">priority</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// ➌</span></span>
+<span id="cb3-14"><a href="#cb3-14"></a><span class="co">// ▲▲▲ ここまでが着目してほしいところ</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a></span>
+<span id="cb3-16"><a href="#cb3-16"></a><span class="co">// updatedTodo と todo の「参照」は同じ (=同じオブジェクト)</span></span>
+<span id="cb3-17"><a href="#cb3-17"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;todo !== updatedTodo ---&gt; &quot;</span><span class="op">,</span> todo <span class="op">!==</span> updatedTodo)<span class="op">;</span></span>
+<span id="cb3-18"><a href="#cb3-18"></a></span>
+<span id="cb3-19"><a href="#cb3-19"></a><span class="co">// todo の内容を確認</span></span>
+<span id="cb3-20"><a href="#cb3-20"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;■ todo の内容&quot;</span>)<span class="op">;</span></span>
+<span id="cb3-21"><a href="#cb3-21"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(todo<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span>
+<span id="cb3-22"><a href="#cb3-22"></a></span>
+<span id="cb3-23"><a href="#cb3-23"></a><span class="co">// updatedTodoの内容を確認</span></span>
+<span id="cb3-24"><a href="#cb3-24"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;■ updatedTodoの内容&quot;</span>)<span class="op">;</span></span>
+<span id="cb3-25"><a href="#cb3-25"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(updatedTodo<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span></code></pre></div>
+      <p>実行結果は、次のようになります。</p>
+      <pre><code>todo !== updatedTodo ---&gt;  false
+■ todo の内容
+{
+  &quot;name&quot;: &quot;Learn COBOL&quot;,
+  &quot;priority&quot;: 1,
+  &quot;isDone&quot;: false,
+  &quot;deadline&quot;: &quot;2026-10-11T00:45:00.000Z&quot;
+}
+■ updatedTodoの内容
+{
+  &quot;name&quot;: &quot;Learn COBOL&quot;,
+  &quot;priority&quot;: 1,
+  &quot;isDone&quot;: false,
+  &quot;deadline&quot;: &quot;2026-10-11T00:45:00.000Z&quot;
+}</code></pre>
+      <p><code>mutableApproach.ts</code> の <strong>第11行目 (➊)</strong> の
+      <code>updatedTodo = todo</code> は、( <code>todo</code>
+      オブジェクトそのものを複製するわけではなく) <code>todo</code> の「<strong>参照</strong>
+      (C言語で言うところの <span class="masked">ポインタ</span> のようなもの)」の複製を、変数
+      <code>updatedTodo</code> に格納するための操作となります。</p>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>オブジェクトの実体は、変数のなかに直接格納されているわけではありません。変数には「そのオブジェクトがどこにあるのか」を示す情報
+      (＝<span class="masked">実体のありかを示す情報</span>) が入っています。</p>
+      <p>この情報のことを「<strong>参照</strong>」と呼びます。C言語で言えば「ポインタ」のようなものですが、ポインタとは異なり、アドレスを使った計算（ポインタ演算）はできません。</p>
+      </div>
+      <figure>
+      <img src="figs/03/obj_01.png" alt="参照の代入とミュータブルな更新" />
+      <figcaption aria-hidden="true">参照の代入とミュータブルな更新</figcaption>
+      </figure>
+      <p>そのため、<strong>第12行目 (➋)</strong> と <strong>第13行目 (➌)</strong> は
+      <code>updatedTodo</code> を対象に操作しているように見えますが、実際には <code>todo</code> と
+      <code>updatedTodo</code>
+      が共通して参照しているオブジェクトのプロパティを変更していることになります。そのため、実行結果を確認すると、オリジナルの
+      <code>todo</code> の <code>name</code> も <span class="masked">Learn COBOL</span>
+      に変更されています。</p>
+      <p>このようにオリジナルのデータ (<code>todo</code>)
+      のプロパティを上書きすることから、このようなアプローチは「<strong>ミュータブルなオブジェクト更新</strong>」や「<strong>状態直接操作</strong>」や「<strong>破壊的更新</strong>」などと呼ばれます。</p>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p>厳密には、<code>deadline</code> に Date
+      オブジェクトそのものが格納されているわけではありません。</p>
+      <p><code>deadline</code> には <code>new Date(...)</code> によって別に作成された Date
+      オブジェクトへの「<strong>参照</strong>」が格納されています。そのため、オブジェクト同士の参照の関係まで表すと、次の図のようになります。</p>
+      <figure>
+      <img src="figs/03/obj_01-a.png" alt="参照の代入とミュータブルな更新" />
+      <figcaption aria-hidden="true">参照の代入とミュータブルな更新</figcaption>
+      </figure>
+      </div>
+      <p>この授業のなかでは、このようなオブジェクトの操作を <span
+      class="masked">「ミュータブルなオブジェクト更新」</span>
+      のように表現していきます。<strong>ミュータブル (Mutable)</strong>
+      とは「可変な」「変更可能な」という意味になります。</p>
+      <h3 data-number="2.1.2" id="その2-イミュータブルなオブジェクト更新"><span
+      class="header-section-number">2.1.2</span> その2: イミュータブルなオブジェクト更新</h3>
+      <p>前回講義では、上記で示したミュータブルなオブジェクト更新とは別に、以下に示す
+      <strong>immutableApproach.ts</strong> のように「<strong>スプレッド構文</strong>」を用い <a
+      href="lecture02.html#状態の更新に使う新しいオブジェクトの生成">プロパティを更新した新たなオブジェクトを生成する方法</a>
+      についても解説しました。</p>
+      <div class="sourceCode" id="cb5" data-caption="immutableApproach.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb5-1"><a href="#cb5-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="kw">const</span> todo<span class="op">:</span> Todo <span class="op">=</span> {</span>
+<span id="cb5-4"><a href="#cb5-4"></a>  name<span class="op">:</span> <span class="st">&quot;Learn TypeScript&quot;</span><span class="op">,</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a>  priority<span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a>  isDone<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a>  deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">45</span>)<span class="op">,</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>}<span class="op">;</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">// ▼▼▼ ここから</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="kw">const</span> updatedTodo <span class="op">=</span> {</span>
+<span id="cb5-12"><a href="#cb5-12"></a>  <span class="op">...</span>todo<span class="op">,</span> <span class="co">// スプレッド構文</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a>  name<span class="op">:</span> <span class="st">&quot;Learn COBOL&quot;</span><span class="op">,</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a>  priority<span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a>}<span class="op">;</span> <span class="co">// ➊～➌</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">// ▲▲▲ ここまでが着目してほしいところ</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="co">// updatedTodo と todo の「参照」は違う (=異なるオブジェクト)</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;todo !== updatedTodo ---&gt; &quot;</span><span class="op">,</span> todo <span class="op">!==</span> updatedTodo)<span class="op">;</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="co">// todo の内容を確認</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;■ todo の内容&quot;</span>)<span class="op">;</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(todo<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span>
+<span id="cb5-24"><a href="#cb5-24"></a></span>
+<span id="cb5-25"><a href="#cb5-25"></a><span class="co">// updatedTodo の内容を確認</span></span>
+<span id="cb5-26"><a href="#cb5-26"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;■ updatedTodoの内容&quot;</span>)<span class="op">;</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(updatedTodo<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span></code></pre></div>
+      <p>実行結果は、次のようになります。</p>
+      <pre><code>todo !== updatedTodo ---&gt;  true
+■ todo の内容
+{
+  &quot;name&quot;: &quot;Learn TypeScript&quot;,
+  &quot;priority&quot;: 3,
+  &quot;isDone&quot;: false,
+  &quot;deadline&quot;: &quot;2026-10-11T00:45:00.000Z&quot;
+}
+■ updatedTodoの内容
+{
+  &quot;name&quot;: &quot;Learn COBOL&quot;,
+  &quot;priority&quot;: 1,
+  &quot;isDone&quot;: false,
+  &quot;deadline&quot;: &quot;2026-10-11T00:45:00.000Z&quot;
+}</code></pre>
+      <p>この方法は、以下の図に示すように、オリジナルのデータ (<code>todo</code>)
+      は変化させずに、別途、<strong>プロパティを変更した新しいオブジェクト</strong>
+      (<code>updatedTodo</code>) を作成するアプローチであり、<span
+      class="masked">「イミュータブルなオブジェクト更新」</span> のように呼ばれます。</p>
+      <ul>
+      <li>新しいオブジェクトが生成された証拠に、<strong>第19行目</strong> の出力は <span
+      class="masked"><code>true</code></span> となります。</li>
+      </ul>
+      <figure>
+      <img src="figs/03/obj_02.png" alt="スプレッド構文によるイミュータブルな更新" />
+      <figcaption aria-hidden="true">スプレッド構文によるイミュータブルな更新</figcaption>
+      </figure>
+      <div class="balloon char-01 face-01 tone-pink">
+      <p>スプレッド構文によるコピーは「<strong>浅いコピー</strong> (Shallow Copy)
+      」となります。つまり、外側のオブジェクトは新しくなりますが、<code>deadline</code> の <u>Date
+      オブジェクトは同じものを参照していることに注意</u> して下さい。</p>
+      </div>
+      <p>先ほどの <strong>ミュータブル (Mutable)</strong> に対して、<strong>イミュータブル
+      (Immutable)</strong>
+      とは「変更できない」「不変」という意味になります。余談ですが、ミュータブル / イミュータブル
+      などの考え方は「<strong>Haskell</strong>」や「<strong>Scala</strong>」などの <a
+      href="https://ja.wikipedia.org/wiki/関数型プログラミング">関数型プログラミング</a>
+      において重要な概念となってきます。</p>
+      <p><strong>immutableApproach.ts</strong> の <strong>第11行目</strong> から
+      <strong>第15行目</strong> の処理は、以下のコードと<strong>等価</strong>となります。</p>
+      <div class="sourceCode" id="cb7" data-caption="immutableApproach.ts と等価な処理"
+      data-startFrom="11"><pre class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript" style="counter-reset: source-line 10;"><span id="cb7-11"><a href="#cb7-11"></a><span class="kw">const</span> updatedTodo <span class="op">=</span> {</span>
+<span id="cb7-12"><a href="#cb7-12"></a>  <span class="op">...</span>todo<span class="op">,</span></span>
+<span id="cb7-13"><a href="#cb7-13"></a>}<span class="op">;</span> <span class="co">// ➊</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>updatedTodo<span class="op">.</span><span class="at">name</span> <span class="op">=</span> <span class="st">&quot;Learn COBOL&quot;</span><span class="op">;</span> <span class="co">// ➋</span></span>
+<span id="cb7-15"><a href="#cb7-15"></a>updatedTodo<span class="op">.</span><span class="at">priority</span> <span class="op">=</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// ➌</span></span></code></pre></div>
+      <div class="sourceCode" id="cb8" data-caption="immutableApproach.ts (オリジナル・再掲)"
+      data-startFrom="11"><pre class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript" style="counter-reset: source-line 10;"><span id="cb8-11"><a href="#cb8-11"></a><span class="kw">const</span> updatedTodo <span class="op">=</span> {</span>
+<span id="cb8-12"><a href="#cb8-12"></a>  <span class="op">...</span>todo<span class="op">,</span> <span class="co">// スプレッド構文</span></span>
+<span id="cb8-13"><a href="#cb8-13"></a>  name<span class="op">:</span> <span class="st">&quot;Learn COBOL&quot;</span><span class="op">,</span></span>
+<span id="cb8-14"><a href="#cb8-14"></a>  priority<span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb8-15"><a href="#cb8-15"></a>}<span class="op">;</span> <span class="co">// ➊～➌</span></span></code></pre></div>
+      <p>なお、スプレッド構文は、Python における <a
+      href="https://takeshiwada1980.github.io/Programming1-2025/lecture12.html#リストの扱いに関する補足②-アンパック">アンパック</a>
+      のようなものとイメージしてください。それでも、イメージがつかみづらいときは「生成AI」を利用してみてください。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>JavaScriptにおける「スプレッド構文」のイメージがつかめません。特に「イミュータブルなオブジェクト更新」のために、スプレッド構文を使うという解説を聞いたのですがしっくりきません。具体的なコードを示して分かりやすく解説してください。</p>
+      </blockquote>
+      <h3 data-number="2.1.3" id="定着確認"><span class="header-section-number">2.1.3</span>
+      定着確認</h3>
+      <ul>
+      <li>次のプログラムを実行したとき、<code>a.name</code> の値を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>"復習"</code></span></li>
+      <li><strong>解説</strong>: <span class="masked">a と b
+      が同じオブジェクトを参照しているため。</span><br />
+      </li>
+      </ul>
+      <div class="sourceCode" id="cb9" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb9-1"><a href="#cb9-1"></a><span class="kw">const</span> a <span class="op">=</span> { name<span class="op">:</span> <span class="st">&quot;予習&quot;</span> }<span class="op">;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a><span class="kw">const</span> b <span class="op">=</span> a<span class="op">;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>b<span class="op">.</span><span class="at">name</span> <span class="op">=</span> <span class="st">&quot;復習&quot;</span><span class="op">;</span></span></code></pre></div></li>
+      <li>次のプログラムを実行したとき、<code>a === b</code> の結果を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>false</code></span>　　</li>
+      </ul>
+      <div class="sourceCode" id="cb10" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb10-1"><a href="#cb10-1"></a><span class="kw">const</span> a <span class="op">=</span> { name<span class="op">:</span> <span class="st">&quot;予習&quot;</span><span class="op">,</span> priority<span class="op">:</span> <span class="dv">1</span> }<span class="op">;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a><span class="kw">const</span> b <span class="op">=</span> { <span class="op">...</span>a<span class="op">,</span> name<span class="op">:</span> <span class="st">&quot;復習&quot;</span> }<span class="op">;</span></span></code></pre></div></li>
+      <li>次のプログラムを実行したとき、<code>a.name</code> と <code>b.name</code> を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>"予習"</code> と
+      <code>"復習"</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb11" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb11-1"><a href="#cb11-1"></a><span class="kw">const</span> a <span class="op">=</span> { name<span class="op">:</span> <span class="st">&quot;予習&quot;</span><span class="op">,</span> priority<span class="op">:</span> <span class="dv">1</span> }<span class="op">;</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a><span class="kw">const</span> b <span class="op">=</span> { <span class="op">...</span>a<span class="op">,</span> name<span class="op">:</span> <span class="st">&quot;復習&quot;</span> }<span class="op">;</span></span></code></pre></div></li>
+      <li><code>const todo = { name: "予習", priority: 3, isDone: false };</code>
+      と定義されている。元の todo を変更せず、name を <code>"復習"</code>、priority を
+      <code>1</code> にした新しいオブジェクト <strong>updatedTodo</strong>
+      を、スプレッド構文により生成する文を記述せよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked"><code>const updatedTodo = { ...todo, name: "復習", priority: 1 };</code></span></li>
+      </ul></li>
+      <li>次のプログラムを実行したとき、最終的に <code>b.name</code> に格納される値を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>"予習"</code></span></li>
+      <li><strong>解説</strong>: <span
+      class="masked">後に書いたスプレッド構文のプロパティで上書きされる。型チェックでも重複するプロパティが指摘されるので、確認後は適切な順序に戻す。</span></li>
+      </ul>
+      <div class="sourceCode" id="cb12" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb12-1"><a href="#cb12-1"></a><span class="kw">const</span> a <span class="op">=</span> { name<span class="op">:</span> <span class="st">&quot;予習&quot;</span> }<span class="op">;</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="kw">const</span> b <span class="op">=</span> { name<span class="op">:</span> <span class="st">&quot;復習&quot;</span><span class="op">,</span> <span class="op">...</span>a }<span class="op">;</span></span></code></pre></div></li>
+      <li>次のプログラムを実行したとき、<code>a.deadline === b.deadline</code> の評価結果を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>true</code></span></li>
+      <li><strong>解説</strong>: <span class="masked">外側のオブジェクトは新しくなるが、Date
+      の参照は共有される。</span></li>
+      </ul>
+      <div class="sourceCode" id="cb13" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb13-1"><a href="#cb13-1"></a><span class="kw">const</span> a <span class="op">=</span> { deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">9</span>) }<span class="op">;</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="kw">const</span> b <span class="op">=</span> { <span class="op">...</span>a }<span class="op">;</span></span></code></pre></div></li>
+      <li>次のプログラムを実行した後の <code>a.deadline.getDate()</code>
+      の値を答えよ。なお、<code>setDate(20)</code> は、その Date オブジェクトが表す日時の「日」を 20
+      日に変更するメソッドである。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>20</code></span></li>
+      <li><strong>解説</strong>: <span class="masked">a.deadline と b.deadline は同じ Date
+      オブジェクトを参照するため、b.deadline を通して Date を変更すると、a.deadline
+      から読んだ日も変わる。</span></li>
+      </ul>
+      <div class="sourceCode" id="cb14" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">const</span> a <span class="op">=</span> { deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">11</span>) }<span class="op">;</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="kw">const</span> b <span class="op">=</span> { <span class="op">...</span>a }<span class="op">;</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a>b<span class="op">.</span><span class="at">deadline</span><span class="op">.</span><span class="fu">setDate</span>(<span class="dv">20</span>)<span class="op">;</span></span></code></pre></div></li>
+      <li>次のプログラムを実行したとき、<code>a.deadline === b.deadline</code>
+      の結果と、<code>a.deadline.getDate()</code> の値を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>false</code> と
+      <code>11</code></span></li>
+      <li><strong>解説</strong>: <span class="masked">b.deadline に新しい Date
+      の参照を設定しているので、元の a.deadline が参照する Date は変わらない。</span></li>
+      </ul>
+      <div class="sourceCode" id="cb15" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb15-1"><a href="#cb15-1"></a><span class="kw">const</span> a <span class="op">=</span> { deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">11</span>) }<span class="op">;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="kw">const</span> b <span class="op">=</span> { <span class="op">...</span>a<span class="op">,</span> deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">30</span>) }<span class="op">;</span></span></code></pre></div></li>
+      <li>イミュータブルなオブジェクト更新で新しく作ったオブジェクトは、その後のプロパティ変更が禁止される。この説明は「適切である」か「不適切である」か答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">不適切。ここでのイミュータブルな更新は、元のオブジェクトを変更せず、変更後の内容を持つ新しいオブジェクトを作る操作を指す。新しいオブジェクトのプロパティ変更を禁止する仕組みではない。</span></li>
+      </ul></li>
+      </ul>
+      <h2 data-number="2.2" id="react-開発ではイミュータブルなオブジェクト更新を使用"><span
+      class="header-section-number">2.2</span> React
+      開発では「イミュータブルなオブジェクト更新」を使用</h2>
+      <p><a href="lecture02.html#react-における状態-オブジェクト-の更新-概要">前回の講義</a>
+      で解説したように、React
+      を用いたフロントエンド開発において「<strong>画面表示に使うオブジェクトのプロパティを変更するとき</strong>」は、原則として
+      <span class="masked">スプレッド構文を利用したイミュータブルなオブジェクト更新</span>
+      を使用するように意識してください。</p>
+      <p>なぜならば、<strong>React</strong> では「<strong>オブジェクトの参照が (以前と)
+      変化しているかどうか</strong>」を、<span
+      class="masked">データが更新されたことを判断するための手がかり</span>
+      にしているためです。元のオブジェクトを直接書き換えても「参照」は変わらないため、「<u>内部的にデータが書き換わっていても、ユーザが見ているウェブ画面上にはそれが反映されていない</u>」という非常に困った状態になってしまいます。</p>
+      <p>このようなことから、Reactを使った開発では
+      <strong><em>イミュータブルなオブジェクト更新を大原則</em></strong>
+      とする必要があります。以下は「<strong>Reactにおける画面更新の基本的な流れと仕組み</strong>」になります。</p>
+      <ol type="1">
+      <li>イミュータブルな操作によって新しいオブジェクトを生成する。</li>
+      <li>新しく生成されたオブジェクトは、元のオブジェクトとは
+      <strong>異なる参照</strong>（C言語でいえばポインタ、Pythonで言えばオブジェクトID）を持つ。</li>
+      <li>新しく生成されたオブジェクトを、更新用の関数を使って React の <strong>状態
+      (state)</strong> にセットする (主に <a
+      href="https://www.google.com/search?q=useStateとは">useState フック</a>
+      を利用)。これによって、React にデータの変更を伝える。</li>
+      <li>React
+      は、<strong>元のオブジェクトとは参照が異なること</strong>を手がかりに、変更後のデータを使って画面の表示内容を作り直す
+      (再レンダリングする)。
+      <ul>
+      <li><code>useState</code> や、子コンポーネントにデータを渡す <a
+      href="https://www.google.com/search?q=React+propsとは">Props</a> (プロップス)
+      については次回以降に詳しく学びます。</li>
+      </ul></li>
+      </ol>
+      <p>なお、今回講義では「<strong>配列</strong>」を学びますが、配列についても「ミュータブルな更新」と「イミュータブルな更新」が存在します。こちらも同様に「<strong>イミュータブルな配列更新</strong>」をする必要があります
+      (React開発の前提で)。</p>
+      <h3 data-number="2.2.1" id="演習①"><span class="header-section-number">2.2.1</span> 演習①</h3>
+      <p>イミュータブルなオブジェクト更新によって、期限を
+      <code>new Date(2026, 9, 30)</code>、完了フラグを <code>true</code> に変更したオブジェクトを
+      <code>updatedTodo</code>
+      に得るようにプログラムを追記してください。また、実際に結果を確認してください。</p>
+      <ul>
+      <li>ここではスプレッド構文を利用することを期待しています。</li>
+      </ul>
+      <div class="sourceCode" id="cb16" data-caption="演習 (1) prac2-01.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a><span class="im">import</span> { printTodo } <span class="im">from</span> <span class="st">&quot;./utils/printTodo.js&quot;</span><span class="op">;</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="im">import</span> assert <span class="im">from</span> <span class="st">&quot;assert&quot;</span><span class="op">;</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a><span class="kw">const</span> todo<span class="op">:</span> Todo <span class="op">=</span> {</span>
+<span id="cb16-6"><a href="#cb16-6"></a>  name<span class="op">:</span> <span class="st">&quot;Learn TypeScript&quot;</span><span class="op">,</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>  priority<span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>  isDone<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>  deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">45</span>)<span class="op">,</span></span>
+<span id="cb16-10"><a href="#cb16-10"></a>}<span class="op">;</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a></span>
+<span id="cb16-12"><a href="#cb16-12"></a><span class="co">// ここを編集</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a><span class="co">// const updatedTodo =</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a></span>
+<span id="cb16-15"><a href="#cb16-15"></a><span class="co">// todo と updatedTodo の参照が「異なること」を念のために確認</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a>assert<span class="op">.</span><span class="fu">notEqual</span>(todo<span class="op">,</span> updatedTodo)<span class="op">;</span></span>
+<span id="cb16-17"><a href="#cb16-17"></a></span>
+<span id="cb16-18"><a href="#cb16-18"></a><span class="co">// updatedTodo の内容を確認</span></span>
+<span id="cb16-19"><a href="#cb16-19"></a><span class="fu">printTodo</span>(updatedTodo)<span class="op">;</span></span></code></pre></div>
+      <ul>
+      <li><p><strong>第16行目</strong>の <code>assert</code> は、PG1の <a
+      href="https://takeshiwada1980.github.io/Programming1-2025/lecture11.html#アサート文">第11回講義</a>
+      で学んだPythonの「アサート」と同じです。</p>
+      <ul>
+      <li><code>npm install</code> (<code>npm i</code>)
+      コマンドでライブラリを追加しなくても標準で利用可能です。</li>
+      <li><code>assert.notEqual(todo, updatedTodo)</code> は、<strong>todo</strong> と
+      <strong>updatedTodo</strong> の参照が異なるときは何もせず、参照が同じときには例外 (Error)
+      を発生させます。</li>
+      </ul></li>
+      <li><p><strong>utils/printTodo.ts</strong> で定義している <code>printTodo</code>
+      関数について、<strong>完了フラグ (</strong><code>isDone</code><strong>)
+      の内容が表示されるようにアップデート</strong> してください。</p></li>
+      <li><p>解答例は <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/prac2-01.ts">こちら<i class="fa-solid fa-person-chalkboard"></i></a></p></li>
+      </ul>
+      <h3 data-number="2.2.2" id="定着確認-1"><span class="header-section-number">2.2.2</span>
+      定着確認</h3>
+      <ul>
+      <li>React
+      で画面表示に使うオブジェクトのプロパティを変更するとき、元のオブジェクトを直接書き換えず、変更後の内容を持つ新しいオブジェクトを作る。この更新方法の名称を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">イミュータブルなオブジェクト更新</span></li>
+      </ul></li>
+      <li>React で state
+      のオブジェクトを更新するとき、元のオブジェクトを直接書き換える方法では、画面に変更が反映されないことがある。その理由を「参照」という語を使って説明せよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">プロパティを直接書き換えてもオブジェクトの参照は変わらず、React
+      がデータの変更を判断するための手がかりにならないため。</span></li>
+      </ul></li>
+      <li>次の todo に対して、元のオブジェクトを変更せず、期限を
+      <code>new Date(2026, 9, 30)</code>、完了フラグを <code>true</code> にした新しいオブジェクト
+      <strong>updatedTodo</strong> を、スプレッド構文により生成する文を記述せよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked"><code>const updatedTodo = { ...todo, deadline: new Date(2026, 9, 30), isDone: true };</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb17" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb17-1"><a href="#cb17-1"></a><span class="kw">const</span> todo <span class="op">=</span> {</span>
+<span id="cb17-2"><a href="#cb17-2"></a>  name<span class="op">:</span> <span class="st">&quot;Learn TypeScript&quot;</span><span class="op">,</span></span>
+<span id="cb17-3"><a href="#cb17-3"></a>  priority<span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb17-4"><a href="#cb17-4"></a>  isDone<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb17-5"><a href="#cb17-5"></a>  deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">45</span>)<span class="op">,</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a>}<span class="op">;</span></span></code></pre></div></li>
+      <li>React
+      では、画面表示に使うオブジェクトだけでなく「配列」を更新するときにも、イミュータブルな更新を基本とする。この説明は「適切である」か「不適切である」か答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">適切である。オブジェクトと同様に、配列についてもイミュータブルな更新を基本とする。</span></li>
+      </ul></li>
+      <li>次のプログラムを実行したとき、<code>assert.notEqual</code>
+      で例外が「発生する」か「発生しない」か答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">例外が発生する。todo と updatedTodo
+      が同じオブジェクトを参照しており、参照が異なるという確認を満たさないため。</span></li>
+      </ul>
+      <div class="sourceCode" id="cb18" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">import</span> assert <span class="im">from</span> <span class="st">&quot;assert&quot;</span><span class="op">;</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a><span class="kw">const</span> todo <span class="op">=</span> { name<span class="op">:</span> <span class="st">&quot;Learn TypeScript&quot;</span><span class="op">,</span> isDone<span class="op">:</span> <span class="kw">false</span> }<span class="op">;</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a><span class="kw">const</span> updatedTodo <span class="op">=</span> todo<span class="op">;</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>assert<span class="op">.</span><span class="fu">notEqual</span>(todo<span class="op">,</span> updatedTodo)<span class="op">;</span></span></code></pre></div></li>
+      <li>次のプログラムを実行したとき、<code>assert.notEqual</code>
+      で例外が「発生する」か「発生しない」か答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">例外は発生しない。プロパティの値は同じでも、スプレッド構文によって新しいオブジェクトが作られ、todo
+      と updatedTodo の参照が異なるため。</span></li>
+      </ul>
+      <div class="sourceCode" id="cb19" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb19-1"><a href="#cb19-1"></a><span class="im">import</span> assert <span class="im">from</span> <span class="st">&quot;assert&quot;</span><span class="op">;</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a><span class="kw">const</span> todo <span class="op">=</span> { name<span class="op">:</span> <span class="st">&quot;Learn TypeScript&quot;</span><span class="op">,</span> isDone<span class="op">:</span> <span class="kw">false</span> }<span class="op">;</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="kw">const</span> updatedTodo <span class="op">=</span> { <span class="op">...</span>todo }<span class="op">;</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>assert<span class="op">.</span><span class="fu">notEqual</span>(todo<span class="op">,</span> updatedTodo)<span class="op">;</span></span></code></pre></div></li>
+      </ul>
+      <h1 data-number="3" id="配列"><span class="header-section-number">3</span> 配列</h1>
+      <p>ここからは <strong>配列 (Array)</strong> と、その操作 (特に
+      <strong>イミュータブルな配列更新</strong>) について学びます。</p>
+      <h2 data-number="3.1" id="導入"><span class="header-section-number">3.1</span> 導入</h2>
+      <p><a href="lecture02.html#オブジェクトの型定義">前回講義</a>で定義した <code>Todo</code>
+      型のような「<strong>ユーザ定義型の配列</strong>」は、Reactにおけるコアなデータとなります。また、その配列に対する各種操作
+      (<code>map</code>、<code>filter</code>、<code>sort</code> など)
+      は、Reactによる画面描画と密接に関係してきます。</p>
+      <p>例えば、<a href="https://takeshiwada1980.github.io/react-todo-app-demo/">Todoアプリ</a>
+      に表示される次のような <strong>コンポーネント (＝ウェブ画面を構成するパーツ)</strong> は…</p>
+      <figure>
+      <img src="figs/03/app_01.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>以下のような <strong>Todo 型の配列</strong> ( <code>Todo[]</code> )
+      に基づいて描画されます。これは、後ほど作成するTodoリストの「初期データ」を先に示したものです
+      (ファイルの作成については、後の「準備」のセクションで指示します)。いまは「複数の Todo
+      が配列に入る」という形に着目してください。</p>
+      <div class="sourceCode" id="cb20" data-caption="src/pipeline/initTodos.ts (後ほど作成)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb20-1"><a href="#cb20-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="im">export</span> <span class="kw">const</span> initTodos<span class="op">:</span> Todo[] <span class="op">=</span> [</span>
+<span id="cb20-4"><a href="#cb20-4"></a>  {</span>
+<span id="cb20-5"><a href="#cb20-5"></a>    id<span class="op">:</span> <span class="st">&quot;a001&quot;</span><span class="op">,</span></span>
+<span id="cb20-6"><a href="#cb20-6"></a>    name<span class="op">:</span> <span class="st">&quot;React予習（YouTube）&quot;</span><span class="op">,</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a>    isDone<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a>    priority<span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a>    deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">24</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a>  }<span class="op">,</span></span>
+<span id="cb20-11"><a href="#cb20-11"></a>  {</span>
+<span id="cb20-12"><a href="#cb20-12"></a>    id<span class="op">:</span> <span class="st">&quot;a002&quot;</span><span class="op">,</span></span>
+<span id="cb20-13"><a href="#cb20-13"></a>    name<span class="op">:</span> <span class="st">&quot;TypeScriptの復習&quot;</span><span class="op">,</span></span>
+<span id="cb20-14"><a href="#cb20-14"></a>    isDone<span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb20-15"><a href="#cb20-15"></a>    priority<span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb20-16"><a href="#cb20-16"></a>    deadline<span class="op">:</span> <span class="dt">null</span><span class="op">,</span></span>
+<span id="cb20-17"><a href="#cb20-17"></a>  }<span class="op">,</span></span>
+<span id="cb20-18"><a href="#cb20-18"></a>  {</span>
+<span id="cb20-19"><a href="#cb20-19"></a>    id<span class="op">:</span> <span class="st">&quot;a003&quot;</span><span class="op">,</span></span>
+<span id="cb20-20"><a href="#cb20-20"></a>    name<span class="op">:</span> <span class="st">&quot;基礎物理学3の宿題&quot;</span><span class="op">,</span></span>
+<span id="cb20-21"><a href="#cb20-21"></a>    isDone<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb20-22"><a href="#cb20-22"></a>    priority<span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb20-23"><a href="#cb20-23"></a>    deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">23</span><span class="op">,</span> <span class="dv">59</span>)<span class="op">,</span></span>
+<span id="cb20-24"><a href="#cb20-24"></a>  }<span class="op">,</span></span>
+<span id="cb20-25"><a href="#cb20-25"></a>  {</span>
+<span id="cb20-26"><a href="#cb20-26"></a>    id<span class="op">:</span> <span class="st">&quot;a004&quot;</span><span class="op">,</span></span>
+<span id="cb20-27"><a href="#cb20-27"></a>    name<span class="op">:</span> <span class="st">&quot;知識科学概論の宿題&quot;</span><span class="op">,</span></span>
+<span id="cb20-28"><a href="#cb20-28"></a>    isDone<span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb20-29"><a href="#cb20-29"></a>    priority<span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb20-30"><a href="#cb20-30"></a>    deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">27</span>)<span class="op">,</span></span>
+<span id="cb20-31"><a href="#cb20-31"></a>  }<span class="op">,</span></span>
+<span id="cb20-32"><a href="#cb20-32"></a>]<span class="op">;</span></span></code></pre></div>
+      <p>今回の <code>id</code> は、Todo
+      を識別するための固定の文字列となります。次回のアプリ開発では <strong>UUID</strong> (v4)
+      を使って id を生成しますが、今回は生成方法に関係なく <code>id</code>
+      で対象を指定する操作を学びます。「期限なし」は <code>null</code> で表現するものとします。</p>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>Todoアプリでは、ウェブ画面上でTodoを追加・削除したり、名前や優先度などを変更したりします。こうした操作を画面に反映するには、変更後のデータを格納した新しい配列を生成し、それを「state更新関数」というものに渡す必要があります。</p>
+      <p>ここで重要なのは、<strong><u>元のデータを直接書き換えずに、変更内容を反映した新しい配列を生成する</u></strong>
+      という点です。</p>
+      <p>ここからは、この処理を正しく実装できるように学んでいきます。</p>
+      </div>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>UUID v4 とは何ですか？</p>
+      </blockquote>
+      <blockquote>
+      <p>React における「state更新関数」とは何ですか？</p>
+      </blockquote>
+      <h2 data-number="3.2" id="型と宣言"><span class="header-section-number">3.2</span>
+      型と宣言</h2>
+      <p>まずは、シンプルに数値型や文字列型などの <a
+      href="https://developer.mozilla.org/ja/docs/Glossary/Primitive">プリミティブデータ</a>の「配列」から学んでいきます。TypeScript
+      では、次のように C言語ライクに 配列 (Array) を宣言・初期化します。</p>
+      <div class="sourceCode" id="cb21" data-caption="prac2-02.ts (配列の宣言と初期化)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb21-1"><a href="#cb21-1"></a><span class="co">// 配列の初期化 (型明示)</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="kw">const</span> numArr1<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">4649</span><span class="op">,</span> <span class="dv">3150</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a><span class="kw">const</span> strArr1<span class="op">:</span> <span class="dt">string</span>[] <span class="op">=</span> [<span class="st">&quot;M&quot;</span><span class="op">,</span> <span class="st">&quot;D&quot;</span><span class="op">,</span> <span class="st">&quot;E&quot;</span><span class="op">,</span> <span class="st">&quot;知能情報&quot;</span>]<span class="op">;</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a></span>
+<span id="cb21-5"><a href="#cb21-5"></a><span class="co">// 配列の初期化 (型推論)</span></span>
+<span id="cb21-6"><a href="#cb21-6"></a><span class="kw">const</span> numArr2 <span class="op">=</span> [<span class="dv">4649</span><span class="op">,</span> <span class="dv">3150</span><span class="op">,</span> <span class="fl">0.5</span><span class="op">,</span> <span class="op">-</span><span class="dv">1</span>]<span class="op">;</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a><span class="kw">const</span> strArr2 <span class="op">=</span> [<span class="st">&quot;M&quot;</span><span class="op">,</span> <span class="st">&quot;D&quot;</span><span class="op">,</span> <span class="st">&quot;E&quot;</span><span class="op">,</span> <span class="st">&quot;知能情報&quot;</span>]<span class="op">;</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a></span>
+<span id="cb21-9"><a href="#cb21-9"></a><span class="co">// 空配列の初期化 (型注釈を明示する)</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a><span class="kw">const</span> numArr3<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb21-11"><a href="#cb21-11"></a><span class="kw">const</span> strArr3<span class="op">:</span> <span class="dt">string</span>[] <span class="op">=</span> []<span class="op">;</span></span></code></pre></div>
+      <p>配列の型を明示する場合は、宣言時に <span class="masked"><code>number[]</code></span>
+      あるいは <code>Array&lt;number&gt;</code> のように「<strong>型 (Type)</strong>」を指示します。
+      どちらも同じ意味になりますが、一般には <code>xxx[]</code> の形式が使われます。</p>
+      <p>TypeScriptの配列は、<strong>基本的に同じ型の値</strong>
+      を要素に持つような使い方をします。ただし、次のように型を <code>(number | string)[]</code>
+      とすれば、<span class="masked">数値型または文字列型を要素に持つ配列</span> も可能です。</p>
+      <div class="sourceCode" id="cb22" data-caption="数値型または文字列型を要素に持つ配列"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">// 「数値型」または「文字列型」を要素に持つ配列</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a><span class="kw">const</span> arr1<span class="op">:</span> (<span class="dt">number</span> <span class="op">|</span> <span class="dt">string</span>)[] <span class="op">=</span> [<span class="st">&quot;one&quot;</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span></code></pre></div>
+      <div class="balloon char-01 face-01 tone-pink">
+      <p>要素数が 0
+      個の「空配列」では、初期値から入れたい要素の型が分からないため、<code>const numArr3: number[] = [];</code>
+      のように型注釈を明示しておきます。</p>
+      </div>
+      <h2 data-number="3.3" id="参考-要素の追加と削除-ミュータブルな配列操作"><span
+      class="header-section-number">3.3</span> 参考: 要素の追加と削除 (ミュータブルな配列操作)</h2>
+      <p>元の配列を直接変更するような要素の「追加」と「削除」を行なう例を示します。このプログラムでは
+      <code>push</code>、<code>unshift</code>、<code>splice</code>、<code>pop</code>
+      などを使っています。React 開発では、このようなミュータブルな配列操作
+      (元の配列を直接変更するような操作) は、基本的には行いません。</p>
+      <div class="sourceCode" id="cb23"
+      data-caption="prac2-03.ts (Reactでは基本的に使用しないミュータブルな配列操作)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb23-1"><a href="#cb23-1"></a><span class="kw">const</span> numArr<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">13</span>]<span class="op">;</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;初期状態 =&gt; &quot;</span> <span class="op">+</span> numArr)<span class="op">;</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a></span>
+<span id="cb23-4"><a href="#cb23-4"></a>numArr<span class="op">.</span><span class="fu">push</span>(<span class="dv">14</span>)<span class="op">;</span> <span class="co">// 末尾に要素を追加</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>numArr<span class="op">.</span><span class="fu">unshift</span>(<span class="dv">9</span>)<span class="op">;</span> <span class="co">// 先頭に要素を追加</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;先頭と末尾に要素を追加した後 =&gt; &quot;</span> <span class="op">+</span> numArr)<span class="op">;</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a></span>
+<span id="cb23-8"><a href="#cb23-8"></a><span class="co">// 2番目に要素(10.5)を挿入 ゼロオリジンに注意 </span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>numArr<span class="op">.</span><span class="fu">splice</span>(<span class="dv">2</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="fl">10.5</span>)<span class="op">;</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;2番目の位置に要素を挿入した後 =&gt; &quot;</span> <span class="op">+</span> numArr)<span class="op">;</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a></span>
+<span id="cb23-12"><a href="#cb23-12"></a>numArr<span class="op">.</span><span class="fu">pop</span>()<span class="op">;</span> <span class="co">// 末尾の要素を削除</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;末尾の要素を削除した後 =&gt; &quot;</span> <span class="op">+</span> numArr)<span class="op">;</span></span>
+<span id="cb23-14"><a href="#cb23-14"></a></span>
+<span id="cb23-15"><a href="#cb23-15"></a><span class="co">// 4番目の要素を削除</span></span>
+<span id="cb23-16"><a href="#cb23-16"></a>numArr<span class="op">.</span><span class="fu">splice</span>(<span class="dv">4</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb23-17"><a href="#cb23-17"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;4番目の位置の要素を削除した後 =&gt; &quot;</span> <span class="op">+</span> numArr)<span class="op">;</span></span></code></pre></div>
+      <p>実行結果は、次のようになります。</p>
+      <pre><code>初期状態 =&gt; 10,11,12,13
+先頭と末尾に要素を追加した後 =&gt; 9,10,11,12,13,14
+2番目の位置に要素を挿入した後 =&gt; 9,10,10.5,11,12,13,14
+末尾の要素を削除した後 =&gt; 9,10,10.5,11,12,13
+4番目の位置の要素を削除した後 =&gt; 9,10,10.5,11,13</code></pre>
+      <div class="balloon char-01 face-04 tone-blue">
+      <p>今後、これらのミュータブルな配列操作を本授業の範囲で使用する場面は (おそらく)
+      ありません。</p>
+      </div>
+      <h2 data-number="3.4" id="要素の追加-イミュータブルな変更"><span
+      class="header-section-number">3.4</span> 要素の追加 (イミュータブルな変更)</h2>
+      <p>React の state
+      を更新するときは、元の配列に直接変更を加えず、<strong>変更後の内容を持つ新しい配列を作成すること</strong>が基本となります。</p>
+      <p>配列に対する <span class="masked">要素の追加</span>
+      に関しては、次のように「<strong>スプレッド構文</strong>」を利用してイミュータブルな操作
+      (=元の配列には変更を加えずに、「変更を適用した新しい配列」を生成すること) が可能です。</p>
+      <div class="sourceCode" id="cb25" data-caption="prac2-04.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb25-1"><a href="#cb25-1"></a><span class="kw">const</span> numArr<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span><span class="op">,</span> <span class="dv">13</span>]<span class="op">;</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;初期状態 =&gt; &quot;</span> <span class="op">+</span> numArr)<span class="op">;</span></span>
+<span id="cb25-3"><a href="#cb25-3"></a></span>
+<span id="cb25-4"><a href="#cb25-4"></a><span class="co">// 末尾に要素を追加</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a><span class="kw">const</span> addedToEnd <span class="op">=</span> [<span class="op">...</span>numArr<span class="op">,</span> <span class="dv">14</span>]<span class="op">;</span> <span class="co">// スプレッド構文</span></span>
+<span id="cb25-6"><a href="#cb25-6"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;末尾に要素を追加 =&gt; &quot;</span> <span class="op">+</span> addedToEnd)<span class="op">;</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a></span>
+<span id="cb25-8"><a href="#cb25-8"></a><span class="co">// 先頭に要素を追加</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a><span class="kw">const</span> addedToStart <span class="op">=</span> [<span class="dv">9</span><span class="op">,</span> <span class="op">...</span>numArr]<span class="op">;</span> <span class="co">// スプレッド構文</span></span>
+<span id="cb25-10"><a href="#cb25-10"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;先頭に要素を追加 =&gt; &quot;</span> <span class="op">+</span> addedToStart)<span class="op">;</span></span>
+<span id="cb25-11"><a href="#cb25-11"></a></span>
+<span id="cb25-12"><a href="#cb25-12"></a><span class="co">// n番目の位置に要素 (10.5) を挿入</span></span>
+<span id="cb25-13"><a href="#cb25-13"></a><span class="kw">const</span> n <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb25-14"><a href="#cb25-14"></a><span class="kw">const</span> insertedAtN <span class="op">=</span> [<span class="op">...</span>numArr<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n)<span class="op">,</span> <span class="fl">10.5</span><span class="op">,</span> <span class="op">...</span>numArr<span class="op">.</span><span class="fu">slice</span>(n)]<span class="op">;</span></span>
+<span id="cb25-15"><a href="#cb25-15"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`</span><span class="sc">${</span>n<span class="sc">}</span><span class="vs">番目の位置に要素を挿入 =&gt; `</span> <span class="op">+</span> insertedAtN)<span class="op">;</span></span></code></pre></div>
+      <p><strong>第14行目</strong>
+      では「配列の途中位置に要素を追加する例」を示していますが、実際の開発では、<span
+      class="masked">末尾か先頭に要素を追加したうえで <code>sort()</code>
+      メソッドを使って並び替えすること</span>
+      が多いです。よって、特に覚えるべき処理は、<strong>スプレッド構文を利用して「先頭」または「末尾」に要素を追加する処理</strong>
+      になります。</p>
+      <p>配列要素の「削除」については、後ほど解説する <code>filter()</code>
+      メソッドを利用します。</p>
+      <div class="note type-tips">
+      <p><strong><code>splice</code> と <code>slice</code> の違い</strong></p>
+      <p>配列操作の <code>splice</code> メソッド と <code>slice</code>
+      メソッドは機能と使用方法が異なるので注意してください。興味がある人は、生成AIを使用して調べてみてください。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>JavaScriptの配列の <code>splice</code> メソッド と <code>slice</code>
+      メソッドの違いをミュータブル、イミュータブルの観点から説明してください。</p>
+      </blockquote>
+      </div>
+      <h3 data-number="3.4.1" id="定着確認-2"><span class="header-section-number">3.4.1</span>
+      定着確認</h3>
+      <ul>
+      <li>数値を格納する空配列 nums を const で宣言する。<code>const nums: ??? = [];</code> の ???
+      に入る型を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>number[]</code> または
+      <code>Array&lt;number&gt;</code></span></li>
+      </ul></li>
+      <li><code>const nums = [1, 2, 3];</code> と宣言したとき、nums に推論される型を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>number[]</code></span></li>
+      </ul></li>
+      <li><code>const arr: (number | string)[] = ["one", 2];</code>
+      の要素として許可される値の種類を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">数値または文字列。</span></li>
+      </ul></li>
+      <li>次のプログラムを実行した後の nums と added を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>[10, 11]</code> と
+      <code>[10, 11, 12]</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb26" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb26-1"><a href="#cb26-1"></a><span class="kw">const</span> nums <span class="op">=</span> [<span class="dv">10</span><span class="op">,</span> <span class="dv">11</span>]<span class="op">;</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="kw">const</span> added <span class="op">=</span> [<span class="op">...</span>nums<span class="op">,</span> <span class="dv">12</span>]<span class="op">;</span></span></code></pre></div></li>
+      <li><code>const nums = [10, 11];</code> の先頭に 9 を加え、元配列を変更しない新しい配列 added
+      を作る文を記述せよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked"><code>const added = [9, ...nums];</code></span></li>
+      </ul></li>
+      <li>次のプログラムを実行した後の nums を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>[10, 11, 12]</code></span></li>
+      <li><strong>解説</strong>: <span class="masked">alias は新しい配列ではなく、nums
+      と同じ配列を参照する。</span></li>
+      </ul>
+      <div class="sourceCode" id="cb27" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb27-1"><a href="#cb27-1"></a><span class="kw">const</span> nums <span class="op">=</span> [<span class="dv">10</span><span class="op">,</span> <span class="dv">11</span>]<span class="op">;</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a><span class="kw">const</span> alias <span class="op">=</span> nums<span class="op">;</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>alias<span class="op">.</span><span class="fu">push</span>(<span class="dv">12</span>)<span class="op">;</span></span></code></pre></div></li>
+      <li>次のプログラムで、<code>nums.slice(0, 2)</code> の戻り値と、実行後の nums の内容を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>[10, 11]</code> と
+      <code>[10, 11, 12]</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb28" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb28-1"><a href="#cb28-1"></a><span class="kw">const</span> nums <span class="op">=</span> [<span class="dv">10</span><span class="op">,</span> <span class="dv">11</span><span class="op">,</span> <span class="dv">12</span>]<span class="op">;</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>nums<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> <span class="dv">2</span>)<span class="op">;</span></span></code></pre></div></li>
+      </ul>
+      <h2 data-number="3.5" id="map-による要素の更新"><span class="header-section-number">3.5</span>
+      map による要素の更新</h2>
+      <p>モダンTypeScriptにおいて <strong>イミュータブルに配列要素を更新</strong>
+      するためには、一般に <span class="masked">「アロー関数」と「map() メソッド」</span>
+      を組み合わせて使用します。これは、プログラミング1 (Python) で学んだ「<a
+      href="https://takeshiwada1980.github.io/Programming1-2025/lecture19.html#ラムダ式">ラムダ式</a>
+      と <a
+      href="https://takeshiwada1980.github.io/Programming1-2025/lecture19.html#mapとラムダ式の組み合わせ">map関数</a>
+      の<strong>組み合わせ</strong>」に相当するものです。</p>
+      <p>例えば、「学年」を表す数値型の配列 <code>grades</code> から、HTML用に整形した文字列の配列
+      <code>gradeListItems</code> を得るためのイミュータブルな操作は、次のように記述できます。</p>
+      <div class="sourceCode" id="cb29" data-caption="prac2-05.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb29-1"><a href="#cb29-1"></a><span class="kw">const</span> grades<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span> <span class="co">// 学年</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="co">// ▼▼▼ ここから</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a><span class="kw">const</span> gradeListItems <span class="op">=</span> grades<span class="op">.</span><span class="fu">map</span>((grade<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">string</span> <span class="kw">=&gt;</span> {</span>
+<span id="cb29-5"><a href="#cb29-5"></a>  <span class="cf">return</span> <span class="vs">`&lt;li&gt;</span><span class="sc">${</span>grade<span class="sc">}</span><span class="vs">年&lt;/li&gt;`</span><span class="op">;</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a>})<span class="op">;</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a><span class="co">// ▲▲▲ ここまでが着目してほしいところ</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a></span>
+<span id="cb29-9"><a href="#cb29-9"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(grades)<span class="op">;</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(gradeListItems)<span class="op">;</span></span></code></pre></div>
+      <p>実行結果は、次のようになります。配列の要素が <code>1</code> から
+      <code>'&lt;li&gt;1年&lt;/li&gt;'</code> のように変換されていること (map
+      されていること、射影されていること) が確認できると思います
+      (特定の要素だけに変換を適用する方法については後述します)。</p>
+      <pre><code>[ 1, 2, 3, 4, 5 ]
+[
+  &#39;&lt;li&gt;1年&lt;/li&gt;&#39;,
+  &#39;&lt;li&gt;2年&lt;/li&gt;&#39;,
+  &#39;&lt;li&gt;3年&lt;/li&gt;&#39;,
+  &#39;&lt;li&gt;4年&lt;/li&gt;&#39;,
+  &#39;&lt;li&gt;5年&lt;/li&gt;&#39;
+]</code></pre>
+      <p>処理の本質は <strong>第04行目</strong> から <strong>第06行目</strong>
+      になりますが初見で読み解くことは <strong>かなり難しい</strong>
+      と思います。これを読み解き、理解するために「<strong>レガシーな手続き型スタイルの配列操作</strong>」から、上記のような「<strong>モダンな宣言型スタイルの配列操作</strong>」に書き換える例を以下に示します。</p>
+      <h3 data-number="3.5.1" id="第1形態-レガシーな手続き型スタイル"><span
+      class="header-section-number">3.5.1</span> 第1形態 : レガシーな手続き型スタイル</h3>
+      <p>まず、従来型の書き方をすれば、以下のようになります。皆さんは前期に「C言語」を学んできているので、十分に読み解くことができると思います。</p>
+      <div class="sourceCode" id="cb31" data-caption="prac2-06.ts (第1形態)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb31-1"><a href="#cb31-1"></a><span class="kw">const</span> grades<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb31-2"><a href="#cb31-2"></a><span class="kw">const</span> gradeListItems<span class="op">:</span> <span class="dt">string</span>[] <span class="op">=</span> []<span class="op">;</span> <span class="co">// 要素が空の配列</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a><span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> grades<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {</span>
+<span id="cb31-4"><a href="#cb31-4"></a>  <span class="kw">const</span> listItem <span class="op">=</span> <span class="vs">`&lt;li&gt;</span><span class="sc">${</span>grades[i]<span class="sc">}</span><span class="vs">年&lt;/li&gt;`</span><span class="op">;</span></span>
+<span id="cb31-5"><a href="#cb31-5"></a>  gradeListItems<span class="op">.</span><span class="fu">push</span>(listItem)<span class="op">;</span> <span class="co">// 要素を追加</span></span>
+<span id="cb31-6"><a href="#cb31-6"></a>}</span>
+<span id="cb31-7"><a href="#cb31-7"></a></span>
+<span id="cb31-8"><a href="#cb31-8"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(grades)<span class="op">;</span></span>
+<span id="cb31-9"><a href="#cb31-9"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(gradeListItems)<span class="op">;</span></span></code></pre></div>
+      <p>ここでは簡略化のため <code>console.log(...)</code>
+      を省略しています。以降、<strong>prac2-06.ts</strong>
+      の内容を解説に従って第1形態から第8形態まで置き換え、実行して結果を確認してください。</p>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p>配列は、<code>length</code>
+      プロパティを持ち、それを通して配列の要素数を得ることができます。例えば、<code>const grades = [1, 2, 3, 4];</code>
+      の <code>grades.length</code> は「4」となります。</p>
+      </div>
+      <h3 data-number="3.5.2" id="第2形態-forof-に書き換え"><span
+      class="header-section-number">3.5.2</span> 第2形態 : for…of に書き換え</h3>
+      <p><code>for</code>
+      の<strong>ループ変数</strong>を「配列のインデックス<code>i</code>」から「配列の要素そのもの<code>grade</code>」に変えました。<strong>第03行目</strong>
+      と <strong>第04行目</strong>
+      を書き換えていますが、実行結果は先ほどと同じく期待する出力を得ることができます。</p>
+      <div class="sourceCode" id="cb32"
+      data-caption="prac2-06.ts (第2形態) ※console.log(...) は省略、以下同様"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb32-1"><a href="#cb32-1"></a><span class="kw">const</span> grades<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a><span class="kw">const</span> gradeListItems<span class="op">:</span> <span class="dt">string</span>[] <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a><span class="cf">for</span> (<span class="kw">const</span> grade <span class="kw">of</span> grades) { <span class="co">// ■■ ここを書き換えた ■■ </span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>  <span class="kw">const</span> listItem <span class="op">=</span> <span class="vs">`&lt;li&gt;</span><span class="sc">${</span>grade<span class="sc">}</span><span class="vs">年&lt;/li&gt;`</span><span class="op">;</span> <span class="co">// ■■ ここを書き換えた ■■ </span></span>
+<span id="cb32-5"><a href="#cb32-5"></a>  gradeListItems<span class="op">.</span><span class="fu">push</span>(listItem)<span class="op">;</span></span>
+<span id="cb32-6"><a href="#cb32-6"></a>}</span></code></pre></div>
+      <p>なお、<code>for (const grade of grades)</code> によって、ループ毎に変数 <code>grade</code>
+      のなかには <code>1</code>、<code>2</code>、<code>3</code>…
+      という値が格納されます。もし、<strong>第01行目</strong> で
+      <code>const grades = [9, 1, 5]</code> としていれば、ループ変数である <code>grade</code>
+      には、ループ毎に <code>9</code>、<code>1</code>、<code>5</code>
+      という値が格納されてfor文の内部の処理が実行されます。</p>
+      <p>Python で書けば <code>for grade in grades:</code> ですね ( <a
+      href="https://takeshiwada1980.github.io/Programming1-2025/lecture08.html#pythonicなリストとfor文の組み合わせ">参照</a>
+      )。</p>
+      <h3 data-number="3.5.3" id="第3形態-変換処理の関数化"><span
+      class="header-section-number">3.5.3</span> 第3形態 : 変換処理の関数化</h3>
+      <p>数値型の値 (例えば <code>3</code> ) を、整形された文字列型の値 (例えば
+      <code>"&lt;li&gt;3年&lt;/li&gt;"</code>) に変換するための処理を <code>func</code>
+      として分離しました。また、<strong>第08行目</strong> で、それを <code>func(grade)</code>
+      のように呼び出しています。</p>
+      <div class="sourceCode" id="cb33" data-caption="prac2-06.ts (第3形態)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb33-1"><a href="#cb33-1"></a><span class="kw">function</span> <span class="fu">func</span>(grade<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">string</span> {</span>
+<span id="cb33-2"><a href="#cb33-2"></a>  <span class="cf">return</span> <span class="vs">`&lt;li&gt;</span><span class="sc">${</span>grade<span class="sc">}</span><span class="vs">年&lt;/li&gt;`</span><span class="op">;</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a>}</span>
+<span id="cb33-4"><a href="#cb33-4"></a></span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="kw">const</span> grades<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a><span class="kw">const</span> gradeListItems<span class="op">:</span> <span class="dt">string</span>[] <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb33-7"><a href="#cb33-7"></a><span class="cf">for</span> (<span class="kw">const</span> grade <span class="kw">of</span> grades) {</span>
+<span id="cb33-8"><a href="#cb33-8"></a>  gradeListItems<span class="op">.</span><span class="fu">push</span>(<span class="fu">func</span>(grade))<span class="op">;</span></span>
+<span id="cb33-9"><a href="#cb33-9"></a>}</span></code></pre></div>
+      <h3 data-number="3.5.4" id="第4形態-アロー関数化"><span
+      class="header-section-number">3.5.4</span> 第4形態 : アロー関数化</h3>
+      <p>「function関数」を「アロー関数」に書き換えました。<strong>第01行目</strong> と
+      <strong>第03行目</strong> を書き換えました。</p>
+      <div class="sourceCode" id="cb34" data-caption="prac2-06.ts  (第4形態)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb34-1"><a href="#cb34-1"></a><span class="kw">const</span> func <span class="op">=</span> (grade<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">string</span> <span class="kw">=&gt;</span> { <span class="co">// ■■ アロー関数化 ■■ </span></span>
+<span id="cb34-2"><a href="#cb34-2"></a>  <span class="cf">return</span> <span class="vs">`&lt;li&gt;</span><span class="sc">${</span>grade<span class="sc">}</span><span class="vs">年&lt;/li&gt;`</span><span class="op">;</span></span>
+<span id="cb34-3"><a href="#cb34-3"></a>}<span class="op">;</span></span>
+<span id="cb34-4"><a href="#cb34-4"></a></span>
+<span id="cb34-5"><a href="#cb34-5"></a><span class="kw">const</span> grades<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb34-6"><a href="#cb34-6"></a><span class="kw">const</span> gradeListItems<span class="op">:</span> <span class="dt">string</span>[] <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb34-7"><a href="#cb34-7"></a><span class="cf">for</span> (<span class="kw">const</span> grade <span class="kw">of</span> grades) {</span>
+<span id="cb34-8"><a href="#cb34-8"></a>  gradeListItems<span class="op">.</span><span class="fu">push</span>(<span class="fu">func</span>(grade))<span class="op">;</span></span>
+<span id="cb34-9"><a href="#cb34-9"></a>}</span></code></pre></div>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>TypeScript における「アロー関数」とは何ですか。以下の変換が、私には意味不明です。</p>
+      <p>function func(grade: number): string {<br />
+      return <code>&lt;li&gt;${grade}年&lt;/li&gt;</code>;<br />
+      }</p>
+      <p>const func = (grade: number): string =&gt; {<br />
+      return <code>&lt;li&gt;${grade}年&lt;/li&gt;</code>;<br />
+      };</p>
+      </blockquote>
+      <h3 data-number="3.5.5" id="第5形態-mapメソッドの利用"><span
+      class="header-section-number">3.5.5</span> 第5形態 : mapメソッドの利用</h3>
+      <p><code>for</code> を使って実行していた処理を、<code>map</code>
+      を使った処理に書き換えました。第4形態の <strong>第06行目</strong> から
+      <strong>第09行目</strong> までの処理が、ここでは <strong>第06行目</strong>
+      の「1文だけ」でスッキリと記述できています。</p>
+      <div class="sourceCode" id="cb35" data-caption="prac2-06.ts (第5形態)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb35-1"><a href="#cb35-1"></a><span class="kw">const</span> func <span class="op">=</span> (grade<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">string</span> <span class="kw">=&gt;</span> {</span>
+<span id="cb35-2"><a href="#cb35-2"></a>  <span class="cf">return</span> <span class="vs">`&lt;li&gt;</span><span class="sc">${</span>grade<span class="sc">}</span><span class="vs">年&lt;/li&gt;`</span><span class="op">;</span></span>
+<span id="cb35-3"><a href="#cb35-3"></a>}<span class="op">;</span></span>
+<span id="cb35-4"><a href="#cb35-4"></a></span>
+<span id="cb35-5"><a href="#cb35-5"></a><span class="kw">const</span> grades<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb35-6"><a href="#cb35-6"></a><span class="kw">const</span> gradeListItems <span class="op">=</span> grades<span class="op">.</span><span class="fu">map</span>(func)<span class="op">;</span> <span class="co">// ■■ 注目 ■■ </span></span></code></pre></div>
+      <p><code>map()</code> は <strong>元の配列を変更せず</strong>、配列の各要素に <code>func</code>
+      を適用した「新しい配列」を作成して戻り値とします。これは、React開発で重要となってくる特性なので覚えておいてください。</p>
+      <h3 data-number="3.5.6" id="第6形態-mapの引数に直接的にアロー関数を記述"><span
+      class="header-section-number">3.5.6</span> 第6形態 : mapの引数に直接的にアロー関数を記述</h3>
+      <p>第5形態では、<span class="masked">変数 <code>func</code></span>
+      を経由して、mapメソッドの引数に「整形の処理」を与えていました。それを、ここではアロー関数の形式で
+      <strong>直接的</strong> に与えるように書き換えました。</p>
+      <div class="sourceCode" id="cb36" data-caption="prac2-06.ts (第6形態)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb36-1"><a href="#cb36-1"></a><span class="kw">const</span> grades<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a><span class="kw">const</span> gradeListItems <span class="op">=</span> grades<span class="op">.</span><span class="fu">map</span>((grade<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">string</span> <span class="kw">=&gt;</span> {</span>
+<span id="cb36-3"><a href="#cb36-3"></a>  <span class="cf">return</span> <span class="vs">`&lt;li&gt;</span><span class="sc">${</span>grade<span class="sc">}</span><span class="vs">年&lt;/li&gt;`</span><span class="op">;</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a>})<span class="op">;</span></span></code></pre></div>
+      <p>ここでは、整形処理をする関数に名前を与える必要がないこともうれしいですね（適切な名前を考えるのは面倒ですから…）。</p>
+      <p>ここまでで、最初に示したモダンスタイルな配列処理に変換が完了しました。</p>
+      <h3 data-number="3.5.7" id="第7形態-省略形"><span class="header-section-number">3.5.7</span>
+      第7形態 (省略形)</h3>
+      <p>アロー関数のなかの処理が <code>return ...;</code>
+      の1文だけで構成できる場合は、以下のように「<strong>波括弧</strong>」と「<code>return</code>」を省略して書くこともできます。</p>
+      <div class="sourceCode" id="cb37" data-caption="prac2-06.ts (第7形態)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb37-1"><a href="#cb37-1"></a><span class="kw">const</span> grades<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a><span class="kw">const</span> gradeListItems <span class="op">=</span> grades<span class="op">.</span><span class="fu">map</span>((grade<span class="op">:</span> <span class="dt">number</span>)<span class="op">:</span> <span class="dt">string</span> <span class="kw">=&gt;</span> <span class="vs">`&lt;li&gt;</span><span class="sc">${</span>grade<span class="sc">}</span><span class="vs">年&lt;/li&gt;`</span></span>
+<span id="cb37-3"><a href="#cb37-3"></a>)<span class="op">;</span></span></code></pre></div>
+      <h3 data-number="3.5.8" id="第8形態-型推論を利用"><span
+      class="header-section-number">3.5.8</span> 第8形態 (型推論を利用)</h3>
+      <p>型推論ができる場合は、型を省略することができます。</p>
+      <div class="sourceCode" id="cb38" data-caption="prac2-06.ts (第8形態)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb38-1"><a href="#cb38-1"></a><span class="kw">const</span> grades<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a><span class="kw">const</span> gradeListItems <span class="op">=</span> grades<span class="op">.</span><span class="fu">map</span>((grade) <span class="kw">=&gt;</span> <span class="vs">`&lt;li&gt;</span><span class="sc">${</span>grade<span class="sc">}</span><span class="vs">年&lt;/li&gt;`</span>)<span class="op">;</span></span></code></pre></div>
+      <p>最終的には、次のように記述できます。</p>
+      <div class="sourceCode" id="cb39" data-caption="prac2-06.ts (第8形態・全体)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb39-1"><a href="#cb39-1"></a><span class="kw">const</span> grades<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a><span class="kw">const</span> gradeListItems <span class="op">=</span> grades<span class="op">.</span><span class="fu">map</span>((grade) <span class="kw">=&gt;</span> <span class="vs">`&lt;li&gt;</span><span class="sc">${</span>grade<span class="sc">}</span><span class="vs">年&lt;/li&gt;`</span>)<span class="op">;</span></span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(grades)<span class="op">;</span></span>
+<span id="cb39-4"><a href="#cb39-4"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(gradeListItems)<span class="op">;</span></span></code></pre></div>
+      <p>実行結果は、次のようになります。</p>
+      <pre><code>[ 1, 2, 3, 4, 5 ]
+[
+  &#39;&lt;li&gt;1年&lt;/li&gt;&#39;,
+  &#39;&lt;li&gt;2年&lt;/li&gt;&#39;,
+  &#39;&lt;li&gt;3年&lt;/li&gt;&#39;,
+  &#39;&lt;li&gt;4年&lt;/li&gt;&#39;,
+  &#39;&lt;li&gt;5年&lt;/li&gt;&#39;
+]</code></pre>
+      <div class="balloon char-01 face-08 tone-blue">
+      <p>Reactを使った開発では、第8形態のような記述を多用するので、慣れておいてください。</p>
+      </div>
+      <h3 data-number="3.5.9" id="演習②"><span class="header-section-number">3.5.9</span> 演習②</h3>
+      <p><strong>期待する結果</strong>が得られるように、次のプログラムを完成させてください。ここでは優先度
+      (優先順位)「1」が「★★★」で、優先度 (優先順位)「3」が「★」になる点に注意してください。</p>
+      <ul>
+      <li><code>map</code> を使用して実装することを意図しています。</li>
+      </ul>
+      <div class="sourceCode" id="cb41" data-caption="演習 (2) prac2-07.ts "><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb41-1"><a href="#cb41-1"></a><span class="kw">const</span> priorities <span class="op">=</span> [<span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">1</span>]<span class="op">;</span> <span class="co">// 1〜3の値が格納された配列</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a></span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="co">// ここの処理を完成させる</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a><span class="co">// const formattedPriorities = </span></span>
+<span id="cb41-5"><a href="#cb41-5"></a></span>
+<span id="cb41-6"><a href="#cb41-6"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(priorities)<span class="op">;</span></span>
+<span id="cb41-7"><a href="#cb41-7"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(formattedPriorities)<span class="op">;</span></span></code></pre></div>
+      <p><strong>期待する結果</strong></p>
+      <pre><code>[ 3, 1, 2, 1 ]
+[ &#39;★&#39;, &#39;★★★&#39;, &#39;★★&#39;, &#39;★★★&#39; ]</code></pre>
+      <ul>
+      <li>解答例は <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/prac2-07.ts">こちら<i class="fa-solid fa-person-chalkboard"></i></a></li>
+      </ul>
+      <p>演習②は、優先度を表示用の文字列へ変換する練習です。元の数値配列を保ち、要素数と順序が変わっていないことも確認してください。</p>
+      <h2 data-number="3.6" id="配列のインデックス番号の参照"><span
+      class="header-section-number">3.6</span> 配列のインデックス番号の参照</h2>
+      <p>次のプログラムの <strong>第02行目</strong> のように <code>map</code>
+      に渡すアロー関数に第2引数を設定すると、その変数には <span
+      class="masked">ゼロオリジンのインデックス番号</span>
+      が格納され、map内の処理で参照することができます。</p>
+      <div class="sourceCode" id="cb43" data-caption="prac2-08.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb43-1"><a href="#cb43-1"></a><span class="kw">const</span> arr <span class="op">=</span> [<span class="st">&quot;Python&quot;</span><span class="op">,</span> <span class="st">&quot;C言語&quot;</span><span class="op">,</span> <span class="st">&quot;TypeScript&quot;</span><span class="op">,</span> <span class="st">&quot;C#&quot;</span>]<span class="op">;</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a><span class="kw">const</span> arr2 <span class="op">=</span> arr<span class="op">.</span><span class="fu">map</span>((value<span class="op">,</span> index) <span class="kw">=&gt;</span> { <span class="co">// index の設定</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a>  <span class="cf">return</span> <span class="vs">`</span><span class="sc">${</span>index <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="vs">: </span><span class="sc">${</span>value<span class="sc">}</span><span class="vs">`</span><span class="op">;</span> <span class="co">// index の参照 (読み取り)</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a>})<span class="op">;</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(arr2)<span class="op">;</span></span></code></pre></div>
+      <p>実行結果は以下のようになります。</p>
+      <pre><code>[ &#39;1: Python&#39;, &#39;2: C言語&#39;, &#39;3: TypeScript&#39;, &#39;4: C#&#39; ]</code></pre>
+      <h3 data-number="3.6.1" id="定着確認-3"><span class="header-section-number">3.6.1</span>
+      定着確認</h3>
+      <ul>
+      <li>次のプログラムを実行した後の <code>result</code> と <code>grades</code> の値を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>[2, 4, 6]</code> と
+      <code>[1, 3, 5]</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb45" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb45-1"><a href="#cb45-1"></a><span class="kw">const</span> grades <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">5</span>]<span class="op">;</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a><span class="kw">const</span> result <span class="op">=</span> grades<span class="op">.</span><span class="fu">map</span>((grade) <span class="kw">=&gt;</span> grade <span class="op">+</span> <span class="dv">1</span>)<span class="op">;</span></span></code></pre></div></li>
+      <li>次のプログラムを実行した後の <code>result</code> の値を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>["1:A", "2:B"]</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb46" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb46-1"><a href="#cb46-1"></a><span class="kw">const</span> names <span class="op">=</span> [<span class="st">&quot;A&quot;</span><span class="op">,</span> <span class="st">&quot;B&quot;</span>]<span class="op">;</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a><span class="kw">const</span> result <span class="op">=</span> names<span class="op">.</span><span class="fu">map</span>((name<span class="op">,</span> index) <span class="kw">=&gt;</span> <span class="vs">`</span><span class="sc">${</span>index <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="vs">:</span><span class="sc">${</span>name<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span></code></pre></div></li>
+      <li>次のプログラムで、<code>map</code> の戻り値を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked"><code>[undefined, undefined]</code></span></li>
+      <li><strong>解説</strong>: <span class="masked">波括弧がある関数本体では return
+      が必要。この関数は値を返していない。</span></li>
+      </ul>
+      <div class="sourceCode" id="cb47" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb47-1"><a href="#cb47-1"></a><span class="kw">const</span> nums <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">;</span></span>
+<span id="cb47-2"><a href="#cb47-2"></a>nums<span class="op">.</span><span class="fu">map</span>((num) <span class="kw">=&gt;</span> {</span>
+<span id="cb47-3"><a href="#cb47-3"></a>  num <span class="op">*</span> <span class="dv">2</span><span class="op">;</span></span>
+<span id="cb47-4"><a href="#cb47-4"></a>})<span class="op">;</span></span></code></pre></div></li>
+      <li>次のプログラムで、<code>map</code> の戻り値を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>[2, 4]</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb48" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb48-1"><a href="#cb48-1"></a><span class="kw">const</span> nums <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">;</span></span>
+<span id="cb48-2"><a href="#cb48-2"></a>nums<span class="op">.</span><span class="fu">map</span>((num) <span class="kw">=&gt;</span> num <span class="op">*</span> <span class="dv">2</span>)<span class="op">;</span></span></code></pre></div></li>
+      <li>次のプログラムで、<code>map</code> の戻り値を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>[]</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb49" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb49-1"><a href="#cb49-1"></a><span class="kw">const</span> nums<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> []<span class="op">;</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a>nums<span class="op">.</span><span class="fu">map</span>((num) <span class="kw">=&gt;</span> num <span class="op">*</span> <span class="dv">2</span>)<span class="op">;</span></span></code></pre></div></li>
+      <li><code>const priorities = [3, 1, 2];</code> から <code>["★", "★★★", "★★"]</code>
+      を得る、map を使った文を記述せよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked"><code>const result = priorities.map((priority) =&gt; "★".repeat(4 - priority));</code></span></li>
+      </ul></li>
+      <li>配列の map に渡す関数の「第1引数」と「第2引数」にはそれぞれ何が渡されるか答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">配列の要素と、ゼロオリジンのインデックス番号。</span></li>
+      </ul></li>
+      </ul>
+      <h1 data-number="4" id="オブジェクト配列の-map-操作"><span
+      class="header-section-number">4</span> オブジェクト配列の map 操作</h1>
+      <p>次にオブジェクトを要素とする配列の「map操作」について考えていきます。</p>
+      <ul>
+      <li>ここで扱う <code>map</code> や、次のセクションで扱う <code>filter</code>
+      などの配列操作は、複数の処理をつなげて実行でき、このような書き方を <span
+      class="masked">パイプライン処理</span> と呼びます。</li>
+      </ul>
+      <h2 data-number="4.1" id="準備-型定義の変更"><span class="header-section-number">4.1</span>
+      準備 (型定義の変更)</h2>
+      <p>ファイルが増えてきたので、仕切り直しします。次のように、<code>src</code> フォルダのなかに
+      <code>pipeline</code> というサブフォルダを作成してください。</p>
+      <figure>
+      <img src="figs/03/vscode_02.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>そのなかに、以下のように文字列型の <code>id</code> というプロパティを新たに追加した
+      <code>Todo</code> 型 (＝ユーザ定義のオブジェクト型) を定義した <strong>types.ts</strong>
+      というファイルを作成してください。</p>
+      <div class="sourceCode" id="cb50" data-caption="src/pipeline/types.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb50-1"><a href="#cb50-1"></a><span class="im">export type</span> Todo <span class="op">=</span> {</span>
+<span id="cb50-2"><a href="#cb50-2"></a>  id<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb50-3"><a href="#cb50-3"></a>  name<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb50-4"><a href="#cb50-4"></a>  priority<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb50-5"><a href="#cb50-5"></a>  isDone<span class="op">:</span> <span class="dt">boolean</span><span class="op">;</span></span>
+<span id="cb50-6"><a href="#cb50-6"></a>  deadline<span class="op">:</span> <span class="bu">Date</span> <span class="op">|</span> <span class="dt">null</span><span class="op">;</span></span>
+<span id="cb50-7"><a href="#cb50-7"></a>}<span class="op">;</span></span></code></pre></div>
+      <p>第02回の <strong>src/types.ts</strong>
+      とは別の型です。前回の型やテストはそのままにして、今回は
+      <strong>src/pipeline/types.ts</strong> を使います。<code>Date | null</code> は「Date または
+      null」を表す <strong>ユニオン型</strong>です。期限がある Todo は <code>Date</code>、期限なしの
+      Todo は <code>null</code> にします。<code>undefined</code> とは区別します。</p>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p>今回の演習では、id は配列内で重複しない文字列、優先度は 1〜3、期限がある場合は有効な Date
+      という前提にします。</p>
+      </div>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>TypeScript において「<code>Date | null</code> は Date または null
+      を表すユニオン型です」と説明を受けました。ユニオン型ってなんですか。</p>
+      </blockquote>
+      <blockquote>
+      <p>TypeScript において <code>null</code> と <code>undefined</code>
+      の違いは何ですか。どのように使い分けますか。</p>
+      </blockquote>
+      <h2 data-number="4.2" id="オブジェクト型の配列の初期化"><span
+      class="header-section-number">4.2</span> オブジェクト型の配列の初期化</h2>
+      <p>ユーザ定義のオブジェクト型を要素に持った <strong>配列の初期化</strong>
+      は次のように行ないます。<code>src/pipeline</code> フォルダのなかに
+      <strong>initTodos.ts</strong> というファイルを新規作成して以下の内容を記述してください。</p>
+      <div class="sourceCode" id="cb51" data-caption="src/pipeline/initTodos.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb51-1"><a href="#cb51-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a></span>
+<span id="cb51-3"><a href="#cb51-3"></a><span class="im">export</span> <span class="kw">const</span> initTodos<span class="op">:</span> Todo[] <span class="op">=</span> [</span>
+<span id="cb51-4"><a href="#cb51-4"></a>  {</span>
+<span id="cb51-5"><a href="#cb51-5"></a>    id<span class="op">:</span> <span class="st">&quot;a001&quot;</span><span class="op">,</span></span>
+<span id="cb51-6"><a href="#cb51-6"></a>    name<span class="op">:</span> <span class="st">&quot;React予習（YouTube）&quot;</span><span class="op">,</span></span>
+<span id="cb51-7"><a href="#cb51-7"></a>    isDone<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb51-8"><a href="#cb51-8"></a>    priority<span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb51-9"><a href="#cb51-9"></a>    deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">24</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">0</span>)<span class="op">,</span></span>
+<span id="cb51-10"><a href="#cb51-10"></a>  }<span class="op">,</span></span>
+<span id="cb51-11"><a href="#cb51-11"></a>  {</span>
+<span id="cb51-12"><a href="#cb51-12"></a>    id<span class="op">:</span> <span class="st">&quot;a002&quot;</span><span class="op">,</span></span>
+<span id="cb51-13"><a href="#cb51-13"></a>    name<span class="op">:</span> <span class="st">&quot;TypeScriptの復習&quot;</span><span class="op">,</span></span>
+<span id="cb51-14"><a href="#cb51-14"></a>    isDone<span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb51-15"><a href="#cb51-15"></a>    priority<span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb51-16"><a href="#cb51-16"></a>    deadline<span class="op">:</span> <span class="dt">null</span><span class="op">,</span></span>
+<span id="cb51-17"><a href="#cb51-17"></a>  }<span class="op">,</span></span>
+<span id="cb51-18"><a href="#cb51-18"></a>  {</span>
+<span id="cb51-19"><a href="#cb51-19"></a>    id<span class="op">:</span> <span class="st">&quot;a003&quot;</span><span class="op">,</span></span>
+<span id="cb51-20"><a href="#cb51-20"></a>    name<span class="op">:</span> <span class="st">&quot;基礎物理学3の宿題&quot;</span><span class="op">,</span></span>
+<span id="cb51-21"><a href="#cb51-21"></a>    isDone<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb51-22"><a href="#cb51-22"></a>    priority<span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb51-23"><a href="#cb51-23"></a>    deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">20</span><span class="op">,</span> <span class="dv">23</span><span class="op">,</span> <span class="dv">59</span>)<span class="op">,</span></span>
+<span id="cb51-24"><a href="#cb51-24"></a>  }<span class="op">,</span></span>
+<span id="cb51-25"><a href="#cb51-25"></a>  {</span>
+<span id="cb51-26"><a href="#cb51-26"></a>    id<span class="op">:</span> <span class="st">&quot;a004&quot;</span><span class="op">,</span></span>
+<span id="cb51-27"><a href="#cb51-27"></a>    name<span class="op">:</span> <span class="st">&quot;知識科学概論の宿題&quot;</span><span class="op">,</span></span>
+<span id="cb51-28"><a href="#cb51-28"></a>    isDone<span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb51-29"><a href="#cb51-29"></a>    priority<span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb51-30"><a href="#cb51-30"></a>    deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">27</span>)<span class="op">,</span></span>
+<span id="cb51-31"><a href="#cb51-31"></a>  }<span class="op">,</span></span>
+<span id="cb51-32"><a href="#cb51-32"></a>]<span class="op">;</span></span></code></pre></div>
+      <p><code>number</code> や <code>string</code>
+      などのプリミティブ型の配列と同様に、オブジェクト型の配列についても型付きの変数の宣言は
+      <code>Todo[]</code> あるいは <code>Array&lt;Todo&gt;</code> のようにします。また、初期化
+      (初期値の代入) は、それに続けて <code>=[{...},{...},{...}]</code> の形式で行ないます。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>TypeScriptにおける「プリミティブ型」とはなんですか。</p>
+      </blockquote>
+      <p><strong>initTodos.ts</strong> の作成後は <code>npm run typecheck</code>
+      で型の整合を確認してください。</p>
+      <h2 data-number="4.3" id="オブジェクト型の配列に対するmapの適用"><span
+      class="header-section-number">4.3</span> オブジェクト型の配列に対するmapの適用</h2>
+      <p>ここでは、mapを使って「<strong>Todo型のデータ</strong>」を「<strong>整形された文字列</strong>」に変換する例を示します。<code>src/pipeline</code>
+      のなかに <strong>map01.ts</strong> を新規作成して、以下のコードを貼付けてください。</p>
+      <p>ここでは、特に <strong>第07行目</strong> に着目して読解してください。</p>
+      <ul>
+      <li><strong>第10行目</strong> では、前回講義で学習した <a
+      href="lecture02.html#三項演算子">条件演算子 (三項演算子)</a> を利用して、<code>isDone</code>
+      が <code>true</code> のときだけ <strong>【済】</strong>
+      の文字列が付加されるようにしています。</li>
+      <li><strong>第07行目</strong> では、定数 <code>const</code>
+      を宣言していますが、この定数を経由せずに直接的に文字列を <code>return</code>
+      しても問題ありません。つまり <code>return `&lt;li&gt;...&lt;/li&gt;`;</code>
+      のようにしても問題ありません。さらに、先に解説したように「波括弧」と「<code>return</code>」を省略することも可能です
+      (これらは可読性とのトレードオフになります)。</li>
+      </ul>
+      <div class="sourceCode" id="cb52" data-caption="src/pipeline/map01.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb52-1"><a href="#cb52-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a><span class="im">import</span> dayjs <span class="im">from</span> <span class="st">&quot;dayjs&quot;</span><span class="op">;</span></span>
+<span id="cb52-4"><a href="#cb52-4"></a></span>
+<span id="cb52-5"><a href="#cb52-5"></a><span class="kw">const</span> dtFmt <span class="op">=</span> <span class="st">&quot;YYYY/MM/DD HH:mm&quot;</span><span class="op">;</span></span>
+<span id="cb52-6"><a href="#cb52-6"></a><span class="kw">const</span> formattedTodos<span class="op">:</span> <span class="dt">string</span>[] <span class="op">=</span> initTodos<span class="op">.</span><span class="fu">map</span>((t<span class="op">:</span> Todo) <span class="kw">=&gt;</span> {</span>
+<span id="cb52-7"><a href="#cb52-7"></a>  <span class="kw">const</span> str <span class="op">=</span></span>
+<span id="cb52-8"><a href="#cb52-8"></a>    <span class="vs">`&lt;li&gt;[</span><span class="sc">${</span>t<span class="op">.</span><span class="at">id</span><span class="sc">}</span><span class="vs">] </span><span class="sc">${</span>t<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs"> 優先度</span><span class="sc">${</span>t<span class="op">.</span><span class="at">priority</span><span class="sc">}</span><span class="vs"> `</span> <span class="op">+</span></span>
+<span id="cb52-9"><a href="#cb52-9"></a>    <span class="vs">`(期限</span><span class="sc">${</span>t<span class="op">.</span><span class="at">deadline</span> <span class="op">===</span> <span class="kw">null</span> <span class="op">?</span> <span class="st">&quot;なし&quot;</span> <span class="op">:</span> <span class="fu">dayjs</span>(t<span class="op">.</span><span class="at">deadline</span>)<span class="op">.</span><span class="fu">format</span>(dtFmt)<span class="sc">}</span><span class="vs">)`</span> <span class="op">+</span></span>
+<span id="cb52-10"><a href="#cb52-10"></a>    (t<span class="op">.</span><span class="at">isDone</span> <span class="op">?</span> <span class="st">&quot;【済】&quot;</span> <span class="op">:</span> <span class="st">&quot;&quot;</span>) <span class="op">+</span></span>
+<span id="cb52-11"><a href="#cb52-11"></a>    <span class="st">&quot;&lt;/li&gt;&quot;</span><span class="op">;</span></span>
+<span id="cb52-12"><a href="#cb52-12"></a>  <span class="cf">return</span> str<span class="op">;</span></span>
+<span id="cb52-13"><a href="#cb52-13"></a>})<span class="op">;</span></span>
+<span id="cb52-14"><a href="#cb52-14"></a></span>
+<span id="cb52-15"><a href="#cb52-15"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(formattedTodos)<span class="op">;</span></span></code></pre></div>
+      <p>実行結果は、次のようになります。実際に実行して確認してください。</p>
+      <pre><code>[
+  &#39;&lt;li&gt;[a001] React予習（YouTube） 優先度1 (期限2026/10/24 09:00)&lt;/li&gt;&#39;,
+  &#39;&lt;li&gt;[a002] TypeScriptの復習 優先度2 (期限なし)【済】&lt;/li&gt;&#39;,
+  &#39;&lt;li&gt;[a003] 基礎物理学3の宿題 優先度1 (期限2026/10/20 23:59)&lt;/li&gt;&#39;,
+  &#39;&lt;li&gt;[a004] 知識科学概論の宿題 優先度3 (期限2026/10/27 00:00)【済】&lt;/li&gt;&#39;
+]</code></pre>
+      <p>この例では、Todo型の配列の要素を受け取る仮引数を <code>t</code> という名前にしていますが
+      (<strong>第06行目</strong>を参照)、これは自由に名前を付けることが可能です。このケースでは
+      <code>todo</code> のような名前にするのが一般的です。</p>
+      <p>プログラミング1の授業でも紹介しましたが、以下のようにVSCodeの機能で <span
+      class="masked">変数名の一括変更</span> ができます。通常の一括置換では <span
+      class="masked">コメント内の文字列</span> なども影響を受けますが、この機能では
+      <strong>変数のスコープ (有効範囲)</strong> を識別して適切な置換が実行されます。</p>
+      <figure>
+      <img src="figs/03/vscode_03.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <h2 data-number="4.4" id="任意の配列要素のプロパティの変更"><span
+      class="header-section-number">4.4</span> 任意の配列要素のプロパティの変更</h2>
+      <p>オブジェクト配列のなかの「任意の配列要素」の「任意のプロパティ」を
+      <strong>イミュータブルに変更する方法</strong> (＝その変更が React
+      に適切に検知されるようにする方法) を解説します。</p>
+      <p>ここでは、<code>id</code> が <code>"a004"</code> である Todo (知識科学概論の宿題) の
+      <code>isDone</code> プロパティを <code>false</code>
+      に変更するような操作を例に解説したいと思います。</p>
+      <h3 data-number="4.4.1" id="ng-ミュータブルな操作"><span
+      class="header-section-number">4.4.1</span> NG: ミュータブルな操作</h3>
+      <p>まずはNGな変更操作から確認していきます。次のプログラムの <strong>第10行目</strong> から
+      <strong>第15行目</strong> までの処理は、<strong>React開発ではNGなミュータブルな操作</strong>
+      となります。</p>
+      <p>コンソール出力から確認できるように内部データとしては、<code>id</code> が
+      <code>"a004"</code> の「知識科学概論の宿題」の <code>isDone</code> は <code>false</code>
+      に変更されていますが、(React開発において)
+      このような操作でデータを書き換えると、意図したようにウェブ画面上の表示が変更されません
+      (Reactでのハマりポイントです)。</p>
+      <div class="sourceCode" id="cb54"
+      data-caption="src/pipeline/map02.ts (NGな配列要素の更新操作)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb54-1"><a href="#cb54-1"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a></span>
+<span id="cb54-3"><a href="#cb54-3"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;プロパティ変更前&quot;</span>)<span class="op">;</span></span>
+<span id="cb54-4"><a href="#cb54-4"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(initTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span>
+<span id="cb54-5"><a href="#cb54-5"></a><span class="co">// React の useState の更新関数</span></span>
+<span id="cb54-6"><a href="#cb54-6"></a><span class="co">// setTodos(initTodos);</span></span>
+<span id="cb54-7"><a href="#cb54-7"></a></span>
+<span id="cb54-8"><a href="#cb54-8"></a><span class="co">// NGなプロパティ変更</span></span>
+<span id="cb54-9"><a href="#cb54-9"></a><span class="kw">const</span> targetId <span class="op">=</span> <span class="st">&quot;a004&quot;</span><span class="op">;</span> <span class="co">// isDone を false に戻す対象</span></span>
+<span id="cb54-10"><a href="#cb54-10"></a><span class="cf">for</span> (<span class="kw">const</span> todo <span class="kw">of</span> initTodos) {</span>
+<span id="cb54-11"><a href="#cb54-11"></a>  <span class="cf">if</span> (todo<span class="op">.</span><span class="at">id</span> <span class="op">===</span> targetId) {</span>
+<span id="cb54-12"><a href="#cb54-12"></a>    todo<span class="op">.</span><span class="at">isDone</span> <span class="op">=</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb54-13"><a href="#cb54-13"></a>    <span class="cf">break</span><span class="op">;</span></span>
+<span id="cb54-14"><a href="#cb54-14"></a>  }</span>
+<span id="cb54-15"><a href="#cb54-15"></a>}</span>
+<span id="cb54-16"><a href="#cb54-16"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;プロパティ変更後&quot;</span>)<span class="op">;</span></span>
+<span id="cb54-17"><a href="#cb54-17"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(initTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span>
+<span id="cb54-18"><a href="#cb54-18"></a><span class="co">// React の useState の更新関数</span></span>
+<span id="cb54-19"><a href="#cb54-19"></a><span class="co">// setTodos(initTodos);</span></span></code></pre></div>
+      <p>プログラムのなかでコメントアウトしている <code>setTodos(initTodos)</code> は、実際に React
+      で状態管理をするときに使用するものです。このような関数を通してReactにデータを渡します。現時点では理解する必要はありません。</p>
+      <h3 data-number="4.4.2" id="ok-イミュータブルな操作"><span
+      class="header-section-number">4.4.2</span> OK: イミュータブルな操作</h3>
+      <p>Reactで<strong>画面の再レンダリングがトリガーされるようにするため</strong>には、次のように
+      <code>map</code> を使って <strong>配列を新しく作成する</strong>
+      (=配列の参照を新しくすることでReactに変更を検知してもらう)
+      と共に、<strong>スプレッド構文で操作対象のオブジェクトも新しく作成する</strong>
+      (=オブジェクトの参照を新しくすることでReactに変更を検知してもらう) 必要があります。</p>
+      <div class="sourceCode" id="cb55"
+      data-caption="src/pipeline/map03.ts (推奨される配列要素の更新操作)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb55-1"><a href="#cb55-1"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb55-2"><a href="#cb55-2"></a></span>
+<span id="cb55-3"><a href="#cb55-3"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;プロパティ変更前&quot;</span>)<span class="op">;</span></span>
+<span id="cb55-4"><a href="#cb55-4"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(initTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span>
+<span id="cb55-5"><a href="#cb55-5"></a><span class="co">// React の useState の更新関数</span></span>
+<span id="cb55-6"><a href="#cb55-6"></a><span class="co">// setTodos(initTodos);</span></span>
+<span id="cb55-7"><a href="#cb55-7"></a></span>
+<span id="cb55-8"><a href="#cb55-8"></a><span class="co">// 推奨されるプロパティ変更</span></span>
+<span id="cb55-9"><a href="#cb55-9"></a><span class="kw">const</span> targetId <span class="op">=</span> <span class="st">&quot;a004&quot;</span><span class="op">;</span></span>
+<span id="cb55-10"><a href="#cb55-10"></a><span class="kw">const</span> updatedTodos <span class="op">=</span> initTodos<span class="op">.</span><span class="fu">map</span>((todo) <span class="kw">=&gt;</span> { <span class="co">// mapメソッドを利用</span></span>
+<span id="cb55-11"><a href="#cb55-11"></a>  <span class="cf">if</span> (todo<span class="op">.</span><span class="at">id</span> <span class="op">===</span> targetId) {</span>
+<span id="cb55-12"><a href="#cb55-12"></a>    <span class="cf">return</span> { <span class="op">...</span>todo<span class="op">,</span> isDone<span class="op">:</span> <span class="kw">false</span> }<span class="op">;</span> <span class="co">// スプレッド構文を利用</span></span>
+<span id="cb55-13"><a href="#cb55-13"></a>  } <span class="cf">else</span> {</span>
+<span id="cb55-14"><a href="#cb55-14"></a>    <span class="cf">return</span> todo<span class="op">;</span></span>
+<span id="cb55-15"><a href="#cb55-15"></a>  }</span>
+<span id="cb55-16"><a href="#cb55-16"></a>})<span class="op">;</span></span>
+<span id="cb55-17"><a href="#cb55-17"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;プロパティ変更後&quot;</span>)<span class="op">;</span></span>
+<span id="cb55-18"><a href="#cb55-18"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(updatedTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span>
+<span id="cb55-19"><a href="#cb55-19"></a><span class="co">// React の useState の更新関数</span></span>
+<span id="cb55-20"><a href="#cb55-20"></a><span class="co">// setTodos(updatedTodos);</span></span></code></pre></div>
+      <p>ここで新しく作るのは配列と、対象 id のオブジェクトです。変更しない Todo
+      は、そのまま元のオブジェクトを返しています。<strong>配列だけを <code>[...initTodos]</code>
+      でコピーしても、要素のオブジェクトは同じ参照のまま</strong>です。対象のオブジェクトもスプレッド構文で新しくする点を確認できたでしょうか。</p>
+      <p>また、上記のプログラムは <a href="lecture02.html#三項演算子">条件演算子(三項演算子)</a>
+      を使用して、以下のように記述することができます。</p>
+      <div class="sourceCode" id="cb56"
+      data-caption="src/pipeline/map04.ts (推奨される配列要素の更新操作・条件演算子)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb56-1"><a href="#cb56-1"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a></span>
+<span id="cb56-3"><a href="#cb56-3"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;プロパティ変更前&quot;</span>)<span class="op">;</span></span>
+<span id="cb56-4"><a href="#cb56-4"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(initTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span>
+<span id="cb56-5"><a href="#cb56-5"></a><span class="co">// React の useState の更新関数</span></span>
+<span id="cb56-6"><a href="#cb56-6"></a><span class="co">// setTodos(initTodos);</span></span>
+<span id="cb56-7"><a href="#cb56-7"></a></span>
+<span id="cb56-8"><a href="#cb56-8"></a><span class="kw">const</span> targetId <span class="op">=</span> <span class="st">&quot;a004&quot;</span><span class="op">;</span></span>
+<span id="cb56-9"><a href="#cb56-9"></a><span class="kw">const</span> updatedTodos <span class="op">=</span> initTodos<span class="op">.</span><span class="fu">map</span>((todo) <span class="kw">=&gt;</span> {</span>
+<span id="cb56-10"><a href="#cb56-10"></a>  <span class="cf">return</span> todo<span class="op">.</span><span class="at">id</span> <span class="op">===</span> targetId <span class="op">?</span> { <span class="op">...</span>todo<span class="op">,</span> isDone<span class="op">:</span> <span class="kw">false</span> } <span class="op">:</span> todo<span class="op">;</span> <span class="co">// 条件演算子</span></span>
+<span id="cb56-11"><a href="#cb56-11"></a>})<span class="op">;</span></span>
+<span id="cb56-12"><a href="#cb56-12"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;プロパティ変更後&quot;</span>)<span class="op">;</span></span>
+<span id="cb56-13"><a href="#cb56-13"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(updatedTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span>
+<span id="cb56-14"><a href="#cb56-14"></a><span class="co">// React の useState の更新関数</span></span>
+<span id="cb56-15"><a href="#cb56-15"></a><span class="co">// setTodos(updatedTodos);</span></span></code></pre></div>
+      <h3 data-number="4.4.3" id="演習③"><span class="header-section-number">4.4.3</span> 演習③</h3>
+      <p><code>targetId</code> で指定された Todo について <code>name</code> のプロパティを
+      <strong>イミュータブルに変更</strong> するように、次のプログラムを完成させてください。</p>
+      <div class="sourceCode" id="cb57" data-caption="演習 (3) src/pipeline/map05.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb57-1"><a href="#cb57-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb57-2"><a href="#cb57-2"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb57-3"><a href="#cb57-3"></a></span>
+<span id="cb57-4"><a href="#cb57-4"></a><span class="kw">const</span> targetId <span class="op">=</span> <span class="st">&quot;a003&quot;</span><span class="op">;</span></span>
+<span id="cb57-5"><a href="#cb57-5"></a><span class="kw">const</span> newName <span class="op">=</span> <span class="st">&quot;電気電子回路1の課題&quot;</span><span class="op">;</span></span>
+<span id="cb57-6"><a href="#cb57-6"></a><span class="kw">const</span> updatedTodos<span class="op">:</span> Todo[] <span class="op">=</span> []<span class="op">;</span> <span class="co">// ここを書き換える</span></span>
+<span id="cb57-7"><a href="#cb57-7"></a></span>
+<span id="cb57-8"><a href="#cb57-8"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(updatedTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span></code></pre></div>
+      <ul>
+      <li>解答例は <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/map05.ts">こちら<i class="fa-solid fa-person-chalkboard"></i></a></li>
+      </ul>
+      <h2 data-number="4.5" id="名前の更新を関数化してテストする"><span
+      class="header-section-number">4.5</span> 名前の更新を関数化してテストする</h2>
+      <p>演習③の処理を、繰り返し使える関数にします。第02回で学んだように、引数と戻り値を持つ関数にすると、決めた入力に対して期待する結果が得られるかを確認できます。ここでは
+      <strong>名前を変えること</strong>と、<strong>元データを保つこと</strong>を両方確認します。</p>
+      <p><strong>src/pipeline/updateTodoName.ts</strong>
+      を作成してください。仕様は次のとおりです。</p>
+      <ul>
+      <li>Todo の配列、対象の id、変更後の名前を受け取り、新しい配列を返す。</li>
+      <li>対象の名前だけを変更し、その他のプロパティや他の Todo を変更しない。</li>
+      <li>対象がなければ内容が同じ新しい配列を返す。空配列なら新しい空配列を返す。</li>
+      <li>対象の Todo は新しいオブジェクトにし、変更しない Todo は同じ参照を使う。</li>
+      </ul>
+      <div class="sourceCode" id="cb58" data-caption="src/pipeline/updateTodoName.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb58-1"><a href="#cb58-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb58-2"><a href="#cb58-2"></a></span>
+<span id="cb58-3"><a href="#cb58-3"></a><span class="im">export</span> <span class="kw">const</span> updateTodoName <span class="op">=</span> (</span>
+<span id="cb58-4"><a href="#cb58-4"></a>  todos<span class="op">:</span> Todo[]<span class="op">,</span></span>
+<span id="cb58-5"><a href="#cb58-5"></a>  targetId<span class="op">:</span> <span class="dt">string</span><span class="op">,</span></span>
+<span id="cb58-6"><a href="#cb58-6"></a>  newName<span class="op">:</span> <span class="dt">string</span></span>
+<span id="cb58-7"><a href="#cb58-7"></a>)<span class="op">:</span> Todo[] <span class="kw">=&gt;</span> {</span>
+<span id="cb58-8"><a href="#cb58-8"></a>  <span class="cf">return</span> todos<span class="op">.</span><span class="fu">map</span>((todo) <span class="kw">=&gt;</span></span>
+<span id="cb58-9"><a href="#cb58-9"></a>    todo<span class="op">.</span><span class="at">id</span> <span class="op">===</span> targetId <span class="op">?</span> { <span class="op">...</span>todo<span class="op">,</span> name<span class="op">:</span> newName } <span class="op">:</span> todo</span>
+<span id="cb58-10"><a href="#cb58-10"></a>  )<span class="op">;</span></span>
+<span id="cb58-11"><a href="#cb58-11"></a>}<span class="op">;</span></span></code></pre></div>
+      <p>つづいて <strong>src/pipeline/updateTodoName.test.ts</strong> を作成し、<a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/updateTodoName.test.ts">用意したテストコード</a>
+      をコピーして貼り付けてください。今はテストを自作する必要はありません。</p>
+      <pre><code>npm run typecheck
+npm run test:run -- src/pipeline/updateTodoName.test.ts</code></pre>
+      <p><strong>3 件成功</strong>となることを確認します。<code>toEqual</code>
+      は値の内容、<code>toBe</code>
+      はオブジェクトの場合に同じ参照かどうかを確認します。<code>structuredClone</code>
+      は比較用に変更前の値を保存するために使っています。実装側でコピーすべき範囲とは別です。</p>
+      <p>一時的に更新処理を「対象の <code>todo.name</code> を直接書き換えて、その todo
+      を返す」処理に変更してください。元データを保つことを確認するテストが失敗することに気づけたでしょうか。確認後は上の実装に戻し、型チェックとテストが成功してから先に進みます。</p>
+      <ul>
+      <li><a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/updateTodoName.ts">実装例</a>
+      と <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/updateTodoName.test.ts">テスト</a>。変更していないプロパティと、対象以外の参照も確認してください。</li>
+      </ul>
+      <h3 data-number="4.5.1" id="定着確認-4"><span class="header-section-number">4.5.1</span>
+      定着確認</h3>
+      <ul>
+      <li><code>type Todo = { id: string; deadline: Date | null; };</code>
+      で期限なしを表す値を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>null</code></span></li>
+      </ul></li>
+      <li>次のプログラムを実行した後、a の要素の name はどうなるか答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>"復習"</code></span></li>
+      <li><strong>解説</strong>: <span
+      class="masked">外側の配列だけをコピーしており、要素は同じオブジェクト。</span></li>
+      </ul>
+      <div class="sourceCode" id="cb60" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb60-1"><a href="#cb60-1"></a><span class="kw">const</span> a <span class="op">=</span> [{ id<span class="op">:</span> <span class="st">&quot;a001&quot;</span><span class="op">,</span> name<span class="op">:</span> <span class="st">&quot;予習&quot;</span> }]<span class="op">;</span></span>
+<span id="cb60-2"><a href="#cb60-2"></a><span class="kw">const</span> b <span class="op">=</span> [<span class="op">...</span>a]<span class="op">;</span></span>
+<span id="cb60-3"><a href="#cb60-3"></a><span class="cf">for</span> (<span class="kw">const</span> todo <span class="kw">of</span> b) {</span>
+<span id="cb60-4"><a href="#cb60-4"></a>  todo<span class="op">.</span><span class="at">name</span> <span class="op">=</span> <span class="st">&quot;復習&quot;</span><span class="op">;</span></span>
+<span id="cb60-5"><a href="#cb60-5"></a>}</span></code></pre></div></li>
+      <li>次のプログラムを実行したとき、<code>a[0] === b[0]</code> と <code>a[1] === b[1]</code>
+      の結果を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>false</code> と
+      <code>true</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb61" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb61-1"><a href="#cb61-1"></a><span class="kw">const</span> a <span class="op">=</span> [</span>
+<span id="cb61-2"><a href="#cb61-2"></a>  { id<span class="op">:</span> <span class="st">&quot;a001&quot;</span><span class="op">,</span> name<span class="op">:</span> <span class="st">&quot;予習&quot;</span> }<span class="op">,</span></span>
+<span id="cb61-3"><a href="#cb61-3"></a>  { id<span class="op">:</span> <span class="st">&quot;a002&quot;</span><span class="op">,</span> name<span class="op">:</span> <span class="st">&quot;宿題&quot;</span> }<span class="op">,</span></span>
+<span id="cb61-4"><a href="#cb61-4"></a>]<span class="op">;</span></span>
+<span id="cb61-5"><a href="#cb61-5"></a><span class="kw">const</span> b <span class="op">=</span> a<span class="op">.</span><span class="fu">map</span>(t <span class="kw">=&gt;</span> t<span class="op">.</span><span class="at">id</span> <span class="op">===</span> <span class="st">&quot;a001&quot;</span> <span class="op">?</span> { <span class="op">...</span>t<span class="op">,</span> name<span class="op">:</span> <span class="st">&quot;復習&quot;</span> } <span class="op">:</span> t)<span class="op">;</span></span></code></pre></div></li>
+      <li>元の Todo 配列 todos を保って名前を変更する関数 updateTodoName
+      のテストで、戻り値の名前だけを確認すれば、元データが変わらないことも保証できる。この説明は適切か、不適切か答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">不適切。元配列の内容も確認する必要がある。</span></li>
+      </ul></li>
+      <li>Todo 配列 todos に対し、指定した id の名前を変更する updateTodoName
+      関数を使って、次のコードを実行する。<code>expect(todos).toEqual(before)</code>
+      の確認意図を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">元の配列・要素の値が、処理前から変わっていないこと。</span></li>
+      </ul>
+      <div class="sourceCode" id="cb62" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb62-1"><a href="#cb62-1"></a><span class="kw">const</span> before <span class="op">=</span> <span class="fu">structuredClone</span>(todos)<span class="op">;</span></span>
+<span id="cb62-2"><a href="#cb62-2"></a><span class="kw">const</span> updated <span class="op">=</span> <span class="fu">updateTodoName</span>(todos<span class="op">,</span> <span class="st">&quot;a001&quot;</span><span class="op">,</span> <span class="st">&quot;復習&quot;</span>)<span class="op">;</span></span>
+<span id="cb62-3"><a href="#cb62-3"></a><span class="fu">expect</span>(todos)<span class="op">.</span><span class="fu">toEqual</span>(before)<span class="op">;</span></span></code></pre></div></li>
+      <li>元配列を保つ updateTodoName 関数のテストとして最も適切な選択肢を選択せよ。
+      <ul>
+      <li><strong>A</strong>: 関数呼出し後の元配列を複製し、元配列と比較する。</li>
+      <li><strong>B</strong>: 呼出し前の元配列を複製して保存し、呼出し後の元配列と比較する。</li>
+      <li><strong>C</strong>: 戻り値の要素数だけを確認する。</li>
+      <li><strong>答え</strong>: <span class="masked">B</span></li>
+      <li><strong>解説</strong>: <span
+      class="masked">変更前の値を保持して比較する。呼出し後の値のコピーでは、既に起きた破壊的更新を見落とす。</span></li>
+      </ul></li>
+      <li>id で指定した Todo の名前を変更する関数に対し、対象 id
+      が存在しない入力をテストする意図を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">対象がない場合に、他の Todo
+      を変更しないことと、定めた戻り値の仕様を確認するため。</span></li>
+      </ul></li>
+      </ul>
+      <h1 data-number="5" id="オブジェクト配列のfilter操作"><span
+      class="header-section-number">5</span> オブジェクト配列のfilter操作</h1>
+      <p>配列の <code>map</code> メソッドは <strong>引数として関数を受け取り</strong>
+      、配列の各要素にその関数を適用した「新しい配列」を作成して戻り値としました。これに対して
+      <code>filter</code> メソッドは <code>map</code>
+      と同様に<strong>引数として関数を受け取り</strong>ますが、こちらは<span
+      class="masked">その関数に配列の各要素を適用した結果が <code>true</code> になる要素</span>
+      から構成される「新しい配列」を作成して戻り値とします。</p>
+      <figure>
+      <img src="figs/03/array_01.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <h2 data-number="5.1" id="filterメソッドの基本的な使用法"><span
+      class="header-section-number">5.1</span> filterメソッドの基本的な使用法</h2>
+      <p>filter メソッドは、配列の<strong>各要素に対して条件</strong>（=<span
+      class="masked">真偽値を戻り値とする関数</span>）を適用し、その条件を満たす要素だけを含む「新しい配列」を返す機能を持っています。<code>map</code>
+      と同様に元の配列は影響を受けません。</p>
+      <p>例えば、次のように使用します。</p>
+      <div class="sourceCode" id="cb63"
+      data-caption="src/pipeline/filter01.ts (filterの使用例)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb63-1"><a href="#cb63-1"></a><span class="kw">const</span> numArr<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span><span class="op">,</span> <span class="dv">5</span><span class="op">,</span> <span class="dv">6</span>]<span class="op">;</span></span>
+<span id="cb63-2"><a href="#cb63-2"></a><span class="kw">const</span> oddArr<span class="op">:</span> <span class="dt">number</span>[] <span class="op">=</span> numArr<span class="op">.</span><span class="fu">filter</span>((num) <span class="kw">=&gt;</span> {</span>
+<span id="cb63-3"><a href="#cb63-3"></a>  <span class="cf">return</span> num <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">1</span><span class="op">;</span> <span class="co">// 奇数か? true or false</span></span>
+<span id="cb63-4"><a href="#cb63-4"></a>})<span class="op">;</span></span>
+<span id="cb63-5"><a href="#cb63-5"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`numArr = </span><span class="sc">${</span>numArr<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span>
+<span id="cb63-6"><a href="#cb63-6"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`oddArr = </span><span class="sc">${</span>oddArr<span class="sc">}</span><span class="vs">`</span>)<span class="op">;</span></span></code></pre></div>
+      <p><strong>第02行目</strong>から<strong>第04行目</strong>は <span
+      class="masked"><code>const oddArr = numArr.filter(num =&gt; num % 2 === 1);</code></span>
+      のような <strong>省略表記</strong> もできます。</p>
+      <p>実行結果は次のようになります。アロー関数で与えた関数による評価結果が <code>true</code>
+      の要素だけが出力されていることが確認できます。</p>
+      <pre><code>numArr = 1,2,3,4,5,6
+oddArr = 1,3,5</code></pre>
+      <p>なお、<code>numArr.filter(...)</code> の戻り値が <span
+      class="masked"><code>[true, false, true, false, true, false]</code></span>
+      になるわけ<strong>ではない</strong>ので注意してください (逆に、このような配列を得たいときは
+      <span class="masked"><code>map</code> メソッド</span> を使用してください)。</p>
+      <h2 data-number="5.2" id="オブジェクト型の配列に対するfilterの適用"><span
+      class="header-section-number">5.2</span> オブジェクト型の配列に対するfilterの適用</h2>
+      <p><code>Todo</code> 型の配列である<code>initTodos</code> から「<code>isDone</code>
+      <strong>が</strong> <code>false</code> <strong>の要素だけを抽出した配列</strong>」を得る処理
+      (=これは <span class="masked"><code>isDone</code> が <code>true</code>
+      の要素を「削除」した配列を得る処理</span> と同義) は、<code>filter</code>
+      を使って、次のように実装できます。</p>
+      <div class="sourceCode" id="cb65"
+      data-caption="src/pipeline/filter02.ts (未完了タスク (=isDoneが「false」の要素)の抽出)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb65-1"><a href="#cb65-1"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb65-2"><a href="#cb65-2"></a></span>
+<span id="cb65-3"><a href="#cb65-3"></a><span class="kw">const</span> updatedTodos <span class="op">=</span> initTodos<span class="op">.</span><span class="fu">filter</span>((todo) <span class="kw">=&gt;</span> <span class="op">!</span>todo<span class="op">.</span><span class="at">isDone</span>)<span class="op">;</span></span>
+<span id="cb65-4"><a href="#cb65-4"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;未完了Todoの一覧&quot;</span>)<span class="op">;</span></span>
+<span id="cb65-5"><a href="#cb65-5"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(updatedTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span></code></pre></div>
+      <p>推測がつくと思いますが、上記の <strong>第03行目</strong> の <code>!todo.isDone</code> の
+      <code>!</code> は 真偽値の <strong>論理否定演算子</strong>
+      です。つまり、<code>todo.isDone</code> が <code>false</code> のとき、<code>!todo.isDone</code>
+      は <span><code>true</code></span> となりフィルタを通過します。</p>
+      <p>また「<strong>任意の</strong> <code>id</code>
+      <strong>を持った要素を配列から</strong>「<strong>削除</strong>」<strong>する処理</strong>」も
+      <code>filter</code> を利用して、次のように実装が可能です。</p>
+      <div class="sourceCode" id="cb66" data-caption="src/pipeline/filter03.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb66-1"><a href="#cb66-1"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb66-2"><a href="#cb66-2"></a></span>
+<span id="cb66-3"><a href="#cb66-3"></a><span class="kw">const</span> targetId <span class="op">=</span> <span class="st">&quot;a002&quot;</span><span class="op">;</span> <span class="co">// 削除対象のTodoのID</span></span>
+<span id="cb66-4"><a href="#cb66-4"></a><span class="kw">const</span> updatedTodos <span class="op">=</span> initTodos<span class="op">.</span><span class="fu">filter</span>((todo) <span class="kw">=&gt;</span> todo<span class="op">.</span><span class="at">id</span> <span class="op">!==</span> targetId)<span class="op">;</span></span>
+<span id="cb66-5"><a href="#cb66-5"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;削除処理後のTodoの一覧&quot;</span>)<span class="op">;</span></span>
+<span id="cb66-6"><a href="#cb66-6"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(updatedTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span></code></pre></div>
+      <h3 data-number="5.2.1" id="演習④"><span class="header-section-number">5.2.1</span> 演習④</h3>
+      <p>Todo の配列から、<strong>未完了かつ期限を過ぎた Todo</strong> を抽出する練習です。まずは
+      <strong>src/pipeline/filter04.ts</strong>
+      の条件を直接記述して完成させてください。期限なしは抽出せず、期限ちょうども期限切れには含めません。日時の比較には
+      <code>getTime()</code> を使います。</p>
+      <div class="sourceCode" id="cb67" data-caption="演習 (4) src/pipeline/filter04.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb67-1"><a href="#cb67-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb67-2"><a href="#cb67-2"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb67-3"><a href="#cb67-3"></a></span>
+<span id="cb67-4"><a href="#cb67-4"></a><span class="kw">const</span> today <span class="op">=</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">9</span><span class="op">,</span> <span class="dv">22</span>)<span class="op">;</span></span>
+<span id="cb67-5"><a href="#cb67-5"></a><span class="kw">const</span> overdueTodos<span class="op">:</span> Todo[] <span class="op">=</span> []<span class="op">;</span> <span class="co">// filter の条件を記述する</span></span>
+<span id="cb67-6"><a href="#cb67-6"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;期日を過ぎている未完了Todoの一覧&quot;</span>)<span class="op">;</span></span>
+<span id="cb67-7"><a href="#cb67-7"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(overdueTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span></code></pre></div>
+      <p>今の初期データでは、<code>"a003"</code> の Todo
+      だけが抽出されます。期限なし、完了済み、期限が基準時刻と同じ場合に、どう判定されるかも確かめてください。</p>
+      <ul>
+      <li><a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/filter04.ts">実装例</a>。元データを変更しない点と、期限なしを先に除外する点を見比べてください。</li>
+      </ul>
+      <h2 data-number="5.3" id="期限切れの抽出を関数化してテストする"><span
+      class="header-section-number">5.3</span> 期限切れの抽出を関数化してテストする</h2>
+      <p><strong>src/pipeline/getOverdueTodos.ts</strong>
+      を作成し、配列と基準時刻を受け取る関数にします。仕様は演習④と同じです。抽出した要素は元の Todo
+      と同じ参照で構いませんが、元配列・Todo・基準時刻の値を変更せず、新しい配列を返します。</p>
+      <div class="sourceCode" id="cb68" data-caption="src/pipeline/getOverdueTodos.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb68-1"><a href="#cb68-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb68-2"><a href="#cb68-2"></a></span>
+<span id="cb68-3"><a href="#cb68-3"></a><span class="im">export</span> <span class="kw">const</span> getOverdueTodos <span class="op">=</span> (todos<span class="op">:</span> Todo[]<span class="op">,</span> now<span class="op">:</span> <span class="bu">Date</span>)<span class="op">:</span> Todo[] <span class="kw">=&gt;</span> {</span>
+<span id="cb68-4"><a href="#cb68-4"></a>  <span class="cf">return</span> todos<span class="op">.</span><span class="fu">filter</span>((todo) <span class="kw">=&gt;</span></span>
+<span id="cb68-5"><a href="#cb68-5"></a>    <span class="op">!</span>todo<span class="op">.</span><span class="at">isDone</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb68-6"><a href="#cb68-6"></a>    todo<span class="op">.</span><span class="at">deadline</span> <span class="op">!==</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span></span>
+<span id="cb68-7"><a href="#cb68-7"></a>    todo<span class="op">.</span><span class="at">deadline</span><span class="op">.</span><span class="fu">getTime</span>() <span class="op">&lt;</span> now<span class="op">.</span><span class="fu">getTime</span>()</span>
+<span id="cb68-8"><a href="#cb68-8"></a>  )<span class="op">;</span></span>
+<span id="cb68-9"><a href="#cb68-9"></a>}<span class="op">;</span></span></code></pre></div>
+      <p><code>todo.deadline !== null</code> を先に確認するので、その後で Date の
+      <code>getTime()</code> を使えます。<code>&amp;&amp;</code> は左から評価し、false
+      になれば残りは評価しないので、期限なしに Date のメソッドを呼び出すことはありません。</p>
+      <p><strong>src/pipeline/getOverdueTodos.test.ts</strong> を作成し、<a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodos.test.ts">用意したテストコード</a>
+      をコピーして貼り付けてください。</p>
+      <pre><code>npm run typecheck
+npm run test:run -- src/pipeline/getOverdueTodos.test.ts</code></pre>
+      <p><strong>3 件成功</strong>を確認します。最初のテストでは、期限が基準時刻の 1
+      ミリ秒前・同じ時刻・1
+      ミリ秒後の入力を並べています。テストデータの名前ではなく、<code>deadline</code> と
+      <code>now</code> の前後関係を読んでください。</p>
+      <p>一時的に <code>&lt;</code> を <code>&lt;=</code>
+      に変えると、期限ちょうども抽出されます。用意したテストがこの違いを検出することを確認できたでしょうか。確認後は
+      <code>&lt;</code> に戻して型チェックとテストを再実行してください。</p>
+      <h2 data-number="5.4" id="第02回の関数を再利用する"><span
+      class="header-section-number">5.4</span> 第02回の関数を再利用する</h2>
+      <p>第02回の <strong>src/utils/todoStatus.ts</strong> には、<code>isOverdue(todo, now)</code>
+      を実装しました。別の書き方として <strong>src/pipeline/getOverdueTodosReuse.ts</strong>
+      を作り、以下のように再利用できます。第02回の型・関数は変更しません。</p>
+      <div class="sourceCode" id="cb70" data-caption="src/pipeline/getOverdueTodosReuse.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb70-1"><a href="#cb70-1"></a><span class="co">// 第02回で実装した src/utils/todoStatus.ts を利用します。</span></span>
+<span id="cb70-2"><a href="#cb70-2"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb70-3"><a href="#cb70-3"></a><span class="im">import</span> { isOverdue } <span class="im">from</span> <span class="st">&quot;../utils/todoStatus.js&quot;</span><span class="op">;</span></span>
+<span id="cb70-4"><a href="#cb70-4"></a></span>
+<span id="cb70-5"><a href="#cb70-5"></a><span class="im">export</span> <span class="kw">const</span> getOverdueTodos <span class="op">=</span> (todos<span class="op">:</span> Todo[]<span class="op">,</span> now<span class="op">:</span> <span class="bu">Date</span>)<span class="op">:</span> Todo[] <span class="kw">=&gt;</span> {</span>
+<span id="cb70-6"><a href="#cb70-6"></a>  <span class="cf">return</span> todos<span class="op">.</span><span class="fu">filter</span>((todo) <span class="kw">=&gt;</span> {</span>
+<span id="cb70-7"><a href="#cb70-7"></a>    <span class="cf">if</span> (todo<span class="op">.</span><span class="at">deadline</span> <span class="op">===</span> <span class="kw">null</span>) {</span>
+<span id="cb70-8"><a href="#cb70-8"></a>      <span class="cf">return</span> <span class="kw">false</span><span class="op">;</span></span>
+<span id="cb70-9"><a href="#cb70-9"></a>    }</span>
+<span id="cb70-10"><a href="#cb70-10"></a>    <span class="kw">const</span> todoWithDeadline <span class="op">=</span> { <span class="op">...</span>todo<span class="op">,</span> deadline<span class="op">:</span> todo<span class="op">.</span><span class="at">deadline</span> }<span class="op">;</span></span>
+<span id="cb70-11"><a href="#cb70-11"></a>    <span class="cf">return</span> <span class="fu">isOverdue</span>(todoWithDeadline<span class="op">,</span> now)<span class="op">;</span></span>
+<span id="cb70-12"><a href="#cb70-12"></a>  })<span class="op">;</span></span>
+<span id="cb70-13"><a href="#cb70-13"></a>}<span class="op">;</span></span></code></pre></div>
+      <p>前回の関数は <code>deadline: Date</code> の Todo を受け取ります。今回の
+      <code>Date | null</code> の Todo は、そのまま渡せません。期限なしを除外した後に
+      <code>{ ...todo, deadline: todo.deadline }</code> と書き、<code>deadline</code> が Date
+      のオブジェクトを作っています。余分な id
+      を持っていても、関数が必要なプロパティを満たすので渡せます。</p>
+      <p><strong>getOverdueTodos.test.ts</strong> の import 先だけを
+      <code>"./getOverdueTodosReuse.js"</code> に変え、同じ <strong>3
+      件のテスト</strong>で確認してください。テスト本体と期待値は変えません。書き方を変えた後も、同じ仕様が保たれていることを確かめる練習です。</p>
+      <ul>
+      <li><a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodos.ts">実装例</a>、<a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodosReuse.ts">実装例</a>、<a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodos.test.ts">用意したテスト</a>。</li>
+      </ul>
+      <h3 data-number="5.4.1" id="定着確認-5"><span class="header-section-number">5.4.1</span>
+      定着確認</h3>
+      <ul>
+      <li>次のプログラムを実行した後の result を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>[1, 3]</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb71" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb71-1"><a href="#cb71-1"></a><span class="kw">const</span> nums <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span><span class="op">,</span> <span class="dv">4</span>]<span class="op">;</span></span>
+<span id="cb71-2"><a href="#cb71-2"></a><span class="kw">const</span> result <span class="op">=</span> nums<span class="op">.</span><span class="fu">filter</span>(n <span class="kw">=&gt;</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">1</span>)<span class="op">;</span></span></code></pre></div></li>
+      <li>配列の filter に渡す関数が true を返した要素は、戻り値の配列に含まれるか答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">含まれる。false
+      の要素は含まれない。</span></li>
+      </ul></li>
+      <li>次のプログラムを実行した後の result と元の nums を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>[]</code> と
+      <code>[1, 2, 3]</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb72" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb72-1"><a href="#cb72-1"></a><span class="kw">const</span> nums <span class="op">=</span> [<span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">3</span>]<span class="op">;</span></span>
+<span id="cb72-2"><a href="#cb72-2"></a><span class="kw">const</span> result <span class="op">=</span> nums<span class="op">.</span><span class="fu">filter</span>(n <span class="kw">=&gt;</span> n <span class="op">&gt;</span> <span class="dv">10</span>)<span class="op">;</span></span></code></pre></div></li>
+      <li><code>const todos = [{ id: "a001" }, { id: "a002" }];</code> から id が a002
+      の要素を削除した新しい配列を得る文を記述せよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked"><code>const result = todos.filter(todo =&gt; todo.id !== "a002");</code></span></li>
+      </ul></li>
+      <li>未完了の Todo の期限が 2026 年 10 月 22 日
+      12:00、基準時刻も同じ日時である。期限を過ぎた未完了 Todo だけを得る getOverdueTodos
+      の戻り値に、この Todo を含めるか答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">含めない。期限ちょうどは期限切れではない。</span></li>
+      </ul></li>
+      <li>期限が null の未完了 Todo は、期限切れの抽出対象になるか答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">ならない。期限なしとして除外する。</span></li>
+      </ul></li>
+      <li>期限が基準時刻より前であっても、isDone が true の Todo
+      は期限切れの抽出対象になるか答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">ならない。未完了かどうかも抽出条件である。</span></li>
+      </ul></li>
+      <li>期限切れ判定の「より後」を「同じ時刻以降」に誤って変更した場合に、最も直接的に検出できるテストを選択せよ。
+      <ul>
+      <li><strong>A</strong>: 基準時刻と期限が同じ未完了 Todo を、抽出しないと確認する。</li>
+      <li><strong>B</strong>: 期限が 1 日前の未完了 Todo を、抽出すると確認する。</li>
+      <li><strong>C</strong>: 配列の要素数が 0 以上と確認する。</li>
+      <li><strong>答え</strong>: <span class="masked">A</span></li>
+      </ul></li>
+      <li>期限切れ抽出の実装を直接比較から isOverdue
+      の再利用に書き換える。仕様が同じなら、既存テストの期待値を変更すべきか答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">変更しない。同じ期待値で、仕様が維持されているか確認する。</span></li>
+      </ul></li>
+      </ul>
+      <h1 data-number="6" id="オブジェクト配列のsort操作"><span
+      class="header-section-number">6</span> オブジェクト配列のsort操作</h1>
+      <p>イミュータブルに配列のソート (並び替え) を行なうためには <span
+      class="masked">スプレッド構文</span> と <code>sort</code>
+      メソッドを組みあわせて使用します。</p>
+      <h2 data-number="6.1" id="ソートキーを指定したオブジェクト配列の並び替え"><span
+      class="header-section-number">6.1</span> ソートキーを指定したオブジェクト配列の並び替え</h2>
+      <p>オブジェクト配列を並び替えるには、<code>sort</code>メソッドの引数に <span
+      class="masked">ソートに使用するプロパティを使った「比較関数」</span>
+      を与える必要があります。例えば、Todo を <strong>優先度</strong> (<strong>優先順位</strong>)
+      の「昇順」にソートする処理は次のように実装できます。</p>
+      <div class="sourceCode" id="cb73"
+      data-caption="src/pipeline/sort01.ts (優先度で並び替え)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb73-1"><a href="#cb73-1"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb73-2"><a href="#cb73-2"></a></span>
+<span id="cb73-3"><a href="#cb73-3"></a><span class="kw">const</span> sortedTodos <span class="op">=</span> [<span class="op">...</span>initTodos]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> {</span>
+<span id="cb73-4"><a href="#cb73-4"></a>  <span class="cf">return</span> a<span class="op">.</span><span class="at">priority</span> <span class="op">-</span> b<span class="op">.</span><span class="at">priority</span><span class="op">;</span></span>
+<span id="cb73-5"><a href="#cb73-5"></a>})<span class="op">;</span></span>
+<span id="cb73-6"><a href="#cb73-6"></a></span>
+<span id="cb73-7"><a href="#cb73-7"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(initTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span>
+<span id="cb73-8"><a href="#cb73-8"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(sortedTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span></code></pre></div>
+      <p>実際に実行して、結果を確認してください (特に <code>initTodos</code>
+      の並び順は影響を受けていないことを確認してください)。</p>
+      <p>また、<strong>第03行目</strong> の <code>[...initTodos].sort</code> を
+      <code>initTodos.sort</code> に変更すると <span
+      class="masked">ミュータブルな操作になってしまうこと (つまり <code>initTodos</code>
+      が変更されてしまうこと)</span> を実際に確認してください。</p>
+      <p><code>sort</code> の引数には、配列の要素となっている型 (ここでは <code>Todo</code> 型)
+      の2つの引数 (通常 <code>a</code> と <code>b</code> という名前にすることが多い)
+      を受け取り「<strong>負数</strong> (通常は
+      <code>-1</code>)」、「<code>0</code>」、「<strong>正数</strong> (通常は
+      <code>1</code>)」を返す関数を与えます。この関数は・・・</p>
+      <ul>
+      <li>要素 <code>a</code> を、要素 <code>b</code> よりも「<strong>前</strong>」に並べたいときは
+      <code>-1</code> を返すようにします。</li>
+      <li>要素 <code>a</code> を、要素 <code>b</code> よりも「<strong>後</strong>」に並べたいときは
+      <code>1</code> を返すようにします。</li>
+      <li>それ以外のとき (両者の順序が同じとき) は <code>0</code> を返すようにします。</li>
+      </ul>
+      <p>一般に、この関数は「<strong>比較関数</strong>」や「<strong>カスタム比較関数</strong>」と呼ばれます。</p>
+      <h3 data-number="6.1.1" id="演習"><span class="header-section-number">6.1.1</span> 演習</h3>
+      <p>Todo を <strong>優先度</strong> (<strong>優先順位</strong>)
+      の「降順」にソートする処理を実装してください。また、動作を確認してください。</p>
+      <p>降順の<a href="codes/03/sortDescending.ts">実装例</a>。比較関数は
+      <code>b.priority - a.priority</code> とします。</p>
+      <h2 data-number="6.2" id="複数のソートキーを使ったオブジェクト配列の並び替え"><span
+      class="header-section-number">6.2</span>
+      複数のソートキーを使ったオブジェクト配列の並び替え</h2>
+      <p>第1ソートキーを <code>isDone</code> (<strong>未完了を先に表示</strong>)、第2ソートキーを
+      <code>deadline</code> として並び替えたいときは、以下のように実装します。</p>
+      <div class="sourceCode" id="cb74"
+      data-caption="src/pipeline/sort02.ts (完了・未完了、期限で並び替え)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb74-1"><a href="#cb74-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb74-2"><a href="#cb74-2"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb74-3"><a href="#cb74-3"></a></span>
+<span id="cb74-4"><a href="#cb74-4"></a><span class="kw">const</span> sortedTodos<span class="op">:</span> Todo[] <span class="op">=</span> [<span class="op">...</span>initTodos]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> {</span>
+<span id="cb74-5"><a href="#cb74-5"></a>  <span class="cf">if</span> (a<span class="op">.</span><span class="at">isDone</span> <span class="op">!==</span> b<span class="op">.</span><span class="at">isDone</span>) {</span>
+<span id="cb74-6"><a href="#cb74-6"></a>    <span class="cf">return</span> a<span class="op">.</span><span class="at">isDone</span> <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb74-7"><a href="#cb74-7"></a>  }</span>
+<span id="cb74-8"><a href="#cb74-8"></a>  <span class="cf">if</span> (a<span class="op">.</span><span class="at">deadline</span> <span class="op">===</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> b<span class="op">.</span><span class="at">deadline</span> <span class="op">===</span> <span class="kw">null</span>) {</span>
+<span id="cb74-9"><a href="#cb74-9"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb74-10"><a href="#cb74-10"></a>  }</span>
+<span id="cb74-11"><a href="#cb74-11"></a>  <span class="cf">if</span> (a<span class="op">.</span><span class="at">deadline</span> <span class="op">===</span> <span class="kw">null</span>) {</span>
+<span id="cb74-12"><a href="#cb74-12"></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb74-13"><a href="#cb74-13"></a>  }</span>
+<span id="cb74-14"><a href="#cb74-14"></a>  <span class="cf">if</span> (b<span class="op">.</span><span class="at">deadline</span> <span class="op">===</span> <span class="kw">null</span>) {</span>
+<span id="cb74-15"><a href="#cb74-15"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb74-16"><a href="#cb74-16"></a>  }</span>
+<span id="cb74-17"><a href="#cb74-17"></a>  <span class="cf">return</span> a<span class="op">.</span><span class="at">deadline</span><span class="op">.</span><span class="fu">getTime</span>() <span class="op">-</span> b<span class="op">.</span><span class="at">deadline</span><span class="op">.</span><span class="fu">getTime</span>()<span class="op">;</span></span>
+<span id="cb74-18"><a href="#cb74-18"></a>})<span class="op">;</span></span>
+<span id="cb74-19"><a href="#cb74-19"></a></span>
+<span id="cb74-20"><a href="#cb74-20"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(initTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span>
+<span id="cb74-21"><a href="#cb74-21"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(sortedTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span></code></pre></div>
+      <p><strong>第05-06行目</strong>で、完了状態が違うなら未完了を先にしています。同じ完了状態のときは、<strong>第08行目以降</strong>で期限を比較します。両方が期限なしなら
+      0、a だけが期限なしなら正数、b だけが期限なしなら負数を返します。両方に期限があるときだけ
+      <code>getTime()</code> で比較します。</p>
+      <p>つまり、<strong>未完了のグループ内、完了済みのグループ内それぞれで、期限が早いものを先にし、期限なしを最後にします</strong>。期限なしの未完了
+      Todo が、期限ありの完了済み Todo より後になるわけではありません。初期データでは id の順序が
+      <code>["a003", "a001", "a004", "a002"]</code> になることを確認してください。</p>
+      <h3 data-number="6.2.1" id="演習-1"><span class="header-section-number">6.2.1</span> 演習</h3>
+      <p>第1ソートキーを「優先度」、第2ソートキーを「期限」として <code>initTodos</code>
+      を並び替えるように実装してください。また、動作を確認してください (必要に応じて
+      <code>initTodos</code> に編集を加えてください)。</p>
+      <h2 data-number="6.3" id="並び替えを関数化してテストする"><span
+      class="header-section-number">6.3</span> 並び替えを関数化してテストする</h2>
+      <p><strong>src/pipeline/sortTodos.ts</strong> に、期限の比較処理と 3
+      種類の並び替えをまとめます。比較関数は負数・0・正数を返す既習の関数です。期限の比較を分離することで、同じ処理を複数の並び替えで使えます。</p>
+      <div class="sourceCode" id="cb75" data-caption="src/pipeline/sortTodos.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb75-1"><a href="#cb75-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb75-2"><a href="#cb75-2"></a></span>
+<span id="cb75-3"><a href="#cb75-3"></a><span class="im">export</span> <span class="kw">const</span> compareDeadlines <span class="op">=</span> (a<span class="op">:</span> Todo<span class="op">,</span> b<span class="op">:</span> Todo)<span class="op">:</span> <span class="dt">number</span> <span class="kw">=&gt;</span> {</span>
+<span id="cb75-4"><a href="#cb75-4"></a>  <span class="cf">if</span> (a<span class="op">.</span><span class="at">deadline</span> <span class="op">===</span> <span class="kw">null</span> <span class="op">&amp;&amp;</span> b<span class="op">.</span><span class="at">deadline</span> <span class="op">===</span> <span class="kw">null</span>) {</span>
+<span id="cb75-5"><a href="#cb75-5"></a>    <span class="cf">return</span> <span class="dv">0</span><span class="op">;</span></span>
+<span id="cb75-6"><a href="#cb75-6"></a>  }</span>
+<span id="cb75-7"><a href="#cb75-7"></a>  <span class="cf">if</span> (a<span class="op">.</span><span class="at">deadline</span> <span class="op">===</span> <span class="kw">null</span>) {</span>
+<span id="cb75-8"><a href="#cb75-8"></a>    <span class="cf">return</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb75-9"><a href="#cb75-9"></a>  }</span>
+<span id="cb75-10"><a href="#cb75-10"></a>  <span class="cf">if</span> (b<span class="op">.</span><span class="at">deadline</span> <span class="op">===</span> <span class="kw">null</span>) {</span>
+<span id="cb75-11"><a href="#cb75-11"></a>    <span class="cf">return</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb75-12"><a href="#cb75-12"></a>  }</span>
+<span id="cb75-13"><a href="#cb75-13"></a>  <span class="cf">return</span> a<span class="op">.</span><span class="at">deadline</span><span class="op">.</span><span class="fu">getTime</span>() <span class="op">-</span> b<span class="op">.</span><span class="at">deadline</span><span class="op">.</span><span class="fu">getTime</span>()<span class="op">;</span></span>
+<span id="cb75-14"><a href="#cb75-14"></a>}<span class="op">;</span></span>
+<span id="cb75-15"><a href="#cb75-15"></a></span>
+<span id="cb75-16"><a href="#cb75-16"></a><span class="im">export</span> <span class="kw">const</span> sortByPriority <span class="op">=</span> (todos<span class="op">:</span> Todo[])<span class="op">:</span> Todo[] <span class="kw">=&gt;</span> {</span>
+<span id="cb75-17"><a href="#cb75-17"></a>  <span class="cf">return</span> [<span class="op">...</span>todos]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">priority</span> <span class="op">-</span> b<span class="op">.</span><span class="at">priority</span>)<span class="op">;</span></span>
+<span id="cb75-18"><a href="#cb75-18"></a>}<span class="op">;</span></span>
+<span id="cb75-19"><a href="#cb75-19"></a></span>
+<span id="cb75-20"><a href="#cb75-20"></a><span class="im">export</span> <span class="kw">const</span> sortByDoneAndDeadline <span class="op">=</span> (todos<span class="op">:</span> Todo[])<span class="op">:</span> Todo[] <span class="kw">=&gt;</span> {</span>
+<span id="cb75-21"><a href="#cb75-21"></a>  <span class="cf">return</span> [<span class="op">...</span>todos]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> {</span>
+<span id="cb75-22"><a href="#cb75-22"></a>    <span class="cf">if</span> (a<span class="op">.</span><span class="at">isDone</span> <span class="op">!==</span> b<span class="op">.</span><span class="at">isDone</span>) {</span>
+<span id="cb75-23"><a href="#cb75-23"></a>      <span class="cf">return</span> a<span class="op">.</span><span class="at">isDone</span> <span class="op">?</span> <span class="dv">1</span> <span class="op">:</span> <span class="op">-</span><span class="dv">1</span><span class="op">;</span></span>
+<span id="cb75-24"><a href="#cb75-24"></a>    }</span>
+<span id="cb75-25"><a href="#cb75-25"></a>    <span class="cf">return</span> <span class="fu">compareDeadlines</span>(a<span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb75-26"><a href="#cb75-26"></a>  })<span class="op">;</span></span>
+<span id="cb75-27"><a href="#cb75-27"></a>}<span class="op">;</span></span>
+<span id="cb75-28"><a href="#cb75-28"></a></span>
+<span id="cb75-29"><a href="#cb75-29"></a><span class="im">export</span> <span class="kw">const</span> sortByPriorityAndDeadline <span class="op">=</span> (todos<span class="op">:</span> Todo[])<span class="op">:</span> Todo[] <span class="kw">=&gt;</span> {</span>
+<span id="cb75-30"><a href="#cb75-30"></a>  <span class="cf">return</span> [<span class="op">...</span>todos]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> {</span>
+<span id="cb75-31"><a href="#cb75-31"></a>    <span class="cf">if</span> (a<span class="op">.</span><span class="at">priority</span> <span class="op">!==</span> b<span class="op">.</span><span class="at">priority</span>) {</span>
+<span id="cb75-32"><a href="#cb75-32"></a>      <span class="cf">return</span> a<span class="op">.</span><span class="at">priority</span> <span class="op">-</span> b<span class="op">.</span><span class="at">priority</span><span class="op">;</span></span>
+<span id="cb75-33"><a href="#cb75-33"></a>    }</span>
+<span id="cb75-34"><a href="#cb75-34"></a>    <span class="cf">return</span> <span class="fu">compareDeadlines</span>(a<span class="op">,</span> b)<span class="op">;</span></span>
+<span id="cb75-35"><a href="#cb75-35"></a>  })<span class="op">;</span></span>
+<span id="cb75-36"><a href="#cb75-36"></a>}<span class="op">;</span></span></code></pre></div>
+      <p>どの関数も新しい配列を返し、元配列の順序と Todo の値を変えません。Todo
+      の内容は書き換えないので、要素は同じオブジェクトの参照を使います。すべてのソートキーが同じ要素の順序は、入力の順序を保ちます。優先度＋期限の演習の<a
+      href="codes/03/sortPriorityAndDeadline.ts">実装例</a>も、この関数を呼び出します。</p>
+      <p><strong>src/pipeline/sortTodos.test.ts</strong> を作成し、<a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/sortTodos.test.ts">用意したテストコード</a>
+      をコピーして貼り付けてください。</p>
+      <pre><code>npm run typecheck
+npm run test:run -- src/pipeline/sortTodos.test.ts</code></pre>
+      <p><strong>4 件成功</strong>を確認します。期限なしや同じ期限の Todo
+      が含まれている理由にも着目してください。戻り値の順序だけを確認すると、元配列まで並び替えてしまう実装を見落とします。</p>
+      <p>テストの <code>sorted.every((todo) =&gt; todos.includes(todo))</code>
+      は、並び替えた配列のすべての要素について、元配列に同じオブジェクトが含まれることを確認しています。<code>every</code>
+      はすべての要素が条件を満たすか、<code>includes</code>
+      は指定した値が含まれるかを調べます。ここでは要素まで複製せず、順序だけを変える仕様を確認するために使っています。</p>
+      <p><code>[...todos].sort</code> を一時的に <code>todos.sort</code>
+      に変え、元配列を確認するテストが失敗することを確認できたでしょうか。確認後はスプレッド構文を戻し、型チェックとテストが成功する状態に戻します。</p>
+      <ul>
+      <li><a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/sortTodos.ts">実装例</a>
+      と <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/sortTodos.test.ts">用意したテスト</a>。</li>
+      </ul>
+      <div class="note type-tips">
+      <p><strong>toSorted という別の書き方</strong></p>
+      <p>元配列を変更せずに並び替えた新しい配列を得る <code>toSorted</code> もあります。例えば
+      <code>todos.toSorted((a, b) =&gt; a.priority - b.priority)</code>
+      と書けます。本文では、コピーしてから並び替える意味を確かめるため、スプレッド構文＋sort
+      を使いました。どちらの場合も、配列の要素のオブジェクトまで複製されるわけではありません (<a
+      href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted">MDN</a>)。</p>
+      </div>
+      <h3 data-number="6.3.1" id="定着確認-6"><span class="header-section-number">6.3.1</span>
+      定着確認</h3>
+      <ul>
+      <li>次のプログラムを実行した後の sorted と元の nums を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>[1, 2, 3]</code> と
+      <code>[3, 1, 2]</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb77" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb77-1"><a href="#cb77-1"></a><span class="kw">const</span> nums <span class="op">=</span> [<span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">;</span></span>
+<span id="cb77-2"><a href="#cb77-2"></a><span class="kw">const</span> sorted <span class="op">=</span> [<span class="op">...</span>nums]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a <span class="op">-</span> b)<span class="op">;</span></span></code></pre></div></li>
+      <li>数値型の priority を持つ Todo を優先度の降順に並べる比較関数を記述せよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked"><code>(a, b) =&gt; b.priority - a.priority</code></span></li>
+      </ul></li>
+      <li>sort の比較関数で、要素 a を b より前に置くとき、負数・0・正数のどれを返すか答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">負数。必ず -1
+      に限定されるわけではない。</span></li>
+      </ul></li>
+      <li>未完了を先にし、同じ完了状態なら期限の早い順、期限なしを最後に並べる。a
+      が未完了で期限なし、b が完了済みで期限ありの場合、先に置くのはどちらか答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">a。第1キーの完了状態で順序が決まる。</span></li>
+      </ul></li>
+      <li>同じ完了状態の Todo a と b を期限順に並べる。a.deadline が null、b.deadline が Date
+      のとき、a を後にする比較結果の符号を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">正数。</span></li>
+      </ul></li>
+      <li>未完了・同じ優先度・同じ期限の Todo a001 と a002
+      が、その順で入力配列に入っている。これらのキーでソートした後の両者の順序を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">a001、a002
+      の順。キーが同じ要素の入力順を保つ。</span></li>
+      </ul></li>
+      <li>元配列を保つソート関数のテストとして最も適切な選択肢を選択せよ。
+      <ul>
+      <li><strong>A</strong>: 最初から正しい順序の配列を渡し、戻り値の順序だけを確認する。</li>
+      <li><strong>B</strong>:
+      並び替えで順序が変わる入力を渡し、戻り値の順序と、元配列が変わらないことを確認する。</li>
+      <li><strong>C</strong>: 戻り値が配列であることだけを確認する。</li>
+      <li><strong>答え</strong>: <span class="masked">B</span></li>
+      </ul></li>
+      <li>期限を第2キーに使うソートのテストに、同じ第1キーを持つ複数の Todo を含める意図を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">第1キーで順序が決まらない場合に、第2キーの比較が正しく適用されることを確認するため。</span></li>
+      </ul></li>
+      </ul>
+      <h1 data-number="7" id="メソッドチェーン-mapfiltersortの組み合わせ"><span
+      class="header-section-number">7</span> メソッドチェーン (map・filter・sortの組み合わせ)</h1>
+      <p><code>map</code> と <code>filter</code> と <code>sort</code> を
+      <strong>連結して使用すること</strong> も可能なので知っておいてください
+      (実務では頻繁に利用されます)。</p>
+      <p>例えば、<code>filter</code> で<strong>未完了のTodoだけを抽出</strong>し、<code>sort</code>
+      で<strong>優先度順に並べ替え</strong>て、<code>map</code>
+      で<strong>整形出力</strong>するという処理は次のように記述できます。このようにメソッドを連結する技法を
+      <span class="masked">メソッドチェーン や メソッドチェイニング</span> のように表現します。</p>
+      <p>この例では <code>filter</code> が <strong>新しい配列</strong>を返すので、その配列に対して
+      <code>sort</code> を使っても、元の <code>initTodos</code> の順序は変わりません。さらに
+      <code>map</code> で表示用の文字列配列を作ります。「sort
+      が先頭でなければ安全」と位置だけで判断せず、<strong>sort
+      が操作する配列はどの処理で作られたか</strong>を確認してください。<code>initTodos.sort(...)</code>
+      から始める場合は元配列を変更するので、<code>[...initTodos].sort(...)</code> とします。</p>
+      <div class="sourceCode" id="cb78"
+      data-caption="src/pipeline/pipe01.ts (メソッドチェーン)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb78-1"><a href="#cb78-1"></a><span class="im">import</span> dayjs <span class="im">from</span> <span class="st">&quot;dayjs&quot;</span><span class="op">;</span></span>
+<span id="cb78-2"><a href="#cb78-2"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb78-3"><a href="#cb78-3"></a><span class="kw">const</span> dtFmt <span class="op">=</span> <span class="st">&quot;YYYY/MM/DD HH:mm&quot;</span><span class="op">;</span></span>
+<span id="cb78-4"><a href="#cb78-4"></a></span>
+<span id="cb78-5"><a href="#cb78-5"></a><span class="kw">const</span> listItemsTodos<span class="op">:</span> <span class="dt">string</span>[] <span class="op">=</span> initTodos</span>
+<span id="cb78-6"><a href="#cb78-6"></a>  <span class="op">.</span><span class="fu">filter</span>((todo) <span class="kw">=&gt;</span> <span class="op">!</span>todo<span class="op">.</span><span class="at">isDone</span>)</span>
+<span id="cb78-7"><a href="#cb78-7"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">priority</span> <span class="op">-</span> b<span class="op">.</span><span class="at">priority</span>)</span>
+<span id="cb78-8"><a href="#cb78-8"></a>  <span class="op">.</span><span class="fu">map</span>(</span>
+<span id="cb78-9"><a href="#cb78-9"></a>    (todo) <span class="kw">=&gt;</span></span>
+<span id="cb78-10"><a href="#cb78-10"></a>      <span class="vs">`&lt;li&gt;優先度[</span><span class="sc">${</span>todo<span class="op">.</span><span class="at">priority</span><span class="sc">}</span><span class="vs">] </span><span class="sc">${</span>todo<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs">`</span> <span class="op">+</span></span>
+<span id="cb78-11"><a href="#cb78-11"></a>      <span class="vs">`...期限</span><span class="sc">${</span>todo<span class="op">.</span><span class="at">deadline</span> <span class="op">===</span> <span class="kw">null</span> <span class="op">?</span> <span class="st">&quot;なし&quot;</span> <span class="op">:</span> <span class="fu">dayjs</span>(todo<span class="op">.</span><span class="at">deadline</span>)<span class="op">.</span><span class="fu">format</span>(dtFmt)<span class="sc">}</span><span class="vs">&lt;/li&gt;`</span></span>
+<span id="cb78-12"><a href="#cb78-12"></a>  )<span class="op">;</span></span>
+<span id="cb78-13"><a href="#cb78-13"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(initTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span> <span class="co">// 変更操作の影響を受けていない</span></span>
+<span id="cb78-14"><a href="#cb78-14"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(listItemsTodos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span></code></pre></div>
+      <p>実際に上記のプログラムを実行して、出力を確認してください (必要に応じて
+      <code>initTodos</code> に編集を加えてください)。</p>
+      <h2 data-number="7.1" id="関数化"><span class="header-section-number">7.1</span> 関数化</h2>
+      <p><code>map</code>、<code>filter</code>、<code>sort</code>
+      などの配列操作メソッドは、各種処理をコンパクトに記述することが可能です。ただし、同じ配列操作を2回以上行なうときは、それらの処理を<strong>関数化すること</strong>が推奨されます。</p>
+      <p>以下は、id で Todo を削除する <code>deleteTodoById</code> と、表示用の文字列配列を返す
+      <code>stringifyTodos</code> の例です。戻り値は HTML
+      のタグではなく、コンソールで確認するための文字列です。</p>
+      <div class="sourceCode" id="cb79" data-caption="src/pipeline/pipe02.ts"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb79-1"><a href="#cb79-1"></a><span class="im">import</span> dayjs <span class="im">from</span> <span class="st">&quot;dayjs&quot;</span><span class="op">;</span></span>
+<span id="cb79-2"><a href="#cb79-2"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb79-3"><a href="#cb79-3"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb79-4"><a href="#cb79-4"></a><span class="kw">const</span> dtFmt <span class="op">=</span> <span class="st">&quot;YYYY/MM/DD HH:mm&quot;</span><span class="op">;</span></span>
+<span id="cb79-5"><a href="#cb79-5"></a></span>
+<span id="cb79-6"><a href="#cb79-6"></a><span class="kw">const</span> deleteTodoById <span class="op">=</span> (todos<span class="op">:</span> Todo[]<span class="op">,</span> id<span class="op">:</span> <span class="dt">string</span>)<span class="op">:</span> Todo[] <span class="kw">=&gt;</span> {</span>
+<span id="cb79-7"><a href="#cb79-7"></a>  <span class="cf">return</span> todos<span class="op">.</span><span class="fu">filter</span>((todo) <span class="kw">=&gt;</span> todo<span class="op">.</span><span class="at">id</span> <span class="op">!==</span> id)<span class="op">;</span></span>
+<span id="cb79-8"><a href="#cb79-8"></a>}<span class="op">;</span></span>
+<span id="cb79-9"><a href="#cb79-9"></a></span>
+<span id="cb79-10"><a href="#cb79-10"></a><span class="kw">const</span> stringifyTodos <span class="op">=</span> (todos<span class="op">:</span> Todo[])<span class="op">:</span> <span class="dt">string</span>[] <span class="kw">=&gt;</span></span>
+<span id="cb79-11"><a href="#cb79-11"></a>  todos<span class="op">.</span><span class="fu">map</span>((todo) <span class="kw">=&gt;</span> {</span>
+<span id="cb79-12"><a href="#cb79-12"></a>    <span class="kw">const</span> deadline <span class="op">=</span> todo<span class="op">.</span><span class="at">deadline</span> <span class="op">===</span> <span class="kw">null</span></span>
+<span id="cb79-13"><a href="#cb79-13"></a>      <span class="op">?</span> <span class="st">&quot;期限なし&quot;</span></span>
+<span id="cb79-14"><a href="#cb79-14"></a>      <span class="op">:</span> <span class="vs">`期限 </span><span class="sc">${</span><span class="fu">dayjs</span>(todo<span class="op">.</span><span class="at">deadline</span>)<span class="op">.</span><span class="fu">format</span>(dtFmt)<span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
+<span id="cb79-15"><a href="#cb79-15"></a>    <span class="cf">return</span> <span class="vs">`id=</span><span class="sc">${</span>todo<span class="op">.</span><span class="at">id</span><span class="sc">}</span><span class="vs"> </span><span class="sc">${</span>todo<span class="op">.</span><span class="at">name</span><span class="sc">}</span><span class="vs"> </span><span class="sc">${</span>deadline<span class="sc">}</span><span class="vs">`</span><span class="op">;</span></span>
+<span id="cb79-16"><a href="#cb79-16"></a>  })<span class="op">;</span></span>
+<span id="cb79-17"><a href="#cb79-17"></a></span>
+<span id="cb79-18"><a href="#cb79-18"></a><span class="kw">const</span> updatedTodos <span class="op">=</span> <span class="fu">deleteTodoById</span>(initTodos<span class="op">,</span> <span class="st">&quot;a002&quot;</span>)<span class="op">;</span></span>
+<span id="cb79-19"><a href="#cb79-19"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;Before:&quot;</span><span class="op">,</span> <span class="fu">stringifyTodos</span>(initTodos))<span class="op">;</span></span>
+<span id="cb79-20"><a href="#cb79-20"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;After:&quot;</span><span class="op">,</span> <span class="fu">stringifyTodos</span>(updatedTodos))<span class="op">;</span></span></code></pre></div>
+      <p>対象 id がなくても、filter
+      は新しい配列を返します。元の値を保つことと、同じ配列を返すことは別です。関数がどのような戻り値を返す仕様なのか、呼び出す側でも確認してください。</p>
+      <p>慣れるまでは、上記のような関数処理を読み解くことも、記述することも大変かと思います。しかし、React開発では、状態（state）の更新や、コンポーネントの再レンダリングを効率的に行うために
+      <strong>頻繁に配列操作メソッドが使用されます</strong>。</p>
+      <p>はじめのうちは超難しく感じるかもしれませんが、継続的な学習と実践により、徐々に理解が深まり、効率的なコードを書けるようになります。頑張ってください
+      (1回で理解できることは、まず、<strong>あ・り・ま・せ・ん</strong>。1日か2日の間隔を空けて3回ほどトライすると、ぼんやりと分かってくるようになります)。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>React開発のための準備として、TypeScriptにおける配列操作メソッド
+      (<code>map</code>、<code>filter</code>、<code>sort</code>)
+      の読解と記述について十分に慣れておきたいと思っています。オブジェクトの配列を対象とした配列操作メソッドに関する練習問題と解答例を作成してください。まずは、初歩の初歩、超簡単なものからお願いします。</p>
+      </blockquote>
+      <h3 data-number="7.1.1" id="定着確認-7"><span class="header-section-number">7.1.1</span>
+      定着確認</h3>
+      <ul>
+      <li>次のプログラムを実行した後の result と元の nums を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>["2", "4"]</code> と
+      <code>[3, 1, 2, 4]</code></span></li>
+      </ul>
+      <div class="sourceCode" id="cb80" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb80-1"><a href="#cb80-1"></a><span class="kw">const</span> nums <span class="op">=</span> [<span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">4</span>]<span class="op">;</span></span>
+<span id="cb80-2"><a href="#cb80-2"></a><span class="kw">const</span> result <span class="op">=</span> nums</span>
+<span id="cb80-3"><a href="#cb80-3"></a>  <span class="op">.</span><span class="fu">filter</span>(n <span class="kw">=&gt;</span> n <span class="op">%</span> <span class="dv">2</span> <span class="op">===</span> <span class="dv">0</span>)</span>
+<span id="cb80-4"><a href="#cb80-4"></a>  <span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a <span class="op">-</span> b)</span>
+<span id="cb80-5"><a href="#cb80-5"></a>  <span class="op">.</span><span class="fu">map</span>(n <span class="kw">=&gt;</span> <span class="bu">String</span>(n))<span class="op">;</span></span></code></pre></div></li>
+      <li>次のプログラムを実行したとき、元の nums の順序が変わらない理由を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">filter が返した新しい配列を sort
+      が操作しているため。</span></li>
+      </ul>
+      <div class="sourceCode" id="cb81" data-caption="定着確認"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb81-1"><a href="#cb81-1"></a><span class="kw">const</span> nums <span class="op">=</span> [<span class="dv">3</span><span class="op">,</span> <span class="dv">1</span><span class="op">,</span> <span class="dv">2</span>]<span class="op">;</span></span>
+<span id="cb81-2"><a href="#cb81-2"></a>nums<span class="op">.</span><span class="fu">filter</span>(n <span class="kw">=&gt;</span> n <span class="op">&gt;</span> <span class="dv">0</span>)<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a <span class="op">-</span> b)<span class="op">;</span></span></code></pre></div></li>
+      <li>Todo 配列 todos の未完了要素を抽出し、優先度順に並べる。filter・sort・map のうち、数値型の
+      priority を比較するソートは、表示用の文字列への map の前と後のどちらに置くべきか答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">前。文字列に変換した後には、Todo の priority
+      をそのまま参照できない。</span></li>
+      </ul></li>
+      <li>表示用文字列を返す関数 stringifyTodos(todos) に空配列を渡し、内部で map
+      だけを使って変換する場合、戻り値を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>[]</code></span></li>
+      </ul></li>
+      <li>Todo 配列 todos から未完了の件数を得る式を、filter と length を使って記述せよ。各 Todo は
+      boolean 型の isDone を持つ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked"><code>todos.filter(todo =&gt; !todo.isDone).length</code></span></li>
+      </ul></li>
+      <li>2つの実装が同じ仕様を満たすかを確かめたい。期待値を変えずに同じテストを適用する意図を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span
+      class="masked">書き方を変えても、確認した条件で同じ仕様が保たれることを確かめるため。</span></li>
+      </ul></li>
+      </ul>
+      <h1 data-number="8" id="vscode関連のtips"><span class="header-section-number">8</span>
+      VSCode関連のTips</h1>
+      <p>次回に向けて、React開発に有用な拡張機能などをインストールしておいてください。</p>
+      <h2 data-number="8.1" id="vscodeの再読み込み"><span class="header-section-number">8.1</span>
+      VSCodeの再読み込み</h2>
+      <p><code>[Ctrl]+[Shift]+[P]</code> で <strong>コマンドパレット</strong>
+      を起動するか、VSCode上部の検索欄をクリックして <code>&gt;Developer: Reload Window</code>
+      と入力すると「<strong>プロジェクトファイルの再読み込み</strong>」が行われます。</p>
+      <p>2回目以降は、履歴から <code>&gt;Developer: Reload Window</code>
+      を選択して実行可能です。</p>
+      <figure>
+      <img src="figs/03/vscode_01.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>特に、今後のReact開発では、<code>import</code> 文で <span
+      class="masked">適切にファイルパスを設定しているにも関わらず「赤波線」でエラーが表示されること</span>
+      が多々あります
+      (やっかいなことにVSCodeを再起動してもキャッシュが残っており解決しません)。そのようなときは、この
+      <strong>Reload Window</strong> で解決します。</p>
+      <h2 data-number="8.2" id="ファイルパス補完の拡張機能"><span
+      class="header-section-number">8.2</span> ファイルパス補完の拡張機能</h2>
+      <p>VSCodeの拡張機能として <strong>Path Intellisense</strong>
+      (識別子:<code>christian-kohler.path-intellisense</code>)
+      をインストールしておくと、プログラムのなかで <strong>ファイルパス</strong>
+      を入力するときに補完が効いて便利です。</p>
+      <p>ファイルパス補完の拡張機能は「Path
+      Intellisense」の他にも様々なものがあるので、自分で使いやすいものを探してみてください。</p>
+      <figure>
+      <img src="figs/03/vscode_05.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <h2 data-number="8.3" id="react開発の支援機能"><span class="header-section-number">8.3</span>
+      React開発の支援機能</h2>
+      <p>React関連のコードスニペットを挿入する拡張機能として <strong>ES7+ React/Redux/React-Native
+      snippets</strong> (識別子: <code>dsznajder.es7-react-js-snippets</code>) を VSCode
+      にインストールしておいてください
+      (次回以降の講義では、この拡張機能がインストールされている前提で解説している部分があります)。</p>
+      <p>この拡張機能を導入すると <code>rafce</code>
+      と入力するだけで、<strong>Reactコンポーネントのスニペット</strong>
+      (=プログラムコードの定型的な断片、雛形) をエディタに挿入してくれます。</p>
+      <figure>
+      <img src="figs/03/vscode_04.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>この拡張機能の概要は<a
+      href="https://www.google.com/search?q=ES7%2BReact%2FRedux%2FReact-Native+snippets+おすすめ">こちら</a>を参照してください。</p>
+      <h2 data-number="8.4" id="コードチェックツールの拡張機能"><span
+      class="header-section-number">8.4</span> コードチェックツールの拡張機能</h2>
+      <p><strong>ESLint</strong> (識別子: <code>dbaeumer.vscode-eslint</code>) は、ECMAScript用
+      (=TypeScript/JavaScript用) の <strong>コードチェックツール</strong>
+      に関する拡張機能です。こちらも、次回以降の講義で利用していく予定なのであらかじめインストールしておいてください。</p>
+      <p>この拡張機能の概要は<a
+      href="https://www.google.com/search?q=vscode+拡張機能+eslint">こちら</a>を参照してください。</p>
+      <h2 data-number="8.5" id="tailwind用のインテリセンス"><span
+      class="header-section-number">8.5</span> Tailwind用のインテリセンス</h2>
+      <p><strong>Tailwind CSS IntelliSense</strong> (識別子 <code>bradlc.vscode-tailwindcss</code>)
+      は<a href="https://www.google.com/search?q=Tailwind+入門">Tailwind CSS</a>という
+      CSSフレームワークに関連したインテリセンス (コードの自動補完ツール)
+      です。本授業でのウェブアプリ開発でも Tailwind CSS
+      を使用していくので、その開発体験を向上させるためにインストールしておいてください。</p>
+      <p>この拡張機能の概要は<a
+      href="https://www.google.com/search?q=Tailwind+CSS+IntelliSense+おすすめ">こちら</a>を参照してください。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>CSSフレームワーク とはなんですか。普通に CSS ファイルを書くのと何が違いますか。</p>
+      </blockquote>
+      <blockquote>
+      <p>Tailwind CSS とは何ですか。</p>
+      </blockquote>
+      <h1 data-number="9" id="宿題"><span class="header-section-number">9</span> 宿題</h1>
+      <h2 data-number="9.1" id="todo-アプリの操作につながる総合演習"><span
+      class="header-section-number">9.1</span> Todo アプリの操作につながる総合演習</h2>
+      <p>次回以降の「未完了件数」「追加」「完了状態の変更」「削除」「一覧表示」は、今回の配列操作を組み合わせて作れます。今は
+      React の画面を作らず、<strong>入力と戻り値を持つ関数</strong>として実装します。</p>
+      <p><strong>src/pipeline/homeworkTodos.ts</strong> に、次の 6
+      つの関数を完成させてください。型と初期データ、期限の比較・並び替えの関数は、今回作ったものを使います。</p>
+      <ul>
+      <li><code>addTodo(todos, newTodo)</code>: 末尾に newTodo を加えた新しい配列。id
+      は既存要素と重複しない前提。既存 Todo と newTodo の参照はそのまま使う。</li>
+      <li><code>updateIsDone(todos, id, value)</code>: 対象の isDone
+      だけを変更した新しい配列。対象だけ新しいオブジェクトにし、対象がなくても新しい配列を返す。</li>
+      <li><code>removeCompletedTodos(todos)</code>: 完了済みを除いた新しい配列。</li>
+      <li><code>removeTodoById(todos, id)</code>: 指定 id
+      の要素を除いた新しい配列。対象がなくても新しい配列を返す。</li>
+      <li><code>countUncompletedTodos(todos)</code>: 未完了件数を数値で返す。</li>
+      <li><code>createListItems(todos)</code>:
+      未完了を先にし、同じ完了状態では期限の早い順、期限なしを最後にする。すべてのキーが同じなら入力順を維持する。用意したテストと同じ形式の文字列配列を返す。</li>
+      </ul>
+      <p>すべての関数で、元配列・元 Todo・Date の内容を変えないでください。削除後に残す Todo
+      は、元の要素と同じ参照を使います。空配列にも適用できるようにします。不正な入力の検証は今回の範囲に含めません。</p>
+      <div class="sourceCode" id="cb82"
+      data-caption="src/pipeline/homeworkTodos.ts (作成するファイル)"><pre
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb82-1"><a href="#cb82-1"></a><span class="im">import</span> dayjs <span class="im">from</span> <span class="st">&quot;dayjs&quot;</span><span class="op">;</span></span>
+<span id="cb82-2"><a href="#cb82-2"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
+<span id="cb82-3"><a href="#cb82-3"></a><span class="im">import</span> { sortByDoneAndDeadline } <span class="im">from</span> <span class="st">&quot;./sortTodos.js&quot;</span><span class="op">;</span></span>
+<span id="cb82-4"><a href="#cb82-4"></a></span>
+<span id="cb82-5"><a href="#cb82-5"></a><span class="im">export</span> <span class="kw">const</span> addTodo <span class="op">=</span> (todos<span class="op">:</span> Todo[]<span class="op">,</span> newTodo<span class="op">:</span> Todo)<span class="op">:</span> Todo[] <span class="kw">=&gt;</span> {</span>
+<span id="cb82-6"><a href="#cb82-6"></a>  <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">&quot;ここを実装してください&quot;</span>)<span class="op">;</span></span>
+<span id="cb82-7"><a href="#cb82-7"></a>}<span class="op">;</span></span>
+<span id="cb82-8"><a href="#cb82-8"></a></span>
+<span id="cb82-9"><a href="#cb82-9"></a><span class="im">export</span> <span class="kw">const</span> updateIsDone <span class="op">=</span> (</span>
+<span id="cb82-10"><a href="#cb82-10"></a>  todos<span class="op">:</span> Todo[]<span class="op">,</span> id<span class="op">:</span> <span class="dt">string</span><span class="op">,</span> value<span class="op">:</span> <span class="dt">boolean</span></span>
+<span id="cb82-11"><a href="#cb82-11"></a>)<span class="op">:</span> Todo[] <span class="kw">=&gt;</span> {</span>
+<span id="cb82-12"><a href="#cb82-12"></a>  <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">&quot;ここを実装してください&quot;</span>)<span class="op">;</span></span>
+<span id="cb82-13"><a href="#cb82-13"></a>}<span class="op">;</span></span>
+<span id="cb82-14"><a href="#cb82-14"></a></span>
+<span id="cb82-15"><a href="#cb82-15"></a><span class="im">export</span> <span class="kw">const</span> removeCompletedTodos <span class="op">=</span> (todos<span class="op">:</span> Todo[])<span class="op">:</span> Todo[] <span class="kw">=&gt;</span> {</span>
+<span id="cb82-16"><a href="#cb82-16"></a>  <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">&quot;ここを実装してください&quot;</span>)<span class="op">;</span></span>
+<span id="cb82-17"><a href="#cb82-17"></a>}<span class="op">;</span></span>
+<span id="cb82-18"><a href="#cb82-18"></a></span>
+<span id="cb82-19"><a href="#cb82-19"></a><span class="im">export</span> <span class="kw">const</span> removeTodoById <span class="op">=</span> (todos<span class="op">:</span> Todo[]<span class="op">,</span> id<span class="op">:</span> <span class="dt">string</span>)<span class="op">:</span> Todo[] <span class="kw">=&gt;</span> {</span>
+<span id="cb82-20"><a href="#cb82-20"></a>  <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">&quot;ここを実装してください&quot;</span>)<span class="op">;</span></span>
+<span id="cb82-21"><a href="#cb82-21"></a>}<span class="op">;</span></span>
+<span id="cb82-22"><a href="#cb82-22"></a></span>
+<span id="cb82-23"><a href="#cb82-23"></a><span class="im">export</span> <span class="kw">const</span> countUncompletedTodos <span class="op">=</span> (todos<span class="op">:</span> Todo[])<span class="op">:</span> <span class="dt">number</span> <span class="kw">=&gt;</span> {</span>
+<span id="cb82-24"><a href="#cb82-24"></a>  <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">&quot;ここを実装してください&quot;</span>)<span class="op">;</span></span>
+<span id="cb82-25"><a href="#cb82-25"></a>}<span class="op">;</span></span>
+<span id="cb82-26"><a href="#cb82-26"></a></span>
+<span id="cb82-27"><a href="#cb82-27"></a><span class="im">export</span> <span class="kw">const</span> createListItems <span class="op">=</span> (todos<span class="op">:</span> Todo[])<span class="op">:</span> <span class="dt">string</span>[] <span class="kw">=&gt;</span> {</span>
+<span id="cb82-28"><a href="#cb82-28"></a>  <span class="cf">throw</span> <span class="kw">new</span> <span class="bu">Error</span>(<span class="st">&quot;ここを実装してください&quot;</span>)<span class="op">;</span></span>
+<span id="cb82-29"><a href="#cb82-29"></a>}<span class="op">;</span></span></code></pre></div>
+      <p><code>throw new Error(...)</code>
+      の部分を自分の処理に置き換えます。最初は実装がないのでテストは失敗します。作成済みの
+      <code>sortByDoneAndDeadline</code> を再利用できることにも気づけたでしょうか。Day.js
+      は第02回でインストールしたものを使います。</p>
+      <p><strong>src/pipeline/homeworkTodos.test.ts</strong> を作成し、<a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/homeworkTodos.test.ts">用意したテストコード</a>
+      をコピーして貼り付けてください。今回はテストケースをこちらで用意しています。自分で追加のテストを書く必要はありません。</p>
+      <pre><code>npm run typecheck
+npm run test:run -- src/pipeline/homeworkTodos.test.ts</code></pre>
+      <p><strong>6
+      件成功</strong>となることを確認してください。もし失敗したら、テストが期待している値と、元データのどちらを確認しているかを読み、自分の処理と照合してください。テストの期待値を実装に合わせて変更するのではなく、上の仕様から実装を見直します。</p>
+      <ul>
+      <li><a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/homeworkTodos.ts">実装例</a>
+      と <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/homeworkTodos.test.ts">用意したテスト</a>。まずは自分で実装し、その後に
+      map・filter・スプレッド構文を使う箇所を見比べてください。</li>
+      </ul>
+      <h3 data-number="9.1.1" id="定着確認-8"><span class="header-section-number">9.1.1</span>
+      定着確認</h3>
+      <ul>
+      <li>Todo 配列を受け取り、完了済みを除く removeCompletedTodos を実装する。各 Todo は boolean
+      型の isDone を持つ。map と filter のどちらが適切か答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">filter。残す要素の条件を指定する。</span></li>
+      </ul></li>
+      <li>Todo 配列から指定 id の isDone だけを変更する updateIsDone を実装する。map
+      の対象以外の要素もスプレッドで複製する必要があるか答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">今回の仕様では不要。対象以外の Todo
+      は同じ参照を返す。</span></li>
+      </ul></li>
+      <li>Todo の追加関数 addTodo のテストで、戻り値に新しい Todo
+      が含まれることだけを確認すると、どのような誤りを見落とすか答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">push
+      などで元配列も変更してしまう誤り。元の配列も確認する。</span></li>
+      </ul></li>
+      </ul>
+      <!-- ---------------------------------------- -->
+    </main>
+
+    <footer class="markdown-body">
+      <p><a href="https://takeshiwada1980.github.io/Programming3-2026/">講義資料のIndexに移動</a></p>
+    </footer>
+
+  </body>
+</html>
