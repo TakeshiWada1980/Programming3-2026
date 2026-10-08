@@ -1213,15 +1213,23 @@ expect(todos).toEqual(before);
 - id で指定した Todo の名前を変更する関数に対し、対象 id が存在しない入力をテストする意図を答えよ。
   - **答え**: <span class="masked">対象がない場合に、他の Todo を変更しないことと、定めた戻り値の仕様を確認するため。</span>
 
-## オブジェクト配列のfilter操作 
+## オブジェクト配列の filter 操作
 
-配列の `map` メソッドは **引数として関数を受け取り** 、配列の各要素にその関数を適用した「新しい配列」を作成して戻り値としました。これに対して `filter` メソッドは `map` と同様に**引数として関数を受け取り**ますが、こちらは<span class="masked">その関数に配列の各要素を適用した結果が `true` になる要素</span> から構成される「新しい配列」を作成して戻り値とします。
+配列の `map` メソッドは **引数として関数を受け取り** 、配列の各要素にその関数を適用した「新しい配列」を作成して戻り値としました。これに対して `filter` メソッドは `map` と同様に**引数として関数を受け取り**ますが、こちらは <span class="masked">配列の各要素をその関数に渡したとき、戻り値が `true` になる要素だけ</span> から構成される「新しい配列」を作成して戻り値とします。
+
+::: {.balloon .char-01 .face-02 .tone-yellow}
+
+例えば、`(n) => n>5` のような関数 (つまり、仮引数として受け取った値が5を超えるときに `true` を返す関数) を与えると、配列の各要素が順番に関数に渡され、その戻り値が true となる要素だけを集めた新しい配列が作成されます。
+
+つまり、この例では値が「5」を超える要素だけが残るような操作になります。
 
 ![img](figs/03/array_01.png)
 
+:::
+
 ### filterメソッドの基本的な使用法
 
-filter メソッドは、配列の**各要素に対して条件**（=<span class="masked">真偽値を戻り値とする関数</span>）を適用し、その条件を満たす要素だけを含む「新しい配列」を返す機能を持っています。`map` と同様に元の配列は影響を受けません。
+filter メソッドは、配列の**各要素に対して条件**（=<span class="masked">真偽値を戻り値とする関数</span>）を適用し、その条件を満たす要素だけを含む「新しい配列」を返す機能を持っています。`map` と **<u>同様に元の配列は影響を受けません</u>**。
 
 例えば、次のように使用します。
 
@@ -1234,7 +1242,7 @@ console.log(`numArr = ${numArr}`);
 console.log(`oddArr = ${oddArr}`);
 ```
 
-**第02行目**から**第04行目**は <span class="masked">`const oddArr = numArr.filter(num => num % 2 === 1);`</span> のような **省略表記** もできます。
+**第02行目** から **第04行目** は <span class="masked">`const oddArr = numArr.filter(num => num % 2 === 1);`</span> のような **省略表記** もできます。
 
 実行結果は次のようになります。アロー関数で与えた関数による評価結果が `true` の要素だけが出力されていることが確認できます。
 
@@ -1244,6 +1252,35 @@ oddArr = 1,3,5
 ```
 
 なお、`numArr.filter(...)` の戻り値が <span class="masked">`[true, false, true, false, true, false]`</span> になるわけ**ではない**ので注意してください (逆に、このような配列を得たいときは <span class="masked">`map` メソッド</span> を使用してください)。
+
+#### 定着確認
+
+- 次のプログラムを実行した後の result の値として、適切な選択肢を選択せよ。
+    - **A**: `[true, false, true, false]`
+    - **B**: `[1, 3]`
+    - **C**: `[true, true]`
+    - **答え**: <span class="masked">B</span>
+    - **解説**: <span class="masked">filter は、関数が true を返した元の要素を集める。関数の戻り値である true や false を集めるわけではない。</span>
+```typescript{.numberLines caption="定着確認"}
+const nums = [1, 2, 3, 4];
+const result = nums.filter(num => num % 2 === 1);
+```
+
+- `const nums = [1, 2, 3, 4];` から、各要素が奇数かどうかを表す `[true, false, true, false]` を得る文として、適切な選択肢を選択せよ。
+    - **A**: `const result = nums.filter(num => num % 2 === 1);`
+    - **B**: `const result = nums.map(num => num % 2);`
+    - **C**: `const result = nums.map(num => num % 2 === 1);`
+    - **答え**: <span class="masked">C</span>
+    - **解説**: <span class="masked">map は、各要素に関数を適用した戻り値を集める。奇数かどうかを判定する関数を渡すと、真偽値の配列が得られる。</span>
+
+- 次のプログラムを実行した後の extracted と flags の値をそれぞれ答えよ。
+    - **答え**: <span class="masked">extracted は `[6, 9]`、flags は `[false, true, true]`。</span>
+    - **解説**: <span class="masked">同じ関数を渡しても、filter は条件を満たす元の要素を集め、map は関数の戻り値を集める。</span>
+```typescript{.numberLines caption="定着確認"}
+const nums = [3, 6, 9];
+const extracted = nums.filter(num => num > 5);
+const flags = nums.map(num => num > 5);
+```
 
 ### オブジェクト型の配列に対するfilterの適用
 
@@ -1257,9 +1294,11 @@ console.log("未完了Todoの一覧");
 console.log(JSON.stringify(updatedTodos, null, 2));
 ```
 
-推測がつくと思いますが、上記の **第03行目** の `!todo.isDone` の `!` は 真偽値の **論理否定演算子** です。つまり、`todo.isDone` が `false` のとき、`!todo.isDone` は <span>`true`</span> となりフィルタを通過します。
+::: {.balloon .char-01 .face-05 .tone-blue}
+推測がつくと思いますが、上記の **第03行目** の `!todo.isDone` の `!` は 真偽値の **論理否定演算子** です。つまり、`todo.isDone` が `false` のとき、`!todo.isDone` は `true` となりフィルタを通過します。
+:::
 
-また「**任意の** `id` **を持った要素を配列から**「**削除**」**する処理**」も `filter` を利用して、次のように実装が可能です。
+また「**任意の** `id` **を持った要素を配列から**「**削除**」**したい**」という処理も `filter` を利用して、次のように実装が可能です。
 
 ```typescript{.numberLines caption="src/pipeline/filter03.ts"}
 import { initTodos } from "./initTodos.js";
@@ -1270,27 +1309,67 @@ console.log("削除処理後のTodoの一覧");
 console.log(JSON.stringify(updatedTodos, null, 2));
 ```
 
+#### 定着確認
+
+- 次のプログラムで、targetId と同じ id を持つ要素を除いた新しい配列を作りたい。`???` に記述すべき条件式を記述せよ。
+    - **答え**: <span class="masked">`todo.id !== targetId`</span>
+    - **解説**: <span class="masked">削除対象以外の要素で true を返す条件にする。削除対象の要素では false になるため、新しい配列に含まれない。</span>
+```typescript{.numberLines caption="定着確認"}
+const todos = [
+  { id: "a001", name: "予習" },
+  { id: "a002", name: "復習" },
+  { id: "a003", name: "宿題" },
+];
+const targetId = "a002";
+const updatedTodos = todos.filter(todo => ???);
+```
+
+- 次のプログラムを実行した後、updatedTodos と元の todos に含まれる要素の id を、それぞれ配列内の順に答えよ。
+    - **答え**: <span class="masked">updatedTodos は `"a002"`、`"a003"`。元の todos は `"a001"`、`"a002"`、`"a003"`。</span>
+    - **解説**: <span class="masked">id が targetId と異なる要素だけを含む新しい配列が作られる。元の todos から要素が削除されるわけではない。</span>
+```typescript{.numberLines caption="定着確認"}
+const todos = [
+  { id: "a001", name: "予習" },
+  { id: "a002", name: "復習" },
+  { id: "a003", name: "宿題" },
+];
+const targetId = "a001";
+const updatedTodos = todos.filter(todo => todo.id !== targetId);
+```
+
 #### 演習④
 
-Todo の配列から、**未完了かつ期限を過ぎた Todo** を抽出する練習です。まずは **src/pipeline/filter04.ts** の条件を直接記述して完成させてください。期限なしは抽出せず、期限ちょうども期限切れには含めません。日時の比較には `getTime()` を使います。
+Todo の配列から、**未完了かつ期限を過ぎた Todo** を抽出する処理の練習をします。
+
+まずは **src/pipeline/filter04.ts** の条件を直接記述して完成させてください。期限なしは抽出せず、期限ちょうども期限切れには含めません。日時の比較には `getTime()` を使用して下さい。
 
 ```typescript{.numberLines caption="演習 (4) src/pipeline/filter04.ts"}
 import type { Todo } from "./types.js";
 import { initTodos } from "./initTodos.js";
 
 const today = new Date(2026, 9, 22);
-const overdueTodos: Todo[] = []; // filter の条件を記述する
+const overdueTodos: Todo[] = []; // ここを書き換える
 console.log("期日を過ぎている未完了Todoの一覧");
 console.log(JSON.stringify(overdueTodos, null, 2));
 ```
 
-今の初期データでは、`"a003"` の Todo だけが抽出されます。期限なし、完了済み、期限が基準時刻と同じ場合に、どう判定されるかも確かめてください。
+- **第05行目** において、filter を利用して initTodos から「未完了かつ期限切れ」の要素を抽出し、overdueTodos に格納する。
+
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
+
+> TypeScript（JavaScript）において、`Date` オブジェクトの日時を比較する際には、`getTime()` を使う方法が推奨されると聞きました。`>` や `<=` などの比較演算子で直接比較する場合と何が違うのでしょうか。内部的な仕組みも含めて解説してください。また、理解を深めるために、`getTime()` を使った日時比較のサンプルコードも作成してください。
+
+::: {.balloon .char-01 .face-01 .tone-pink}
+現在の初期データ (**initTodos**) では、`"a003"` の Todo だけが抽出されるはずです。あわせて、期限なし、完了済み、期限が基準時刻と同じ場合に、どう判定されるかも確かめてください。
+:::
 
 - [実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/filter04.ts)。元データを変更しない点と、期限なしを先に除外する点を見比べてください。
 
 ### 期限切れの抽出を関数化してテストする
 
-**src/pipeline/getOverdueTodos.ts** を作成し、配列と基準時刻を受け取る関数にします。仕様は演習④と同じです。抽出した要素は元の Todo と同じ参照で構いませんが、元配列・Todo・基準時刻の値を変更せず、新しい配列を返します。
+演習④の処理を、配列と基準時刻を受け取る関数にまとめます。関数にすることで、さまざまな入力に対する抽出結果をテストで確認できるようになります。
+
+**src/pipeline/getOverdueTodos.ts** を新規作成し、以下のコードを記述してください。
 
 ```typescript{.numberLines caption="src/pipeline/getOverdueTodos.ts"}
 import type { Todo } from "./types.js";
@@ -1304,22 +1383,33 @@ export const getOverdueTodos = (todos: Todo[], now: Date): Todo[] => {
 };
 ```
 
-`todo.deadline !== null` を先に確認するので、その後で Date の `getTime()` を使えます。`&&` は左から評価し、false になれば残りは評価しないので、期限なしに Date のメソッドを呼び出すことはありません。
+この関数の抽出条件は [演習④](#演習④) と同じです。元の配列や Todo、基準時刻の内容は変更せず、抽出結果を格納した新しい配列を返します。配列は新しくなりますが、抽出した Todo は元のオブジェクトをそのまま使います。
 
-**src/pipeline/getOverdueTodos.test.ts** を作成し、[用意したテストコード](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodos.test.ts) をコピーして貼り付けてください。
+上のコードでは、`todo.deadline !== null` を先に確認するので、その後で Date の `getTime()` を使えます。`&&` は左から評価し、false になれば残りは評価しないので、期限なしに Date のメソッドを呼び出すことはありません。
+
+つづいて **src/pipeline/getOverdueTodos.test.ts** を新規作成し、[用意したテストコード](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodos.test.ts) をコピーして貼り付けてください。
+
+プロジェクトルートのターミナルで、以下のコマンドを実行してください。
 
 ```
 npm run typecheck
 npm run test:run -- src/pipeline/getOverdueTodos.test.ts
 ```
 
-**3 件成功**を確認します。最初のテストでは、期限が基準時刻の 1 ミリ秒前・同じ時刻・1 ミリ秒後の入力を並べています。テストデータの名前ではなく、`deadline` と `now` の前後関係を読んでください。
+**3 件成功**となることを確認してください。その後、テストコードの最初のテストを読んでください。期限が基準時刻の 1 ミリ秒前・同じ時刻・1 ミリ秒後の Todo を使い、どの要素が抽出されるかを確認しています。`deadline` と `now` の前後関係と、期待する抽出結果を見比べてください。
 
-一時的に `<` を `<=` に変えると、期限ちょうども抽出されます。用意したテストがこの違いを検出することを確認できたでしょうか。確認後は `<` に戻して型チェックとテストを再実行してください。
+次に、**src/pipeline/getOverdueTodos.ts** の `<` を一時的に `<=` に変更し、テストを再実行してください。期限ちょうどの Todo も抽出されるようになり、テストが失敗することを確認できたでしょうか。
+
+確認後は `<` に戻し、上のコマンドで型チェックとテストを再実行してください。再び **3 件成功**となることを確認してから、次に進んでください。
 
 ### 第02回の関数を再利用する
 
-第02回の **src/utils/todoStatus.ts** には、`isOverdue(todo, now)` を実装しました。別の書き方として **src/pipeline/getOverdueTodosReuse.ts** を作り、以下のように再利用できます。第02回の型・関数は変更しません。
+ここでは、第02回で作成した関数を再利用して、先ほどと同じ「未完了かつ期限切れの Todo を抽出する処理」を実装します。
+
+第02回の **src/utils/todoStatus.ts** に実装した `isOverdue(todo, now)` は、1つの Todo が「未完了かつ期限を過ぎているか」を判定する関数でした。この関数を `filter` に渡すアロー関数のなかから呼び出して、各要素を抽出するかどうかを判定するようにします。
+
+**src/pipeline/getOverdueTodosReuse.ts** を新規作成し、以下のコードを記述してください。第02回の **src/utils/todoStatus.ts** は、そのまま利用していきます。
+
 
 ```typescript{.numberLines caption="src/pipeline/getOverdueTodosReuse.ts"}
 // 第02回で実装した src/utils/todoStatus.ts を利用します。
@@ -1337,11 +1427,24 @@ export const getOverdueTodos = (todos: Todo[], now: Date): Todo[] => {
 };
 ```
 
-前回の関数は `deadline: Date` の Todo を受け取ります。今回の `Date | null` の Todo は、そのまま渡せません。期限なしを除外した後に `{ ...todo, deadline: todo.deadline }` と書き、`deadline` が Date のオブジェクトを作っています。余分な id を持っていても、関数が必要なプロパティを満たすので渡せます。
+前回の `isOverdue` は、`deadline` に Date が設定されている Todo を受け取る関数でした。今回は `deadline` に `null` が入る場合もあるので、前回の関数に渡す前に、期限なしの Todo を除外する必要があります。
 
-**getOverdueTodos.test.ts** の import 先だけを `"./getOverdueTodosReuse.js"` に変え、同じ **3 件のテスト**で確認してください。テスト本体と期待値は変えません。書き方を変えた後も、同じ仕様が保たれていることを確かめる練習です。
+そこで、上のコードでは `deadline` が `null` のときに `false` を返し、抽出対象から除外するようにしています。期限がある場合は、`{ ...todo, deadline: todo.deadline }` によって、`deadline` に Date が設定されている Todo を `todoWithDeadline` として用意し、それを `isOverdue` に渡すようにしています。今回追加した `id` を持っていても、前回の関数が必要とするプロパティを満たしているので、そのまま利用できます。
 
-- [実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodos.ts)、[実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodosReuse.ts)、[用意したテスト](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodos.test.ts)。
+つづいて、書き方を変えても抽出結果が変わらないことを、先ほどと同じテストで確認していきます。
+
+**src/pipeline/getOverdueTodos.test.ts** の import 先を `"./getOverdueTodosReuse.js"` に変更してください。テスト本体と期待値は、そのまま使用していきます。
+
+変更後は、プロジェクトルートのターミナルで、以下のコマンドを実行してください。
+
+```
+npm run typecheck
+npm run test:run -- src/pipeline/getOverdueTodos.test.ts
+```
+
+先ほどと同じ **3 件のテストが成功すること**を確認してください。このように同じテストを使うことで、関数を再利用する書き方に変えた後も、同じ抽出結果が得られることを確認できます。
+
+- [直接比較する実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodos.ts)、[前回の関数を再利用する実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodosReuse.ts)、[用意したテスト](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodos.test.ts)。
 
 #### 定着確認
 
@@ -1776,4 +1879,3 @@ npm run test:run -- src/pipeline/homeworkTodos.test.ts
 
 - Todo の追加関数 addTodo のテストで、戻り値に新しい Todo が含まれることだけを確認すると、どのような誤りを見落とすか答えよ。
   - **答え**: <span class="masked">push などで元配列も変更してしまう誤り。元の配列も確認する。</span>
-
