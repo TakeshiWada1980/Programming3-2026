@@ -8,13 +8,17 @@ var:
 
 ## 今回の授業概要と連絡
 
-本科目は学修単位科目です。**1回の授業あたり、皆さんが「4時間相当の授業時間外学習」をすることを前提** としたボリューム、展開速度となっています。いろいろと忙しいとは思いますが、授業以外の時間も確保して取り組んでください。
+本科目は「学修単位科目」です。1回の授業あたり「4時間相当の授業時間外学習」を前提としたボリュームと展開速度となっています。何かと忙しいとは思いますが、授業以外の時間も確保して取り組んでください。
 
 ### 小テスト❷
 
 「小テスト❷」を実施します。筆記用具を準備しておいてください。
 
-- 次回は小テストはありません。
+### 今回の達成目標
+
+- `map`・`filter`・`sort` を使って「Todo 配列」の更新・抽出・並び替えができる。
+- 元の配列や Todo を変更せずに新しい配列を作り、元データと戻り値の参照の違いを説明できる。
+- 配列の操作を関数にまとめ、用意した Vitest のテストで、処理結果と元データが保たれていることを確認できる。
 
 ### ここまでの流れ
 
@@ -23,68 +27,25 @@ var:
 1. モダンTypeScript基礎学習のための環境構築 ***済***
 2. TypeScript基礎学習 **← 前回と今回の授業のメイン**
     - **React / Next.js 開発に関連する文法や機能だけを集中的に学びます**。
-3. Reactを使ったTodoアプリのための環境構築 **← 次回**
+3. Reactを使ったTodoアプリのための環境構築 **← 次回 (第03回講義)**
 4. Todoアプリ開発（Reactによるフロントエンド開発）のチュートリアル
-5. Todoアプリのカスタマイズや作り込み → **後期前半の大課題**
-
-まずは、次のような「📝**Todoアプリの開発** (Reactを採用したフロントエンド開発)」を目標とします。
-
-- [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/) (ギリギリ合格水準のレベル、点数で言えば60点😨)
-- [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/2) (ここまで内容を理解して開発できたら90点🎉)
-
-## VSCode関連のTips
-
-次回に向けて、React開発に有用な拡張機能などをインストールしておいてください。
-
-### VSCodeの再読み込み
-
-`[Ctrl]+[Shift]+[P]` で **コマンドパレット** を起動するか、VSCode上部の検索欄をクリックして `>Developer: Reload Window` と入力すると「**プロジェクトファイルの再読み込み**」が行われます。
-
-2回目以降は、履歴から `>Developer: Reload Window` を選択して実行可能です。
-
-![img](figs/03/vscode_01.png)
-
-特に、今後のReact開発では、`import` 文で <span class="masked">適切にファイルパスを設定しているにも関わらず「赤波線」でエラーが表示されること</span> が多々あります (やっかいなことにVSCodeを再起動してもキャッシュが残っており解決しません)。そのようなときは、この **Reload Window** で解決します。
-
-### ファイルパス補完の拡張機能
-
-VSCodeの拡張機能として **Path Intellisense** (識別子:`christian-kohler.path-intellisense`) をインストールしておくと、プログラムのなかで **ファイルパス** を入力するときに補完が効いて便利です。
-
-ファイルパス補完の拡張機能は「Path Intellisense」の他にも様々なものがあるので、自分で使いやすいものを探してみてください。
-
-![img](figs/03/vscode_05.png)
-
-### React開発の支援機能
-
-React関連のコードスニペットを挿入する拡張機能として **ES7+ React/Redux/React-Native snippets** (識別子: `dsznajder.es7-react-js-snippets`) を VSCode にインストールしておいてください (次回以降の講義では、この拡張機能がインストールされている前提で解説している部分があります)。
-
-この拡張機能を導入すると `rafce` と入力するだけで、**Reactコンポーネントのスニペット** (=プログラムコードの定型的な断片、雛形) をエディタに挿入してくれます。
-
-![img](figs/03/vscode_04.png)
-
-この拡張機能の概要は[こちら](https://www.google.com/search?q=ES7%2BReact%2FRedux%2FReact-Native+snippets+おすすめ)を参照してください。
-
-### コードチェックツールの拡張機能
-
-**ESLint** (識別子: `dbaeumer.vscode-eslint`) は、ECMAScript用 (=TypeScript/JavaScript用) の **コードチェックツール** に関する拡張機能です。こちらも、次回以降の講義で利用していく予定なのであらかじめインストールしておいてください。
-
-この拡張機能の概要は[こちら](https://www.google.com/search?q=vscode+拡張機能+eslint)を参照してください。
-
-### Tailwind用のインテリセンス
-
-**Tailwind CSS IntelliSense** (識別子 `bradlc.vscode-tailwindcss`) は[Tailwind CSS](https://www.google.com/search?q=Tailwind+入門)という CSSフレームワークに関連したインテリセンス (コードの自動補完ツール) です。本授業でのウェブアプリ開発でも Tailwind CSS を使用していくので、その開発体験を向上させるためにインストールしておいてください。
-
-この拡張機能の概要は[こちら](https://www.google.com/search?q=Tailwind+CSS+IntelliSense+おすすめ)を参照してください。
-
-**(プロンプト例)**
-
-> CSSフレームワーク とはなんですか。普通に CSS ファイルを書くのと何が違いますか。
-
-> Tailwind CSS とは何ですか。
+    - [こちら](https://takeshiwada1980.github.io/react-todo-app-demo/) のような「✏️Todoアプリ」を実装・デプロイしていきます。
+5. Todoアプリのカスタマイズや作り込み 👉 **後期前半の大課題**
 
 ## 前回の復習
 
-第02回講義の[Reactにおける状態 (オブジェクト) の変更の検知 ～概要～](lecture02.html#react-における状態-オブジェクト-の更新-概要)について、ある程度、理解していることを前提とします。
+第01回から使っている **ts-playground** を VSCode で開いてください。今回も **src/** のなかに TypeScript のファイルを作成して、プロジェクトルートのターミナルから各種コマンドを実行します。
+
+例えば **npx tsx src/prac07.ts** は、次のように実行 (型チェックと動作確認) できました。
+
+```
+npm run typecheck
+npx tsx src/prac07.ts   
+```
+
+実行結果を確認することと、型チェックが成功することは別の確認でした。演習途中の未完成なコードで型エラーが出ているときは、そのファイルを完成させてから先に進むようにしてください。
+
+ここからは、第02回講義の [Reactにおける状態 (オブジェクト) の変更の検知 ～概要～](lecture02.html#react-における状態-オブジェクト-の更新-概要) について、ある程度、理解していることを前提とした解説になります。
 
 - スプレッド構文などの理解が怪しい場合は、再度、前回の講義資料を読み直してください。
 
@@ -94,7 +55,7 @@ React関連のコードスニペットを挿入する拡張機能として **ES7
 
 #### ミュータブルなオブジェクト更新
 
-1つめに示した**ミュータブルなオブジェクト更新** (`mutableApproach.ts`) は、次のように <span class="masked">オブジェクトの属性を直接的に変更する方法</span> でした。
+1つめに示した**ミュータブルなオブジェクト更新** (**mutableApproach.ts**) は、次のように <span class="masked">オブジェクトの属性を直接的に変更する方法</span> でした。
 
 ```typescript{.numberLines caption="mutableApproach.ts"}
 import type { Todo } from "./types.js";
@@ -144,9 +105,9 @@ todo !== updatedTodo --->  false
 }
 ```
 
-`mutableApproach.ts` の **第11行目 (➊)** の `updatedTodo = todo` は、いわゆる <span class="masked">浅いコピー (Shallow Copy)</span> であり、`todo` の **参照** (C言語で言えば**ポインタ**、Pythonで言えば**オブジェクトID**のようなもの) を、`updatedTodo` に複製した**だけ**に相当します。
+**mutableApproach.ts** の **第11行目 (➊)** の `updatedTodo = todo` は、<span class="masked">同じオブジェクトへの参照を代入する操作</span> です。新しいオブジェクトは作られません。`todo` の **参照** (C言語で言えばポインタ、Pythonで言えばオブジェクトIDのようなもの) を `updatedTodo` も持つので、2 つの変数は同じオブジェクトを指します。スプレッド構文で別のオブジェクトを作る「浅いコピー」とは区別してください。
 
-![img](figs/03/obj_01.png)
+![参照の代入とミュータブルな更新](figs/03/obj_01_2026.svg)
 
 そのため、**第12行目 (➋)** と **第13行目 (➌)** は `updatedTodo` を対象に操作しているように見えますが、実際のところ、それは `todo` の「参照先」を変更していることにもなります。そのため、実行結果を確認すると、オリジナルの `todo` の `name` も <span class="masked">Learn COBOL</span> に変更されています。
 
@@ -156,7 +117,7 @@ todo !== updatedTodo --->  false
 
 #### イミュータブルなオブジェクト更新
 
-前回授業では、上記で示したミュータブルなオブジェクト更新とは**別に**、次の `immutableApproach.ts` のように「**スプレッド構文**」を使って[プロパティを更新した新たなオブジェクトを生成する方法](lecture02.html#状態の更新に使う新しいオブジェクトの生成)も解説しました。
+前回授業では、上記で示したミュータブルなオブジェクト更新とは**別に**、次の **immutableApproach.ts** のように「**スプレッド構文**」を使って[プロパティを更新した新たなオブジェクトを生成する方法](lecture02.html#状態の更新に使う新しいオブジェクトの生成)も解説しました。
 
 ```typescript{.numberLines caption="immutableApproach.ts"}
 import type { Todo } from "./types.js";
@@ -210,11 +171,13 @@ todo !== updatedTodo --->  true
 
 この方法は、以下の図に示すように、オリジナルのデータ (`todo`) は変化させずに、別途、**プロパティを変更した新しいオブジェクト** (`updatedTodo`) を作成するアプローチであり、<span class="masked">「イミュータブルなオブジェクト更新」</span> のように呼ばれます。新しいオブジェクトが生成された証拠に、**第19行目** の出力は <span class="masked">`true`</span> となります。
 
+スプレッド構文によるコピーは「浅いコピー」です。外側のオブジェクトは新しくなりますが、`deadline` の Date オブジェクトは同じものを参照しています。ここでは新しい Date を代入して期限を変更し、元の Date に `setDate` などの操作を加えないようにします。
+
 先ほどの **ミュータブル (Mutable)** に対して、**イミュータブル (Immutable)** とは「変更できない」「不変」という意味になります。余談ですが、ミュータブル / イミュータブル などの考え方は「**Haskell**」や「**Scala**」などの[関数型プログラミング](https://ja.wikipedia.org/wiki/関数型プログラミング)で重要な概念となってきます。
 
-![img](figs/03/obj_02.png)
+![スプレッド構文によるイミュータブルな更新](figs/03/obj_02_2026.svg)
 
-`immutableApproach.ts` の **第11行目** から **第15行目** の処理は、以下のコードと**等価**となります。
+**immutableApproach.ts** の **第11行目** から **第15行目** の処理は、以下のコードと**等価**となります。
 
 ```typescript{.numberLines caption="immutableApproach.ts (抜粋)" startFrom="11"}
 const updatedTodo = {
@@ -226,7 +189,7 @@ updatedTodo.priority = 1; // ➌
 
 なお、スプレッド構文は、Pythonにおける[アンパック](https://takeshiwada1980.github.io/Programming1-2024/lecture12.html#リストの扱いに関する補足②-アンパック)のようなものとイメージしてください。それでも、イメージがつかみづらいときは「生成AI」を利用してみてください。
 
-**(プロンプト例)**
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
 
 > JavaScriptにおける「スプレッド構文」のイメージがつかめません。特に「イミュータブルなオブジェクト更新」のために、スプレッド構文を使うという解説を聞いたのですがしっくりきません。具体的なコードを示して分かりやすく解説してください。
 
@@ -234,16 +197,15 @@ updatedTodo.priority = 1; // ➌
 
 [前回授業](lecture02.html#react-における状態-オブジェクト-の更新-概要)で解説したように、Reactを使ったフロントエンド開発において「**オブジェクトのプロパティを変更するとき**」は、原則として <span class="masked">スプレッド構文を利用したイミュータブルなオブジェクト更新</span> を使用するように意識してください。
 
-なぜならば、**React** では「**オブジェクトの参照が (以前と) 変化しているかどうか**」に基づいて <span class="masked">画面表示を更新するかどうか (再レンダリング・再描画するかどうか) を判断・最適化</span> しているためです。適切に画面が再レンダリングされなければ「内部的にデータが書き換わっていても、利用者が見ているウェブ画面上にはそれが反映されていない」という困った状態になります。
+React では、画面に反映したいデータを **state (状態)** として扱います。state のオブジェクトを直接書き換えるだけでは、画面の更新を要求したことにはなりません。**新しいオブジェクトを作り、state の更新関数に渡す**のが基本です。新しい参照を作るだけで、自動的に画面が更新されるわけではありません ([React 公式の説明](https://react.dev/learn/updating-objects-in-state))。
 
-このようなことから、Reactを使った開発では **_イミュータブルなオブジェクト更新を大原則_** とする必要があります。以下は「**Reactにおける画面更新の基本的な流れと仕組み**」になります。
+以下は、次回の React 開発につながる操作の流れです。
 
-1. イミュータブルな操作によって新しいオブジェクトを生成する。
-2. 新しく生成されたオブジェクトは、元のオブジェクトとは **異なる参照**（C言語でいえばポインタ、Pythonで言えばオブジェクトID）を持つ。
-3. 新しく生成されたオブジェクトをReactの **状態 (state)** にセットする (主に [useStateフック](https://www.google.com/search?q=useStateとは) を利用)、あるいは、子コンポーネントの[Props](https://www.google.com/search?q=React+propsとは)(プロップス) に渡す。
-    - `useState` や `Props` については次回以降に詳しく学びます。
-4. Reactは、Props や state にセットされた **オブジェクトの参照の変化を検知** し、画面の再レンダリング ([DOM操作](https://www.google.com/search?q=DOM操作)) をする。
+1. 元のオブジェクトの値を保ち、変更したプロパティを持つ新しいオブジェクトを作る。
+2. 作ったオブジェクトを **state の更新関数**に渡す。
+3. React が新しい状態に基づいてコンポーネントを再レンダリングする。必要な画面上の変更が反映される。
 
+state の更新関数や `useState`、子コンポーネントに値を渡す **Props** の使い方は、次回以降に学びます。今回は、その更新関数に渡せるデータを作る練習です。
 
 なお、今回講義では「**配列**」を学びますが、配列についても「ミュータブルな更新」と「イミュータブルな更新」が存在します。こちらも同様に「**イミュータブルな配列更新**」をする必要があります (React開発の前提で)。
 
@@ -278,9 +240,32 @@ printTodo(updatedTodo);
 - **第16行目**の `assert` は、PG1の[第11回講義](https://takeshiwada1980.github.io/Programming1-2024/lecture11.html#アサート文)で学んだPythonの「アサート」と同じです。
     - `npm install` コマンドで追加しなくても標準で利用可能です。
     - `assert.notEqual(todo, updatedTodo)` は、`todo` と `updatedTodo` の参照が異なるときは何もせず、参照が同じときには例外 (Error) を発生させます。
-- `utils/printTodo.ts` で定義している `printTodo` 関数について、**完了フラグ (**`isDone`**) の内容が表示されるようにアップデート** してください。
+- **utils/printTodo.ts** で定義している `printTodo` 関数について、**完了フラグ (**`isDone`**) の内容が表示されるようにアップデート** してください。
 
 - 解答例は[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/prac2-01.ts)
+
+#### 定着確認
+
+- `const a = { name: "予習" }; const b = a; b.name = "復習";` を実行したとき、`a.name` の値を答えよ。
+  - **答え**: <span class="masked">`"復習"`</span>
+  - **解説**: <span class="masked">a と b が同じオブジェクトを参照しているため。</span>
+
+- `const a = { name: "予習", priority: 1 }; const b = { ...a, name: "復習" };` を実行したとき、`a === b` の結果を答えよ。
+  - **答え**: <span class="masked">`false`</span>
+
+- `const a = { name: "予習", priority: 1 }; const b = { ...a, name: "復習" };` を実行したとき、`a.name` と `b.name` を答えよ。
+  - **答え**: <span class="masked">`"予習"` と `"復習"`</span>
+
+- `const a = { name: "予習" }; const b = { name: "復習", ...a };` で、b.name に入る値を答えよ。
+  - **答え**: <span class="masked">`"予習"`</span>
+  - **解説**: <span class="masked">後に書いたスプレッド構文のプロパティで上書きされる。型チェックでも重複するプロパティが指摘されるので、確認後は適切な順序に戻す。</span>
+
+- `const a = { deadline: new Date(2026, 9, 9) }; const b = { ...a };` の後の `a.deadline === b.deadline` の結果を答えよ。
+  - **答え**: <span class="masked">`true`</span>
+  - **解説**: <span class="masked">外側のオブジェクトは新しくなるが、Date の参照は共有される。</span>
+
+- React の state のオブジェクトを新しく作れば、更新関数を呼ばなくても画面更新が要求される。この説明は適切か、不適切か答えよ。
+  - **答え**: <span class="masked">不適切。新しいオブジェクトを state の更新関数に渡す必要がある。</span>
 
 ## 配列
 
@@ -294,51 +279,46 @@ printTodo(updatedTodo);
 
 ![img](figs/03/app_01.png)
 
-以下のような **Todo型の配列** (`Todo[]`) に基づいて描画されます。
+以下のような **Todo 型の配列** (`Todo[]`) に基づいて描画されます。これは、後ほど **src/pipeline/** に作る型と初期データを先に示したものです。今は「複数の Todo が配列に入る」という形に着目してください。ファイルの作成は、後の「準備」で案内します。
 
-```typescript{.numberLines caption="initTodos.ts (参考掲載です。現時点では動作しません。)"}
+```typescript{.numberLines caption="src/pipeline/initTodos.ts (後ほど作成)"}
 import type { Todo } from "./types.js";
-import { v4 as uuid } from "uuid";
 
 export const initTodos: Todo[] = [
   {
-    id: uuid(),
-    name: "Reactの勉強 (予習)",
+    id: "a001",
+    name: "React予習（YouTube）",
     isDone: false,
-    priority: 3,
-    deadline: undefined,
+    priority: 1,
+    deadline: new Date(2026, 9, 24, 9, 0),
   },
   {
-    id: uuid(),
-    name: "TypeScriptの勉強 (復習)",
+    id: "a002",
+    name: "TypeScriptの復習",
     isDone: true,
     priority: 2,
-    deadline: undefined,
+    deadline: null,
   },
   {
-    id: uuid(),
+    id: "a003",
     name: "基礎物理学3の宿題",
     isDone: false,
     priority: 1,
-    deadline: new Date(2026, 10, 11),
+    deadline: new Date(2026, 9, 20, 23, 59),
   },
   {
-    id: uuid(),
-    name: "解析2の宿題",
+    id: "a004",
+    name: "知識科学概論の宿題",
     isDone: true,
-    priority: 1,
-    deadline: new Date(2026, 10, 16, 17),
+    priority: 3,
+    deadline: new Date(2026, 9, 27),
   },
 ];
 ```
 
-そして、ウェブ画面上でのボタン押下などのユーザ操作を受けて、`todos` に要素の追加や削除をしたり、要素のプロパティを変更した `updatedTodos` を生成し、それをReactに渡すと、React側で再レンダリング (画面の更新) が実行されます。この際、Reactは <span class="masked">変更があった部分のみを検出して効率的に差分だけを再描画</span> をします。
+今回の `id` は、Todo を識別するための固定の文字列です。次回のアプリ開発では UUID を使って id を生成しますが、今回は生成方法に関係なく `id` で対象を指定する操作を学びます。期限なしは `null` とします。
 
-ただし、ここで注意すべきは...
-
-- 配列やその要素であるオブジェクトのプロパティの更新を、Reactが検知可能な形で `todos` から `updatedTodos` を生成する必要がある
-
-...ということです。
+ウェブ画面上の操作を受けて、要素を追加・削除したり、プロパティを変更した新しい配列を作り、それを state の更新関数に渡します。今回学ぶのは、この **元データを保った新しい配列を作る処理**です。
 
 ### 型と宣言
 
@@ -353,7 +333,7 @@ const strArr1: string[] = ["M", "D", "E", "知能情報"];
 const numArr2 = [4649, 3150, 0.5, -1];
 const strArr2 = ["M", "D", "E", "知能情報"];
 
-// 空配列の初期化 (型明示が必ず必要)
+// 空配列の初期化 (今回は要素の型を明示する)
 const numArr3: number[] = [];
 const strArr3: string[] = [];
 ```
@@ -367,9 +347,11 @@ TypeScriptの配列は、**基本的に同じ型の値** を要素に持つよ�
 const arr1: (number | string)[] = ["one", 2, 3];
 ```
 
+空配列だけでは、ここで入れたい要素の型を読み取れません。型推論の細かな規則による結果に頼らず、今回は `const numArr3: number[] = [];` のように、入れる要素の型を明示しておきます。
+
 ### 参考: 要素の追加と削除 (ミュータブルな配列操作)
 
-**React開発では基本的に使用することはありませんが**、ミュータブルな配列要素の「追加」と「削除」の例を示しておきます。このプログラムでは、配列が持つ `push`、`unshift`、`splice`、`pop` などのメソッドを使っていますが、<span class="masked">これらを本授業の範囲で使用する場面は (おそらく) ありません</span>。
+元の配列を直接変更する、ミュータブルな配列要素の「追加」と「削除」の例を示します。このプログラムでは `push`、`unshift`、`splice`、`pop` などを使っています。**React の既存の state の配列を、この方法で直接変更しない**ことを意識してください。新しく作った作業用配列に要素を追加する場合とは区別します。
 
 ```typescript{.numberLines caption="prac2-03.ts (Reactでは基本的に使用しないミュータブルな配列操作)"}
 const numArr: number[] = [10, 11, 12, 13];
@@ -404,7 +386,7 @@ console.log("4番目の位置の要素を削除した後 => " + numArr);
 
 ### 要素の追加 (イミュータブルな変更)
 
-React開発では、`push` や `pop`、`splice` などのメソッドを**使用せず**に、**配列に対してイミュータブルな操作をすること** が要求されます。
+React の state を更新するときは、元の配列に直接変更を加えず、**変更後の内容を持つ新しい配列を作る**のが基本です ([React 公式の説明](https://react.dev/learn/updating-arrays-in-state))。
 
 配列に対する <span class="masked">要素の追加</span> に関しては、次のように「**スプレッド構文**」を利用してイミュータブルな操作 (=元の配列には変更を加えずに、「変更を適用した新しい配列」を生成すること) が可能です。
 
@@ -431,15 +413,39 @@ console.log(`${n}番目の位置に要素を挿入 => ` + insertedAtN);
 
 配列要素の「削除」については、後ほど解説する `filter()` メソッドを利用します。 
 
-<div class="note type-tips">
+::: {.note .type-tips}
 **`splice` と `slice` の違い**
 
 配列操作の `splice` メソッド と `slice` メソッドは機能と使用方法が異なるので注意してください。興味がある人は、生成AIを使用して調べてみてください。
 
-**(プロンプト例)**
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
 
 > JavaScriptの配列の `splice` メソッド と `slice` メソッドの違いをミュータブル、イミュータブルの観点から説明してください。
-</div>
+:::
+
+#### 定着確認
+
+- 数値を格納する空配列 nums を const で宣言する。`const nums: ??? = [];` の ??? に入る型を答えよ。
+  - **答え**: <span class="masked">`number[]` または `Array<number>`</span>
+
+- `const nums = [1, 2, 3];` と宣言したとき、nums に推論される型を答えよ。
+  - **答え**: <span class="masked">`number[]`</span>
+
+- `const arr: (number | string)[] = ["one", 2];` の要素として許可される値の種類を答えよ。
+  - **答え**: <span class="masked">数値または文字列。</span>
+
+- `const nums = [10, 11]; const added = [...nums, 12];` を実行した後の nums と added を答えよ。
+  - **答え**: <span class="masked">`[10, 11]` と `[10, 11, 12]`</span>
+
+- `const nums = [10, 11];` の先頭に 9 を加え、元配列を変更しない新しい配列 added を作る文を記述せよ。
+  - **答え**: <span class="masked">`const added = [9, ...nums];`</span>
+
+- `const nums = [10, 11]; const alias = nums; alias.push(12);` の後の nums を答えよ。
+  - **答え**: <span class="masked">`[10, 11, 12]`</span>
+  - **解説**: <span class="masked">alias は新しい配列ではなく、nums と同じ配列を参照する。</span>
+
+- `const nums = [10, 11, 12];` から `nums.slice(0, 2)` を得たときの戻り値と、元の nums の内容を答えよ。
+  - **答え**: <span class="masked">`[10, 11]` と `[10, 11, 12]`</span>
 
 ### map による要素の更新
 
@@ -488,7 +494,7 @@ for (let i = 0; i < grades.length; i++) {
 }
 ```
 
-ここでは簡略化のために `export {};` と `console.log(...)` の部分は省略しています。実際に動作確認する際には、それらを追加して実行してください。
+ここでは簡略化のため `console.log(...)` を省略しています。**prac2-06.ts** の内容を形態ごとに置き換え、末尾に `console.log(grades);` と `console.log(gradeListItems);` を追加して確認してください。8 種類を同じファイルへ追記すると、同じ名前の変数が重複します。今年度の設定は `moduleDetection: force` なので、モジュール扱いにするための `export {};` は追加しなくて構いません。
 
 なお、配列は、`length` プロパティを持ち、それを通して配列の要素数を得ることができます。例えば、`const grades = [1, 2, 3, 4];` の `grades.length` は <span class="masked">4</span> となります。
 
@@ -640,6 +646,8 @@ console.log(formattedPriorities);
 
 - 解答例は[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/prac2-07.ts)
 
+演習②は、優先度を表示用の文字列へ変換する練習です。元の数値配列を保ち、要素数と順序が変わっていないことも確認してください。
+
 ### 配列のインデックス番号の参照
 
 次のプログラムの **第02行目** のように `map` に渡すアロー関数に第2引数を設定すると、その変数には <span class="masked">ゼロオリジンのインデックス番号</span> が格納され、map内の処理で参照することができます。
@@ -658,6 +666,30 @@ console.log(arr2);
 [ '1: Python', '2: C言語', '3: TypeScript', '4: C#' ]
 ```
 
+#### 定着確認
+
+- `const grades = [1, 3, 5]; const result = grades.map((grade) => grade + 1);` の result と元の grades を答えよ。
+  - **答え**: <span class="masked">`[2, 4, 6]` と `[1, 3, 5]`</span>
+
+- `const names = ["A", "B"]; const result = names.map((name, index) => `${index + 1}:${name}`);` の result を答えよ。
+  - **答え**: <span class="masked">`["1:A", "2:B"]`</span>
+
+- `const nums = [1, 2];` に対する `nums.map((num) => { num * 2; })` の戻り値を答えよ。
+  - **答え**: <span class="masked">`[undefined, undefined]`</span>
+  - **解説**: <span class="masked">波括弧がある関数本体では return が必要。この関数は値を返していない。</span>
+
+- `const nums = [1, 2];` に対する `nums.map((num) => num * 2)` の戻り値を答えよ。
+  - **答え**: <span class="masked">`[2, 4]`</span>
+
+- `const nums: number[] = [];` に対する `nums.map((num) => num * 2)` の戻り値を答えよ。
+  - **答え**: <span class="masked">`[]`</span>
+
+- `const priorities = [3, 1, 2];` から `["★", "★★★", "★★"]` を得る、map を使った文を記述せよ。
+  - **答え**: <span class="masked">`const result = priorities.map((priority) => "★".repeat(4 - priority));`</span>
+
+- 配列の map に渡す関数の、第1引数と第2引数にはそれぞれ何が渡されるか答えよ。
+  - **答え**: <span class="masked">配列の要素と、ゼロオリジンのインデックス番号。</span>
+
 ## オブジェクト配列のmap操作
 
 次にオブジェクトを要素とする配列の「map操作」について考えていきます。
@@ -670,49 +702,55 @@ console.log(arr2);
 
 ![img](figs/03/vscode_02.png)
 
-そのなかに、以下のように数値型の `id` というプロパティを新たに追加した `Todo` 型 (＝ユーザ定義のオブジェクト型) を定義した `types.ts` というファイルを作成してください。
+図は昨年度の画面で、フォルダの配置を確認するために掲載しています。今年度のプロジェクト名は **ts-playground**、型定義は以下のコードを使ってください。図の数値型 id・Date 必須の型は、今回は文字列型 id・Date または null に変更します。
+
+そのなかに、以下のように文字列型の `id` というプロパティを新たに追加した `Todo` 型 (＝ユーザ定義のオブジェクト型) を定義した **types.ts** というファイルを作成してください。
 
 ```typescript{.numberLines caption="src/pipeline/types.ts"}
 export type Todo = {
-  id: number;
+  id: string;
   name: string;
   priority: number;
   isDone: boolean;
-  deadline: Date;
+  deadline: Date | null;
 };
 ```
 
+第02回の **src/types.ts** とは別の型です。前回の型やテストはそのままにして、今回は **src/pipeline/types.ts** を使います。`Date | null` は「Date または null」を表す **ユニオン型**です。期限がある Todo は Date、期限なしの Todo は null にします。`undefined` とは区別します。
+
+今回の演習では、id は配列内で重複しない文字列、優先度は 1〜3、期限がある場合は有効な Date という前提にします。
+
 ### オブジェクト型の配列の初期化
 
-ユーザ定義のオブジェクト型を要素に持った **配列の初期化** は次のように行ないます。`src/pipeline` フォルダのなかに `initTodos.ts` というファイルを新規作成して以下の内容を記述してください。
+ユーザ定義のオブジェクト型を要素に持った **配列の初期化** は次のように行ないます。`src/pipeline` フォルダのなかに **initTodos.ts** というファイルを新規作成して以下の内容を記述してください。
 
 ```typescript{.numberLines caption="src/pipeline/initTodos.ts"}
 import type { Todo } from "./types.js";
 
 export const initTodos: Todo[] = [
   {
-    id: 1,
+    id: "a001",
     name: "React予習（YouTube）",
     isDone: false,
     priority: 1,
     deadline: new Date(2026, 9, 24, 9, 0),
   },
   {
-    id: 2,
+    id: "a002",
     name: "TypeScriptの復習",
     isDone: true,
     priority: 2,
-    deadline: new Date(2026, 9, 30),
+    deadline: null,
   },
   {
-    id: 3,
+    id: "a003",
     name: "基礎物理学3の宿題",
     isDone: false,
     priority: 1,
     deadline: new Date(2026, 9, 20, 23, 59),
   },
   {
-    id: 4,
+    id: "a004",
     name: "知識科学概論の宿題",
     isDone: true,
     priority: 3,
@@ -723,13 +761,15 @@ export const initTodos: Todo[] = [
 
 `number` や `string` などのプリミティブ型の配列と同様に、オブジェクト型の配列についても型付きの変数の宣言は `Todo[]` あるいは `Array<Todo>` のようにします。また、初期化は、それに続けて `=[{...},{...},{...}]` の形式で行ないます。
 
-**(プロンプト例)**
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
 
 > TypeScriptにおける「プリミティブ型」とはなんですか。
 
+**initTodos.ts** の作成後は `npm run typecheck` で型の整合を確認してください。後続のファイルは、この初期データを読み込みます。ミュータブルな更新を試す例でデータを変えた場合でも、実行を終了し、別のコマンドで起動し直せば、ファイルに記述した初期値から始まります。
+
 ### オブジェクト型の配列に対するmapの適用
 
-ここでは、mapを使って「**Todo型のデータ**」を「**整形された文字列**」に変換する例を示します。`src/pipeline` のなかに `map01.ts` を新規作成して、以下のコードを貼付けてください。
+ここでは、mapを使って「**Todo型のデータ**」を「**整形された文字列**」に変換する例を示します。`src/pipeline` のなかに **map01.ts** を新規作成して、以下のコードを貼付けてください。
 
 ここでは、特に **第07行目** に着目して読解してください。
 
@@ -745,7 +785,7 @@ const dtFmt = "YYYY/MM/DD HH:mm";
 const formattedTodos: string[] = initTodos.map((t: Todo) => {
   const str =
     `<li>[${t.id}] ${t.name} 優先度${t.priority} ` +
-    `(期限${dayjs(t.deadline).format(dtFmt)})` +
+    `(期限${t.deadline === null ? "なし" : dayjs(t.deadline).format(dtFmt)})` +
     (t.isDone ? "【済】" : "") +
     "</li>";
   return str;
@@ -758,10 +798,10 @@ console.log(formattedTodos);
 
 ```
 [
-  '<li>[1] React予習（YouTube） 優先度1 (期限2026/10/24 09:00)</li>',
-  '<li>[2] TypeScriptの復習 優先度2 (期限2026/10/30 00:00)【済】</li>',
-  '<li>[3] 基礎物理学3の宿題 優先度1 (期限2026/10/20 23:59)</li>',
-  '<li>[4] 知識科学概論の宿題 優先度3 (期限2026/10/27 00:00)【済】</li>'
+  '<li>[a001] React予習（YouTube） 優先度1 (期限2026/10/24 09:00)</li>',
+  '<li>[a002] TypeScriptの復習 優先度2 (期限なし)【済】</li>',
+  '<li>[a003] 基礎物理学3の宿題 優先度1 (期限2026/10/20 23:59)</li>',
+  '<li>[a004] 知識科学概論の宿題 優先度3 (期限2026/10/27 00:00)【済】</li>'
 ]
 ```
 
@@ -771,19 +811,21 @@ console.log(formattedTodos);
 
 ![img](figs/03/vscode_03.png)
 
-実際に、VSCode の変数名の変更機能を使って、`t` を `todo` に変更してください。
+図は変数名を変更する操作の例です。今年度は **src/pipeline/map01.ts** で行ない、import と期限なしの処理は本文のコードに合わせてください。
+
+実際に、VSCode の変数名の変更機能を使って、`t` を `todo` に変更してください。期限が `null` の場合は「期限なし」と表示されることも確認できたでしょうか。`dayjs(null)` をそのまま表示用の日時として扱わず、条件演算子で分けています。
 
 ### 任意の配列要素のプロパティの変更
 
 オブジェクト配列のなかの「任意の配列要素」の「任意のプロパティ」を **イミュータブルに変更する方法** (＝その変更が React に適切に検知されるようにする方法) を解説します。
 
-ここでは、`id` が `4` である Todo (知識科学概論の宿題) の `isDone` プロパティを `false` に変更するような操作を例に解説したいと思います。
+ここでは、`id` が `"a004"` である Todo (知識科学概論の宿題) の `isDone` プロパティを `false` に変更するような操作を例に解説したいと思います。
 
 #### NG: ミュータブルな操作
 
 まずはNGな変更操作から確認していきます。次のプログラムの **第10行目** から **第15行目** までの処理は、**React開発ではNGなミュータブルな操作** となります。
 
-コンソール出力から確認できるように内部データとしては、`id` が `4` の「知識科学概論の宿題」の `isDone` は `false` に変更されていますが、このような操作ではReactで管理・描画されるウェブ画面上の表示は変更されません (Reactでのハマりポイントです)。
+この例は Node.js で配列を変更する処理を確認するもので、まだ React の画面はありません。コンソール出力から確認できるように内部データとしては、`id` が `"a004"` の「知識科学概論の宿題」の `isDone` は `false` に変更されていますが、React の state に対してこのように直接変更し、同じ配列を更新関数に渡す方法は避けてください。後の React 開発では、新しい配列を作って渡すようにします。
 
 ```typescript{.numberLines caption="src/pipeline/map02.ts (NGな配列要素の更新操作)"}
 import { initTodos } from "./initTodos.js";
@@ -794,7 +836,7 @@ console.log(JSON.stringify(initTodos, null, 2));
 // setTodos(initTodos);
 
 // NGなプロパティ変更
-const targetId = 4; // isDone を false に戻す対象
+const targetId = "a004"; // isDone を false に戻す対象
 for (const todo of initTodos) {
   if (todo.id === targetId) {
     todo.isDone = false;
@@ -822,7 +864,7 @@ console.log(JSON.stringify(initTodos, null, 2));
 // setTodos(initTodos);
 
 // 推奨されるプロパティ変更
-const targetId = 4;
+const targetId = "a004";
 const updatedTodos = initTodos.map((todo) => { // mapメソッドを利用
   if (todo.id === targetId) {
     return { ...todo, isDone: false }; // スプレッド構文を利用
@@ -836,6 +878,8 @@ console.log(JSON.stringify(updatedTodos, null, 2));
 // setTodos(updatedTodos);
 ```
 
+ここで新しく作るのは配列と、対象 id のオブジェクトです。変更しない Todo は、そのまま元のオブジェクトを返しています。**配列だけを `[...initTodos]` でコピーしても、要素のオブジェクトは同じ参照のまま**です。対象のオブジェクトもスプレッド構文で新しくする点を確認できたでしょうか。
+
 また、上記のプログラムは[条件演算子(三項演算子)](lecture02.html#三項演算子)を使用して、以下のように記述することができます。
 
 ```typescript{.numberLines caption="src/pipeline/map04.ts (推奨される配列要素の更新操作・条件演算子)"}
@@ -846,7 +890,7 @@ console.log(JSON.stringify(initTodos, null, 2));
 // React の useState の更新関数
 // setTodos(initTodos);
 
-const targetId = 4;
+const targetId = "a004";
 const updatedTodos = initTodos.map((todo) => {
   return todo.id === targetId ? { ...todo, isDone: false } : todo; // 条件演算子
 });
@@ -864,7 +908,7 @@ console.log(JSON.stringify(updatedTodos, null, 2));
 import type { Todo } from "./types.js";
 import { initTodos } from "./initTodos.js";
 
-const targetId = 3;
+const targetId = "a003";
 const newName = "電気電子回路1の課題";
 const updatedTodos: Todo[] = [];
 
@@ -872,6 +916,117 @@ console.log(JSON.stringify(updatedTodos, null, 2));
 ```
 
 - 解答例は[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/map05.ts)
+
+### 名前の更新を関数化してテストする
+
+演習③の処理を、繰り返し使える関数にします。第02回で学んだように、引数と戻り値を持つ関数にすると、決めた入力に対して期待する結果が得られるかを確認できます。ここでは **名前を変えること**と、**元データを保つこと**を両方確認します。
+
+**src/pipeline/updateTodoName.ts** を作成してください。仕様は次のとおりです。
+
+- Todo の配列、対象の id、変更後の名前を受け取り、新しい配列を返す。
+- 対象の名前だけを変更し、その他のプロパティや他の Todo を変更しない。
+- 対象がなければ内容が同じ新しい配列を返す。空配列なら新しい空配列を返す。
+- 対象の Todo は新しいオブジェクトにし、変更しない Todo は同じ参照を使う。
+
+```typescript{.numberLines caption="src/pipeline/updateTodoName.ts"}
+import type { Todo } from "./types.js";
+
+export const updateTodoName = (
+  todos: Todo[],
+  targetId: string,
+  newName: string
+): Todo[] => {
+  return todos.map((todo) =>
+    todo.id === targetId ? { ...todo, name: newName } : todo
+  );
+};
+```
+
+つづいて **src/pipeline/updateTodoName.test.ts** に、以下を記述してください。テストは用意しているものを使い、今はテストを自作する必要はありません。
+
+```typescript{.numberLines caption="src/pipeline/updateTodoName.test.ts"}
+import { expect, test } from "vitest";
+import type { Todo } from "./types.js";
+import { updateTodoName } from "./updateTodoName.js";
+
+const makeTodos = (): Todo[] => [
+  { id: "a001", name: "Reactの予習", priority: 1, isDone: false,
+    deadline: new Date(2026, 9, 24, 9, 0) },
+  { id: "a002", name: "TypeScriptの復習", priority: 2, isDone: true,
+    deadline: null },
+];
+
+test("指定したTodoの名前だけを変更し、元データを保つ", () => {
+  const todos = makeTodos();
+  const before = structuredClone(todos);
+  const updated = updateTodoName(todos, "a001", "Reactの復習");
+  expect(updated.map((todo) => todo.name))
+    .toEqual(["Reactの復習", "TypeScriptの復習"]);
+  expect(todos).toEqual(before);
+  expect(updated).not.toBe(todos);
+  expect(updated[0]).not.toBe(todos[0]);
+  expect(updated[0]).toEqual({ ...before[0], name: "Reactの復習" });
+  expect(updated[1]).toBe(todos[1]);
+});
+
+test("対象idがなくても元データを保ち、新しい配列を返す", () => {
+  const todos = makeTodos();
+  const before = structuredClone(todos);
+  const updated = updateTodoName(todos, "missing", "変更後");
+  expect(updated).toEqual(before);
+  expect(todos).toEqual(before);
+  expect(updated).not.toBe(todos);
+  expect(updated[0]).toBe(todos[0]);
+  expect(updated[1]).toBe(todos[1]);
+});
+
+test("空配列には変更せず、新しい空配列を返す", () => {
+  const todos: Todo[] = [];
+  const updated = updateTodoName(todos, "a001", "変更後");
+  expect(updated).toEqual([]);
+  expect(todos).toEqual([]);
+  expect(updated).not.toBe(todos);
+});
+```
+
+```
+npm run typecheck
+npm run test:run -- src/pipeline/updateTodoName.test.ts
+```
+
+**3 件成功**となることを確認します。`toEqual` は値の内容、`toBe` はオブジェクトの場合に同じ参照かどうかを確認します。`structuredClone` は比較用に変更前の値を保存するために使っています。実装側でコピーすべき範囲とは別です。
+
+一時的に更新処理を「対象の `todo.name` を直接書き換えて、その todo を返す」処理に変更してください。元データを保つことを確認するテストが失敗することに気づけたでしょうか。確認後は上の実装に戻し、型チェックとテストが成功してから先に進みます。
+
+- [実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/updateTodoName.ts) と [テスト](codes/03/updateTodoName.test.ts)。変更していないプロパティと、対象以外の参照も確認してください。
+
+#### 定着確認
+
+- `type Todo = { id: string; deadline: Date | null; };` で期限なしを表す値を答えよ。
+  - **答え**: <span class="masked">`null`</span>
+
+- `const a = [{ id: "a001", name: "予習" }]; const b = [...a]; for (const todo of b) { todo.name = "復習"; }` の後、a の要素の name はどうなるか答えよ。
+  - **答え**: <span class="masked">`"復習"`</span>
+  - **解説**: <span class="masked">外側の配列だけをコピーしており、要素は同じオブジェクト。</span>
+
+- `const a = [{ id: "a001", name: "予習" }, { id: "a002", name: "宿題" }]; const b = a.map(t => t.id === "a001" ? { ...t, name: "復習" } : t);` で `a[0] === b[0]` と `a[1] === b[1]` の結果を答えよ。
+  - **答え**: <span class="masked">`false` と `true`</span>
+
+- 元の Todo 配列 todos を保って名前を変更する関数 updateTodoName のテストで、戻り値の名前だけを確認すれば、元データが変わらないことも保証できる。この説明は適切か、不適切か答えよ。
+  - **答え**: <span class="masked">不適切。元配列の内容も確認する必要がある。</span>
+
+- Todo 配列 todos に対し、`const before = structuredClone(todos); const updated = updateTodoName(todos, "a001", "復習");` を実行した。`expect(todos).toEqual(before)` の確認意図を答えよ。
+  - **答え**: <span class="masked">元の配列・要素の値が、処理前から変わっていないこと。</span>
+
+- 元配列を保つ updateTodoName 関数のテストとして最も適切な選択肢を選択せよ。
+  - **A**: 関数呼出し後の元配列を複製し、元配列と比較する。
+  - **B**: 呼出し前の元配列を複製して保存し、呼出し後の元配列と比較する。
+  - **C**: 戻り値の要素数だけを確認する。
+  - **答え**: <span class="masked">B</span>
+  - **解説**: <span class="masked">変更前の値を保持して比較する。呼出し後の値のコピーでは、既に起きた破壊的更新を見落とす。</span>
+
+- id で指定した Todo の名前を変更する関数に対し、対象 id が存在しない入力をテストする意図を答えよ。
+  - **答え**: <span class="masked">対象がない場合に、他の Todo を変更しないことと、定めた戻り値の仕様を確認するため。</span>
 
 ## オブジェクト配列のfilter操作 
 
@@ -924,7 +1079,7 @@ console.log(JSON.stringify(updatedTodos, null, 2));
 ```typescript{.numberLines caption="src/pipeline/filter03.ts"}
 import { initTodos } from "./initTodos.js";
 
-const targetId = 2; // 削除対象のTodoのID
+const targetId = "a002"; // 削除対象のTodoのID
 const updatedTodos = initTodos.filter((todo) => todo.id !== targetId);
 console.log("削除処理後のTodoの一覧");
 console.log(JSON.stringify(updatedTodos, null, 2));
@@ -932,21 +1087,158 @@ console.log(JSON.stringify(updatedTodos, null, 2));
 
 #### 演習④
 
-Todoオブジェクトの配列のなかで「**未完了**」かつ「**期日 (**`deadline`**) が **`today` **より前である**」に一致する要素を `overdueTodos` に得るように、次のプログラムを完成させてください。
-
-なお、適切な動作検証ができるように `initTodos` を適当に変更してください。
+Todo の配列から、**未完了かつ期限を過ぎた Todo** を抽出する練習です。まずは **src/pipeline/filter04.ts** の条件を直接記述して完成させてください。期限なしは抽出せず、期限ちょうども期限切れには含めません。日時の比較には `getTime()` を使います。
 
 ```typescript{.numberLines caption="演習 (4) src/pipeline/filter04.ts"}
 import type { Todo } from "./types.js";
 import { initTodos } from "./initTodos.js";
 
 const today = new Date(2026, 9, 22);
-const overdueTodos: Todo[] = []; // 主にここを書き換え
+const overdueTodos: Todo[] = []; // filter の条件を記述する
 console.log("期日を過ぎている未完了Todoの一覧");
 console.log(JSON.stringify(overdueTodos, null, 2));
 ```
 
-- 解答例は[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/filter04.ts)
+今の初期データでは、`"a003"` の Todo だけが抽出されます。期限なし、完了済み、期限が基準時刻と同じ場合に、どう判定されるかも確かめてください。
+
+- [実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/filter04.ts)。元データを変更しない点と、期限なしを先に除外する点を見比べてください。
+
+### 期限切れの抽出を関数化してテストする
+
+**src/pipeline/getOverdueTodos.ts** を作成し、配列と基準時刻を受け取る関数にします。仕様は演習④と同じです。抽出した要素は元の Todo と同じ参照で構いませんが、元配列・Todo・基準時刻の値を変更せず、新しい配列を返します。
+
+```typescript{.numberLines caption="src/pipeline/getOverdueTodos.ts"}
+import type { Todo } from "./types.js";
+
+export const getOverdueTodos = (todos: Todo[], now: Date): Todo[] => {
+  return todos.filter((todo) =>
+    !todo.isDone &&
+    todo.deadline !== null &&
+    todo.deadline.getTime() < now.getTime()
+  );
+};
+```
+
+`todo.deadline !== null` を先に確認するので、その後で Date の `getTime()` を使えます。`&&` は左から評価し、false になれば残りは評価しないので、期限なしに Date のメソッドを呼び出すことはありません。
+
+**src/pipeline/getOverdueTodos.test.ts** に、次を記述してください。
+
+```typescript{.numberLines caption="src/pipeline/getOverdueTodos.test.ts"}
+import { expect, test } from "vitest";
+import type { Todo } from "./types.js";
+import { getOverdueTodos } from "./getOverdueTodos.js";
+
+test("未完了かつ期限を過ぎたTodoだけを抽出する", () => {
+  const now = new Date(2026, 9, 22, 12, 0);
+  const todos: Todo[] = [
+    { id: "past", name: "期限を過ぎた", priority: 1, isDone: false,
+      deadline: new Date(2026, 9, 22, 11, 59, 59, 999) },
+    { id: "equal", name: "期限ちょうど", priority: 1, isDone: false,
+      deadline: new Date(2026, 9, 22, 12, 0) },
+    { id: "future", name: "期限が未来", priority: 1, isDone: false,
+      deadline: new Date(2026, 9, 22, 12, 0, 0, 1) },
+    { id: "done", name: "完了済み", priority: 1, isDone: true,
+      deadline: new Date(2026, 9, 21, 12, 0) },
+    { id: "none", name: "期限なし", priority: 1, isDone: false,
+      deadline: null },
+  ];
+  const before = structuredClone(todos);
+  const beforeNow = now.getTime();
+  const overdue = getOverdueTodos(todos, now);
+  expect(overdue.map((todo) => todo.id)).toEqual(["past"]);
+  expect(todos).toEqual(before);
+  expect(now.getTime()).toBe(beforeNow);
+  expect(overdue).not.toBe(todos);
+  expect(overdue[0]).toBe(todos[0]);
+});
+
+test("対象がなければ新しい空配列を返す", () => {
+  const todos: Todo[] = [
+    { id: "none", name: "期限なし", priority: 3, isDone: false,
+      deadline: null },
+  ];
+  const before = structuredClone(todos);
+  const overdue = getOverdueTodos(todos, new Date(2026, 9, 22));
+  expect(overdue).toEqual([]);
+  expect(todos).toEqual(before);
+  expect(overdue).not.toBe(todos);
+});
+
+test("空配列にも同じように適用できる", () => {
+  const todos: Todo[] = [];
+  const overdue = getOverdueTodos(todos, new Date(2026, 9, 22));
+  expect(overdue).toEqual([]);
+  expect(todos).toEqual([]);
+  expect(overdue).not.toBe(todos);
+});
+```
+
+```
+npm run typecheck
+npm run test:run -- src/pipeline/getOverdueTodos.test.ts
+```
+
+**3 件成功**を確認します。最初のテストでは、期限が基準時刻の 1 ミリ秒前・同じ時刻・1 ミリ秒後の入力を並べています。テストデータの名前ではなく、`deadline` と `now` の前後関係を読んでください。
+
+一時的に `<` を `<=` に変えると、期限ちょうども抽出されます。用意したテストがこの違いを検出することを確認できたでしょうか。確認後は `<` に戻して型チェックとテストを再実行してください。
+
+### 第02回の関数を再利用する
+
+第02回の **src/utils/todoStatus.ts** には、`isOverdue(todo, now)` を実装しました。別の書き方として **src/pipeline/getOverdueTodosReuse.ts** を作り、以下のように再利用できます。第02回の型・関数は変更しません。
+
+```typescript{.numberLines caption="src/pipeline/getOverdueTodosReuse.ts"}
+// 第02回で実装した src/utils/todoStatus.ts を利用します。
+import type { Todo } from "./types.js";
+import { isOverdue } from "../utils/todoStatus.js";
+
+export const getOverdueTodos = (todos: Todo[], now: Date): Todo[] => {
+  return todos.filter((todo) => {
+    if (todo.deadline === null) {
+      return false;
+    }
+    const todoWithDeadline = { ...todo, deadline: todo.deadline };
+    return isOverdue(todoWithDeadline, now);
+  });
+};
+```
+
+前回の関数は `deadline: Date` の Todo を受け取ります。今回の `Date | null` の Todo は、そのまま渡せません。期限なしを除外した後に `{ ...todo, deadline: todo.deadline }` と書き、`deadline` が Date のオブジェクトを作っています。余分な id を持っていても、関数が必要なプロパティを満たすので渡せます。
+
+**getOverdueTodos.test.ts** の import 先だけを `"./getOverdueTodosReuse.js"` に変え、同じ **3 件のテスト**で確認してください。テスト本体と期待値は変えません。書き方を変えた後も、同じ仕様が保たれていることを確かめる練習です。
+
+- [実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodos.ts)、[実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/getOverdueTodosReuse.ts)、[用意したテスト](codes/03/getOverdueTodos.test.ts)。
+
+#### 定着確認
+
+- `const nums = [1, 2, 3, 4]; const result = nums.filter(n => n % 2 === 1);` の result を答えよ。
+  - **答え**: <span class="masked">`[1, 3]`</span>
+
+- 配列の filter に渡す関数が true を返した要素は、戻り値の配列に含まれるか答えよ。
+  - **答え**: <span class="masked">含まれる。false の要素は含まれない。</span>
+
+- `const nums = [1, 2, 3]; const result = nums.filter(n => n > 10);` の result と元の nums を答えよ。
+  - **答え**: <span class="masked">`[]` と `[1, 2, 3]`</span>
+
+- `const todos = [{ id: "a001" }, { id: "a002" }];` から id が a002 の要素を削除した新しい配列を得る文を記述せよ。
+  - **答え**: <span class="masked">`const result = todos.filter(todo => todo.id !== "a002");`</span>
+
+- 未完了の Todo の期限が 2026 年 10 月 22 日 12:00、基準時刻も同じ日時である。期限を過ぎた未完了 Todo だけを得る getOverdueTodos の戻り値に、この Todo を含めるか答えよ。
+  - **答え**: <span class="masked">含めない。期限ちょうどは期限切れではない。</span>
+
+- 期限が null の未完了 Todo は、期限切れの抽出対象になるか答えよ。
+  - **答え**: <span class="masked">ならない。期限なしとして除外する。</span>
+
+- 期限が基準時刻より前であっても、isDone が true の Todo は期限切れの抽出対象になるか答えよ。
+  - **答え**: <span class="masked">ならない。未完了かどうかも抽出条件である。</span>
+
+- 期限切れ判定の「より後」を「同じ時刻以降」に誤って変更した場合に、最も直接的に検出できるテストを選択せよ。
+  - **A**: 基準時刻と期限が同じ未完了 Todo を、抽出しないと確認する。
+  - **B**: 期限が 1 日前の未完了 Todo を、抽出すると確認する。
+  - **C**: 配列の要素数が 0 以上と確認する。
+  - **答え**: <span class="masked">A</span>
+
+- 期限切れ抽出の実装を直接比較から isOverdue の再利用に書き換える。仕様が同じなら、既存テストの期待値を変更すべきか答えよ。
+  - **答え**: <span class="masked">変更しない。同じ期待値で、仕様が維持されているか確認する。</span>
 
 ## オブジェクト配列のsort操作 
 
@@ -983,6 +1275,8 @@ console.log(JSON.stringify(sortedTodos, null, 2));
 
 Todo を **優先度** (**優先順位**) の「降順」にソートする処理を実装してください。また、動作を確認してください。
 
+降順の[実装例](codes/03/sortDescending.ts)。比較関数は `b.priority - a.priority` とします。
+
 ### 複数のソートキーを使ったオブジェクト配列の並び替え
 
 第1ソートキーを `isDone` (**未完了を先に表示**)、第2ソートキーを `deadline` として並び替えたいときは、以下のように実装します。
@@ -994,20 +1288,192 @@ import { initTodos } from "./initTodos.js";
 const sortedTodos: Todo[] = [...initTodos].sort((a, b) => {
   if (a.isDone !== b.isDone) {
     return a.isDone ? 1 : -1;
-  } else {
-    return a.deadline.getTime() - b.deadline.getTime();
   }
+  if (a.deadline === null && b.deadline === null) {
+    return 0;
+  }
+  if (a.deadline === null) {
+    return 1;
+  }
+  if (b.deadline === null) {
+    return -1;
+  }
+  return a.deadline.getTime() - b.deadline.getTime();
 });
 
 console.log(JSON.stringify(initTodos, null, 2));
 console.log(JSON.stringify(sortedTodos, null, 2));
 ```
 
-**第05-06行目** で「`a` と `b` の `isDone` が**違う**」ならば `isDone` が `false` のほうを「前」に配置するようにしています。また、**第07-08行目** で「`a` と `b` の `isDone` が**同じ**」ならば `deadline` が過去のほう (古いほう) を「前」に配置するようにしています。
+**第05-06行目**で、完了状態が違うなら未完了を先にしています。同じ完了状態のときは、**第08行目以降**で期限を比較します。両方が期限なしなら 0、a だけが期限なしなら正数、b だけが期限なしなら負数を返します。両方に期限があるときだけ `getTime()` で比較します。
+
+つまり、**未完了のグループ内、完了済みのグループ内それぞれで、期限が早いものを先にし、期限なしを最後にします**。期限なしの未完了 Todo が、期限ありの完了済み Todo より後になるわけではありません。初期データでは id の順序が `["a003", "a001", "a004", "a002"]` になることを確認してください。
 
 #### 演習
 
 第1ソートキーを「優先度」、第2ソートキーを「期限」として `initTodos` を並び替えるように実装してください。また、動作を確認してください (必要に応じて `initTodos` に編集を加えてください)。
+
+### 並び替えを関数化してテストする
+
+**src/pipeline/sortTodos.ts** に、期限の比較処理と 3 種類の並び替えをまとめます。比較関数は負数・0・正数を返す既習の関数です。期限の比較を分離することで、同じ処理を複数の並び替えで使えます。
+
+```typescript{.numberLines caption="src/pipeline/sortTodos.ts"}
+import type { Todo } from "./types.js";
+
+export const compareDeadlines = (a: Todo, b: Todo): number => {
+  if (a.deadline === null && b.deadline === null) {
+    return 0;
+  }
+  if (a.deadline === null) {
+    return 1;
+  }
+  if (b.deadline === null) {
+    return -1;
+  }
+  return a.deadline.getTime() - b.deadline.getTime();
+};
+
+export const sortByPriority = (todos: Todo[]): Todo[] => {
+  return [...todos].sort((a, b) => a.priority - b.priority);
+};
+
+export const sortByDoneAndDeadline = (todos: Todo[]): Todo[] => {
+  return [...todos].sort((a, b) => {
+    if (a.isDone !== b.isDone) {
+      return a.isDone ? 1 : -1;
+    }
+    return compareDeadlines(a, b);
+  });
+};
+
+export const sortByPriorityAndDeadline = (todos: Todo[]): Todo[] => {
+  return [...todos].sort((a, b) => {
+    if (a.priority !== b.priority) {
+      return a.priority - b.priority;
+    }
+    return compareDeadlines(a, b);
+  });
+};
+```
+
+どの関数も新しい配列を返し、元配列の順序と Todo の値を変えません。Todo の内容は書き換えないので、要素は同じオブジェクトの参照を使います。すべてのソートキーが同じ要素の順序は、入力の順序を保ちます。優先度＋期限の演習の[実装例](codes/03/sortPriorityAndDeadline.ts)も、この関数を呼び出します。
+
+**src/pipeline/sortTodos.test.ts** に、以下を記述してください。
+
+```typescript{.numberLines caption="src/pipeline/sortTodos.test.ts"}
+import { expect, test } from "vitest";
+import type { Todo } from "./types.js";
+import {
+  sortByPriority, sortByDoneAndDeadline, sortByPriorityAndDeadline,
+} from "./sortTodos.js";
+
+const makeTodos = (): Todo[] => [
+  { id: "none1", name: "期限なし1", priority: 2, isDone: false,
+    deadline: null },
+  { id: "late", name: "遅い期限", priority: 2, isDone: false,
+    deadline: new Date(2026, 9, 24) },
+  { id: "early1", name: "早い期限1", priority: 2, isDone: false,
+    deadline: new Date(2026, 9, 20) },
+  { id: "early2", name: "早い期限2", priority: 2, isDone: false,
+    deadline: new Date(2026, 9, 20) },
+  { id: "none2", name: "期限なし2", priority: 2, isDone: false,
+    deadline: null },
+  { id: "done", name: "完了済み", priority: 1, isDone: true,
+    deadline: new Date(2026, 9, 1) },
+];
+
+test("優先度だけで並べ、同じ優先度の順序と元データを保つ", () => {
+  const todos = makeTodos();
+  const before = structuredClone(todos);
+  const sorted = sortByPriority(todos);
+  expect(sorted.map((todo) => todo.id))
+    .toEqual(["done", "none1", "late", "early1", "early2", "none2"]);
+  expect(todos).toEqual(before);
+  expect(sorted).not.toBe(todos);
+  expect(sorted.every((todo) => todos.includes(todo))).toBe(true);
+});
+
+test("未完了を先にし、その中では期限なしを最後にする", () => {
+  const todos = makeTodos();
+  const before = structuredClone(todos);
+  const sorted = sortByDoneAndDeadline(todos);
+  expect(sorted.map((todo) => todo.id))
+    .toEqual(["early1", "early2", "late", "none1", "none2", "done"]);
+  expect(todos).toEqual(before);
+  expect(sorted).not.toBe(todos);
+  expect(sorted.every((todo) => todos.includes(todo))).toBe(true);
+});
+
+test("優先度を先にし、同じ優先度の中で期限順にする", () => {
+  const todos = makeTodos();
+  const before = structuredClone(todos);
+  const sorted = sortByPriorityAndDeadline(todos);
+  expect(sorted.map((todo) => todo.id))
+    .toEqual(["done", "early1", "early2", "late", "none1", "none2"]);
+  expect(todos).toEqual(before);
+  expect(sorted).not.toBe(todos);
+  expect(sorted.every((todo) => todos.includes(todo))).toBe(true);
+});
+
+test("3種類のソートを空配列にも適用できる", () => {
+  const todos: Todo[] = [];
+  for (const sort of [sortByPriority, sortByDoneAndDeadline,
+    sortByPriorityAndDeadline]) {
+    const sorted = sort(todos);
+    expect(sorted).toEqual([]);
+    expect(sorted).not.toBe(todos);
+  }
+  expect(todos).toEqual([]);
+});
+```
+
+```
+npm run typecheck
+npm run test:run -- src/pipeline/sortTodos.test.ts
+```
+
+**4 件成功**を確認します。期限なしや同じ期限の Todo が含まれている理由にも着目してください。戻り値の順序だけを確認すると、元配列まで並び替えてしまう実装を見落とします。
+
+テストの `sorted.every((todo) => todos.includes(todo))` は、並び替えた配列のすべての要素について、元配列に同じオブジェクトが含まれることを確認しています。`every` はすべての要素が条件を満たすか、`includes` は指定した値が含まれるかを調べます。ここでは要素まで複製せず、順序だけを変える仕様を確認するために使っています。
+
+`[...todos].sort` を一時的に `todos.sort` に変え、元配列を確認するテストが失敗することを確認できたでしょうか。確認後はスプレッド構文を戻し、型チェックとテストが成功する状態に戻します。
+
+- [実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/sortTodos.ts) と [用意したテスト](codes/03/sortTodos.test.ts)。
+
+::: {.note .type-tips}
+**toSorted という別の書き方**
+
+元配列を変更せずに並び替えた新しい配列を得る `toSorted` もあります。例えば `todos.toSorted((a, b) => a.priority - b.priority)` と書けます。本文では、コピーしてから並び替える意味を確かめるため、スプレッド構文＋sort を使いました。どちらの場合も、配列の要素のオブジェクトまで複製されるわけではありません ([MDN](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/toSorted))。
+:::
+
+#### 定着確認
+
+- `const nums = [3, 1, 2]; const sorted = [...nums].sort((a, b) => a - b);` の sorted と元の nums を答えよ。
+  - **答え**: <span class="masked">`[1, 2, 3]` と `[3, 1, 2]`</span>
+
+- 数値型の priority を持つ Todo を優先度の降順に並べる比較関数を記述せよ。
+  - **答え**: <span class="masked">`(a, b) => b.priority - a.priority`</span>
+
+- sort の比較関数で、要素 a を b より前に置くとき、負数・0・正数のどれを返すか答えよ。
+  - **答え**: <span class="masked">負数。必ず -1 に限定されるわけではない。</span>
+
+- 未完了を先にし、同じ完了状態なら期限の早い順、期限なしを最後に並べる。a が未完了で期限なし、b が完了済みで期限ありの場合、先に置くのはどちらか答えよ。
+  - **答え**: <span class="masked">a。第1キーの完了状態で順序が決まる。</span>
+
+- 同じ完了状態の Todo a と b を期限順に並べる。a.deadline が null、b.deadline が Date のとき、a を後にする比較結果の符号を答えよ。
+  - **答え**: <span class="masked">正数。</span>
+
+- 未完了・同じ優先度・同じ期限の Todo a001 と a002 が、その順で入力配列に入っている。これらのキーでソートした後の両者の順序を答えよ。
+  - **答え**: <span class="masked">a001、a002 の順。キーが同じ要素の入力順を保つ。</span>
+
+- 元配列を保つソート関数のテストとして最も適切な選択肢を選択せよ。
+  - **A**: 最初から正しい順序の配列を渡し、戻り値の順序だけを確認する。
+  - **B**: 並び替えで順序が変わる入力を渡し、戻り値の順序と、元配列が変わらないことを確認する。
+  - **C**: 戻り値が配列であることだけを確認する。
+  - **答え**: <span class="masked">B</span>
+
+- 期限を第2キーに使うソートのテストに、同じ第1キーを持つ複数の Todo を含める意図を答えよ。
+  - **答え**: <span class="masked">第1キーで順序が決まらない場合に、第2キーの比較が正しく適用されることを確認するため。</span>
 
 ## メソッドチェーン (map・filter・sortの組み合わせ)
 
@@ -1015,7 +1481,7 @@ console.log(JSON.stringify(sortedTodos, null, 2));
 
 例えば、`filter` で**未完了のTodoだけを抽出**し、`sort` で**優先度順に並べ替え**て、`map` で**整形出力**するという処理は次のように記述できます。このようにメソッドを連結する技法を <span class="masked">メソッドチェーン や メソッドチェイニング</span> のように表現します。
 
-なお、`sort` がメソッドチェーンの開始点でなければ、**スプレッド構文を使用せずとも** `initTodos` **に対するイミュータブルな操作**となります。もし、`sort` をメソッドチェーンの開始点にする場合は <span class="masked">`[...initTodos].sort()` のようにスプレッド構文を組み合わせて使用</span> してください。
+この例では `filter` が **新しい配列**を返すので、その配列に対して `sort` を使っても、元の `initTodos` の順序は変わりません。さらに `map` で表示用の文字列配列を作ります。「sort が先頭でなければ安全」と位置だけで判断せず、**sort が操作する配列はどの処理で作られたか**を確認してください。`initTodos.sort(...)` から始める場合は元配列を変更するので、`[...initTodos].sort(...)` とします。
 
 ```typescript{.numberLines caption="src/pipeline/pipe01.ts (メソッドチェーン)"}
 import dayjs from "dayjs";
@@ -1028,7 +1494,7 @@ const listItemsTodos: string[] = initTodos
   .map(
     (todo) =>
       `<li>優先度[${todo.priority}] ${todo.name}` +
-      `...期限${dayjs(todo.deadline).format(dtFmt)}</li>`
+      `...期限${todo.deadline === null ? "なし" : dayjs(todo.deadline).format(dtFmt)}</li>`
   );
 console.log(JSON.stringify(initTodos, null, 2)); // 変更操作の影響を受けていない
 console.log(JSON.stringify(listItemsTodos, null, 2));
@@ -1040,14 +1506,7 @@ console.log(JSON.stringify(listItemsTodos, null, 2));
 
 `map`、`filter`、`sort` などの配列操作メソッドは、各種処理をコンパクトに記述することが可能です。ただし、同じ配列操作を2回以上行なうときは、それらの処理を**関数化すること**が推奨されます。
 
-以下のプログラムは...
-
-- オブジェクト配列 (`Todo[]`) から `id` をキーとして要素を削除した配列を戻り値とする `deleteTodoById` 関数
-  - **第06行目** から **第11行目** 
-- オブジェクト配列を受け取って、HTMLに整形した文字列配列を戻り値にする `stringifyTodos` 関数
-  - **第13行目** から **第18行目** 
-
-...の実装例となります。
+以下は、id で Todo を削除する `deleteTodoById` と、表示用の文字列配列を返す `stringifyTodos` の例です。戻り値は HTML のタグではなく、コンソールで確認するための文字列です。
 
 ```typescript{.numberLines caption="src/pipeline/pipe02.ts"}
 import dayjs from "dayjs";
@@ -1055,41 +1514,286 @@ import type { Todo } from "./types.js";
 import { initTodos } from "./initTodos.js";
 const dtFmt = "YYYY/MM/DD HH:mm";
 
-const deleteTodoById = (todos: Todo[], id: number): Todo[] => {
-  if (!Number.isInteger(id) || id < 0) {
-    return todos;
-  }
+const deleteTodoById = (todos: Todo[], id: string): Todo[] => {
   return todos.filter((todo) => todo.id !== id);
 };
 
 const stringifyTodos = (todos: Todo[]): string[] =>
-  todos.map(
-    (todo) =>
-      `id=${todo.id} ${todo.name} ` +
-      `期限 ${dayjs(todo.deadline).format(dtFmt)}`
-  );
+  todos.map((todo) => {
+    const deadline = todo.deadline === null
+      ? "期限なし"
+      : `期限 ${dayjs(todo.deadline).format(dtFmt)}`;
+    return `id=${todo.id} ${todo.name} ${deadline}`;
+  });
 
-const todo = [...initTodos];
-const updatedTodos = deleteTodoById(todo, 2);
-
-console.log("Before:", stringifyTodos(todo));
+const updatedTodos = deleteTodoById(initTodos, "a002");
+console.log("Before:", stringifyTodos(initTodos));
 console.log("After:", stringifyTodos(updatedTodos));
 ```
+
+対象 id がなくても、filter は新しい配列を返します。元の値を保つことと、同じ配列を返すことは別です。関数がどのような戻り値を返す仕様なのか、呼び出す側でも確認してください。
 
 慣れるまでは、上記のような関数処理を読み解くことも、記述することも大変かと思います。しかし、React開発では、状態（state）の更新や、コンポーネントの再レンダリングを効率的に行うために **頻繁に配列操作メソッドが使用されます**。
 
 はじめのうちは超難しく感じるかもしれませんが、継続的な学習と実践により、徐々に理解が深まり、効率的なコードを書けるようになります。頑張ってください (1回で理解できることは、まず、**あ・り・ま・せ・ん**。1日か2日の間隔を空けて3回ほどトライすると、ぼんやりと分かってくるようになります)。
 
 
-**(プロンプト例)**
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
 
 > React開発のための準備として、TypeScriptにおける配列操作メソッド (`map`、`filter`、`sort`) の読解と記述について十分に慣れておきたいと思っています。オブジェクトの配列を対象とした配列操作メソッドに関する練習問題と解答例を作成してください。まずは、初歩の初歩、超簡単なものからお願いします。
 
+#### 定着確認
+
+- `const nums = [3, 1, 2, 4]; const result = nums.filter(n => n % 2 === 0).sort((a, b) => a - b).map(n => String(n));` の result と元の nums を答えよ。
+  - **答え**: <span class="masked">`["2", "4"]` と `[3, 1, 2, 4]`</span>
+
+- `const nums = [3, 1, 2]; nums.filter(n => n > 0).sort((a, b) => a - b);` で元の nums の順序が変わらない理由を答えよ。
+  - **答え**: <span class="masked">filter が返した新しい配列を sort が操作しているため。</span>
+
+- Todo 配列 todos の未完了要素を抽出し、優先度順に並べる。filter・sort・map のうち、数値型の priority を比較するソートは、表示用の文字列への map の前と後のどちらに置くべきか答えよ。
+  - **答え**: <span class="masked">前。文字列に変換した後には、Todo の priority をそのまま参照できない。</span>
+
+- 表示用文字列を返す関数 stringifyTodos(todos) に空配列を渡し、内部で map だけを使って変換する場合、戻り値を答えよ。
+  - **答え**: <span class="masked">`[]`</span>
+
+- Todo 配列 todos から未完了の件数を得る式を、filter と length を使って記述せよ。各 Todo は boolean 型の isDone を持つ。
+  - **答え**: <span class="masked">`todos.filter(todo => !todo.isDone).length`</span>
+
+- 2つの実装が同じ仕様を満たすかを確かめたい。期待値を変えずに同じテストを適用する意図を答えよ。
+  - **答え**: <span class="masked">書き方を変えても、確認した条件で同じ仕様が保たれることを確かめるため。</span>
+
 ## 宿題
 
-次回から **本格的なReact開発** に突入します🎉
+### React 開発に向けた動画の予習
 
-予習として以下の動画 (約1時間) を視聴してきてほしいです。動画を事前視聴しておくことで (=「何が分からないか」を自覚しておくことで) 授業での理解が格段に進みます。
+次回から本格的な React 開発に進みます。次の動画を視聴して、画面をどのように部品へ分けるか、データの変更がどの表示へ反映されるかを意識してください。
 
--  [【React入門】完全初心者OK！1から簡単なTodoアプリを作ってReactの1歩を踏み出してみよう ～Reactチュートリアル～](https://www.youtube.com/watch?v=nRCNL9T3J98)
-    - 残念ながら、現在では動画のとおりに作業しても Todoアプリ を作成することができません (動画のなかで使用している `create-react-app` というフロントエンドビルドツールが既に提供されなくなっていたり、こまかな React の挙動が変わっているため)。一方で、全体的な流れや、Reactの設計思想 (考え方) は現在も変わっていませんので、それを掴んでもらえればと思います。
+- [【React入門】完全初心者OK！1から簡単なTodoアプリを作ってReactの1歩を踏み出してみよう ～Reactチュートリアル～](https://www.youtube.com/watch?v=nRCNL9T3J98)
+
+次回の講義は、この動画でアプリ開発の流れを見ていることを前提に進めます。本授業は TypeScript を使い、環境構築や入力の扱いも動画とは異なります。動画と同じ手順で別のプロジェクトを作ることは、今回の宿題ではありません。
+
+動画で使われている create-react-app は、新しいアプリの作成には非推奨となり、保守モードへ移行しています。本授業の環境構築は次回に案内します ([React 公式の告知](https://react.dev/blog/2025/02/14/sunsetting-create-react-app))。
+
+視聴後は、画面のどの部分が一覧表示か、追加・削除に対してどのデータが変わるかを、自分の言葉で説明できるようにしておいてください。今回学んだ配列操作が、どこに使えそうか確認できたでしょうか。
+
+### Todo アプリの操作につながる総合演習
+
+次回以降の「未完了件数」「追加」「完了状態の変更」「削除」「一覧表示」は、今回の配列操作を組み合わせて作れます。今は React の画面を作らず、**入力と戻り値を持つ関数**として実装します。
+
+**src/pipeline/homeworkTodos.ts** に、次の 6 つの関数を完成させてください。型と初期データ、期限の比較・並び替えの関数は、今回作ったものを使います。
+
+- `addTodo(todos, newTodo)`: 末尾に newTodo を加えた新しい配列。id は既存要素と重複しない前提。既存 Todo と newTodo の参照はそのまま使う。
+- `updateIsDone(todos, id, value)`: 対象の isDone だけを変更した新しい配列。対象だけ新しいオブジェクトにし、対象がなくても新しい配列を返す。
+- `removeCompletedTodos(todos)`: 完了済みを除いた新しい配列。
+- `removeTodoById(todos, id)`: 指定 id の要素を除いた新しい配列。対象がなくても新しい配列を返す。
+- `countUncompletedTodos(todos)`: 未完了件数を数値で返す。
+- `createListItems(todos)`: 未完了を先にし、同じ完了状態では期限の早い順、期限なしを最後にする。すべてのキーが同じなら入力順を維持する。下のテストと同じ形式の文字列配列を返す。
+
+すべての関数で、元配列・元 Todo・Date の内容を変えないでください。削除後に残す Todo は、元の要素と同じ参照を使います。空配列にも適用できるようにします。不正な入力の検証は今回の範囲に含めません。
+
+```typescript{.numberLines caption="src/pipeline/homeworkTodos.ts (作成するファイル)"}
+import dayjs from "dayjs";
+import type { Todo } from "./types.js";
+import { sortByDoneAndDeadline } from "./sortTodos.js";
+
+export const addTodo = (todos: Todo[], newTodo: Todo): Todo[] => {
+  throw new Error("ここを実装してください");
+};
+
+export const updateIsDone = (
+  todos: Todo[], id: string, value: boolean
+): Todo[] => {
+  throw new Error("ここを実装してください");
+};
+
+export const removeCompletedTodos = (todos: Todo[]): Todo[] => {
+  throw new Error("ここを実装してください");
+};
+
+export const removeTodoById = (todos: Todo[], id: string): Todo[] => {
+  throw new Error("ここを実装してください");
+};
+
+export const countUncompletedTodos = (todos: Todo[]): number => {
+  throw new Error("ここを実装してください");
+};
+
+export const createListItems = (todos: Todo[]): string[] => {
+  throw new Error("ここを実装してください");
+};
+```
+
+`throw new Error(...)` の部分を自分の処理に置き換えます。最初は実装がないのでテストは失敗します。作成済みの `sortByDoneAndDeadline` を再利用できることにも気づけたでしょうか。Day.js は第02回でインストールしたものを使います。
+
+**src/pipeline/homeworkTodos.test.ts** に以下を記述してください。今回はテストケースをこちらで用意しています。自分で追加のテストを書く必要はありません。
+
+```typescript{.numberLines caption="src/pipeline/homeworkTodos.test.ts"}
+import { expect, test } from "vitest";
+import type { Todo } from "./types.js";
+import {
+  addTodo, updateIsDone, removeCompletedTodos, removeTodoById,
+  countUncompletedTodos, createListItems,
+} from "./homeworkTodos.js";
+
+const makeTodos = (): Todo[] => [
+  { id: "a001", name: "復習", priority: 2, isDone: false, deadline: null },
+  { id: "a002", name: "宿題", priority: 1, isDone: true,
+    deadline: new Date(2026, 9, 20, 12, 0) },
+  { id: "a003", name: "予習", priority: 3, isDone: false,
+    deadline: new Date(2026, 9, 24, 9, 0) },
+];
+
+test("末尾に追加し、元配列と追加したTodoを変更しない", () => {
+  const todos = makeTodos();
+  const before = structuredClone(todos);
+  const newTodo: Todo = {
+    id: "a004", name: "準備", priority: 1, isDone: false, deadline: null,
+  };
+  const newTodoBefore = structuredClone(newTodo);
+  const added = addTodo(todos, newTodo);
+  expect(added.map((todo) => todo.id)).toEqual(["a001", "a002", "a003", "a004"]);
+  expect(todos).toEqual(before);
+  expect(newTodo).toEqual(newTodoBefore);
+  expect(added).not.toBe(todos);
+  expect(added[0]).toBe(todos[0]);
+  expect(added[3]).toBe(newTodo);
+});
+
+test("指定idの完了状態だけを更新する", () => {
+  const todos = makeTodos();
+  const before = structuredClone(todos);
+  const updated = updateIsDone(todos, "a001", true);
+  expect(updated).toEqual([
+    { ...before[0], isDone: true }, before[1], before[2],
+  ]);
+  expect(todos).toEqual(before);
+  expect(updated).not.toBe(todos);
+  expect(updated[0]).not.toBe(todos[0]);
+  expect(updated[1]).toBe(todos[1]);
+  expect(updated[2]).toBe(todos[2]);
+  expect(updateIsDone(todos, "missing", true)).toEqual(before);
+  expect(todos).toEqual(before);
+});
+
+test("完了済みを一括削除し、残す要素と元データを保つ", () => {
+  const todos = makeTodos();
+  const before = structuredClone(todos);
+  const remaining = removeCompletedTodos(todos);
+  expect(remaining.map((todo) => todo.id)).toEqual(["a001", "a003"]);
+  expect(todos).toEqual(before);
+  expect(remaining).not.toBe(todos);
+  expect(remaining[0]).toBe(todos[0]);
+  expect(remaining[1]).toBe(todos[2]);
+});
+
+test("指定idを削除し、対象がなくても値を変えない", () => {
+  const todos = makeTodos();
+  const before = structuredClone(todos);
+  const remaining = removeTodoById(todos, "a001");
+  expect(remaining.map((todo) => todo.id)).toEqual(["a002", "a003"]);
+  expect(remaining[0]).toBe(todos[1]);
+  expect(remaining).not.toBe(todos);
+  expect(removeTodoById(todos, "missing")).toEqual(before);
+  expect(todos).toEqual(before);
+});
+
+test("未完了を数え、完了状態と期限で並べて文字列化する", () => {
+  const todos = makeTodos();
+  const before = structuredClone(todos);
+  expect(countUncompletedTodos(todos)).toBe(2);
+  expect(createListItems(todos)).toEqual([
+    "【未】[a003] 予習 優先度3 (期限2026/10/24 09:00)",
+    "【未】[a001] 復習 優先度2 (期限なし)",
+    "【済】[a002] 宿題 優先度1 (期限2026/10/20 12:00)",
+  ]);
+  expect(todos).toEqual(before);
+});
+
+test("空配列でも、追加・更新・削除・件数・表示を扱える", () => {
+  const todos: Todo[] = [];
+  const newTodo: Todo = {
+    id: "a001", name: "予習", priority: 1, isDone: false, deadline: null,
+  };
+  expect(addTodo(todos, newTodo)).toEqual([newTodo]);
+  expect(updateIsDone(todos, "a001", true)).toEqual([]);
+  expect(removeCompletedTodos(todos)).toEqual([]);
+  expect(removeTodoById(todos, "a001")).toEqual([]);
+  expect(countUncompletedTodos(todos)).toBe(0);
+  expect(createListItems(todos)).toEqual([]);
+  expect(todos).toEqual([]);
+});
+```
+
+```
+npm run typecheck
+npm run test:run -- src/pipeline/homeworkTodos.test.ts
+```
+
+**6 件成功**となることを確認してください。もし失敗したら、テストが期待している値と、元データのどちらを確認しているかを読み、自分の処理と照合してください。テストの期待値を実装に合わせて変更するのではなく、上の仕様から実装を見直します。
+
+- [実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/03/homeworkTodos.ts) と [用意したテスト](codes/03/homeworkTodos.test.ts)。まずは自分で実装し、その後に map・filter・スプレッド構文を使う箇所を見比べてください。
+
+#### 定着確認
+
+- Todo 配列を受け取り、完了済みを除く removeCompletedTodos を実装する。各 Todo は boolean 型の isDone を持つ。map と filter のどちらが適切か答えよ。
+  - **答え**: <span class="masked">filter。残す要素の条件を指定する。</span>
+
+- Todo 配列から指定 id の isDone だけを変更する updateIsDone を実装する。map の対象以外の要素もスプレッドで複製する必要があるか答えよ。
+  - **答え**: <span class="masked">今回の仕様では不要。対象以外の Todo は同じ参照を返す。</span>
+
+- Todo の追加関数 addTodo のテストで、戻り値に新しい Todo が含まれることだけを確認すると、どのような誤りを見落とすか答えよ。
+  - **答え**: <span class="masked">push などで元配列も変更してしまう誤り。元の配列も確認する。</span>
+
+- 完成前の homeworkTodos.ts にある throw new Error を残したままテストを実行したら失敗した。期待値を変更してテストを成功させるべきか答えよ。
+  - **答え**: <span class="masked">変更しない。指定した仕様に沿う処理を実装する。</span>
+
+
+## VSCode関連のTips
+
+次回に向けて、React開発に有用な拡張機能などをインストールしておいてください。
+
+### VSCodeの再読み込み
+
+`[Ctrl]+[Shift]+[P]` で **コマンドパレット** を起動するか、VSCode上部の検索欄をクリックして `>Developer: Reload Window` と入力すると「**プロジェクトファイルの再読み込み**」が行われます。
+
+2回目以降は、履歴から `>Developer: Reload Window` を選択して実行可能です。
+
+![img](figs/03/vscode_01.png)
+
+特に、今後のReact開発では、`import` 文で <span class="masked">適切にファイルパスを設定しているにも関わらず「赤波線」でエラーが表示されること</span> が多々あります (やっかいなことにVSCodeを再起動してもキャッシュが残っており解決しません)。そのようなときは、この **Reload Window** で解決します。
+
+### ファイルパス補完の拡張機能
+
+VSCodeの拡張機能として **Path Intellisense** (識別子:`christian-kohler.path-intellisense`) をインストールしておくと、プログラムのなかで **ファイルパス** を入力するときに補完が効いて便利です。
+
+ファイルパス補完の拡張機能は「Path Intellisense」の他にも様々なものがあるので、自分で使いやすいものを探してみてください。
+
+![img](figs/03/vscode_05.png)
+
+### React開発の支援機能
+
+React関連のコードスニペットを挿入する拡張機能として **ES7+ React/Redux/React-Native snippets** (識別子: `dsznajder.es7-react-js-snippets`) を VSCode にインストールしておいてください (次回以降の講義では、この拡張機能がインストールされている前提で解説している部分があります)。
+
+この拡張機能を導入すると `rafce` と入力するだけで、**Reactコンポーネントのスニペット** (=プログラムコードの定型的な断片、雛形) をエディタに挿入してくれます。
+
+![img](figs/03/vscode_04.png)
+
+この拡張機能の概要は[こちら](https://www.google.com/search?q=ES7%2BReact%2FRedux%2FReact-Native+snippets+おすすめ)を参照してください。
+
+### コードチェックツールの拡張機能
+
+**ESLint** (識別子: `dbaeumer.vscode-eslint`) は、ECMAScript用 (=TypeScript/JavaScript用) の **コードチェックツール** に関する拡張機能です。こちらも、次回以降の講義で利用していく予定なのであらかじめインストールしておいてください。
+
+この拡張機能の概要は[こちら](https://www.google.com/search?q=vscode+拡張機能+eslint)を参照してください。
+
+### Tailwind用のインテリセンス
+
+**Tailwind CSS IntelliSense** (識別子 `bradlc.vscode-tailwindcss`) は[Tailwind CSS](https://www.google.com/search?q=Tailwind+入門)という CSSフレームワークに関連したインテリセンス (コードの自動補完ツール) です。本授業でのウェブアプリ開発でも Tailwind CSS を使用していくので、その開発体験を向上させるためにインストールしておいてください。
+
+この拡張機能の概要は[こちら](https://www.google.com/search?q=Tailwind+CSS+IntelliSense+おすすめ)を参照してください。
+
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
+
+> CSSフレームワーク とはなんですか。普通に CSS ファイルを書くのと何が違いますか。
+
+> Tailwind CSS とは何ですか。
