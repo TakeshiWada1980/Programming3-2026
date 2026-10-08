@@ -1404,15 +1404,15 @@ npm run test:run -- src/pipeline/getOverdueTodos.test.ts
 
 ### 第02回の関数を再利用する
 
-ここでは、第02回で作成した関数を再利用して、先ほどと同じ「未完了かつ期限切れの Todo を抽出する処理」を実装します。
+ここでは、第02回で作成した関数を再利用して、先ほどと同じ「未完了かつ期限切れの Todo を抽出する処理」を実装してみます。
 
-第02回の **src/utils/todoStatus.ts** に実装した `isOverdue(todo, now)` は、1つの Todo が「未完了かつ期限を過ぎているか」を判定する関数でした。この関数を `filter` に渡すアロー関数のなかから呼び出して、各要素を抽出するかどうかを判定するようにします。
+第02回の講義において **src/utils/todoStatus.ts** に実装した `isOverdue(todo, now)` は、1つの Todo が「未完了かつ期限を過ぎているか」を判定する関数でした。この関数を `filter` に渡すアロー関数のなかから呼び出して、各要素を抽出するかどうかを判定するようにしてみます。
 
-**src/pipeline/getOverdueTodosReuse.ts** を新規作成し、以下のコードを記述してください。第02回の **src/utils/todoStatus.ts** は、そのまま利用していきます。
+**src/pipeline/getOverdueTodosReuse.ts** を新規作成し、以下のコードを記述してください。第02回で記述してもららった **src/utils/todoStatus.ts** は、そのまま利用していきます。
 
 
 ```typescript{.numberLines caption="src/pipeline/getOverdueTodosReuse.ts"}
-// 第02回で実装した src/utils/todoStatus.ts を利用します。
+// 第02回で実装した src/utils/todoStatus.ts を利用
 import type { Todo } from "./types.js";
 import { isOverdue } from "../utils/todoStatus.js";
 

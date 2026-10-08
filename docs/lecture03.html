@@ -1716,16 +1716,16 @@ npm run test:run -- src/pipeline/getOverdueTodos.test.ts</code></pre>
       <h2 data-number="5.4" id="第02回の関数を再利用する"><span
       class="header-section-number">5.4</span> 第02回の関数を再利用する</h2>
       <p>ここでは、第02回で作成した関数を再利用して、先ほどと同じ「未完了かつ期限切れの Todo
-      を抽出する処理」を実装します。</p>
-      <p>第02回の <strong>src/utils/todoStatus.ts</strong> に実装した
+      を抽出する処理」を実装してみます。</p>
+      <p>第02回の講義において <strong>src/utils/todoStatus.ts</strong> に実装した
       <code>isOverdue(todo, now)</code> は、1つの Todo
       が「未完了かつ期限を過ぎているか」を判定する関数でした。この関数を <code>filter</code>
-      に渡すアロー関数のなかから呼び出して、各要素を抽出するかどうかを判定するようにします。</p>
+      に渡すアロー関数のなかから呼び出して、各要素を抽出するかどうかを判定するようにしてみます。</p>
       <p><strong>src/pipeline/getOverdueTodosReuse.ts</strong>
-      を新規作成し、以下のコードを記述してください。第02回の
+      を新規作成し、以下のコードを記述してください。第02回で記述してもららった
       <strong>src/utils/todoStatus.ts</strong> は、そのまま利用していきます。</p>
       <div class="sourceCode" id="cb74" data-caption="src/pipeline/getOverdueTodosReuse.ts"><pre
-      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb74-1"><a href="#cb74-1"></a><span class="co">// 第02回で実装した src/utils/todoStatus.ts を利用します。</span></span>
+      class="sourceCode numberSource typescript numberLines"><code class="sourceCode typescript"><span id="cb74-1"><a href="#cb74-1"></a><span class="co">// 第02回で実装した src/utils/todoStatus.ts を利用</span></span>
 <span id="cb74-2"><a href="#cb74-2"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types.js&quot;</span><span class="op">;</span></span>
 <span id="cb74-3"><a href="#cb74-3"></a><span class="im">import</span> { isOverdue } <span class="im">from</span> <span class="st">&quot;../utils/todoStatus.js&quot;</span><span class="op">;</span></span>
 <span id="cb74-4"><a href="#cb74-4"></a></span>
