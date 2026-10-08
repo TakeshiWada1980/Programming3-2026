@@ -193,7 +193,7 @@ id="toc-todo-アプリの操作につながる総合演習"><span class="toc-sec
       <ul>
       <li><strong>React / Next.js 開発に関連する文法や機能だけを集中的に学びます</strong>。</li>
       </ul></li>
-      <li>Reactを使ったTodoアプリのための環境構築 <strong>← 次回 (第03回講義)</strong></li>
+      <li>Reactを使ったTodoアプリのための環境構築 <strong>← 次回 (第04回講義)</strong></li>
       <li>Todoアプリ開発（Reactによるフロントエンド開発）のチュートリアル
       <ul>
       <li><a href="https://takeshiwada1980.github.io/react-todo-app-demo/">こちら</a>
@@ -206,8 +206,8 @@ id="toc-todo-アプリの操作につながる総合演習"><span class="toc-sec
       <p>第01回から使っている <strong>ts-playground</strong> を VSCode で開いてください。今回も
       <strong>src</strong> フォルダのなかに TypeScript
       のファイルを作成して、プロジェクトルートのターミナルから各種コマンドを実行します。</p>
-      <p>例えば <strong>npx tsx src/prac07.ts</strong> に対して、次のコマンドで動作確認
-      (型チェックと実行) できました。</p>
+      <p>例えば <strong>src/prac07.ts</strong> に対して、次のコマンドで動作確認 (型チェックと実行)
+      できました。</p>
       <pre><code>npm run typecheck
 npx tsx src/prac07.ts   </code></pre>
       <ul>
@@ -225,7 +225,7 @@ npx tsx src/prac07.ts   </code></pre>
       </div>
       <p>ここからは、前回講義の <a
       href="lecture02.html#react-における状態-オブジェクト-の更新-概要">Reactにおける状態
-      (オブジェクト) の変更の検知 ～概要～</a> について、<u>ある程度、理解していることを前提</u>
+      (オブジェクト) の更新 ～概要～</a> について、<u>ある程度、理解していることを前提</u>
       とした解説になります。</p>
       <ul>
       <li><a href="lecture02.html#状態の更新に使う新しいオブジェクトの生成">スプレッド構文</a>
@@ -752,22 +752,22 @@ npx tsx src/prac07.ts   </code></pre>
 <span id="cb23-5"><a href="#cb23-5"></a>numArr<span class="op">.</span><span class="fu">unshift</span>(<span class="dv">9</span>)<span class="op">;</span> <span class="co">// 先頭に要素を追加</span></span>
 <span id="cb23-6"><a href="#cb23-6"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;先頭と末尾に要素を追加した後 =&gt; &quot;</span> <span class="op">+</span> numArr)<span class="op">;</span></span>
 <span id="cb23-7"><a href="#cb23-7"></a></span>
-<span id="cb23-8"><a href="#cb23-8"></a><span class="co">// 2番目に要素(10.5)を挿入 ゼロオリジンに注意 </span></span>
+<span id="cb23-8"><a href="#cb23-8"></a><span class="co">// インデックス 2 の位置に要素 (10.5) を挿入 ゼロオリジンに注意</span></span>
 <span id="cb23-9"><a href="#cb23-9"></a>numArr<span class="op">.</span><span class="fu">splice</span>(<span class="dv">2</span><span class="op">,</span> <span class="dv">0</span><span class="op">,</span> <span class="fl">10.5</span>)<span class="op">;</span></span>
-<span id="cb23-10"><a href="#cb23-10"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;2番目の位置に要素を挿入した後 =&gt; &quot;</span> <span class="op">+</span> numArr)<span class="op">;</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;インデックス 2 の位置に要素を挿入した後 =&gt; &quot;</span> <span class="op">+</span> numArr)<span class="op">;</span></span>
 <span id="cb23-11"><a href="#cb23-11"></a></span>
 <span id="cb23-12"><a href="#cb23-12"></a>numArr<span class="op">.</span><span class="fu">pop</span>()<span class="op">;</span> <span class="co">// 末尾の要素を削除</span></span>
 <span id="cb23-13"><a href="#cb23-13"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;末尾の要素を削除した後 =&gt; &quot;</span> <span class="op">+</span> numArr)<span class="op">;</span></span>
 <span id="cb23-14"><a href="#cb23-14"></a></span>
-<span id="cb23-15"><a href="#cb23-15"></a><span class="co">// 4番目の要素を削除</span></span>
+<span id="cb23-15"><a href="#cb23-15"></a><span class="co">// インデックス 4 の要素を削除</span></span>
 <span id="cb23-16"><a href="#cb23-16"></a>numArr<span class="op">.</span><span class="fu">splice</span>(<span class="dv">4</span><span class="op">,</span> <span class="dv">1</span>)<span class="op">;</span></span>
-<span id="cb23-17"><a href="#cb23-17"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;4番目の位置の要素を削除した後 =&gt; &quot;</span> <span class="op">+</span> numArr)<span class="op">;</span></span></code></pre></div>
+<span id="cb23-17"><a href="#cb23-17"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;インデックス 4 の要素を削除した後 =&gt; &quot;</span> <span class="op">+</span> numArr)<span class="op">;</span></span></code></pre></div>
       <p>実行結果は、次のようになります。</p>
       <pre><code>初期状態 =&gt; 10,11,12,13
 先頭と末尾に要素を追加した後 =&gt; 9,10,11,12,13,14
-2番目の位置に要素を挿入した後 =&gt; 9,10,10.5,11,12,13,14
+インデックス 2 の位置に要素を挿入した後 =&gt; 9,10,10.5,11,12,13,14
 末尾の要素を削除した後 =&gt; 9,10,10.5,11,12,13
-4番目の位置の要素を削除した後 =&gt; 9,10,10.5,11,13</code></pre>
+インデックス 4 の要素を削除した後 =&gt; 9,10,10.5,11,13</code></pre>
       <div class="balloon char-01 face-04 tone-blue">
       <p>今後、これらのミュータブルな配列操作を本授業の範囲で使用する場面は (おそらく)
       ありません。</p>
@@ -791,10 +791,10 @@ npx tsx src/prac07.ts   </code></pre>
 <span id="cb25-9"><a href="#cb25-9"></a><span class="kw">const</span> addedToStart <span class="op">=</span> [<span class="dv">9</span><span class="op">,</span> <span class="op">...</span>numArr]<span class="op">;</span> <span class="co">// スプレッド構文</span></span>
 <span id="cb25-10"><a href="#cb25-10"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;先頭に要素を追加 =&gt; &quot;</span> <span class="op">+</span> addedToStart)<span class="op">;</span></span>
 <span id="cb25-11"><a href="#cb25-11"></a></span>
-<span id="cb25-12"><a href="#cb25-12"></a><span class="co">// n番目の位置に要素 (10.5) を挿入</span></span>
+<span id="cb25-12"><a href="#cb25-12"></a><span class="co">// インデックス n の位置に要素 (10.5) を挿入</span></span>
 <span id="cb25-13"><a href="#cb25-13"></a><span class="kw">const</span> n <span class="op">=</span> <span class="dv">2</span><span class="op">;</span></span>
 <span id="cb25-14"><a href="#cb25-14"></a><span class="kw">const</span> insertedAtN <span class="op">=</span> [<span class="op">...</span>numArr<span class="op">.</span><span class="fu">slice</span>(<span class="dv">0</span><span class="op">,</span> n)<span class="op">,</span> <span class="fl">10.5</span><span class="op">,</span> <span class="op">...</span>numArr<span class="op">.</span><span class="fu">slice</span>(n)]<span class="op">;</span></span>
-<span id="cb25-15"><a href="#cb25-15"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`</span><span class="sc">${</span>n<span class="sc">}</span><span class="vs">番目の位置に要素を挿入 =&gt; `</span> <span class="op">+</span> insertedAtN)<span class="op">;</span></span></code></pre></div>
+<span id="cb25-15"><a href="#cb25-15"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`インデックス </span><span class="sc">${</span>n<span class="sc">}</span><span class="vs"> の位置に要素を挿入 =&gt; `</span> <span class="op">+</span> insertedAtN)<span class="op">;</span></span></code></pre></div>
       <p><strong>第14行目</strong>
       では「配列の途中位置に要素を追加する例」を示していますが、実際の開発では、<span
       class="masked">末尾か先頭に要素を追加したうえで <code>sort()</code>
@@ -1239,7 +1239,7 @@ npx tsx src/prac07.ts   </code></pre>
       href="lecture02.html#三項演算子">条件演算子 (三項演算子)</a> を利用して、<code>isDone</code>
       が <code>true</code> のときだけ <strong>【済】</strong>
       の文字列が付加されるようにしています。</li>
-      <li><strong>第07行目</strong> では、定数 <code>const</code>
+      <li><strong>第07行目</strong> では、定数 <code>str</code>
       を宣言していますが、この定数を経由せずに直接的に文字列を <code>return</code>
       しても問題ありません。つまり <code>return `&lt;li&gt;...&lt;/li&gt;`;</code>
       のようにしても問題ありません。さらに、先に解説したように「波括弧」と「<code>return</code>」を省略することも可能です
@@ -2006,7 +2006,7 @@ npm run test:run -- src/pipeline/sortTodos.test.ts</code></pre>
       <li><strong>答え</strong>: <span class="masked">前。文字列に変換した後には、Todo の priority
       をそのまま参照できない。</span></li>
       </ul></li>
-      <li>表示用文字列を返す関数 stringifyTodos(todos) に空配列を渡し、内部で map
+      <li>表示用文字列の配列を返す関数 stringifyTodos(todos) に空配列を渡し、内部で map
       だけを使って変換する場合、戻り値を答えよ。
       <ul>
       <li><strong>答え</strong>: <span class="masked"><code>[]</code></span></li>
