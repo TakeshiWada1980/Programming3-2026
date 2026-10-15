@@ -1325,46 +1325,43 @@ const countUpN = (n: number) => setCount(count + n);
 
 ## Todoアプリの実装
 
+ここからは、前回講義までに扱ってきた Todo のデータを使い、React で Todo リストを表示するアプリを実装していきます。
+
 ### 準備: ライブラリのインストール
 
-個々の Todo に ID を設定するため **UUID** (**Universally Unique Identifier**) v4 を生成可能な[uuid](https://www.npmjs.com/package/uuid)というライブラリをインストールします。また、日時の管理を簡単にするために[dayjs](https://www.npmjs.com/package/dayjs)と[date-fns](https://www.npmjs.com/package/date-fns)というライブラリをインストールします。
+個々の Todo に ID を設定するため **UUID v4** (**Universally Unique Identifier Version 4**) を生成可能な [uuid](https://www.npmjs.com/package/uuid) というライブラリをインストールします。また、日時の整形には、第02回講義で使用した [Day.js](https://www.npmjs.com/package/dayjs) を使用します。
 
 - [UUID v4 とは](https://www.google.com/search?q=UUID+v4+とは)
 
-VSCodeのターミナルから以下のコマンドを実行してください。
+VSCode のターミナルから以下のコマンドを実行してください。
 
-```
-npm i uuid dayjs date-fns
-```
-
-また、uuid ライブラリは (TypeScriptではなく) JavaScript で書かれており <span class="masked">TypeScriptに必要な型定義を含んでいない</span> ため、それを補う型定義 (`@types/uuid`) を追加でインストールします。なお、この型定義ファイルは **開発だけに必要 (実行時は不要)** なので `-D` オプションを付けてインストールします。
-
-```
-npm i -D @types/uuid
+```bash
+npm i --save-exact uuid@14.0.3 dayjs@1.11.23
 ```
 
-アイコン用に[Font Awesome](https://fontawesome.com/)を使用したいので、型定義と共にインストールします。Font Awesome $\to$ <i class="fa-solid fa-fish"></i> <i class="fa-solid fa-envelope"></i> <i class="fa-solid fa-key"></i>
+アイコン用に [Font Awesome](https://fontawesome.com/) の React コンポーネントとアイコンをインストールします。Font Awesome $\to$ <i class="fa-solid fa-fish"></i> <i class="fa-solid fa-envelope"></i> <i class="fa-solid fa-key"></i>
 
-```
-npm i @fortawesome/react-fontawesome @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons
-npm i -D @types/react-fontawesome
-```
-
-Tailwind 関連のユーティリティクラス (`font-bold` や `px-4` など) を動的に結合する際に、**スタイリングの衝突を解決してくれる**[tailwind-merge](https://www.npmjs.com/package/tailwind-merge)をインストールします。開発時のみ必要なので `-D` オプションを付けてインストールします。
-
-```
-npm i -D tailwind-merge
+```bash
+npm i --save-exact @fortawesome/react-fontawesome@3.5.0 @fortawesome/fontawesome-svg-core@7.3.1 @fortawesome/free-solid-svg-icons@7.3.1
 ```
 
-- 参考: [tailwind-mergeとは](https://www.google.com/search?q=tailwind-merge+とは)
+Tailwind 関連のユーティリティクラス (`font-bold` や `px-4` など) を動的に結合する際に、**スタイリングの衝突を解決**してくれる [tailwind-merge](https://www.npmjs.com/package/tailwind-merge) をインストールします。アプリの実行時にも使用するため、`-D` を付けずにインストールします。
+
+```bash
+npm i --save-exact tailwind-merge@3.7.0
+```
+
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
+
+> tailwind-mergeとは、どのようなライブラリですか？
 
 ### 準備: 初期データの作成
 
-Todoリストの「初期データ」を準備します。まずは、このTodoアプリで共通使用する「**型**」を定義しておくためのファイル `src/types.ts` を作成してください。
+Todoリストの「初期データ」を準備します。まずは、このTodoアプリで共通使用する「**型**」を定義しておくためのファイル `src/types.ts` を新規作成してください。
 
-- 「`src/types.ts` **を作成せよ**」とは「`src` **フォルダのなかに** `types.ts` **を作成せよ**」という意味です。
+- 「**src/types.ts** を新規作成してください」とは「**src** フォルダのなかに **types.ts** を新規作成してください」という意味です。
 
-作成したファイルに以下のように **Todo型** を定義してください。また <span class="masked">定義した型が、他のファイルで `import` できるように `export` </span> を付けてください。なお、このファイルは、単に型定義をしているだけのファイルなので拡張子は `.tsx` ではなく、`.ts` にします。
+作成したファイルに、以下のように **Todo型** を定義してください。また <span class="masked">定義した型が、他のファイルで `import` できるように、先頭に `export`</span> を付けてください。なお、このファイルは、単に型定義をしているだけのファイルなので拡張子は `.tsx` ではなく、`.ts` としてください。
 
 ```ts{.numberLines caption="src/types.ts"}
 export type Todo = {
@@ -1376,7 +1373,7 @@ export type Todo = {
 };
 ```
 
-ここで注意してほしいのは **第06行目** で、プロパティ `deadline` の型を「Date」もしくは「null」に設定している点です ([前回講義の解説](lecture03.html#型と宣言)を参照)。特に「期限を設定しないTodo」については `deadline` を `null` として扱うものとします。
+ここで注意してほしいのは **第06行目** で、プロパティ `deadline` の型を「Date」もしくは「null」に設定している点です ( [前回講義の解説](lecture03.html#型と宣言) を参照)。特に「期限を設定しないTodo」については `deadline` を `null` として扱うものとします。
 
 次に、Todoリストの初期データを格納するファイルとして `src/initTodos.ts` を作成し、以下のように初期値 `initTodos` を設定してください。この `initTodos` も <span class="masked">他のファイルから参照するので忘れずに `export` キーワードを付与してください</span>。データの内容は自由に変更して問題ありませんが、このあとの展開の関係で **3個以上を設定** してください。
 
@@ -1415,14 +1412,16 @@ export const initTodos: Todo[] = [
 
 ### TodoListコンポーネントの作成
 
-Todoリストを表示するための「**TodoListコンポーネント**」を作成します。`src/TodoList.tsx` を作成して、以下の内容を記述してください。ここでは、練習のために**コピペ**ではなく**コードを打ち込んで**ください。[前回講義で紹介](lecture03.html#react開発の支援機能)しているように `ES7+ React/Redux/React-Native snippets` をVSCodeの拡張機能としてインストールしていると、次の図のように `rafce` と打ち込むだけで **アロー関数形式のReactコンポーネントのテンプレート** が得られます。
+Todoリストを表示するための「**TodoListコンポーネント**」を作成します。`src/TodoList.tsx` を作成して、以下の内容を記述してください。
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+ここでは、練習のために**コピペ**ではなく**コードを打ち込んで**ください。[前回講義で紹介](lecture03.html#react開発の支援機能) しているように `ES7+ React/Redux/React-Native snippets` をVSCodeの拡張機能としてインストールしていると、次の図のように `rafce` と打ち込むだけで **アロー関数形式のReactコンポーネントのテンプレート** が得られます。
 
 ![img](figs/03/vscode_04.png)
 
-ここで定義する `TodoList` は、Reactの関数コンポーネントなので必ず[パスカルケース](https://www.google.com/search?q=パスカルケースとは)としてください。また、同様に、<span class="masked">ファイルの名前もパスカルケース</span>としてください。
+:::
 
 ```ts{.numberLines caption="src/TodoList.tsx"}
-import React from "react";
 import type { Todo } from "./types";
 
 type Props = {
@@ -1449,17 +1448,21 @@ const TodoList = (props: Props) => {
 export default TodoList;
 ```
 
+:::{.note .type-caution}
+ここで定義する `TodoList` は、Reactの関数コンポーネントなので必ず [パスカルケース](https://www.google.com/search?q=パスカルケースとは) としてください。また、同様に、ファイルの名前もパスカルケースとしてください。
+:::
+
 このコンポーネントは、Todo型の配列 `todos` を **Props (プロップス)** として受け取り、先頭から3件分のTodoの「名前」と「優先度」を表示しています。なお、Reactの文脈において Props とは **Properties の略称**で、<span class="masked">コンポーネントが受け取る「引数」のようなもの</span> と考えてください。
 
-なお、ここでの **第12行目** から **第20行目** のコードは酷いものですが、これは後で書き換えます。
+なお、ここでの **第11行目** から **第19行目** のコードは酷いものですが、これは後で書き換えます。
 
 ### Appコンポーネントの編集
 
-`src/App.tsx` を次のように編集してください。**第04行目** では[さきほど作成](lecture04.html#reactにおけるコンポーネントとは)したウェルカムメッセージのコンポーネント (`src/WelcomeMessage.tsx`) をインポートしています。同様に **第05行目** では、Todoリストのコンポーネント(`src/TodoList.tsx`) をインポートしています。
+**src/App.tsx** を次のように編集してください。**第04行目** では、[先ほどの演習](lecture04.html#reactにおけるコンポーネントとは) で未完了タスク数も受け取れるようにした **WelcomeMessage コンポーネント** をインポートしています。同様に **第05行目** では、Todo リストのコンポーネント (**src/TodoList.tsx**) をインポートしています。
 
 また、**第03行目**では、Todoリストの初期データとして `initTodos` をインポートしています。なお、インポートする際に <span class="masked">波括弧 `{ }` をつけてインポートしているケースと、そうでないケースがあること</span> に気づくと思います。これらの理由については生成AIで解決してください。
 
-**(プロンプト例)**
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
 
 > Node.js 環境で TypeScript の勉強をしています。サンプルコードを見ていると、ライブラリから関数や変数をインポートする際に、波括弧 `{}` を付けているケースと、そうではないケースがあることに気づきました。違いについて教えてください。
 
@@ -1473,9 +1476,7 @@ import TodoList from "./TodoList";
 
 const App = () => {
   const [todos, setTodos] = useState<Todo[]>(initTodos);
-  const uncompletedCount = initTodos.filter(
-    (todo: Todo) => !todo.isDone
-  ).length; // 未完了タスクの数え上げ
+  const uncompletedCount = todos.filter((todo: Todo) => !todo.isDone).length; // 未完了タスクの数え上げ
   console.log(JSON.stringify(todos, null, 2));
 
   return (
@@ -1504,7 +1505,7 @@ export default App;
 
 - `src/App.tsx` の **第08行目** : 現時点では `todos` を変更 (追加・削除) する処理は含んでいませんが、今後、それらの機能を実装したときに `todos` の変更をトリガーに再レンダリングをしたいので `useState` を使って「状態」として扱うようにしています。
     - `useState<Todo[]>(initTodos)` ではなく `useState(initTodos)` のように型推論を利用して初期化が可能です。ただし、初期値を空配列にする場合は、明示的に型を与える必要があります。
-- `src/App.tsx` の **第09行目** : ここでは、Todo型オブジェクトの配列から「未完了のタスク数」をカウントしています。前回講義で学んだ**配列**の[filter操作](lecture03.html#オブジェクト配列の-filter-操作)と[lengthプロパティ](lecture03.html#第1形態-レガシーな手続き型スタイル)を活用している例になります。
+- `src/App.tsx` の **第09行目** : ここでは、Todo型オブジェクトの配列から「未完了のタスク数」をカウントしています。前回講義で学んだ**配列**の [filter操作](lecture03.html#オブジェクト配列の-filter-操作) と [lengthプロパティ](lecture03.html#第1形態-レガシーな手続き型スタイル) を活用している例になります。
 - `src/App.tsx` の **第23行目** の `<TodoList todos={todos} />` と、`src/TodoList.tsx` で定義している `TodoList` 関数の引数 (Props) が対応している点に注意してください。
 
 ### TodoListコンポーネントのブラッシュアップ
@@ -1514,7 +1515,6 @@ export default App;
 そこで、前回講義で学んだ <span class="masked">mapメソッド</span> を利用して、`todos` の要素数にあわせて表示するように変えたいと思います。この mapメソッドを使うテクニックは **Reactでは定番中の定番処理** となるので確実に読解かつ記述できるようにしてください。
 
 ```ts{.numberLines caption="src/TodoList.tsx (Before) 再掲"}
-import React from "react";
 import type { Todo } from "./types";
 
 type Props = {
@@ -1541,10 +1541,9 @@ const TodoList = (props: Props) => {
 export default TodoList;
 ```
 
-上記のプログラムを次のように書き換えます。前回講義の[オブジェクト型の配列に対するmapの適用](lecture03.html#オブジェクト型の配列に対するmapの適用)を参考にしながら、この書き換えを理解してください。
+上記のプログラムを次のように書き換えます。前回講義の [オブジェクト型の配列に対するmapの適用](lecture03.html#オブジェクト型の配列に対するmapの適用) を参考にしながら、この書き換えを理解してください。
 
 ```ts{.numberLines caption="src/TodoList.tsx (After)"}
-import React from "react";
 import type { Todo } from "./types";
 
 type Props = {
@@ -1578,25 +1577,27 @@ export default TodoList;
 
 書き換え後のプログラムでは、`todos` が <span class="masked">空配列のとき (`todos.length === 0` のとき)</span> には、Todoリストの代わりに「**現在、登録されているタスクはありません。**」というメッセージを表示するようにしています。
 
-また、map の戻り値となる**一番外側のJSX要素** (この例では `<div>` 要素) については、**第22行目** のように <span class="masked">必ず `key` 属性を設定してください</span>。`key` の値は <span class="masked">ユニークな値 (配列内の他要素と重複のない一意な値)</span> であれば何であっても問題ありません。例えば、Todoの「**名前 (**`name`**)**」が絶対に重複しないのであれば `<div key={todo.name}>` としても問題ありません。
+また、map の戻り値となる**一番外側の JSX 要素** (この例では `<div>` 要素) については、**第21行目** のように <span class="masked">必ず `key` 属性を設定してください</span>。`key` の値には <span class="masked">配列内で重複せず、同じ Todo では再レンダリングしても変わらない値</span> を指定します。このアプリでは、各 Todo の `id` を使用します。
 
+::: {.balloon .char-01 .face-01 .tone-pink}
 `key` 属性を設定していないと、実行時に `Each child in a list should have a unique "key" prop` という警告が表示されます。また、再レンダリングに際して意図した動作をしなくなる可能性があります。詳しい原理は生成AIで解決してください。
+:::
 
-**(プロンプト例)**
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
 
 > Reactを使ったウェブアプリを開発しています。配列のmapメソッドを使用してJSXを構成する際、key属性が要求されるのは何故ですか。Reactは何のためにkey属性を必要としますか。
 
 #### 演習
 
-前回講義で学んだように、Todoの並び替えは「配列のsortメソッド」を利用して行なうことができます。例えば、優先度を昇順 (1👉2👉3の順) にしたいときは、**第09行目**の `const todos = props.todos;` を以下のように書き換えます。
+前回講義で学んだように、Todoの並び替えは「配列のsortメソッド」を利用して行なうことができます。例えば、優先度を昇順 (1👉2👉3の順) にしたいときは、**第08行目**の `const todos = props.todos;` を以下のように書き換えます。
 
-```ts
+```ts{.numberLines caption="優先度で整列する" startFrom="8"}
 const todos = [...props.todos].sort((a, b) => a.priority - b.priority);
 ```
 
-前回講義の[複数のソートキーを使ったオブジェクト配列の並び替え](lecture03.html#複数のソートキーを使ったオブジェクト配列の並び替え)を参考にして、**第1ソートキー**を `isDone` (未完了を先に表示)、**第2ソートキー**を `deadline` として並び替えたTodoリストが表示されるようにしてください。
+前回講義の [複数のソートキーを使ったオブジェクト配列の並び替え](lecture03.html#複数のソートキーを使ったオブジェクト配列の並び替え) を参考にして、**第1ソートキー**を `isDone` (未完了を先に表示)、**第2ソートキー**を `deadline` (期限が早いものを先に表示) として並び替えた Todo リストが表示されるようにしてください。期限がない Todo は、同じ完了状態のグループのなかで最後に表示してください。
 
-## 演習 (宿題: <i class="fa-solid fa-stopwatch"></i>120分～)
+## 演習 (宿題)
 
 主に `src/TodoList.tsx` の **JSX (HTML)** と **Tailwind CSS** に編集を加えてTodoリストコンポーネントの表示を **自分流にカスタマイズ** してみてください。これは、UI/UXの設計練習も兼ねています。また、後期前半の大課題に関連する内容にもなってきます。
 
@@ -1606,25 +1607,4 @@ const todos = [...props.todos].sort((a, b) => a.priority - b.priority);
 
 ![img](figs/04/app_08.png)
 
-- 上記のサンプルのコードは[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/04/code05.tsx)
-
-
----
-
-取組みに際しては、生成AIを賢く活用してください (コード生成ツールとして使うのではなく、内容の理解のためのツールとして使用してください)。
-
-**(プロンプト例)**・再掲
-
-> TailwindCSS で、次のようにスタイルが適用されていました。各CSSクラスの意味について解説してください。  
-> `<div className="mx-4 md:mx-auto mt-10 max-w-2xl">`
-
-**(プロンプト例)**・再掲
-
-> TailwindCSS でボタンに「ドロップシャドウ」を適用したいです。どのようにすればよいですか。  
-> `<button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md">ほげ</button>`
-
-
-
-
-
-
+- 上記のサンプルのコードは [こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/04/code05.tsx)
