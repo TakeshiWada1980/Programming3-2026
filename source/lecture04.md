@@ -34,7 +34,7 @@ var:
 
 ## React開発環境の構築
 
-[Vite](https://www.google.com/search?q=viteとは) という**ビルドツール**を使用して TypeScript と Tailwind CSS を組み合わせた **React アプリケーションの開発環境を構築する手順について解説** してきます。
+[Vite](https://www.google.com/search?q=viteとは) という**ビルドツール**を使用して TypeScript と Tailwind CSS を組み合わせた **React アプリケーションの開発環境を構築する手順について解説** していきます。
 
 **<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
 
@@ -42,7 +42,7 @@ var:
 
 ### 準備
 
-ターミナル (PowerShell) を開いてプロジェクトフォルダを配置したいフォルダ (例えば ` C:\Users\xxxx\Documents\` など) に**移動**してください。
+ターミナル (PowerShell) を開いてプロジェクトフォルダを配置したいフォルダ (例えば `C:\Users\xxxx\Documents\` など) に**移動**してください。
 
 いまから、このフォルダのなかに `react-todo-app` というプロジェクトフォルダを作成して、そこに開発環境を構築していきます。
 
@@ -241,7 +241,7 @@ VSCodeのエクスプローラから、フォルダ構成が次のようにな�
 「**eslint.config.js**」は[ESLint](https://www.google.com/search?q=ESLintとは) という「**コード品質チェックツール**」に関する設定ファイルになります。例えば、ESLint を使うと <span class="masked">宣言されているが未使用の変数</span> があるときなどに「警告」や「エラー」として検出してくれます。
 
 ::: {.balloon .char-01 .face-05 .tone-blue}
-**Lint (リント) ** とは、プログラミング一般において「**ソースコードを解析し、バグやスタイルの問題、疑わしい構造などを検出するプロセス**」を指し、そのためのツールが **Linter (リンター)** と呼ばれています。
+**Lint (リント)** とは、プログラミング一般において「**ソースコードを解析し、バグやスタイルの問題、疑わしい構造などを検出するプロセス**」を指し、そのためのツールが **Linter (リンター)** と呼ばれています。
 
 C言語 や Python用の Linter もあります。**ESLint** は、特に ECMAScript (JavaScript / TypeScript) 用の **標準Linter** として知られています。
 
@@ -260,7 +260,7 @@ C言語 や Python用の Linter もあります。**ESLint** は、特に ECMASc
 - Git によるバージョン管理の対象から除外するファイルやフォルダを指定する設定ファイルの名前を答えよ。
   - **答え**: <span class="masked">`.gitignore`</span>
 
-- `.gitignore` に `node_modules` を記載すると、PC 内の **`node_modules` フォルダ自体も削除される。この説明は「正しい」か「正しくない」か答えよ。
+- `.gitignore` に `node_modules` を記載すると、PC 内の `node_modules` フォルダ自体も削除される。この説明は「正しい」か「正しくない」か答えよ。
   - **答え**: <span class="masked">正しくない。`.gitignore` は Git の管理対象から除外するための設定ファイルであり、PC 内のファイルやフォルダが削除されることはない。</span>
 
 ### インストールパッケージ (ライブラリ) の確認
@@ -543,7 +543,7 @@ Tailwind CSS 自体は開発時に使用するツールですが、**Tailwind CS
 
 ---
 
-次に、プロジェクトのルートの `vite.config.ts` 以下のように変更してください。忘れずに保存もしてください。**第03行目** で `tailwindcss` をインポートして、**第07行目** でプラグインとして設定しています。
+次に、プロジェクトのルートの `vite.config.ts` を以下のように変更してください。忘れずに保存もしてください。**第03行目** で `tailwindcss` をインポートして、**第07行目** でプラグインとして設定しています。
 
 ```ts{.numberLines caption="vite.config.ts"}
 import { defineConfig } from "vite";
@@ -1448,7 +1448,7 @@ const TodoList = (props: Props) => {
 export default TodoList;
 ```
 
-:::{.note .type-caution}
+::: {.note .type-caution}
 ここで定義する `TodoList` は、Reactの関数コンポーネントなので必ず [パスカルケース](https://www.google.com/search?q=パスカルケースとは) としてください。また、同様に、ファイルの名前もパスカルケースとしてください。
 :::
 
@@ -1496,7 +1496,7 @@ const App = () => {
 export default App;
 ```
 
-編集後、保存してから **開発モード** でアプリを実行してください (`npm run dev`)。次のような実行結果が得られると思います。さらに、ブラウザで `[F12]` を押下して **デベロッパーツール** を起動してコンソール出力 (**第12行目** で行われている `todos` の出力) も確認してください。
+編集後、保存してから **開発モード** でアプリを実行してください (`npm run dev`)。次のような実行結果が得られると思います。さらに、ブラウザで `[F12]` を押下して **デベロッパーツール** を起動してコンソール出力 (**第10行目** で行われている `todos` の出力) も確認してください。
 
 ![img](figs/04/app_07.png)
 
@@ -1506,7 +1506,7 @@ export default App;
 - `src/App.tsx` の **第08行目** : 現時点では `todos` を変更 (追加・削除) する処理は含んでいませんが、今後、それらの機能を実装したときに `todos` の変更をトリガーに再レンダリングをしたいので `useState` を使って「状態」として扱うようにしています。
     - `useState<Todo[]>(initTodos)` ではなく `useState(initTodos)` のように型推論を利用して初期化が可能です。ただし、初期値を空配列にする場合は、明示的に型を与える必要があります。
 - `src/App.tsx` の **第09行目** : ここでは、Todo型オブジェクトの配列から「未完了のタスク数」をカウントしています。前回講義で学んだ**配列**の [filter操作](lecture03.html#オブジェクト配列の-filter-操作) と [lengthプロパティ](lecture03.html#第1形態-レガシーな手続き型スタイル) を活用している例になります。
-- `src/App.tsx` の **第23行目** の `<TodoList todos={todos} />` と、`src/TodoList.tsx` で定義している `TodoList` 関数の引数 (Props) が対応している点に注意してください。
+- `src/App.tsx` の **第21行目** の `<TodoList todos={todos} />` と、`src/TodoList.tsx` で定義している `TodoList` 関数の引数 (Props) が対応している点に注意してください。
 
 ### TodoListコンポーネントのブラッシュアップ
 

@@ -1,0 +1,1916 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=yes"
+    />
+    <meta name="robots" content="noindex,nofollow,noarchive" />
+    <meta name="referrer" content="no-referrer" />
+
+    <script>
+      MathJax = {
+        chtml: {
+          displayAlign: "left",
+          displayIndent: "1em",
+        },
+      };
+    </script>
+
+     <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"
+type="text/javascript"></script> 
+
+    <link rel="icon" href="favicon.ico" sizes="any" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+      integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c&family=JetBrains+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="site.js" defer></script>
+
+    <title>第04回 3I-プログラミング3</title>
+  </head>
+
+  <body>
+    <button
+      type="button"
+      class="openbtn"
+      aria-label="目次を開く"
+      aria-controls="g-nav"
+      aria-expanded="false"
+    >
+      <span></span><span></span><span></span>
+    </button>
+    <nav id="g-nav" aria-hidden="true">
+      <div id="g-nav-list">
+        <!-- ---------------------------------------- -->
+         <ul>
+<li><a href="#情報共有" id="toc-情報共有"><span class="toc-section-number">1</span>
+情報共有</a></li>
+<li><a href="#ここまでの流れ" id="toc-ここまでの流れ"><span class="toc-section-number">2</span>
+ここまでの流れ</a></li>
+<li><a href="#react開発環境の構築" id="toc-react開発環境の構築"><span
+class="toc-section-number">3</span> React開発環境の構築</a>
+<ul>
+<li><a href="#準備" id="toc-準備"><span class="toc-section-number">3.1</span> 準備</a></li>
+<li><a href="#viteによるプロジェクトフォルダの作成"
+id="toc-viteによるプロジェクトフォルダの作成"><span class="toc-section-number">3.2</span>
+Viteによるプロジェクトフォルダの作成</a></li>
+<li><a href="#プロジェクトフォルダの構成確認" id="toc-プロジェクトフォルダの構成確認"><span
+class="toc-section-number">3.3</span> プロジェクトフォルダの構成確認</a></li>
+<li><a href="#インストールパッケージ-ライブラリ-の確認"
+id="toc-インストールパッケージ-ライブラリ-の確認"><span class="toc-section-number">3.4</span>
+インストールパッケージ (ライブラリ) の確認</a></li>
+<li><a href="#reactアプリのビルドと動作確認" id="toc-reactアプリのビルドと動作確認"><span
+class="toc-section-number">3.5</span> Reactアプリのビルドと動作確認</a></li>
+<li><a href="#不要なファイルや記述を削除" id="toc-不要なファイルや記述を削除"><span
+class="toc-section-number">3.6</span> 不要なファイルや記述を削除</a></li>
+<li><a href="#動作確認-cssの剝ぎ取り" id="toc-動作確認-cssの剝ぎ取り"><span
+class="toc-section-number">3.7</span> 動作確認 (CSSの剝ぎ取り)</a></li>
+<li><a href="#tailwind-css-の適用" id="toc-tailwind-css-の適用"><span
+class="toc-section-number">3.8</span> Tailwind CSS の適用</a></li>
+</ul></li>
+<li><a href="#ポート番号のカスタマイズ" id="toc-ポート番号のカスタマイズ"><span
+class="toc-section-number">4</span> ポート番号のカスタマイズ</a></li>
+<li><a href="#eslintのカスタマイズ" id="toc-eslintのカスタマイズ"><span
+class="toc-section-number">5</span> ESLintのカスタマイズ</a></li>
+<li><a href="#reactアプリケーションの実行順序の理解"
+id="toc-reactアプリケーションの実行順序の理解"><span class="toc-section-number">6</span>
+Reactアプリケーションの実行順序の理解</a>
+<ul>
+<li><a href="#ビルド-バンドル-出力" id="toc-ビルド-バンドル-出力"><span
+class="toc-section-number">6.1</span> ビルド (バンドル) 出力</a></li>
+</ul></li>
+<li><a href="#reactアプリの開発" id="toc-reactアプリの開発"><span
+class="toc-section-number">7</span> Reactアプリの開発</a>
+<ul>
+<li><a href="#reactにおけるコンポーネントとは" id="toc-reactにおけるコンポーネントとは"><span
+class="toc-section-number">7.1</span> Reactにおけるコンポーネントとは</a></li>
+<li><a href="#状態管理" id="toc-状態管理"><span class="toc-section-number">7.2</span>
+状態管理</a></li>
+<li><a href="#練習" id="toc-練習"><span class="toc-section-number">7.3</span> 練習</a></li>
+</ul></li>
+<li><a href="#todoアプリの実装" id="toc-todoアプリの実装"><span class="toc-section-number">8</span>
+Todoアプリの実装</a>
+<ul>
+<li><a href="#準備-ライブラリのインストール" id="toc-準備-ライブラリのインストール"><span
+class="toc-section-number">8.1</span> 準備: ライブラリのインストール</a></li>
+<li><a href="#準備-初期データの作成" id="toc-準備-初期データの作成"><span
+class="toc-section-number">8.2</span> 準備: 初期データの作成</a></li>
+<li><a href="#todolistコンポーネントの作成" id="toc-todolistコンポーネントの作成"><span
+class="toc-section-number">8.3</span> TodoListコンポーネントの作成</a></li>
+<li><a href="#appコンポーネントの編集" id="toc-appコンポーネントの編集"><span
+class="toc-section-number">8.4</span> Appコンポーネントの編集</a></li>
+<li><a href="#todolistコンポーネントのブラッシュアップ"
+id="toc-todolistコンポーネントのブラッシュアップ"><span class="toc-section-number">8.5</span>
+TodoListコンポーネントのブラッシュアップ</a></li>
+</ul></li>
+<li><a href="#演習-宿題" id="toc-演習-宿題"><span class="toc-section-number">9</span> 演習
+(宿題)</a></li>
+</ul> 
+        <!-- ---------------------------------------- -->
+      </div>
+    </nav>
+
+    <header class="markdown-body">
+      <p>2026-3I プログラミング3 第04回 講義資料</p>
+      <p>2026年10月16日（金）1時限</p>
+    </header>
+
+    <main class="markdown-body">
+      <!-- ---------------------------------------- -->
+      <h1 data-number="1" id="情報共有"><span class="header-section-number">1</span> 情報共有</h1>
+      <ul>
+      <li><a href="https://www.procon.gr.jp/">第37回高専プロコン（2026年 香川（高松）大会）</a>
+      YouTube 配信 2026/10/10・11（配信リンクは公式ページの「放送予定」を参照）</li>
+      <li><a
+      href="https://www.youtube.com/watch?v=8qzc-e9Czqc&amp;list=PLTPqb9X7I-Lm7SDmwfmjg0oT-lvUmhRmU">第36回高専プロコン（2025年
+      松江大会）</a> YouTube配信 2025/10/11・12</li>
+      <li><a
+      href="https://www.youtube.com/playlist?list=PLTPqb9X7I-LlS8ZbJgHDC4DtaYo_DKszV">第35回高専プロコン（2024年
+      奈良大会）</a>YouTube配信 2024/10/19・20
+      <ul>
+      <li><a
+      href="https://www.procon.gr.jp/archive/2024/">全国の高専生はどんなアプリやソフトを開発しているの?</a>
+      …リンク先の「<strong>大会パンフレット</strong>」も確認してください。</li>
+      </ul></li>
+      </ul>
+      <h1 data-number="2" id="ここまでの流れ"><span class="header-section-number">2</span>
+      ここまでの流れ</h1>
+      <p>後期中間試験ぐらいまでの授業の流れ (予定)</p>
+      <ol type="1">
+      <li>モダンTypeScript基礎学習のための環境構築 <strong><em>済</em></strong></li>
+      <li>TypeScript基礎学習
+      <ul>
+      <li><strong><u>React / Next.js
+      開発に関連する文法や機能だけを集中的に学びます</u></strong>。</li>
+      </ul></li>
+      <li>React を用いた「Todoアプリ」開発のための環境構築 <font color="deeppink"><b>←
+      今回の授業のメイン</b></font></li>
+      <li>Todoアプリの設計・実装 (Reactによるフロントエンド) のチュートリアル</li>
+      <li>Todoアプリのカスタマイズや作り込み → 📝<strong>課題1</strong>
+      <ul>
+      <li>参考: <a
+      href="https://omunet-my.sharepoint.com/:t:/g/personal/z21707r_omu_ac_jp/IQC1PJskZdyCSZ8tH_0DUchyAWpzGP7ILbgQAaEtJ39a7M4?e=lUsZM5">2025年度の学生作品</a>
+      (学内のみ)</li>
+      <li>参考: <a
+      href="https://omunet-my.sharepoint.com/:t:/g/personal/z21707r_omu_ac_jp/ET7-SWbLKVlBvtsv3v5guw0BvXiUlGzUqjCKk6ES6X88-w">2024年度の学生作品</a>
+      (学内のみ)</li>
+      </ul></li>
+      </ol>
+      <p>しばらく、次のような「Todoアプリ」を開発することを目標として授業が展開します。</p>
+      <ul>
+      <li><a href="https://takeshiwada1980.github.io/react-todo-app-demo/">Todoアプリのサンプル</a>
+      (チュートリアルそのままに近いもの)</li>
+      <li><a href="https://takeshiwada1980.github.io/react-todo-app-demo/2">Todoアプリのサンプル</a>
+      (内容を理解して機能追加やカスタマイズされたもの)</li>
+      </ul>
+      <h1 data-number="3" id="react開発環境の構築"><span class="header-section-number">3</span>
+      React開発環境の構築</h1>
+      <p><a href="https://www.google.com/search?q=viteとは">Vite</a>
+      という<strong>ビルドツール</strong>を使用して TypeScript と Tailwind CSS を組み合わせた
+      <strong>React アプリケーションの開発環境を構築する手順について解説</strong> していきます。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>React を用いたウェブアプリ (Todoアプリ) 開発で、Tailwind CSS
+      というものを使うことになりました。ノーマルな CSS は少し書いたことがあるのですが、Tailwind CSS
+      とはどのようなものなのですか？過去に CSS を書いた経験は生きますか？</p>
+      </blockquote>
+      <h2 data-number="3.1" id="準備"><span class="header-section-number">3.1</span> 準備</h2>
+      <p>ターミナル (PowerShell) を開いてプロジェクトフォルダを配置したいフォルダ (例えば
+      <code>C:\Users\xxxx\Documents\</code> など) に<strong>移動</strong>してください。</p>
+      <p>いまから、このフォルダのなかに <code>react-todo-app</code>
+      というプロジェクトフォルダを作成して、そこに開発環境を構築していきます。</p>
+      <div class="note type-caution">
+      <p><strong>注意</strong></p>
+      <p>ドキュメントフォルダを <strong>OneDrive と同期</strong>している学生は、同期対象外のフォルダ
+      (<code>c:\work</code> など) で作業することを強く推奨します。OneDrive
+      の同期対象フォルダ内で開発作業を行うと、予期せぬトラブルが発生したり、OneDrive
+      のストレージ容量を圧迫したりする可能性があります。</p>
+      <p>また、<code>react-todo-app</code> フォルダを含む <strong>パス全体に日本語</strong>
+      が含まれないようにしてください。</p>
+      </div>
+      <h2 data-number="3.2" id="viteによるプロジェクトフォルダの作成"><span
+      class="header-section-number">3.2</span> Viteによるプロジェクトフォルダの作成</h2>
+      <p>ここでは、<a href="https://vite.dev/">Vite</a> という
+      <strong>ウェブアプリケーション開発用のビルドツール</strong>を使用して開発環境を構築していきます。前回まで使用していた
+      <strong>Node.js と npm</strong> を、引き続き使用します。</p>
+      <ul>
+      <li>Vite は「ビート」または「ヴィート」と読みます。</li>
+      </ul>
+      <p>ターミナルを開いて、プロジェクトフォルダを作成したい位置
+      (<code>C:\Users\xxxx\Documents\</code> など) に移動し、以下のコマンドを実行してください。</p>
+      <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npx</span> create-vite@9.2.1 react-todo-app <span class="at">--template</span> react-ts <span class="at">--eslint</span> <span class="at">--no-immediate</span></span></code></pre></div>
+      <p>このコマンドを実行すると <strong>create-vite</strong> というツールによって、React
+      アプリの開発に必要なファイルや設定、つまりテンプレートが自動的に生成されます。コマンドに指定している各オプションの意味は、次のとおりです。</p>
+      <ul>
+      <li><p><code>@9.2.1</code> は、テンプレートを生成するツール (<code>create-vite</code>)
+      のバージョンを指定しています。Vite 本体のバージョンとは異なります。</p></li>
+      <li><p><code>react-todo-app</code> は、<strong>プロジェクトの名称</strong>
+      (=新規作成するプロジェクトフォルダの名前) を指定しています。</p></li>
+      <li><p><code>--template react-ts</code> は、<span class="masked">React と TypeScript
+      を組み合わせた開発環境のテンプレート</span>を指定しています。</p></li>
+      <li><p><code>--eslint</code> は、コード品質チェックツールとして <strong>ESLint</strong>
+      を使用する指定です。</p></li>
+      <li><p><code>--no-immediate</code>
+      は、テンプレートの作成後にパッケージのインストールや開発サーバの起動を自動では行なわない指定です。このあと、授業で使用するバージョンを指定してインストールします。</p></li>
+      </ul>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>TypeScript
+      開発の文脈で「ESLint」とはなんですか？コード品質チェックツールと説明されたのですがイメージが掴めません。</p>
+      </blockquote>
+      <div class="note type-tips">
+      <p><strong>create-react-app</strong></p>
+      <p>以前は、<code>npx create-react-app</code> というコマンドを使用して React
+      アプリの開発環境を構築する方法が広く利用されていました。しかし、<strong>Create React App は
+      2025 年 2 月に公式に非推奨となった</strong>ため、本授業では代わりに <strong>Vite</strong>
+      を使用します。</p>
+      </div>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p><code>npx create-vite</code>
+      を初めて実行するときなどは、以下のように尋ねられるので、続行するために <code>y</code>
+      を入力してください。</p>
+      <div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">Need</span> to install the following packages:</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">create-vite@9.2.1</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Ok</span> to proceed<span class="pp">?</span> <span class="er">(</span><span class="ex">y</span><span class="kw">)</span></span></code></pre></div>
+      </div>
+      <p>create-vite
+      によるテンプレートの生成が正常に完了すると、以下のようなメッセージが表示されます。</p>
+      <pre><code>◇  Scaffolding project in C:\Users\xxxx\Documents\react-todo-app...
+│
+└  Done. Now run:
+
+  cd react-todo-app
+  npm install
+  npm run dev</code></pre>
+      <p>通常は、表示された案内に従って
+      <code>cd react-todo-app</code>、<code>npm install</code>、<code>npm run dev</code>
+      を順番に実行すれば、必要なライブラリがインストールされ、React アプリが起動できます。</p>
+      <p>ただし、<strong>本授業では、使用する主要ライブラリのバージョンをそろえるために、バージョンを指定してインストール</strong>します。以下のコマンドを、上から順に実行してください。</p>
+      <div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">cd</span> react-todo-app</span></code></pre></div>
+      <div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i <span class="at">--save-exact</span> react@19.3.0 react-dom@19.3.0</span></code></pre></div>
+      <div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i <span class="at">-D</span> <span class="at">--save-exact</span> vite@8.3.4 @vitejs/plugin-react@6.1.2 @types/react@19.3.0 @types/react-dom@19.3.0</span></code></pre></div>
+      <div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i <span class="at">-D</span> @types/node</span></code></pre></div>
+      <div class="sourceCode" id="cb8"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i <span class="at">-D</span> <span class="at">--save-prefix</span><span class="op">=</span><span class="st">&quot;~&quot;</span> typescript@~6.0.3</span></code></pre></div>
+      <p><code>npm i</code> でインストールされたライブラリのバージョンは、第01回講義で紹介したように
+      <code>npm list --depth=0</code> や <code>npx tsc --version</code>
+      で確認することができます。</p>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p><strong>package-lock.json</strong> に記録された環境を復元するときは <code>npm ci</code>
+      を使用します。</p>
+      </div>
+      <p>以上により、プロジェクトのテンプレートが作成され
+      (＝<strong>スキャフォールディング</strong>)、依存パッケージのインストールまでが完了しました。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>ウェブアプリ開発環境構築に関する文脈で「スキャフォールディング」とは、どのような意味ですか。</p>
+      </blockquote>
+      <p>つづいて、次のコマンドで <strong>開発サーバを起動</strong> してください。</p>
+      <div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div>
+      <p>ターミナルに以下のような表示が出たら、ウェブブラウザから <a
+      href="http://localhost:5173/">http://localhost:5173/</a> にアクセスしてください。なお、5173
+      番ポートが既に使われている場合は、別の番号で起動することがあるので、ターミナルに表示された
+      URLを使用してください。</p>
+      <pre><code>PS C:\Users\xxxx\react-todo-app&gt; npm run dev
+
+&gt; react-todo-app@0.0.0 dev
+&gt; vite
+
+
+  VITE v8.3.4  ready in 888 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help</code></pre>
+      <p>ブラウザから指定の URL にアクセスすると最低限のコンテンツを含んだ React
+      アプリが表示されます。画面内の「<strong>Count is
+      0</strong>」のボタンをクリックすると、その表示がクリックのたびに「1」「2」「3」とカウントアップしていくことを確認してください。</p>
+      <figure>
+      <img src="figs/04/app_00.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>このカウントアップは React の <code>useState</code>
+      という主要な機能を利用して行なわれています。数値のカウントアップは「<strong>Hello
+      World</strong>」や「(組込み開発の) <strong>Lチカ</strong>」のような位置づけになります。</p>
+      </div>
+      <p>カウントアップの動作が確認できたら、ターミナルから <code>[Ctrl]+[C]</code>
+      を入力して、開発サーバを停止してください。</p>
+      <h2 data-number="3.3" id="プロジェクトフォルダの構成確認"><span
+      class="header-section-number">3.3</span> プロジェクトフォルダの構成確認</h2>
+      <p><code>create-vite</code> によって作成されたプロジェクトフォルダ
+      (<code>react-todo-app</code>) の構成を確認していきます。次のコマンドで VSCode
+      を立ち上げてください。</p>
+      <div class="sourceCode" id="cb11"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">code</span> .</span></code></pre></div>
+      <p>VSCodeのエクスプローラから、フォルダ構成が次のようになっていることを確認してください。</p>
+      <figure>
+      <img src="figs/04/vscode_01.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>プロジェクトフォルダに配置される各ファイルの概要は以下のようになります。</p>
+      <h3 data-number="3.3.1" id="tsconfig..json"><span class="header-section-number">3.3.1</span>
+      tsconfig.**.json</h3>
+      <p>プロジェクトフォルダのルートに配置される
+      <code>tsconfig.json</code>、<code>tsconfig.app.json</code>、<code>tsconfig.node.json</code>
+      の3つは、いずれも <strong>TypeScript関連の設定ファイル</strong> となります。</p>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>「tsconfig.json」から、「tsconfig.<strong>app</strong>.json」と「tsconfig.<strong>node</strong>.json」を参照する構成になっています。実際に
+      VSCode で <code>tsconfig.json</code> を開き、どのように参照されているか確認してください。</p>
+      </div>
+      <ul>
+      <li>tsconfig.<strong>app</strong>.json は、<strong>これから開発する React
+      アプリのソースコード</strong> に適用される TypeScript の設定ファイルです。</li>
+      <li>tsconfig.<strong>node</strong>.json は、<strong>Node.js 環境で実行される範囲
+      (例えばビルドスクリプトなど)</strong> に適用される TypeScript 設定になります。</li>
+      </ul>
+      <p>これらのファイルは、基本的に直接編集することはありません。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p><code>npx create-vite --template react-ts --eslint</code>
+      で開発環境を構築しました。その際、<code>tsconfig.json</code>、<code>tsconfig.app.json</code>、<code>tsconfig.node.json</code>
+      というファイルが自動で生成されました。これらのファイルの役割について、初心者向けに解説してください。</p>
+      </blockquote>
+      <h3 data-number="3.3.2" id="readme.md"><span class="header-section-number">3.3.2</span>
+      README.md</h3>
+      <p>「<strong>README.md</strong>」は、GitHub
+      のリポジトリのトップページに表示される「README」の内容を記述するファイルです。Markdown
+      形式（拡張子 <code>.md</code>）で記述します。</p>
+      <p>プロジェクトを
+      <strong>ポートフォリオとして公開する場合</strong>は、単にアプリの機能を紹介するだけでなく、<strong>開発の背景や技術的な工夫が伝わる内容</strong>にすることが重要です。アプリの概要（機能一覧）やライセンス情報に加えて、<span
+      class="masked">開発の経緯（なぜそのアプリを制作したのか）</span>、<strong>技術スタック</strong>（使用したフレームワーク・ライブラリ・ツールなど）、<strong>工夫した点やこだわりのポイント</strong>を記載するようにしてください。</p>
+      <h3 data-number="3.3.3" id="gitignore"><span class="header-section-number">3.3.3</span>
+      .gitignore</h3>
+      <p>「<strong>.gitignore</strong>」は、<strong>Git
+      によるバージョン管理の対象から除外するファイルやフォルダ</strong>を指定するための設定ファイルです。Git
+      の管理対象から除外されたファイルやフォルダは、基本的に <span class="masked">GitHub
+      にもアップロードされません</span>。</p>
+      <p>実際に「<strong>.gitignore</strong>」の内容を確認すると、インストールしたパッケージを格納する
+      <code>node_modules</code> フォルダのほか、データベースの接続情報や API
+      キーなどの機密情報を記述する <code>.env.local</code> ファイルが、Git
+      の管理対象から除外されるように設定されています。</p>
+      <p>これにより、<strong>不要なファイルや機密情報を誤って GitHub
+      にアップロードすることを防ぐ</strong>ことができます。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p><code>.gitignore</code>
+      を適切に設定することは、セキュリティ上も非常に重要だと言われました。なぜ重要なのか、具体例を挙げて説明してください。</p>
+      </blockquote>
+      <blockquote>
+      <p>TypeScript でアプリを開発しています。<code>.gitignore</code> には <code>node_modules</code>
+      を記載するように指示されました。なぜ <code>node_modules</code> を Git
+      の管理対象から除外する必要があるのか、初心者にもわかるように説明してください。また、これはセキュリティ上の理由によるものですか？</p>
+      </blockquote>
+      <blockquote>
+      <p>チームで TypeScript アプリを開発しているのですが、<code>.gitignore</code> に
+      <code>node_modules</code>
+      を記載しないまま、リモートリポジトリにプッシュしてしまいました。どのような問題が生じる可能性がありますか？
+      また、どのように対処すればよいですか？</p>
+      </blockquote>
+      <blockquote>
+      <p>インターンシップでチーム開発に参加しているのですが、<code>.gitignore</code> に
+      <code>.env</code> を記載しないまま、API キーが書かれた <code>.env</code>
+      ファイルを、公開設定のリモートリポジトリにプッシュしてしまいました💦
+      僕はどうすればいいですか？ ＼(^o^)／</p>
+      </blockquote>
+      <blockquote>
+      <p>API キーを記述した <code>.env</code> を、うっかり Git
+      にコミットしてしまいました。でも、まだプッシュしていなかったので、ギリギリセーフでした。ヤバかった！忘れないうちに、急いで
+      <code>.gitignore</code> に <code>.env</code>
+      を追加して、その変更をコミットしてプッシュしました。適切に対処できた自分を褒めてあげたいです。</p>
+      </blockquote>
+      <h3 data-number="3.3.4" id="eslint.config.js"><span class="header-section-number">3.3.4</span>
+      eslint.config.js</h3>
+      <p>「<strong>eslint.config.js</strong>」は<a
+      href="https://www.google.com/search?q=ESLintとは">ESLint</a>
+      という「<strong>コード品質チェックツール</strong>」に関する設定ファイルになります。例えば、ESLint
+      を使うと <span class="masked">宣言されているが未使用の変数</span>
+      があるときなどに「警告」や「エラー」として検出してくれます。</p>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p><strong>Lint (リント)</strong>
+      とは、プログラミング一般において「<strong>ソースコードを解析し、バグやスタイルの問題、疑わしい構造などを検出するプロセス</strong>」を指し、そのためのツールが
+      <strong>Linter (リンター)</strong> と呼ばれています。</p>
+      <p>C言語 や Python用の Linter もあります。<strong>ESLint</strong> は、特に ECMAScript
+      (JavaScript / TypeScript) 用の <strong>標準Linter</strong> として知られています。</p>
+      </div>
+      <p>本科目における React アプリの開発では、フォーマッタとしては <strong>Prettier
+      (プリティア)</strong>、リンターとしては <strong>ESLint (イーエスリント)</strong>
+      を使用していきます。</p>
+      <p><strong>(プロンプト例)</strong></p>
+      <blockquote>
+      <p>ECMAScript とはなんですか？TypeScript や JavaScript の仲間ですか？</p>
+      </blockquote>
+      <blockquote>
+      <p>React (TypeScript)
+      アプリの開発の際に、フォーマッターには「Prettier」を、リンターには「ESLint」を使用するように勧められました。両者の役割や機能の違いについて教えてください。</p>
+      </blockquote>
+      <h3 data-number="3.3.5" id="定着確認"><span class="header-section-number">3.3.5</span>
+      定着確認</h3>
+      <ul>
+      <li>Git
+      によるバージョン管理の対象から除外するファイルやフォルダを指定する設定ファイルの名前を答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked"><code>.gitignore</code></span></li>
+      </ul></li>
+      <li><code>.gitignore</code> に <code>node_modules</code> を記載すると、PC 内の
+      <strong><code>node_modules</code></strong>
+      フォルダ自体も削除される。この説明は「正しい」か「正しくない」か答えよ。
+      <ul>
+      <li><strong>答え</strong>: <span class="masked">正しくない。<code>.gitignore</code> は Git
+      の管理対象から除外するための設定ファイルであり、PC
+      内のファイルやフォルダが削除されることはない。</span></li>
+      </ul></li>
+      </ul>
+      <h2 data-number="3.4" id="インストールパッケージ-ライブラリ-の確認"><span
+      class="header-section-number">3.4</span> インストールパッケージ (ライブラリ) の確認</h2>
+      <p>プロジェクトフォルダのなかの「<strong>package.json</strong>」の内容を確認してください。</p>
+      <p><a href="lecture01.html#package.json-の設定">第01回講義で既に解説</a>
+      したように、<strong>package.json は</strong>「アプリの開発や実行に必要なパッケージ
+      (ライブラリ)
+      の情報」や「開発に使用するコマンドをショートカットとして定義」するための設定ファイルとなります。</p>
+      <p><strong>package.json</strong> のなかの <code>"dependencies"</code> と
+      <code>"devDependencies"</code> の項目を確認してください。ここに記載されたパッケージ
+      (ライブラリ) は「node_modules」フォルダのなかにインストールされます。</p>
+      <p><strong>(プロンプト例)</strong></p>
+      <blockquote>
+      <p>Node.js 環境における <code>package.json</code> と <code>package-lock.json</code>
+      の違いについて詳しく教えてください。</p>
+      </blockquote>
+      <blockquote>
+      <p>Node.js 環境における <code>package.json</code> のなかの <code>"dependencies"</code> と
+      <code>"devDependencies"</code> の違いを教えてください。</p>
+      </blockquote>
+      <h2 data-number="3.5" id="reactアプリのビルドと動作確認"><span
+      class="header-section-number">3.5</span> Reactアプリのビルドと動作確認</h2>
+      <p>VSCode のターミナルで以下のコマンドを実行すると、React アプリケーションを
+      <strong>開発モード</strong>で起動できます。<code>dev</code> は
+      <strong>Development</strong>（開発）の略です。</p>
+      <div class="sourceCode" id="cb12"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div>
+      <ul>
+      <li><code>npm run dev</code> で実行されるコマンドは、<code>package.json</code> の
+      <strong><code>"scripts"</code> セクション</strong>に定義されています。今回のプロジェクトでは
+      <code>vite</code> が設定されているため、<code>npx vite</code>
+      のようにコマンドを打って直接実行しても同様に開発サーバが起動します。</li>
+      </ul>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>開発モードでは、ソースファイル ( <code>*.ts</code> や <code>*.tsx</code> )
+      を変更すると、<strong>その内容が自動的にアプリケーションに反映されます</strong>。そのため、コードを修正するたびに開発サーバーを再起動する必要はありません。</p>
+      </div>
+      <p><strong>開発サーバーを停止する場合</strong>は、VSCode
+      のターミナルをアクティブにして、<code>[Ctrl]+[C]</code> を押してください。</p>
+      <hr />
+      <p>次に <strong>プレビューモード (本番環境に近い状態での動作確認)</strong>
+      で実行してみます。</p>
+      <p>まず、ターミナルで以下のコマンドを実行し、<strong>ビルド(本番環境向けのファイルの生成)</strong>
+      を実行します。</p>
+      <div class="sourceCode" id="cb13"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span></code></pre></div>
+      <p>ビルドが正常に完了すると、プロジェクトフォルダ内に <strong>dist</strong>
+      フォルダが生成され、そのなかに HTML、CSS、JavaScript
+      などのビルド済みファイルが出力されます。</p>
+      <figure>
+      <img src="figs/04/vscode_05.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>次に、ビルドしたアプリケーションの動作を確認するため、以下のコマンドで
+      <strong>プレビューサーバ</strong>を起動します ( <code>dist</code>
+      フォルダに出力されたアプリを実行します)。</p>
+      <div class="sourceCode" id="cb14"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run preview</span></code></pre></div>
+      <p>通常は <strong>4173 番ポート</strong>でプレビューサーバーが起動します。ウェブブラウザから
+      <a href="http://localhost:4173/">http://localhost:4173/</a>
+      にアクセスして動作を確認してください。</p>
+      <p>なお、<strong>開発モードでの実行</strong>と<strong>プレビューモードでの実行</strong>には、いくつかの違いがあります。具体的にどのような違いがあるのかは生成AIを活用して調べてみてください。</p>
+      <p><code>dist</code> フォルダに出力されたアプリを実行するためには <code>npm run preview</code>
+      コマンドを入力します。</p>
+      <p>プレビューモードでの動作を確認できたら、<code>[Ctrl]+[C]</code> で
+      <strong>アプリを停止</strong> しておいてください。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>Vite で React 開発をしています。<code>npm run dev</code> でアプリを実行したときと、
+      <code>npm run build</code> してから <code>npm run preview</code>
+      でアプリを実行したときの違いを教えてください。</p>
+      </blockquote>
+      <h2 data-number="3.6" id="不要なファイルや記述を削除"><span
+      class="header-section-number">3.6</span> 不要なファイルや記述を削除</h2>
+      <p>React の基本的な仕組みを理解するため、Vite が生成したプロジェクトから
+      <strong>学習に不要なファイルやコードを削除</strong>し、必要最小限の構成に整理していきます。</p>
+      <h3 data-number="3.6.1" id="index.html-の編集"><span
+      class="header-section-number">3.6.1</span> index.html の編集</h3>
+      <p><code>index.html</code> を以下のように編集してください。今回は、<code>&lt;html&gt;</code>
+      タグと <code>&lt;title&gt;</code> タグの2か所を変更します。</p>
+      <div class="sourceCode" id="cb15" data-caption="index.html"><pre
+      class="sourceCode numberSource html numberLines"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1"></a><span class="dt">&lt;!doctype</span> html<span class="dt">&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">&quot;ja&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">&quot;UTF-8&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;icon&quot;</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;image/svg+xml&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/favicon.svg&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content</span><span class="op">=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb15-7"><a href="#cb15-7"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>TodoApp<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>  <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;root&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a>    <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;/src/main.tsx&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb15-12"><a href="#cb15-12"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb15-13"><a href="#cb15-13"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
+      <ul>
+      <li><strong>第02行目</strong>：<code>&lt;html lang="en"&gt;</code> を
+      <code>&lt;html lang="ja"&gt;</code>
+      に変更します。これは、ページで使用する言語を英語から日本語に変更するための設定です。</li>
+      <li><strong>第07行目</strong>：<code>&lt;title&gt;react-todo-app&lt;/title&gt;</code> を
+      <code>&lt;title&gt;TodoApp&lt;/title&gt;</code>
+      に変更します。これは、ブラウザのタブなどに表示されるページタイトルの設定です。</li>
+      </ul>
+      <p>なお、リンターやフォーマッターの設定によって、<strong>タグの大文字・小文字や引用符の種類などが自動的に変更される場合があります</strong>が、動作に影響しない違いであれば気にする必要はありません（以降も同様）。</p>
+      <p>最後に、<strong>ファイルの保存を忘れないようにしてください</strong>。</p>
+      <h3 data-number="3.6.2" id="srcapp.tsx-の編集"><span
+      class="header-section-number">3.6.2</span> src/App.tsx の編集</h3>
+      <p><code>src/App.tsx</code> を次のように編集してください。</p>
+      <div class="sourceCode" id="cb16" data-caption="src/App.tsx"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">import</span> { useState } <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a><span class="kw">const</span> App <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="kw">const</span> [count<span class="op">,</span> setCount] <span class="op">=</span> <span class="fu">useState</span>(<span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb16-5"><a href="#cb16-5"></a>  <span class="kw">const</span> countUp <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb16-6"><a href="#cb16-6"></a>    <span class="kw">const</span> newCount <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb16-7"><a href="#cb16-7"></a>    <span class="fu">setCount</span>(newCount)<span class="op">;</span></span>
+<span id="cb16-8"><a href="#cb16-8"></a>  }<span class="op">;</span></span>
+<span id="cb16-9"><a href="#cb16-9"></a>  <span class="cf">return</span> (</span>
+<span id="cb16-10"><a href="#cb16-10"></a>    <span class="op">&lt;</span>div<span class="op">&gt;</span></span>
+<span id="cb16-11"><a href="#cb16-11"></a>      <span class="op">&lt;</span>h1<span class="op">&gt;</span>TodoApp<span class="op">&lt;/</span>h1<span class="op">&gt;</span></span>
+<span id="cb16-12"><a href="#cb16-12"></a>      <span class="op">&lt;</span>button onClick<span class="op">=</span>{countUp}<span class="op">&gt;</span>count is {count}<span class="op">&lt;/</span>button<span class="op">&gt;</span></span>
+<span id="cb16-13"><a href="#cb16-13"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb16-14"><a href="#cb16-14"></a>  )<span class="op">;</span></span>
+<span id="cb16-15"><a href="#cb16-15"></a>}<span class="op">;</span></span>
+<span id="cb16-16"><a href="#cb16-16"></a></span>
+<span id="cb16-17"><a href="#cb16-17"></a><span class="im">export</span> <span class="im">default</span> App<span class="op">;</span></span></code></pre></div>
+      <p>拡張子 <code>.tsx</code> は、TypeScript と JSX (HTML に似た構文)
+      を組み合わせたコードを記述するファイルに使用されます。</p>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p><u>このプログラムの内容については後ほど詳しく解説するので、現時点では深く理解する必要はありません</u>。まずは、開発環境の構築を優先して進めます。</p>
+      <p><strong>第12行目</strong> でボタンをクリックすると <code>onClick={countUp}</code>
+      によって、<strong>第05行目</strong> で定義されている <code>countUp</code>
+      関数が呼び出されるのかな🤔…ぐらいの簡単な理解で大丈夫です。</p>
+      </div>
+      <p>先ほどと同様に、最後に <strong>ファイルの保存を忘れないようにしてください</strong>。</p>
+      <h3 data-number="3.6.3" id="ファイルとフォルダの削除"><span
+      class="header-section-number">3.6.3</span> ファイルとフォルダの削除</h3>
+      <p><strong>Tailwind CSS</strong> を導入するため、不要になる CSS
+      関連のファイルや記述を整理します。</p>
+      <ul>
+      <li><code>src/App.css</code> は、<strong>ファイルごと削除</strong>してください。</li>
+      <li><code>src/index.css</code>
+      は、<strong>ファイルの内容をすべて削除</strong>して空にしてください（<strong>ファイル自体は削除せずに残してください</strong>）。</li>
+      <li>各種画像（<code>react.svg</code>、<code>vite.svg</code>、<code>hero.png</code>）も使用しないため、<code>src/assets</code>
+      <strong>フォルダごと削除</strong>してください。</li>
+      </ul>
+      <p>以上の作業を終えると、プロジェクトのファイル構成は以下のようになります。</p>
+      <figure>
+      <img src="figs/04/vscode_02.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <h3 data-number="3.6.4" id="readme.md-の編集"><span class="header-section-number">3.6.4</span>
+      README.md の編集</h3>
+      <p><code>README.md</code> を以下の内容に書き換えてください。今回は、ライセンスとして
+      <strong>MIT License</strong> を採用します。</p>
+      <p>なお、<strong>第13行目</strong>の <code>Copyright (c) 2026 Kosen Taro</code>
+      については、著作権者の名前を自分の名前に変更してください
+      (ハンドルネームでも問題ありません)。</p>
+      <div class="sourceCode" id="cb17" data-caption="README.md"><pre
+      class="sourceCode numberSource md numberLines"><code class="sourceCode markdown"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu"># TodoApp</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>React、TypeScript、Tailwind CSS を使用し、ローカルストレージでデータを永続化した「Todoアプリ」です。</span>
+<span id="cb17-4"><a href="#cb17-4"></a></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="fu">## 開発履歴</span></span>
+<span id="cb17-6"><a href="#cb17-6"></a></span>
+<span id="cb17-7"><a href="#cb17-7"></a><span class="ss">- </span>2026年10月16日：プロジェクト開始</span>
+<span id="cb17-8"><a href="#cb17-8"></a></span>
+<span id="cb17-9"><a href="#cb17-9"></a><span class="fu">## ライセンス</span></span>
+<span id="cb17-10"><a href="#cb17-10"></a></span>
+<span id="cb17-11"><a href="#cb17-11"></a>MIT License</span>
+<span id="cb17-12"><a href="#cb17-12"></a></span>
+<span id="cb17-13"><a href="#cb17-13"></a>Copyright (c) 2026 Kosen Taro</span>
+<span id="cb17-14"><a href="#cb17-14"></a></span>
+<span id="cb17-15"><a href="#cb17-15"></a>Permission is hereby granted, free of charge, to any person obtaining a copy</span>
+<span id="cb17-16"><a href="#cb17-16"></a>of this software and associated documentation files (the &quot;Software&quot;), to deal</span>
+<span id="cb17-17"><a href="#cb17-17"></a>in the Software without restriction, including without limitation the rights</span>
+<span id="cb17-18"><a href="#cb17-18"></a>to use, copy, modify, merge, publish, distribute, sublicense, and/or sell</span>
+<span id="cb17-19"><a href="#cb17-19"></a>copies of the Software, and to permit persons to whom the Software is</span>
+<span id="cb17-20"><a href="#cb17-20"></a>furnished to do so, subject to the following conditions:</span>
+<span id="cb17-21"><a href="#cb17-21"></a></span>
+<span id="cb17-22"><a href="#cb17-22"></a>The above copyright notice and this permission notice shall be included in all</span>
+<span id="cb17-23"><a href="#cb17-23"></a>copies or substantial portions of the Software.</span>
+<span id="cb17-24"><a href="#cb17-24"></a></span>
+<span id="cb17-25"><a href="#cb17-25"></a>THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR</span>
+<span id="cb17-26"><a href="#cb17-26"></a>IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,</span>
+<span id="cb17-27"><a href="#cb17-27"></a>FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE</span>
+<span id="cb17-28"><a href="#cb17-28"></a>AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER</span>
+<span id="cb17-29"><a href="#cb17-29"></a>LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,</span>
+<span id="cb17-30"><a href="#cb17-30"></a>OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE</span>
+<span id="cb17-31"><a href="#cb17-31"></a>SOFTWARE.</span></code></pre></div>
+      <h2 data-number="3.7" id="動作確認-cssの剝ぎ取り"><span
+      class="header-section-number">3.7</span> 動作確認 (CSSの剝ぎ取り)</h2>
+      <p>VSCodeの
+      ターミナルから以下のコマンドを実行し、開発モードでアプリの動作を確認してください。</p>
+      <div class="sourceCode" id="cb18"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run dev</span></code></pre></div>
+      <p>CSS 関連のファイルや記述を削除したため、以下のような <strong>シンプルなアプリ画面</strong>
+      (＝<u>CSS による装飾がなく、HTML の標準的なスタイルだけが適用された状態</u>)
+      になっているはずです。</p>
+      <p>ただし、<span class="masked">ボタンをクリックしたときのカウントアップ機能</span>
+      は、<strong>引き続き正常に動作すること</strong>を確認してください。</p>
+      <figure>
+      <img src="figs/04/app_02.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>動作確認ができたら、VSCode のターミナルで <code>[Ctrl]+[C]</code>
+      を押して、<strong>開発サーバを停止</strong>しておいてください。</p>
+      <h2 data-number="3.8" id="tailwind-css-の適用"><span class="header-section-number">3.8</span>
+      Tailwind CSS の適用</h2>
+      <p>この授業では、<a href="https://tailwindcss.com/">Tailwind CSS</a> という <strong>CSS
+      フレームワーク</strong>を使用して解説を進めますが、すでに使い慣れた CSS
+      フレームワークがあれば、そちらを使用しても問題ありません。</p>
+      <p>Tailwind CSS は、あらかじめ用意された <span class="masked">スタイルを指定するための小さな
+      CSS クラス</span> を組み合わせて、UI のデザインを調整する点に特徴があります。</p>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>例えば、ボタン要素の背景色や余白、角の丸みなどを設定する場合、Tailwind CSS
+      では、それぞれのスタイルに対応した <strong>ユーティリティクラス
+      (特定のスタイルを適用するための CSS クラス)</strong>
+      と呼ばれるものを組み合わせて指定します。</p>
+      <p>具体的には、次のようなユーティリティクラスが用意されています。</p>
+      <ul>
+      <li><code>m-5</code>：<strong>上下左右に 5 スケール分の外側余白 (マージン)
+      を設定する</strong></li>
+      <li><code>rounded</code>：<strong>四隅を丸くする</strong></li>
+      <li><code>bg-blue-500</code>：<strong>背景色を青色 (色の濃さを表す値が 500)
+      にする</strong></li>
+      <li><code>px-5</code>：<strong>左右に 5 スケール分の内側余白 (パディング)
+      を設定する</strong></li>
+      <li><code>py-1</code>：<strong>上下に 1 スケール分の内側余白 (パディング)
+      を設定する</strong></li>
+      <li><code>text-white</code>：<strong>文字色を白色にする</strong></li>
+      </ul>
+      <p>これらを以下のように適用すると…</p>
+      <div class="sourceCode" id="cb19" data-caption="Tailwind CSS の使用例"><pre
+      class="sourceCode numberSource html numberLines"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1"></a><span class="dt">&lt;</span><span class="kw">button</span><span class="ot"> className</span><span class="op">=</span><span class="st">&quot;m-5 rounded bg-blue-500 px-5 py-1 text-white&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  ボタン</span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span></code></pre></div>
+      <p>次のようにボタンのスタイルを調整することができます。</p>
+      <figure>
+      <img src="figs/04/app_11.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      </div>
+      <p>Tailwind CSS を採用することで、<span class="masked">独自の CSS
+      クラス名を考えたり、スタイルの衝突を気にしたりする場面</span> が少なくなり、非常に効率的に UI
+      を開発できます。また、<strong>デザインの一貫性や保守性</strong>を保ちやすいというメリットもあります。</p>
+      <p>なお、本科目の後半で扱う <strong>Next.js</strong> も Tailwind CSS
+      に対応しており、さまざまな ウェブアプリの開発で利用されています。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>CSS フレームワークとはなんですか？代表的なものを教えてください。</p>
+      </blockquote>
+      <h3 data-number="3.8.1" id="tailwind-関連パッケージのインストール"><span
+      class="header-section-number">3.8.1</span> Tailwind 関連パッケージのインストール</h3>
+      <p>VSCode のターミナルで以下のコマンドを実行し、<strong>Tailwind CSS
+      本体</strong>と、<strong>Vite
+      と連携するためのプラグイン</strong>をインストールしてください。</p>
+      <div class="sourceCode" id="cb20"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i <span class="at">-D</span> <span class="at">--save-exact</span> tailwindcss@4.3.3 @tailwindcss/vite@4.3.3</span></code></pre></div>
+      <p>つづいて、コード整形ツールの Prettier と、Tailwind CSS
+      のユーティリティクラスを自動的に並び替えるためのプラグインをインストールします。<a
+      href="lecture01.html#補足-フォーマッタのインストール-と-おまけ">第01回の講義で導入したもの</a>
+      は、VSCode の Prettier 拡張機能です。今回は、コード整形を行う Prettier
+      本体を、プロジェクト内にインストールします。</p>
+      <div class="sourceCode" id="cb21"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i <span class="at">-D</span> <span class="at">--save-exact</span> prettier@3.9.10 prettier-plugin-tailwindcss@0.8.1</span></code></pre></div>
+      <p>これらのパッケージは開発やビルドの際に使用するため、<code>-D</code> オプションを付けて
+      <strong>開発依存関係（<code>devDependencies</code>）</strong> として追加します。</p>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>Tailwind CSS 自体は開発時に使用するツールですが、<strong>Tailwind CSS によって生成された
+      CSS は本番用のアプリにも組み込まれ、画面のデザインに反映されます</strong>。</p>
+      </div>
+      <h3 data-number="3.8.2" id="設定ファイルの追加と変更"><span
+      class="header-section-number">3.8.2</span> 設定ファイルの追加と変更</h3>
+      <p>プロジェクトのルート (トップレベル) に <strong>.prettierrc</strong>
+      というファイルを新規作成し、以下の内容を記述してください。このファイルは、プロジェクト内の
+      Prettier の動作を設定するもので、<a
+      href="lecture01.html#補足-フォーマッタのインストール-と-おまけ">第01回講義でインストールを指示した
+      VSCode の Prettier 拡張機能</a> も、この設定を使用します。</p>
+      <div class="sourceCode" id="cb22" data-caption=".prettierrc"><pre
+      class="sourceCode numberSource json numberLines"><code class="sourceCode json"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">{</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="dt">&quot;semi&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="dt">&quot;plugins&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;prettier-plugin-tailwindcss&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>  <span class="dt">&quot;tailwindStylesheet&quot;</span><span class="fu">:</span> <span class="st">&quot;./src/index.css&quot;</span></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="fu">}</span></span></code></pre></div>
+      <figure>
+      <img src="figs/04/vscode_09.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>ここで <code>tailwindStylesheet</code> は、Tailwind CSS を読み込む CSS
+      ファイルの場所を指定する設定です。ここでは、このあと編集する <strong>src/index.css</strong>
+      を指定しています。</p>
+      <p>以上の設定によって、Prettier が <strong>Tailwind CSS
+      のユーティリティクラスを自動的に並び替えてくれる</strong>ようになります。たとえば
+      <code>&lt;div className="text-center bg-blue-500 p-4"&gt;</code>
+      のようなクラス指定は、ファイルの保存時に Tailwind CSS が推奨する順序
+      (レイアウト・余白・背景色・文字の装飾などを一定の規則に従って並べる順序)
+      に沿って、自動整列されるようになります。</p>
+      <hr />
+      <p>次に、プロジェクトのルートの <code>vite.config.ts</code>
+      を以下のように変更してください。忘れずに保存もしてください。<strong>第03行目</strong> で
+      <code>tailwindcss</code> をインポートして、<strong>第07行目</strong>
+      でプラグインとして設定しています。</p>
+      <div class="sourceCode" id="cb23" data-caption="vite.config.ts"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb23-1"><a href="#cb23-1"></a><span class="im">import</span> { defineConfig } <span class="im">from</span> <span class="st">&quot;vite&quot;</span><span class="op">;</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="im">import</span> react <span class="im">from</span> <span class="st">&quot;@vitejs/plugin-react&quot;</span><span class="op">;</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a><span class="im">import</span> tailwindcss <span class="im">from</span> <span class="st">&quot;@tailwindcss/vite&quot;</span><span class="op">;</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a></span>
+<span id="cb23-5"><a href="#cb23-5"></a><span class="co">// https://vite.dev/config/</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a><span class="im">export</span> <span class="im">default</span> <span class="fu">defineConfig</span>({</span>
+<span id="cb23-7"><a href="#cb23-7"></a>  plugins<span class="op">:</span> [<span class="fu">react</span>()<span class="op">,</span> <span class="fu">tailwindcss</span>()]<span class="op">,</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>})<span class="op">;</span></span></code></pre></div>
+      <hr />
+      <p>つづいて、<code>src/index.css</code> (先ほど内容を空にしたファイル)
+      に、以下の内容を記述して保存してください。</p>
+      <div class="sourceCode" id="cb24" data-caption="src/index.css"><pre
+      class="sourceCode numberSource css numberLines"><code class="sourceCode css"><span id="cb24-1"><a href="#cb24-1"></a><span class="im">@import</span> <span class="st">&quot;tailwindcss&quot;</span><span class="op">;</span></span></code></pre></div>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p><code>src/index.css</code> は、<code>src/main.tsx</code> の <strong>第03行目</strong>
+      で読み込まれています。これにより、<strong>Tailwind CSS
+      によるスタイリングがアプリケーション全体で利用できる</strong>ようになります。</p>
+      </div>
+      <p>ここまでに編集した
+      <strong>すべてのファイルが保存されていることを再確認してください</strong>。</p>
+      <p>この状態で <code>npm run dev</code> で動作確認すると、以下のような画面になります。Tailwind
+      CSS の初期化処理 (Preflight)
+      によって、<strong>ブラウザが標準で適用するスタイルもリセットされるため、装飾がほとんどない状態</strong>
+      となります。</p>
+      <figure>
+      <img src="figs/04/app_09.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <ul>
+      <li>ボタンとしての枠線が無くなって分かりづらいですが「<strong>count is
+      0</strong>」の文字を押下すると、問題なくカウントアップは機能することを確認してください。</li>
+      <li><code>npm run build</code> についても、問題なく実行できることを確認してください。</li>
+      </ul>
+      <h3 data-number="3.8.3" id="tailwind-によるスタイリング"><span
+      class="header-section-number">3.8.3</span> Tailwind によるスタイリング</h3>
+      <p>ここからは、<strong>src/App.tsx</strong> に記述されている App コンポーネントに Tailwind CSS
+      のユーティリティクラスを指定し、画面のデザインを調整していきます。ファイルの内容を、以下のように書き換えてください。</p>
+      <div class="sourceCode" id="cb25" data-caption="src/App.tsx (Tailwind CSS の適用)"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb25-1"><a href="#cb25-1"></a><span class="im">import</span> { useState } <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a></span>
+<span id="cb25-3"><a href="#cb25-3"></a><span class="kw">const</span> App <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb25-4"><a href="#cb25-4"></a>  <span class="kw">const</span> [count<span class="op">,</span> setCount] <span class="op">=</span> <span class="fu">useState</span>(<span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb25-5"><a href="#cb25-5"></a>  <span class="kw">const</span> countUp <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb25-6"><a href="#cb25-6"></a>    <span class="kw">const</span> newCount <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb25-7"><a href="#cb25-7"></a>    <span class="fu">setCount</span>(newCount)<span class="op">;</span></span>
+<span id="cb25-8"><a href="#cb25-8"></a>  }<span class="op">;</span></span>
+<span id="cb25-9"><a href="#cb25-9"></a>  <span class="cf">return</span> (</span>
+<span id="cb25-10"><a href="#cb25-10"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mx-4 mt-10 max-w-2xl md:mx-auto&quot;</span><span class="op">&gt;</span></span>
+<span id="cb25-11"><a href="#cb25-11"></a>      <span class="op">&lt;</span>h1 className<span class="op">=</span><span class="st">&quot;mb-4 text-2xl font-bold&quot;</span><span class="op">&gt;</span>TodoApp<span class="op">&lt;/</span>h1<span class="op">&gt;</span></span>
+<span id="cb25-12"><a href="#cb25-12"></a>      <span class="op">&lt;</span>button</span>
+<span id="cb25-13"><a href="#cb25-13"></a>        className<span class="op">=</span><span class="st">&quot;rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700&quot;</span></span>
+<span id="cb25-14"><a href="#cb25-14"></a>        onClick<span class="op">=</span>{countUp}</span>
+<span id="cb25-15"><a href="#cb25-15"></a>      <span class="op">&gt;</span></span>
+<span id="cb25-16"><a href="#cb25-16"></a>        count is {count}</span>
+<span id="cb25-17"><a href="#cb25-17"></a>      <span class="op">&lt;/</span>button<span class="op">&gt;</span></span>
+<span id="cb25-18"><a href="#cb25-18"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb25-19"><a href="#cb25-19"></a>  )<span class="op">;</span></span>
+<span id="cb25-20"><a href="#cb25-20"></a>}<span class="op">;</span></span>
+<span id="cb25-21"><a href="#cb25-21"></a></span>
+<span id="cb25-22"><a href="#cb25-22"></a><span class="im">export</span> <span class="im">default</span> App<span class="op">;</span></span></code></pre></div>
+      <p>書き換えたのは <strong>第10行目</strong> から <strong>第18行目</strong> の範囲 (
+      <code>return</code> しているJSX構文の内部) になります。</p>
+      <p>具体的には、&lt;div&gt;、&lt;h1&gt;、&lt;button&gt; の各タグに <code>className</code>
+      属性を追加し、そこに <code>mx-4</code> や <code>font-bold</code> などの Tailwind CSS
+      のユーティリティクラスを指定しています。</p>
+      <div class="balloon char-01 face-03 tone-blue">
+      <p>通常の HTML では、<code>&lt;div class="..."&gt;</code> のように <strong>class 属性</strong>
+      を使って CSS クラスを指定します。</p>
+      <p>しかし、React の JSX では、<code>&lt;div className="..."&gt;</code> のように
+      <strong>className 属性</strong> を使用します。JSX は HTML によく似た構文ですが、HTML
+      そのものではありません。そのため、属性の指定方法など、一部に違いがあります。JSX
+      の詳しい仕組みについては、後ほど解説します。</p>
+      </div>
+      <div class="note type-tips">
+      <p><strong>HTMLとCSS</strong></p>
+      <p>「<strong>HTML</strong>」と「<strong>CSS</strong>」の基礎は、前期の情報3の「第11回講義」と「第12回講義」で学習済みです。</p>
+      <p>以下のように、CSSファイル <code>main.css</code>
+      を作成し、そこに「CSSクラス」を独自に定義して <code>&lt;div class="container" &gt;</code>
+      のように <code>class</code> 属性を使ってHTML要素のスタイリングをしました。</p>
+      <div class="sourceCode" id="cb26" data-caption="index.html"><pre
+      class="sourceCode numberSource html numberLines"><code class="sourceCode html"><span id="cb26-1"><a href="#cb26-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">&quot;ja&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>  ～～～ 略 ～～～</span>
+<span id="cb26-4"><a href="#cb26-4"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">&quot;container&quot;</span><span class="ot"> </span><span class="dt">&gt;</span></span>
+<span id="cb26-6"><a href="#cb26-6"></a>      <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>XXX&#39;s Curry Recipe<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb26-7"><a href="#cb26-7"></a>      ～～～ 略 ～～～</span>
+<span id="cb26-8"><a href="#cb26-8"></a>    <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb26-9"><a href="#cb26-9"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb26-10"><a href="#cb26-10"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
+      <div class="sourceCode" id="cb27" data-caption="main.css"><pre
+      class="sourceCode numberSource css numberLines"><code class="sourceCode css"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">.container</span> { </span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="kw">max-width</span><span class="ch">:</span> <span class="dv">768</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a>  <span class="kw">width</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">%</span><span class="op">;</span></span>
+<span id="cb27-4"><a href="#cb27-4"></a>  <span class="kw">margin</span><span class="ch">:</span> <span class="dv">0</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb27-5"><a href="#cb27-5"></a>} </span></code></pre></div>
+      </div>
+      <p>以上で、Tailwind CSS の適用が完了しました。</p>
+      <p><code>npm run dev</code> を実行し、アプリの動作を確認してください。</p>
+      <p>特に、<strong>ボタンにマウスカーソルを重ねる（ホバーする）と背景色が変化すること</strong>や、<span
+      class="masked">ブラウザのウィンドウ幅に応じて、左右の余白やコンテンツの配置が自動的に調整されること</span>
+      を確認してください。</p>
+      <p>また、<strong><u>レスポンシブデザイン</u></strong>
+      が適用されていることも確認してください。ブラウザのウィンドウ幅を変更するほか、<code>[F12]</code>
+      キーで開発者ツールを開き、モバイル端末の表示をシミュレーションしてみてください。</p>
+      <figure>
+      <img src="figs/04/app_03.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <h3 data-number="3.8.4" id="演習"><span class="header-section-number">3.8.4</span> 演習</h3>
+      <p>開発モード (<code>npm run dev</code>) でアプリを実行している間は、<span
+      class="masked">ホットリロード</span>
+      が有効になります。これにより、<strong>ソースコードを書き換えて保存すると、その変更が自動的にウェブブラウザ上の画面に反映されます</strong>。</p>
+      <p>実際に開発モードでアプリを起動し、<code>src/App.tsx</code>
+      に対して以下の変更を加えてください。それぞれの変更について、<strong><u>ファイルを保存したときに画面の表示がどのように変化するか</u></strong>
+      を確認してください。</p>
+      <ul>
+      <li><code>&lt;h1&gt;</code> タグに <code>text-violet-600</code> クラスを追加してください。
+      <ul>
+      <li>つまり、<span
+      class="masked"><code>&lt;h1 className="mb-4 text-2xl font-bold text-violet-600"&gt;TodoApp&lt;/h1&gt;</code></span>
+      のように変更します。</li>
+      </ul></li>
+      <li><code>&lt;button&gt;</code> タグの <code>rounded</code> を <code>rounded-full</code>
+      に変更し、角の丸みがどのように変化するか確認してください。その後、<code>rounded-xs</code>
+      に変更して比較してください。</li>
+      <li><code>&lt;button&gt;</code> タグの <code>py-2</code> を <code>py-1</code>
+      に変更し、ボタンの上下の余白がどのように変化するか確認してください。その後、<code>py-0.5</code>
+      に変更して比較してください。</li>
+      <li><code>&lt;button&gt;</code> タグに <code>cursor-not-allowed</code>
+      クラスを追加し、<strong>ボタンにマウスカーソルを重ねたときの変化</strong>を確認してください。</li>
+      </ul>
+      <p>参考: <a href="https://tailwindcss.com/docs/colors">Tailwind CSS の色指定の一覧</a></p>
+      <h3 data-number="3.8.5" id="tailwind-css-のスタイルの調べ方"><span
+      class="header-section-number">3.8.5</span> Tailwind CSS のスタイルの調べ方</h3>
+      <p><code>className</code> 属性に指定する各種スタイル (<strong>ユーティリティクラス</strong>)
+      については、授業のなかでも随時解説していきますが、自分で調べたい場合は、<a
+      href="https://tailwindcss.com/docs">Tailwind CSS の公式ドキュメント</a> や生成 AI
+      を活用してください。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>Tailwind CSS
+      で、次のようにスタイルが指定されていました。それぞれのユーティリティクラスの意味と、画面の表示にどのような影響があるのかを解説してください。</p>
+      <p><code>&lt;div className="mx-4 md:mx-auto mt-10 max-w-2xl"&gt;</code></p>
+      </blockquote>
+      <blockquote>
+      <p>Tailwind CSS
+      を使って、次のボタンに「ドロップシャドウ（影）」を付けたいです。どのようにすればよいですか？</p>
+      <p><code>&lt;button className="bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded-md"&gt;ほげ&lt;/button&gt;</code></p>
+      </blockquote>
+      <h1 data-number="4" id="ポート番号のカスタマイズ"><span class="header-section-number">4</span>
+      ポート番号のカスタマイズ</h1>
+      <p>Vite で構築したプロジェクトでは、デフォルトで <strong>開発サーバ (<code>npm run dev</code>)
+      が 5173 番ポート</strong>で起動します。このポート番号は、<code>vite.config.ts</code>
+      で変更することができます。</p>
+      <p>後期中間以降の授業で使用する <a href="https://nextjs.org/">Next.js</a>
+      では、開発サーバーがデフォルトで <strong>3000 番ポート</strong>で起動します。そこで、Next.js
+      の開発環境に合わせて、今回の Vite プロジェクトでも 3000
+      番ポートを使用するように設定を変更してみます。</p>
+      <p>プロジェクトフォルダの直下にある <code>vite.config.ts</code> を、次のように変更してください
+      (<strong>第08行目</strong> から <strong>第12行目</strong> が変更箇所です)。</p>
+      <div class="sourceCode" id="cb28" data-caption="vite.config.ts (ポート番号の変更)"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb28-1"><a href="#cb28-1"></a><span class="im">import</span> { defineConfig } <span class="im">from</span> <span class="st">&quot;vite&quot;</span><span class="op">;</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a><span class="im">import</span> react <span class="im">from</span> <span class="st">&quot;@vitejs/plugin-react&quot;</span><span class="op">;</span></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="im">import</span> tailwindcss <span class="im">from</span> <span class="st">&quot;@tailwindcss/vite&quot;</span><span class="op">;</span></span>
+<span id="cb28-4"><a href="#cb28-4"></a></span>
+<span id="cb28-5"><a href="#cb28-5"></a><span class="co">// https://vite.dev/config/</span></span>
+<span id="cb28-6"><a href="#cb28-6"></a><span class="im">export</span> <span class="im">default</span> <span class="fu">defineConfig</span>({</span>
+<span id="cb28-7"><a href="#cb28-7"></a>  plugins<span class="op">:</span> [<span class="fu">react</span>()<span class="op">,</span> <span class="fu">tailwindcss</span>()]<span class="op">,</span></span>
+<span id="cb28-8"><a href="#cb28-8"></a>  server<span class="op">:</span> {</span>
+<span id="cb28-9"><a href="#cb28-9"></a>    port<span class="op">:</span> <span class="dv">3000</span><span class="op">,</span></span>
+<span id="cb28-10"><a href="#cb28-10"></a>    strictPort<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb28-11"><a href="#cb28-11"></a>    open<span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb28-12"><a href="#cb28-12"></a>  }<span class="op">,</span></span>
+<span id="cb28-13"><a href="#cb28-13"></a>})<span class="op">;</span></span></code></pre></div>
+      <p>ターミナルから <code>npm run dev</code> を実行し <strong>3000番ポート</strong>
+      で開発サーバが起動することを確認してください。</p>
+      <pre><code>  VITE v8.3.4  ready in 579 ms
+
+  ➜  Local:   http://localhost:3000/</code></pre>
+      <p>また、<code>open: true</code> の設定により、開発サーバーの起動時に <span class="masked">Web
+      ブラウザが自動的に開く</span> ようになります。</p>
+      <p>さらに、<code>strictPort: false</code> の設定により、指定した <strong>3000
+      番ポートが他のアプリケーションによって使用されている場合は、3001
+      番ポートでの起動が試みられます</strong>。3001
+      番ポートも使用中であれば、3002、3003……と、利用可能なポート番号が見つかるまで順番に試行されます。</p>
+      <h1 data-number="5" id="eslintのカスタマイズ"><span class="header-section-number">5</span>
+      ESLintのカスタマイズ</h1>
+      <p><strong>ESLint</strong> (＝<span
+      class="masked">文法ミスやスタイルの不統一を指摘する静的解析ツール</span>)
+      に関連するカスタマイズについて簡単に説明しておきます。</p>
+      <p><code>src/App.tsx</code> を開いて、以下のように <strong>第04行目</strong> に
+      <code>const hoge = "Hoge";</code> というコードを追加してください。</p>
+      <div class="sourceCode" id="cb30" data-caption="src/App.tsx (抜粋)"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb30-1"><a href="#cb30-1"></a><span class="im">import</span> { useState } <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a></span>
+<span id="cb30-3"><a href="#cb30-3"></a><span class="kw">const</span> App <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb30-4"><a href="#cb30-4"></a>  <span class="kw">const</span> hoge <span class="op">=</span> <span class="st">&quot;Hoge&quot;</span><span class="op">;</span> <span class="co">// ■■■ 追記 ■■■</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a>  <span class="kw">const</span> [count<span class="op">,</span> setCount] <span class="op">=</span> <span class="fu">useState</span>(<span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb30-6"><a href="#cb30-6"></a>  <span class="kw">const</span> countUp <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb30-7"><a href="#cb30-7"></a>    <span class="kw">const</span> newCount <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb30-8"><a href="#cb30-8"></a>    <span class="fu">setCount</span>(newCount)<span class="op">;</span></span>
+<span id="cb30-9"><a href="#cb30-9"></a>  }<span class="op">;</span></span>
+<span id="cb30-10"><a href="#cb30-10"></a>  <span class="co">// 以下、略</span></span></code></pre></div>
+      <p>すると、追記した <code>const hoge = "Hoge"</code>
+      の部分で次のように「エラー」が発生します🤮。</p>
+      <blockquote>
+      <p>‘hoge’ is assigned a value but never used. eslint(<span class="citation"
+      data-cites="typescript-eslint/no-unused-vars">@typescript-eslint/no-unused-vars</span>)<br />
+      ‘hoge’ が宣言されていますが、その値が読み取られることはありません。ts(6133)</p>
+      </blockquote>
+      <figure>
+      <img src="figs/04/vscode_03.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>ここでは、<strong>ESLint と TypeScript の両方</strong>が、変数 <code>hoge</code>
+      が使われていないことを指摘しています。</p>
+      <p>ただし、この状態であっても <span class="masked">開発モード (<code>npm run dev</code>)
+      で起動した開発サーバ</span> では
+      <strong>問題なくページを表示することができます</strong>。これは、Vite
+      の開発サーバでは、<strong>TypeScript の型チェックや ESLint
+      のチェックが自動では実行されないため</strong> です。</p>
+      <p>一方で、ビルド <code>npm run build</code> においては、TypeScript
+      のチェックが実行されます。そのため、以下のようにエラーとなり、<strong>ビルドが中断</strong>されます。実際に試してみてください。</p>
+      <pre><code>PS C:\Users\xxxx\react-todo-app&gt; npm run build
+
+&gt; react-todo-app@0.0.0 build
+&gt; tsc -b &amp;&amp; vite build
+
+src/App.tsx:4:9 - error TS6133: &#39;hoge&#39; is declared but its value is never read.
+
+4   const hoge = &quot;Hoge&quot;; // ■■■ 追記 ■■■
+          ~~~~
+
+Found 1 error.</code></pre>
+      <div class="balloon char-01 face-01 tone-pink">
+      <p>このように
+      <strong>開発モードでの実行には問題がないものの、本番用にビルドすると失敗する</strong>
+      ということは多々あります。そのため、<span
+      class="masked">VSCodeでエラー（赤色波線）になっている箇所</span>
+      は決して放置せずに修正し、また定期的に <code>npm run build</code>
+      を実行するようにしてください。</p>
+      <p>アプリが完成したと思っていたのに、大量のビルドエラーでデプロイに失敗すると精神的なダメージが大きいです。</p>
+      </div>
+      <hr />
+      <p>・・・とはいえ「<strong>hogeが宣言されていますが、その値が読み取られることはありません</strong>」のような指摘がエラー扱いになると、開発途中では非常に不便です
+      (特に個人開発という場面では)。</p>
+      <p>ということで、「変数の未使用」を <strong>ESLint
+      で警告する</strong>ように設定していきます。まず、TypeScript
+      側の未使用チェックを無効にし、つづいて ESLint 側の設定を変更します。</p>
+      <p>プロジェクトのルートの tsconfig.<strong>app</strong>.json の <code>noUnusedLocals</code> と
+      <code>noUnusedParameters</code> の設定 (<strong>第20行目と第21行目</strong>) を、以下のように
+      <code>true</code> から <code>false</code> に変更してください。</p>
+      <div class="sourceCode" id="cb32" data-caption="tsconfig.app.json"><pre
+      class="sourceCode numberSource json numberLines"><code class="sourceCode json"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">{</span></span>
+<span id="cb32-2"><a href="#cb32-2"></a>  <span class="dt">&quot;compilerOptions&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb32-3"><a href="#cb32-3"></a>    <span class="dt">&quot;tsBuildInfoFile&quot;</span><span class="fu">:</span> <span class="st">&quot;./node_modules/.tmp/tsconfig.app.tsbuildinfo&quot;</span><span class="fu">,</span></span>
+<span id="cb32-4"><a href="#cb32-4"></a>    <span class="dt">&quot;target&quot;</span><span class="fu">:</span> <span class="st">&quot;es2023&quot;</span><span class="fu">,</span></span>
+<span id="cb32-5"><a href="#cb32-5"></a>    <span class="dt">&quot;lib&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;ES2023&quot;</span><span class="ot">,</span> <span class="st">&quot;DOM&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb32-6"><a href="#cb32-6"></a>    <span class="dt">&quot;module&quot;</span><span class="fu">:</span> <span class="st">&quot;esnext&quot;</span><span class="fu">,</span></span>
+<span id="cb32-7"><a href="#cb32-7"></a>    <span class="dt">&quot;types&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;vite/client&quot;</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb32-8"><a href="#cb32-8"></a>    <span class="dt">&quot;allowArbitraryExtensions&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb32-9"><a href="#cb32-9"></a>    <span class="dt">&quot;skipLibCheck&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb32-10"><a href="#cb32-10"></a></span>
+<span id="cb32-11"><a href="#cb32-11"></a>    <span class="er">/*</span> <span class="er">Bundler</span> <span class="er">mode</span> <span class="er">*/</span></span>
+<span id="cb32-12"><a href="#cb32-12"></a>    <span class="dt">&quot;moduleResolution&quot;</span><span class="fu">:</span> <span class="st">&quot;bundler&quot;</span><span class="fu">,</span></span>
+<span id="cb32-13"><a href="#cb32-13"></a>    <span class="dt">&quot;allowImportingTsExtensions&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb32-14"><a href="#cb32-14"></a>    <span class="dt">&quot;verbatimModuleSyntax&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb32-15"><a href="#cb32-15"></a>    <span class="dt">&quot;moduleDetection&quot;</span><span class="fu">:</span> <span class="st">&quot;force&quot;</span><span class="fu">,</span></span>
+<span id="cb32-16"><a href="#cb32-16"></a>    <span class="dt">&quot;noEmit&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb32-17"><a href="#cb32-17"></a>    <span class="dt">&quot;jsx&quot;</span><span class="fu">:</span> <span class="st">&quot;react-jsx&quot;</span><span class="fu">,</span></span>
+<span id="cb32-18"><a href="#cb32-18"></a></span>
+<span id="cb32-19"><a href="#cb32-19"></a>    <span class="er">/*</span> <span class="er">Linting</span> <span class="er">*/</span></span>
+<span id="cb32-20"><a href="#cb32-20"></a>    <span class="dt">&quot;noUnusedLocals&quot;</span><span class="fu">:</span> <span class="kw">false</span> <span class="er">/*</span> <span class="er">ESLint</span> <span class="er">でチェックするため無効化</span> <span class="er">*/</span><span class="fu">,</span></span>
+<span id="cb32-21"><a href="#cb32-21"></a>    <span class="dt">&quot;noUnusedParameters&quot;</span><span class="fu">:</span> <span class="kw">false</span> <span class="er">/*</span> <span class="er">ESLint</span> <span class="er">でチェックするため無効化</span> <span class="er">*/</span><span class="fu">,</span></span>
+<span id="cb32-22"><a href="#cb32-22"></a>    <span class="dt">&quot;erasableSyntaxOnly&quot;</span><span class="fu">:</span> <span class="kw">true</span><span class="fu">,</span></span>
+<span id="cb32-23"><a href="#cb32-23"></a>    <span class="dt">&quot;noFallthroughCasesInSwitch&quot;</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb32-24"><a href="#cb32-24"></a>  <span class="fu">},</span></span>
+<span id="cb32-25"><a href="#cb32-25"></a>  <span class="dt">&quot;include&quot;</span><span class="fu">:</span> <span class="ot">[</span><span class="st">&quot;src&quot;</span><span class="ot">]</span></span>
+<span id="cb32-26"><a href="#cb32-26"></a><span class="fu">}</span></span></code></pre></div>
+      <p>これで、未使用の変数や仮引数があっても <code>npm run build</code>
+      がエラーとなることなく実行できるようになります。実際に試してみてください。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>Vite で作成した React + TypeScript プロジェクトの tsconfig.app.json にある
+      <code>noUnusedLocals</code> と <code>noUnusedParameters</code>
+      は、どのような設定ですか。それぞれを <code>true</code> から <code>false</code>
+      に変更すると、どのようにコンパイルの挙動が変わりますか。</p>
+      </blockquote>
+      <hr />
+      <div class="balloon char-01 face-04 tone-blue">
+      <p><code>npm run build</code> はエラーなく完了するようになりました。しかし、VSCode
+      上では、未使用変数 <code>hoge</code> に関するエラーが引き続き表示されています。</p>
+      <p>これは、<strong>ビルド時のエラーチェックとは別に、ESLint
+      が未使用変数をエラーとして検出しているため</strong>です。</p>
+      <p>ここからは、それを解決していきます。</p>
+      </div>
+      <p>プロジェクトルートの <strong>eslint.config.js</strong> に、以下のように
+      <code>rules: {...}</code> のセクションを追加してください (<strong>第21行目</strong> から
+      <strong>第35行目</strong>)。これにより、未使用のローカル変数や、未使用の関数パラメータ
+      (仮引数) があっても、警告 (<code>warning</code>) の扱いになります。</p>
+      <div class="sourceCode" id="cb33" data-caption="eslint.config.js"><pre
+      class="sourceCode numberSource js numberLines"><code class="sourceCode javascript"><span id="cb33-1"><a href="#cb33-1"></a><span class="im">import</span> js <span class="im">from</span> <span class="st">&quot;@eslint/js&quot;</span><span class="op">;</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a><span class="im">import</span> globals <span class="im">from</span> <span class="st">&quot;globals&quot;</span><span class="op">;</span></span>
+<span id="cb33-3"><a href="#cb33-3"></a><span class="im">import</span> reactHooks <span class="im">from</span> <span class="st">&quot;eslint-plugin-react-hooks&quot;</span><span class="op">;</span></span>
+<span id="cb33-4"><a href="#cb33-4"></a><span class="im">import</span> reactRefresh <span class="im">from</span> <span class="st">&quot;eslint-plugin-react-refresh&quot;</span><span class="op">;</span></span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="im">import</span> tseslint <span class="im">from</span> <span class="st">&quot;typescript-eslint&quot;</span><span class="op">;</span></span>
+<span id="cb33-6"><a href="#cb33-6"></a><span class="im">import</span> { defineConfig<span class="op">,</span> globalIgnores } <span class="im">from</span> <span class="st">&quot;eslint/config&quot;</span><span class="op">;</span></span>
+<span id="cb33-7"><a href="#cb33-7"></a></span>
+<span id="cb33-8"><a href="#cb33-8"></a><span class="im">export</span> <span class="im">default</span> <span class="fu">defineConfig</span>([</span>
+<span id="cb33-9"><a href="#cb33-9"></a>  <span class="fu">globalIgnores</span>([<span class="st">&quot;dist&quot;</span>])<span class="op">,</span></span>
+<span id="cb33-10"><a href="#cb33-10"></a>  {</span>
+<span id="cb33-11"><a href="#cb33-11"></a>    <span class="dt">files</span><span class="op">:</span> [<span class="st">&quot;**/*.{ts,tsx}&quot;</span>]<span class="op">,</span></span>
+<span id="cb33-12"><a href="#cb33-12"></a>    <span class="dt">extends</span><span class="op">:</span> [</span>
+<span id="cb33-13"><a href="#cb33-13"></a>      js<span class="op">.</span><span class="at">configs</span><span class="op">.</span><span class="at">recommended</span><span class="op">,</span></span>
+<span id="cb33-14"><a href="#cb33-14"></a>      tseslint<span class="op">.</span><span class="at">configs</span><span class="op">.</span><span class="at">recommended</span><span class="op">,</span></span>
+<span id="cb33-15"><a href="#cb33-15"></a>      reactHooks<span class="op">.</span><span class="at">configs</span><span class="op">.</span><span class="at">flat</span><span class="op">.</span><span class="at">recommended</span><span class="op">,</span></span>
+<span id="cb33-16"><a href="#cb33-16"></a>      reactRefresh<span class="op">.</span><span class="at">configs</span><span class="op">.</span><span class="at">vite</span><span class="op">,</span></span>
+<span id="cb33-17"><a href="#cb33-17"></a>    ]<span class="op">,</span></span>
+<span id="cb33-18"><a href="#cb33-18"></a>    <span class="dt">languageOptions</span><span class="op">:</span> {</span>
+<span id="cb33-19"><a href="#cb33-19"></a>      <span class="dt">globals</span><span class="op">:</span> globals<span class="op">.</span><span class="at">browser</span><span class="op">,</span></span>
+<span id="cb33-20"><a href="#cb33-20"></a>    }<span class="op">,</span></span>
+<span id="cb33-21"><a href="#cb33-21"></a>    <span class="dt">rules</span><span class="op">:</span> {</span>
+<span id="cb33-22"><a href="#cb33-22"></a>      <span class="st">&quot;no-unused-vars&quot;</span><span class="op">:</span> <span class="st">&quot;off&quot;</span><span class="op">,</span></span>
+<span id="cb33-23"><a href="#cb33-23"></a>      <span class="st">&quot;@typescript-eslint/no-unused-vars&quot;</span><span class="op">:</span> [</span>
+<span id="cb33-24"><a href="#cb33-24"></a>        <span class="st">&quot;warn&quot;</span><span class="op">,</span></span>
+<span id="cb33-25"><a href="#cb33-25"></a>        {</span>
+<span id="cb33-26"><a href="#cb33-26"></a>          <span class="dt">args</span><span class="op">:</span> <span class="st">&quot;all&quot;</span><span class="op">,</span></span>
+<span id="cb33-27"><a href="#cb33-27"></a>          <span class="dt">vars</span><span class="op">:</span> <span class="st">&quot;all&quot;</span><span class="op">,</span></span>
+<span id="cb33-28"><a href="#cb33-28"></a>          <span class="dt">caughtErrors</span><span class="op">:</span> <span class="st">&quot;all&quot;</span><span class="op">,</span></span>
+<span id="cb33-29"><a href="#cb33-29"></a>          <span class="dt">ignoreRestSiblings</span><span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb33-30"><a href="#cb33-30"></a>          <span class="dt">argsIgnorePattern</span><span class="op">:</span> <span class="st">&quot;^_&quot;</span><span class="op">,</span></span>
+<span id="cb33-31"><a href="#cb33-31"></a>          <span class="dt">varsIgnorePattern</span><span class="op">:</span> <span class="st">&quot;^_&quot;</span><span class="op">,</span></span>
+<span id="cb33-32"><a href="#cb33-32"></a>          <span class="dt">caughtErrorsIgnorePattern</span><span class="op">:</span> <span class="st">&quot;^_&quot;</span><span class="op">,</span></span>
+<span id="cb33-33"><a href="#cb33-33"></a>        }<span class="op">,</span></span>
+<span id="cb33-34"><a href="#cb33-34"></a>      ]<span class="op">,</span></span>
+<span id="cb33-35"><a href="#cb33-35"></a>    }<span class="op">,</span></span>
+<span id="cb33-36"><a href="#cb33-36"></a>  }<span class="op">,</span></span>
+<span id="cb33-37"><a href="#cb33-37"></a>])<span class="op">;</span></span></code></pre></div>
+      <ul>
+      <li><strong>第24行目</strong> の <code>"warn"</code>
+      が、警告として扱う設定です。警告も出したくない場合は、ここを <code>"off"</code>
+      にします。</li>
+      <li><strong>第30行目</strong> から <strong>第32行目</strong> は、<code>_</code>
+      で始まる変数・引数を「意図的に未使用」とみなし、未使用警告の対象から除外する設定です。</li>
+      </ul>
+      <p><code>eslint.config.js</code>
+      を変更して保存するときには、<strong>少し時間がかかることがあります</strong>（全てのコードが再チェックされるため）。</p>
+      <p>以上の設定を済ませると <strong>src/App.tsx</strong> の <code>const hoge = "Hoge";</code>
+      のところが警告の扱い（<strong>赤色の波線から黄色の波線の表示</strong>）に変わっていることが確認できると思います。</p>
+      <figure>
+      <img src="figs/04/vscode_10.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>ターミナルでも、次のコマンドを順番に実行して、いずれも問題なく終了することを確認してください。</p>
+      <div class="sourceCode" id="cb34"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run lint</span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span></code></pre></div>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p><code>npm run lint</code> は <strong>ESLint によるチェックを実行するコマンド</strong>
+      です。未使用変数 <code>hoge</code> に対する警告が 1 件表示され、エラーは 0
+      件になるはずです。</p>
+      <pre><code>✖ 1 problem (0 errors, 1 warning)</code></pre>
+      </div>
+      <p>このように、Lint 関連のカスタマイズは <strong>eslint.config.js</strong> と
+      <strong>tsconfig.app.json</strong> でできることを知っておくと役立つと思います。</p>
+      <div class="note type-caution">
+      <p><strong>注意</strong></p>
+      <p>ESLint についての動作が確認できたら <code>App.tsx</code> から
+      <code>const hoge = "Hoge";</code> を削除しておいてください。</p>
+      </div>
+      <h3 data-number="5.0.1" id="演習宿題-20分"><span class="header-section-number">5.0.1</span>
+      演習（宿題：<i class="fa-solid fa-stopwatch"></i> 20分）</h3>
+      <p>現在のプロジェクトフォルダをリネームするか削除したうえで、<strong>最初からもう一度、開発環境の構築に取り組んでください</strong>。一連の作業を繰り返すことで、環境構築のおおまかな手順を身につけてください。</p>
+      <p>可能であれば、<strong>3回、4回と繰り返して練習することをおすすめします</strong>。慣れてくれば、5分もかからず、一連の環境構築を完了できるようになります。</p>
+      <h1 data-number="6" id="reactアプリケーションの実行順序の理解"><span
+      class="header-section-number">6</span> Reactアプリケーションの実行順序の理解</h1>
+      <p>Vite で構築した React プロジェクトを <strong>開発モード</strong> ( <code>npm run dev</code>
+      ) で実行したときに、各ファイル (各コンポーネント) が
+      <strong><u>どのような順序で読み込まれ、実行されていくのか</u></strong>について解説します。</p>
+      <div class="note type-caution">
+      <p><strong>ここでは、理解のしやすさを優先するため、一部の説明を簡略化しています。厳密な動作とは異なる部分があることに注意してください。</strong></p>
+      </div>
+      <p>まず、ウェブブラウザがプロジェクトフォルダの直下にある <code>index.html</code>
+      を読み込みます。このように、<strong>プログラムの実行や処理の開始点（起点）となるもの</strong>を
+      <span class="masked">エントリーポイント</span> と呼びます。</p>
+      <div class="sourceCode" id="cb36" data-caption="index.html"><pre
+      class="sourceCode numberSource html numberLines"><code class="sourceCode html"><span id="cb36-1"><a href="#cb36-1"></a><span class="dt">&lt;!doctype</span> html<span class="dt">&gt;</span></span>
+<span id="cb36-2"><a href="#cb36-2"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">&quot;ja&quot;</span><span class="dt">&gt;</span></span>
+<span id="cb36-3"><a href="#cb36-3"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb36-4"><a href="#cb36-4"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">&quot;UTF-8&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb36-5"><a href="#cb36-5"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> rel</span><span class="op">=</span><span class="st">&quot;icon&quot;</span><span class="ot"> type</span><span class="op">=</span><span class="st">&quot;image/svg+xml&quot;</span><span class="ot"> href</span><span class="op">=</span><span class="st">&quot;/favicon.svg&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb36-6"><a href="#cb36-6"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">&quot;viewport&quot;</span><span class="ot"> content</span><span class="op">=</span><span class="st">&quot;width=device-width, initial-scale=1.0&quot;</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb36-7"><a href="#cb36-7"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>TodoApp<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb36-8"><a href="#cb36-8"></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb36-9"><a href="#cb36-9"></a>  <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb36-10"><a href="#cb36-10"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> id</span><span class="op">=</span><span class="st">&quot;root&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb36-11"><a href="#cb36-11"></a>    <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> type=</span><span class="st">&quot;module&quot;</span><span class="ot"> src</span><span class="op">=</span><span class="st">&quot;/src/main.tsx&quot;</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb36-12"><a href="#cb36-12"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb36-13"><a href="#cb36-13"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code></pre></div>
+      <p>次に、上記の <strong>第11行目</strong> に記述されている
+      <code>&lt;script type="module" src="/src/main.tsx"&gt;&lt;/script&gt;</code>
+      によって、<code>src/main.tsx</code> が読み込まれます。</p>
+      <p>そして、<code>src/main.tsx</code> の <strong>第06行目</strong> にある <span
+      class="masked"><code>document.getElementById("root")</code></span>
+      によって、<code>index.html</code> の <strong>第10行目</strong> に記述された
+      <code>&lt;div id="root"&gt;&lt;/div&gt;</code>（<code>id</code> が <code>root</code> の
+      <code>div</code> 要素）が取得されます。</p>
+      <p>この要素を <strong>React の描画先として指定することで、<code>&lt;App /&gt;</code>
+      コンポーネントがその領域にレンダリング（描画）されます。</strong></p>
+      <div class="sourceCode" id="cb37" data-caption="src/main.tsx"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb37-1"><a href="#cb37-1"></a><span class="im">import</span> { StrictMode } <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
+<span id="cb37-2"><a href="#cb37-2"></a><span class="im">import</span> { createRoot } <span class="im">from</span> <span class="st">&quot;react-dom/client&quot;</span><span class="op">;</span></span>
+<span id="cb37-3"><a href="#cb37-3"></a><span class="im">import</span> <span class="st">&quot;./index.css&quot;</span><span class="op">;</span></span>
+<span id="cb37-4"><a href="#cb37-4"></a><span class="im">import</span> App <span class="im">from</span> <span class="st">&quot;./App.tsx&quot;</span><span class="op">;</span></span>
+<span id="cb37-5"><a href="#cb37-5"></a></span>
+<span id="cb37-6"><a href="#cb37-6"></a><span class="fu">createRoot</span>(<span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">&quot;root&quot;</span>)<span class="op">!</span>)<span class="op">.</span><span class="fu">render</span>(</span>
+<span id="cb37-7"><a href="#cb37-7"></a>  <span class="op">&lt;</span>StrictMode<span class="op">&gt;</span></span>
+<span id="cb37-8"><a href="#cb37-8"></a>    <span class="op">&lt;</span>App <span class="op">/&gt;</span></span>
+<span id="cb37-9"><a href="#cb37-9"></a>  <span class="op">&lt;/</span>StrictMode<span class="op">&gt;,</span></span>
+<span id="cb37-10"><a href="#cb37-10"></a>)<span class="op">;</span></span></code></pre></div>
+      <p>ここでレンダリングされる <code>&lt;App /&gt;</code>
+      コンポーネントは、<code>src/main.tsx</code> の <strong>第04行目</strong> で読み込まれている
+      <code>src/App.tsx</code> で定義されています。</p>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p><code>&lt;StrictMode&gt;...&lt;/StrictMode&gt;</code>
+      については、現時点では気にする必要はありません（興味のある人は、Web 検索や生成 AI
+      を活用して調べてみてください）。</p>
+      </div>
+      <p>そして、以下に示す <code>src/App.tsx</code>
+      によって、画面に「<strong>TodoApp</strong>」という見出しや「<strong>count is
+      0</strong>」というボタンが表示されます。また、<strong>第05行目</strong>で定義されている
+      <code>countUp</code>
+      関数が、ボタンをクリックしたときに呼び出され、カウントアップが行われます。</p>
+      <div class="sourceCode" id="cb38" data-caption="src/App.tsx"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb38-1"><a href="#cb38-1"></a><span class="im">import</span> { useState } <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
+<span id="cb38-2"><a href="#cb38-2"></a></span>
+<span id="cb38-3"><a href="#cb38-3"></a><span class="kw">const</span> App <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb38-4"><a href="#cb38-4"></a>  <span class="kw">const</span> [count<span class="op">,</span> setCount] <span class="op">=</span> <span class="fu">useState</span>(<span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb38-5"><a href="#cb38-5"></a>  <span class="kw">const</span> countUp <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb38-6"><a href="#cb38-6"></a>    <span class="kw">const</span> newCount <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb38-7"><a href="#cb38-7"></a>    <span class="fu">setCount</span>(newCount)<span class="op">;</span></span>
+<span id="cb38-8"><a href="#cb38-8"></a>  }<span class="op">;</span></span>
+<span id="cb38-9"><a href="#cb38-9"></a>  <span class="cf">return</span> (</span>
+<span id="cb38-10"><a href="#cb38-10"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mx-4 mt-10 max-w-2xl md:mx-auto&quot;</span><span class="op">&gt;</span></span>
+<span id="cb38-11"><a href="#cb38-11"></a>      <span class="op">&lt;</span>h1 className<span class="op">=</span><span class="st">&quot;mb-4 text-2xl font-bold&quot;</span><span class="op">&gt;</span>TodoApp<span class="op">&lt;/</span>h1<span class="op">&gt;</span></span>
+<span id="cb38-12"><a href="#cb38-12"></a>      <span class="op">&lt;</span>button</span>
+<span id="cb38-13"><a href="#cb38-13"></a>        className<span class="op">=</span><span class="st">&quot;rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700&quot;</span></span>
+<span id="cb38-14"><a href="#cb38-14"></a>        onClick<span class="op">=</span>{countUp}</span>
+<span id="cb38-15"><a href="#cb38-15"></a>      <span class="op">&gt;</span></span>
+<span id="cb38-16"><a href="#cb38-16"></a>        count is {count}</span>
+<span id="cb38-17"><a href="#cb38-17"></a>      <span class="op">&lt;/</span>button<span class="op">&gt;</span></span>
+<span id="cb38-18"><a href="#cb38-18"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb38-19"><a href="#cb38-19"></a>  )<span class="op">;</span></span>
+<span id="cb38-20"><a href="#cb38-20"></a>}<span class="op">;</span></span>
+<span id="cb38-21"><a href="#cb38-21"></a></span>
+<span id="cb38-22"><a href="#cb38-22"></a><span class="im">export</span> <span class="im">default</span> App<span class="op">;</span></span></code></pre></div>
+      <p>以上を整理すると、開発モードでは、<strong>次のような順序でファイルが読み込まれ、コンポーネントが呼び出されていく</strong>と考えてください。まずは、処理が階層的につながっている
+      (ネスト構造になっている) とイメージすれば十分です。</p>
+      <ol type="1">
+      <li><code>index.html</code> が読み込まれ、そこから……</li>
+      <li><code>src/main.tsx</code> が読み込まれ、そこで……</li>
+      <li><code>src/App.tsx</code> で定義された <strong>App
+      コンポーネント</strong>が呼び出される。</li>
+      </ol>
+      <p>さらに、今後の演習では、<strong>App コンポーネント</strong>の内部に <strong>TodoList
+      コンポーネント</strong>（<code>src/TodoList.tsx</code>）を配置し、その内部に <strong>TodoItem
+      コンポーネント</strong>（<code>src/TodoItem.tsx</code>）を配置していきます。</p>
+      <p>この場合、コンポーネントの階層構造はさらに深くなり、次のような流れになります。</p>
+      <ol type="1">
+      <li><code>index.html</code> が読み込まれ、そこから……</li>
+      <li><code>src/main.tsx</code> が読み込まれ、そこで……</li>
+      <li><code>src/App.tsx</code> の <strong>App
+      コンポーネント</strong>が呼び出され、その内部で……</li>
+      <li><code>src/TodoList.tsx</code> の <strong>TodoList
+      コンポーネント</strong>が呼び出され、その内部で……</li>
+      <li><code>src/TodoItem.tsx</code> の <strong>TodoItem
+      コンポーネント</strong>が呼び出される。</li>
+      </ol>
+      <p>このように、<strong>React
+      では、コンポーネントの内部に別のコンポーネントを配置することで、画面の構成を階層的に組み立てていきます。</strong></p>
+      <h2 data-number="6.1" id="ビルド-バンドル-出力"><span class="header-section-number">6.1</span>
+      ビルド (バンドル) 出力</h2>
+      <p>ビルド (<code>npm run build</code>)
+      を実行すると、最適化されたプロダクトが「<strong>distフォルダ</strong>」に出力されます。</p>
+      <p>このプロダクトは <span class="masked">トランスパイル
+      (TypeScript👉JavaScript)、最適化、バンドル</span> などの処理によって
+      <strong>ロジックとファイルが集約されたもの</strong>で、<code>index.html</code>
+      をエントリポイントとして <code>assets/index-XXXX.js</code> や
+      <code>assets/index-XXXX.css</code> が読み込まれるシンプルな構成になります。</p>
+      <figure>
+      <img src="figs/04/vscode_06.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>実際にビルドを実行して「distフォルダ」の各ファイルの内容について確認してみてください。</p>
+      <figure>
+      <img src="figs/04/vscode_07.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <h1 data-number="7" id="reactアプリの開発"><span class="header-section-number">7</span>
+      Reactアプリの開発</h1>
+      <p>開発環境の準備ができたので、ここからは React
+      の肝である「コンポーネントの作成と状態管理」の基本について学んでいきます。</p>
+      <h2 data-number="7.1" id="reactにおけるコンポーネントとは"><span
+      class="header-section-number">7.1</span> Reactにおけるコンポーネントとは</h2>
+      <p>Reactアプリは、基本的に <strong>コンポーネント</strong> (<strong>Component</strong>)
+      とよばれる <span class="masked">機能と UI を持った画面構成の部品・パーツ</span>
+      を組み合わせてアプリを構築する点に特徴があります。</p>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>React における「コンポーネント」とは、具体的には <strong>JSX
+      を戻り値として返す関数など</strong> を指します。今回のプロジェクトでは、主に <code>.tsx</code>
+      という拡張子を持つファイルにコンポーネントを定義していきます。</p>
+      <p>また、JSX (JavaScript XML) とは、JavaScript (TypeScript) のコードのなかに <span
+      class="masked">HTML に似たタグ形式の記述</span>
+      を組み込めるようにした<strong>拡張構文</strong>です。</p>
+      </div>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>React における コンポーネント は何ですか？「JSX
+      を戻り値として返す関数」と説明されましたが、そもそも JSX
+      とは何ですか？初心者向けに分かりやすく解説してください。</p>
+      </blockquote>
+      <p>例えば、Todo
+      アプリに、<strong>ユーザーの名前と現在の時刻に応じて、挨拶メッセージを表示する機能</strong>を追加したいとします。このような機能は、App
+      コンポーネントに直接記述することもできますが、<strong>独立したコンポーネントとして切り出すことで、画面の構成や役割を整理しやすくなります</strong>。</p>
+      <p>そこで、ここでは、挨拶メッセージの生成と表示を担当する <strong>WelcomeMessage
+      コンポーネント</strong> を作成してみます。まずは <code>src/WelcomeMessage.tsx</code>
+      というファイルを新規作成し、以下のコードを記述してください。</p>
+      <div class="sourceCode" id="cb39" data-caption="src/WelcomeMessage.tsx"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb39-1"><a href="#cb39-1"></a><span class="im">import</span> React <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
+<span id="cb39-2"><a href="#cb39-2"></a></span>
+<span id="cb39-3"><a href="#cb39-3"></a><span class="co">// コンポーネントに渡す引数 (Props) の型を定義する</span></span>
+<span id="cb39-4"><a href="#cb39-4"></a><span class="co">// 型には Props という名前を付けることがよくあります。</span></span>
+<span id="cb39-5"><a href="#cb39-5"></a><span class="kw">type</span> Props <span class="op">=</span> {</span>
+<span id="cb39-6"><a href="#cb39-6"></a>  name<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb39-7"><a href="#cb39-7"></a>}<span class="op">;</span></span>
+<span id="cb39-8"><a href="#cb39-8"></a></span>
+<span id="cb39-9"><a href="#cb39-9"></a><span class="co">// WelcomeMessage という関数コンポーネントを定義する</span></span>
+<span id="cb39-10"><a href="#cb39-10"></a><span class="co">// コンポーネントの名前はパスカルケースで記述する</span></span>
+<span id="cb39-11"><a href="#cb39-11"></a><span class="kw">const</span> WelcomeMessage <span class="op">=</span> (props<span class="op">:</span> Props) <span class="kw">=&gt;</span> {</span>
+<span id="cb39-12"><a href="#cb39-12"></a>  <span class="co">// JSX を返す前に、通常の TypeScript の処理を記述できる</span></span>
+<span id="cb39-13"><a href="#cb39-13"></a>  <span class="kw">const</span> currentTime <span class="op">=</span> <span class="kw">new</span> <span class="bu">Date</span>()<span class="op">;</span></span>
+<span id="cb39-14"><a href="#cb39-14"></a>  <span class="kw">const</span> greeting <span class="op">=</span></span>
+<span id="cb39-15"><a href="#cb39-15"></a>    currentTime<span class="op">.</span><span class="fu">getHours</span>() <span class="op">&lt;</span> <span class="dv">12</span> <span class="op">?</span> <span class="st">&quot;おはようございます&quot;</span> <span class="op">:</span> <span class="st">&quot;こんにちは&quot;</span><span class="op">;</span></span>
+<span id="cb39-16"><a href="#cb39-16"></a></span>
+<span id="cb39-17"><a href="#cb39-17"></a>  <span class="co">// 【重要】JSX を使って UI を記述し、return で返す</span></span>
+<span id="cb39-18"><a href="#cb39-18"></a>  <span class="cf">return</span> (</span>
+<span id="cb39-19"><a href="#cb39-19"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;text-blue-700&quot;</span><span class="op">&gt;</span></span>
+<span id="cb39-20"><a href="#cb39-20"></a>      {greeting}、{props<span class="op">.</span><span class="at">name</span>}さん。</span>
+<span id="cb39-21"><a href="#cb39-21"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb39-22"><a href="#cb39-22"></a>  )<span class="op">;</span></span>
+<span id="cb39-23"><a href="#cb39-23"></a>}<span class="op">;</span></span>
+<span id="cb39-24"><a href="#cb39-24"></a></span>
+<span id="cb39-25"><a href="#cb39-25"></a><span class="co">// 他のファイルから WelcomeMessage を import できるようにする</span></span>
+<span id="cb39-26"><a href="#cb39-26"></a><span class="im">export</span> <span class="im">default</span> WelcomeMessage<span class="op">;</span></span></code></pre></div>
+      <ul>
+      <li>コンポーネントを定義するファイルには、一般的に
+      <strong>パスカルケース（PascalCase）</strong> を使用してください。
+      <ul>
+      <li>パスカルケースとは、各単語の先頭を大文字にしてつなげる命名規則です（例：<code>WelcomeMessage</code>、<code>TodoList</code>、<code>TodoItem</code>）。</li>
+      </ul></li>
+      </ul>
+      <p>つづいて、いま作成した「<strong>WelcomeMessage コンポーネント</strong>」を
+      <code>src/App.tsx</code> でインポートし、「<strong>App
+      コンポーネント</strong>」の内部に組み込みます。<strong>第02行目</strong> と
+      <strong>第13行目</strong> に着目してください。</p>
+      <div class="sourceCode" id="cb40" data-caption="src/App.tsx"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb40-1"><a href="#cb40-1"></a><span class="im">import</span> { useState } <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
+<span id="cb40-2"><a href="#cb40-2"></a><span class="im">import</span> WelcomeMessage <span class="im">from</span> <span class="st">&quot;./WelcomeMessage&quot;</span><span class="op">;</span> <span class="co">// 追加</span></span>
+<span id="cb40-3"><a href="#cb40-3"></a></span>
+<span id="cb40-4"><a href="#cb40-4"></a><span class="kw">const</span> App <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb40-5"><a href="#cb40-5"></a>  <span class="kw">const</span> [count<span class="op">,</span> setCount] <span class="op">=</span> <span class="fu">useState</span>(<span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb40-6"><a href="#cb40-6"></a>  <span class="kw">const</span> countUp <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb40-7"><a href="#cb40-7"></a>    <span class="kw">const</span> newCount <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb40-8"><a href="#cb40-8"></a>    <span class="fu">setCount</span>(newCount)<span class="op">;</span></span>
+<span id="cb40-9"><a href="#cb40-9"></a>  }<span class="op">;</span></span>
+<span id="cb40-10"><a href="#cb40-10"></a>  <span class="cf">return</span> (</span>
+<span id="cb40-11"><a href="#cb40-11"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mx-4 mt-10 max-w-2xl md:mx-auto&quot;</span><span class="op">&gt;</span></span>
+<span id="cb40-12"><a href="#cb40-12"></a>      <span class="op">&lt;</span>h1 className<span class="op">=</span><span class="st">&quot;mb-4 text-2xl font-bold&quot;</span><span class="op">&gt;</span>TodoApp<span class="op">&lt;/</span>h1<span class="op">&gt;</span></span>
+<span id="cb40-13"><a href="#cb40-13"></a>      <span class="op">&lt;</span>WelcomeMessage name<span class="op">=</span><span class="st">&quot;寝屋川タヌキ&quot;</span> <span class="op">/&gt;</span> {<span class="co">/* 追加 */</span>}</span>
+<span id="cb40-14"><a href="#cb40-14"></a>      <span class="op">&lt;</span>button</span>
+<span id="cb40-15"><a href="#cb40-15"></a>        className<span class="op">=</span><span class="st">&quot;rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700&quot;</span></span>
+<span id="cb40-16"><a href="#cb40-16"></a>        onClick<span class="op">=</span>{countUp}</span>
+<span id="cb40-17"><a href="#cb40-17"></a>      <span class="op">&gt;</span></span>
+<span id="cb40-18"><a href="#cb40-18"></a>        count is {count}</span>
+<span id="cb40-19"><a href="#cb40-19"></a>      <span class="op">&lt;/</span>button<span class="op">&gt;</span></span>
+<span id="cb40-20"><a href="#cb40-20"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb40-21"><a href="#cb40-21"></a>  )<span class="op">;</span></span>
+<span id="cb40-22"><a href="#cb40-22"></a>}<span class="op">;</span></span>
+<span id="cb40-23"><a href="#cb40-23"></a></span>
+<span id="cb40-24"><a href="#cb40-24"></a><span class="im">export</span> <span class="im">default</span> App<span class="op">;</span></span></code></pre></div>
+      <p>実際に試してみてください。次のような結果が得られるはずです。</p>
+      <figure>
+      <img src="figs/04/app_10.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p><code>src/App.tsx</code> では、<strong>第02行目</strong>
+      で「WelcomeMessageコンポーネント」を読込み、<strong>第13行目</strong>で
+      <code>&lt;WelcomeMessage name="寝屋川タヌキ" /&gt;</code> のように組み込んでいます。</p>
+      <div class="balloon char-01 face-01 tone-pink">
+      <p>ここでは、<code>name</code> という引数が、どのように WelcomeMessage
+      コンポーネントに渡されているか (対応関係) をよく確認してください。</p>
+      <p>例えば、<code>name="寝屋川タヌキ"</code> ではなく <code>userName="寝屋川タヌキ"</code>
+      のように名前をウェルカムメッセージコンポーネントに渡したいときは、<code>WelcomeMessage.tsx</code>
+      において、どこを書き換えるべきかが説明できるでしょうか？</p>
+      </div>
+      <p>なお、JSX要素のなかでは、コメントは <code>{/* コメント */}</code> のように記述します。</p>
+      <div class="note type-caution">
+      <p><strong>Reactの関数コンポーネントはパスカルケースで名前を設定すること</strong></p>
+      <p>TypeScript では、通常、関数名に <strong>キャメルケース（小文字から開始）</strong>
+      を使用します。一方、React
+      の関数コンポーネントでは、<strong>パスカルケース（大文字から開始）</strong>
+      を使用するのが基本となります。また、コンポーネントを定義するファイル名も、これに合わせて
+      <strong>パスカルケース</strong> にするのが一般的です。</p>
+      <p>特に注意してほしいのは、<strong><u>JSX
+      ではタグ名が大文字で始まるか、小文字で始まるかによって解釈が変わるという点</u></strong>です。小文字で始まるタグは
+      HTML 要素などとして扱われ、大文字で始まるタグは React のコンポーネントとして扱われます。</p>
+      <p>そのため、コンポーネント名を小文字で始めてしまうと、以下のように JSX
+      の中で正しく認識されないことがあります。注意してください。</p>
+      <figure>
+      <img src="figs/04/vscode_08.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      </div>
+      <h3 data-number="7.1.1" id="演習-1"><span class="header-section-number">7.1.1</span> 演習</h3>
+      <p>実際に「WelcomeMessageコンポーネント」を作成して、「Appコンポーネント」のなかに組み込んでください。また、開発モードで実行結果を確認してください。</p>
+      <p>また、以下の要求を満たすようにプログラムを書き換えてください。</p>
+      <ul>
+      <li>ウェルカムメッセージに表示される名前を「萱島ウサギ」に変えたい。</li>
+      <li><code>&lt;WelcomeMessage name="萱島ウサギ" uncompletedCount={6}/&gt;</code>
+      のように未完了タスクの数をコンポーネントに渡し、「<strong>こんにちは、萱島ウサギさん。現在の未完了タスクは6個です。</strong>」のようにウェルカムメッセージを表示したい。
+      <ul>
+      <li>コンポーネントに数値を渡したいときは <code>uncompletedCount=6</code> ではなく <span
+      class="masked"><code>uncompletedCount={6}</code></span> のようにしてください。</li>
+      <li>ウェルカムメッセージコンポーネントが <code>uncompletedCount</code>
+      を受け取るためには、<code>WelcomeMessage.tsx</code> のなかの <code>Props</code>
+      の型定義の変更が必要です。</li>
+      <li>解答例は <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/04/code01.tsx">こちら<i class="fa-solid fa-person-chalkboard"></i></a></li>
+      </ul></li>
+      </ul>
+      <h2 data-number="7.2" id="状態管理"><span class="header-section-number">7.2</span>
+      状態管理</h2>
+      <p>React
+      アプリでは、<strong>アプリ画面上で変化する値</strong>を「<strong>状態（State）</strong>」と呼ばれる仕組みで管理します。この「状態」が更新されると、React
+      はその変更をトリガーとして、<strong>関連するコンポーネントを自動的に再レンダリング（再描画）</strong>し、画面の表示を更新します。</p>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>何らかの値（例えば「現在のカウント値」）を <strong>状態（State）</strong>
+      として管理し、その値の変化を画面に反映させるには、<strong>通常の変数を定義するだけでは不十分</strong>です。</p>
+      <p>React では、<strong>フック（Hook）</strong>
+      と呼ばれる特別な仕組みを利用して、状態の保持や更新などを行います。React
+      にはさまざまなフックが用意されていますが、その中でも <strong>状態管理の基本となるものが
+      <code>useState</code></strong> です。</p>
+      </div>
+      <p>先ほどのサンプルアプリでは、<strong>カウント値が変更されたときに、その結果を自動的に画面へ反映させたいため</strong>、<strong>第04行目</strong>で
+      <code>useState</code> を使用しています。</p>
+      <p>具体的には、<code>useState(0)</code> によって、<strong>現在のカウント値を保持する
+      <code>count</code></strong> と、<span class="masked"><strong>その値を更新するための関数
+      <code>setCount</code></strong></span> を取得しています。</p>
+      <pre class="tsx"><code>const [count, setCount] = useState(0);</code></pre>
+      <p>なお、<code>useState</code> の引数には
+      <strong>状態の初期値</strong>を指定します。例えば、カウントを「7」から開始したい場合は、<span
+      class="masked"><code>const [count, setCount] = useState(7);</code></span> と記述します。</p>
+      <ul>
+      <li><code>useState(0)</code> は、<code>useState&lt;number&gt;(0)</code>
+      のように、<strong>状態として扱う値の型を明示的に指定すること</strong>もできます。型を省略した場合は、初期値から
+      TypeScript が型を推論します。</li>
+      </ul>
+      <p>そして、<strong>現在のカウント値を取得するときは <code>count</code>
+      を参照し、カウント値を更新するときは <code>setCount(newCount)</code>
+      を呼び出します。</strong></p>
+      <p><code>setCount</code> によって状態が更新されると、React
+      が画面の再レンダリングを行い、画面に表示されるカウント値も更新されます。</p>
+      <div class="sourceCode" id="cb42"
+      data-caption="src/App.tsx (参考) この内容に書き換える必要はありません"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb42-1"><a href="#cb42-1"></a><span class="im">import</span> { useState } <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
+<span id="cb42-2"><a href="#cb42-2"></a></span>
+<span id="cb42-3"><a href="#cb42-3"></a><span class="kw">const</span> App <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb42-4"><a href="#cb42-4"></a>  <span class="kw">const</span> [count<span class="op">,</span> setCount] <span class="op">=</span> <span class="fu">useState</span>(<span class="dv">0</span>)<span class="op">;</span> <span class="co">// ◀◀ 初期化(初期値を設定)</span></span>
+<span id="cb42-5"><a href="#cb42-5"></a>  <span class="kw">const</span> countUp <span class="op">=</span> () <span class="kw">=&gt;</span> { </span>
+<span id="cb42-6"><a href="#cb42-6"></a>    <span class="kw">const</span> newCount <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb42-7"><a href="#cb42-7"></a>    <span class="fu">setCount</span>(newCount)<span class="op">;</span> <span class="co">// ◀◀ 更新処理</span></span>
+<span id="cb42-8"><a href="#cb42-8"></a>  }<span class="op">;</span></span>
+<span id="cb42-9"><a href="#cb42-9"></a>  <span class="cf">return</span> (</span>
+<span id="cb42-10"><a href="#cb42-10"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mx-4 mt-10 max-w-2xl md:mx-auto&quot;</span><span class="op">&gt;</span></span>
+<span id="cb42-11"><a href="#cb42-11"></a>      <span class="op">&lt;</span>h1 className<span class="op">=</span><span class="st">&quot;mb-4 text-2xl font-bold&quot;</span><span class="op">&gt;</span>TodoApp<span class="op">&lt;/</span>h1<span class="op">&gt;</span></span>
+<span id="cb42-12"><a href="#cb42-12"></a>      <span class="op">&lt;</span>button</span>
+<span id="cb42-13"><a href="#cb42-13"></a>        className<span class="op">=</span><span class="st">&quot;rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700&quot;</span></span>
+<span id="cb42-14"><a href="#cb42-14"></a>        onClick<span class="op">=</span>{countUp}</span>
+<span id="cb42-15"><a href="#cb42-15"></a>      <span class="op">&gt;</span></span>
+<span id="cb42-16"><a href="#cb42-16"></a>        count is {count}</span>
+<span id="cb42-17"><a href="#cb42-17"></a>      <span class="op">&lt;/</span>button<span class="op">&gt;</span></span>
+<span id="cb42-18"><a href="#cb42-18"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb42-19"><a href="#cb42-19"></a>  )<span class="op">;</span></span>
+<span id="cb42-20"><a href="#cb42-20"></a>}<span class="op">;</span></span>
+<span id="cb42-21"><a href="#cb42-21"></a></span>
+<span id="cb42-22"><a href="#cb42-22"></a><span class="im">export</span> <span class="im">default</span> App<span class="op">;</span></span></code></pre></div>
+      <p>一方で、以下のように <code>useState</code>
+      <strong>を使用せずに実装</strong>するとボタンを押下しても画面が更新されません
+      (=カウント表示が変わらない)。実際に試してみてください。</p>
+      <div class="sourceCode" id="cb43" data-caption="src/App.tsx (NGな実装例)"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb43-1"><a href="#cb43-1"></a><span class="kw">const</span> App <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb43-2"><a href="#cb43-2"></a>  <span class="kw">let</span> count <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> <span class="co">// 通常の変数として定義</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a>  <span class="kw">const</span> countUp <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb43-4"><a href="#cb43-4"></a>    count<span class="op">++;</span> <span class="co">// 通常の処理で更新 count = count + 1; でも同じ</span></span>
+<span id="cb43-5"><a href="#cb43-5"></a>    <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="vs">`現在の count の値は </span><span class="sc">${</span>count<span class="sc">}</span><span class="vs"> です`</span>)<span class="op">;</span> <span class="co">// 確認出力</span></span>
+<span id="cb43-6"><a href="#cb43-6"></a>  }<span class="op">;</span></span>
+<span id="cb43-7"><a href="#cb43-7"></a>  <span class="cf">return</span> (</span>
+<span id="cb43-8"><a href="#cb43-8"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mx-4 mt-10 max-w-2xl md:mx-auto&quot;</span><span class="op">&gt;</span></span>
+<span id="cb43-9"><a href="#cb43-9"></a>      <span class="op">&lt;</span>h1 className<span class="op">=</span><span class="st">&quot;mb-4 text-2xl font-bold&quot;</span><span class="op">&gt;</span>TodoApp<span class="op">&lt;/</span>h1<span class="op">&gt;</span></span>
+<span id="cb43-10"><a href="#cb43-10"></a>      <span class="op">&lt;</span>button</span>
+<span id="cb43-11"><a href="#cb43-11"></a>        className<span class="op">=</span><span class="st">&quot;rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700&quot;</span></span>
+<span id="cb43-12"><a href="#cb43-12"></a>        onClick<span class="op">=</span>{countUp}</span>
+<span id="cb43-13"><a href="#cb43-13"></a>      <span class="op">&gt;</span></span>
+<span id="cb43-14"><a href="#cb43-14"></a>        count is {count}</span>
+<span id="cb43-15"><a href="#cb43-15"></a>      <span class="op">&lt;/</span>button<span class="op">&gt;</span></span>
+<span id="cb43-16"><a href="#cb43-16"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb43-17"><a href="#cb43-17"></a>  )<span class="op">;</span></span>
+<span id="cb43-18"><a href="#cb43-18"></a>}<span class="op">;</span></span>
+<span id="cb43-19"><a href="#cb43-19"></a></span>
+<span id="cb43-20"><a href="#cb43-20"></a><span class="im">export</span> <span class="im">default</span> App<span class="op">;</span></span></code></pre></div>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>ただし、<code>[F12]</code>
+      でデベロッパーツールを起動して、コンソールタブからログを確認してみると、<strong>画面上の「カウント値」が更新されないだけ</strong>で、内部的には変数
+      <code>count</code> は正常に更新されていることが確認できます。</p>
+      <figure>
+      <img src="figs/04/app_04.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>これらのことから「<strong>変更をトリガーに再レンダリングする必要がない値</strong>」については通常の変数として扱い、逆に「<strong>値の変更をトリガーに再レンダリングしたいもの</strong>」は、<code>useState</code>
+      を使って<u>「状態」として扱う必要がある</u>ことが分かると思います。</p>
+      </div>
+      <h2 data-number="7.3" id="練習"><span class="header-section-number">7.3</span> 練習</h2>
+      <p>次のように、カウント値の表示部をボタンの外に移動し、ボタンを「<strong>1Up</strong>」と「<strong>10Up</strong>」の2個に増やすようにアプリを拡張してみます。</p>
+      <figure>
+      <img src="figs/04/app_05.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p>まずは、以下のようにプログラムを書き替え、実行結果とプログラムを照らし合わせてプログラムについて理解してください。</p>
+      <div class="sourceCode" id="cb44" data-caption="src/App.tsx (カウント機能の拡張1)"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb44-1"><a href="#cb44-1"></a><span class="im">import</span> { useState } <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
+<span id="cb44-2"><a href="#cb44-2"></a></span>
+<span id="cb44-3"><a href="#cb44-3"></a><span class="kw">const</span> App <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb44-4"><a href="#cb44-4"></a>  <span class="kw">const</span> [count<span class="op">,</span> setCount] <span class="op">=</span> <span class="fu">useState</span>(<span class="dv">0</span>)<span class="op">;</span></span>
+<span id="cb44-5"><a href="#cb44-5"></a>  <span class="kw">const</span> countUp1 <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb44-6"><a href="#cb44-6"></a>    <span class="kw">const</span> newCount <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb44-7"><a href="#cb44-7"></a>    <span class="fu">setCount</span>(newCount)<span class="op">;</span></span>
+<span id="cb44-8"><a href="#cb44-8"></a>  }<span class="op">;</span></span>
+<span id="cb44-9"><a href="#cb44-9"></a>  <span class="kw">const</span> countUp10 <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb44-10"><a href="#cb44-10"></a>    <span class="kw">const</span> newCount <span class="op">=</span> count <span class="op">+</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb44-11"><a href="#cb44-11"></a>    <span class="fu">setCount</span>(newCount)<span class="op">;</span></span>
+<span id="cb44-12"><a href="#cb44-12"></a>  }<span class="op">;</span></span>
+<span id="cb44-13"><a href="#cb44-13"></a>  <span class="cf">return</span> (</span>
+<span id="cb44-14"><a href="#cb44-14"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mx-4 mt-10 max-w-2xl md:mx-auto&quot;</span><span class="op">&gt;</span></span>
+<span id="cb44-15"><a href="#cb44-15"></a>      <span class="op">&lt;</span>h1 className<span class="op">=</span><span class="st">&quot;mb-4 text-2xl font-bold&quot;</span><span class="op">&gt;</span>TodoApp<span class="op">&lt;/</span>h1<span class="op">&gt;</span></span>
+<span id="cb44-16"><a href="#cb44-16"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mb-2&quot;</span><span class="op">&gt;</span></span>
+<span id="cb44-17"><a href="#cb44-17"></a>        <span class="op">&lt;</span>p<span class="op">&gt;</span></span>
+<span id="cb44-18"><a href="#cb44-18"></a>          現在のカウント値は</span>
+<span id="cb44-19"><a href="#cb44-19"></a>          <span class="op">&lt;</span>span className<span class="op">=</span><span class="st">&quot;text-xl font-bold text-blue-500&quot;</span><span class="op">&gt;</span> {count} <span class="op">&lt;/</span>span<span class="op">&gt;</span>です</span>
+<span id="cb44-20"><a href="#cb44-20"></a>        <span class="op">&lt;/</span>p<span class="op">&gt;</span></span>
+<span id="cb44-21"><a href="#cb44-21"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb44-22"><a href="#cb44-22"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;flex flex-row gap-2&quot;</span><span class="op">&gt;</span></span>
+<span id="cb44-23"><a href="#cb44-23"></a>        <span class="op">&lt;</span>button</span>
+<span id="cb44-24"><a href="#cb44-24"></a>          className<span class="op">=</span><span class="st">&quot;rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700&quot;</span></span>
+<span id="cb44-25"><a href="#cb44-25"></a>          onClick<span class="op">=</span>{countUp1}</span>
+<span id="cb44-26"><a href="#cb44-26"></a>        <span class="op">&gt;</span></span>
+<span id="cb44-27"><a href="#cb44-27"></a>          <span class="dv">1</span> Up</span>
+<span id="cb44-28"><a href="#cb44-28"></a>        <span class="op">&lt;/</span>button<span class="op">&gt;</span></span>
+<span id="cb44-29"><a href="#cb44-29"></a>        <span class="op">&lt;</span>button</span>
+<span id="cb44-30"><a href="#cb44-30"></a>          className<span class="op">=</span><span class="st">&quot;rounded bg-blue-500 px-4 py-2 text-white hover:bg-blue-700&quot;</span></span>
+<span id="cb44-31"><a href="#cb44-31"></a>          onClick<span class="op">=</span>{countUp10}</span>
+<span id="cb44-32"><a href="#cb44-32"></a>        <span class="op">&gt;</span></span>
+<span id="cb44-33"><a href="#cb44-33"></a>          <span class="dv">10</span> Up</span>
+<span id="cb44-34"><a href="#cb44-34"></a>        <span class="op">&lt;/</span>button<span class="op">&gt;</span></span>
+<span id="cb44-35"><a href="#cb44-35"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb44-36"><a href="#cb44-36"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb44-37"><a href="#cb44-37"></a>  )<span class="op">;</span></span>
+<span id="cb44-38"><a href="#cb44-38"></a>}<span class="op">;</span></span>
+<span id="cb44-39"><a href="#cb44-39"></a></span>
+<span id="cb44-40"><a href="#cb44-40"></a><span class="im">export</span> <span class="im">default</span> App<span class="op">;</span></span></code></pre></div>
+      <ul>
+      <li><strong>第16行目</strong> の div要素の className属性 の <code>mb-2</code> を
+      <code>mb-6</code> に変更すると画面がどのようになるか確認してください。また、同様に
+      <code>mt-6</code>、<code>ml-6</code>、<code>my-6</code>
+      に変更するとどのようになるか確認してください。
+      <ul>
+      <li><code>mb</code> は <span class="masked">margin-bottom</span>
+      の略であることに気付いたでしょうか。</li>
+      <li>参考 :<a href="https://tailwindcss.com/docs/margin">Tailwind CSS - Margin</a></li>
+      </ul></li>
+      <li><strong>第22行目</strong> の div要素の className属性 の <code>flex-row</code> を
+      <code>flex-col</code>
+      に変更するとどのようになるか確認してください。確認後は元に戻しておいてください。
+      <ul>
+      <li><code>row</code> は「行」の意味です。<code>flex-row</code> は子要素を行方向 (横方向)
+      に並べるためのスタイル指定になります。</li>
+      <li><code>col</code> は column の略で「列」の意味です。<code>flex-col</code> は子要素を列方向
+      (縦方向) に並べるためのスタイル指定になります。</li>
+      </ul></li>
+      <li><strong>第22行目</strong> の div要素の className属性 の <code>gap-2</code> を
+      <code>gap-6</code>
+      に変更するとどのようになるか確認してください。確認後は元に戻しておいてください。</li>
+      </ul>
+      <p>このプログラムには冗長な記述が多いので<a
+      href="https://www.google.com/search?q=リファクタリングとは">リファクタリング</a>していきます。関数
+      <code>countUp1</code> と <code>countUp10</code> は、以下のように省略形で (1行で)
+      書き換えが可能です。<a
+      href="lecture03.html#第7形態-省略形">前回講義</a>で学んだアロー関数形式の応用です。</p>
+      <div class="sourceCode" id="cb45" data-caption="src/App.tsx (Before)" data-startFrom="5"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript" style="counter-reset: source-line 4;"><span id="cb45-5"><a href="#cb45-5"></a><span class="kw">const</span> countUp1 <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb45-6"><a href="#cb45-6"></a>  <span class="kw">const</span> newCount <span class="op">=</span> count <span class="op">+</span> <span class="dv">1</span><span class="op">;</span></span>
+<span id="cb45-7"><a href="#cb45-7"></a>  <span class="fu">setCount</span>(newCount)<span class="op">;</span></span>
+<span id="cb45-8"><a href="#cb45-8"></a>}<span class="op">;</span></span>
+<span id="cb45-9"><a href="#cb45-9"></a><span class="kw">const</span> countUp10 <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb45-10"><a href="#cb45-10"></a>  <span class="kw">const</span> newCount <span class="op">=</span> count <span class="op">+</span> <span class="dv">10</span><span class="op">;</span></span>
+<span id="cb45-11"><a href="#cb45-11"></a>  <span class="fu">setCount</span>(newCount)<span class="op">;</span></span>
+<span id="cb45-12"><a href="#cb45-12"></a>}<span class="op">;</span></span></code></pre></div>
+      <div class="sourceCode" id="cb46" data-caption="src/App.tsx (After)" data-startFrom="5"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript" style="counter-reset: source-line 4;"><span id="cb46-5"><a href="#cb46-5"></a><span class="kw">const</span> countUp1 <span class="op">=</span> () <span class="kw">=&gt;</span> <span class="fu">setCount</span>(count <span class="op">+</span> <span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb46-6"><a href="#cb46-6"></a><span class="kw">const</span> countUp10 <span class="op">=</span> () <span class="kw">=&gt;</span> <span class="fu">setCount</span>(count <span class="op">+</span> <span class="dv">10</span>)<span class="op">;</span></span></code></pre></div>
+      <p>実際に書き換えて、問題なく動作することを確認してください。</p>
+      <p>さらに、関数が引数を受け取るように変更して、<code>onClick</code> での呼び出しを
+      <span><code>onClick={() =&gt; countUpN(1)}</code> や
+      <code>onClick={() =&gt; countUpN(10)}</code></span> とすると、さらにスマートに記述ができます
+      (全体のコードは<a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/04/code02.tsx">こちら<i class="fa-solid fa-person-chalkboard"></i></a>を参照)。</p>
+      <div class="sourceCode" id="cb47" data-caption="src/App.tsx (After2)" data-startFrom="5"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript" style="counter-reset: source-line 4;"><span id="cb47-5"><a href="#cb47-5"></a><span class="kw">const</span> countUpN <span class="op">=</span> (n<span class="op">:</span> <span class="dt">number</span>) <span class="kw">=&gt;</span> <span class="fu">setCount</span>(count <span class="op">+</span> n)<span class="op">;</span></span></code></pre></div>
+      <p>また、関数 <code>countUpN</code> を削除して <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/04/code03.tsx">こちら<i class="fa-solid fa-person-chalkboard"></i></a>
+      のように <code>onClick</code> に <span class="masked">直接処理を記述するような実装</span>
+      もあります。</p>
+      <h3 data-number="7.3.1" id="演習-2"><span class="header-section-number">7.3.1</span> 演習</h3>
+      <p>次のように、カウントをリセットするボタンを実装してください。</p>
+      <figure>
+      <img src="figs/04/app_06.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <ul>
+      <li>実装例は <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/04/code04.tsx">こちら<i class="fa-solid fa-person-chalkboard"></i></a></li>
+      </ul>
+      <h1 data-number="8" id="todoアプリの実装"><span class="header-section-number">8</span>
+      Todoアプリの実装</h1>
+      <p>ここからは、前回講義までに扱ってきた Todo のデータを使い、React で Todo
+      リストを表示するアプリを実装していきます。</p>
+      <h2 data-number="8.1" id="準備-ライブラリのインストール"><span
+      class="header-section-number">8.1</span> 準備: ライブラリのインストール</h2>
+      <p>個々の Todo に ID を設定するため <strong>UUID v4</strong> (<strong>Universally Unique
+      Identifier Version 4</strong>) を生成可能な <a
+      href="https://www.npmjs.com/package/uuid">uuid</a>
+      というライブラリをインストールします。また、日時の整形には、第02回講義で使用した <a
+      href="https://www.npmjs.com/package/dayjs">Day.js</a> を使用します。</p>
+      <ul>
+      <li><a href="https://www.google.com/search?q=UUID+v4+とは">UUID v4 とは</a></li>
+      </ul>
+      <p>VSCode のターミナルから以下のコマンドを実行してください。</p>
+      <div class="sourceCode" id="cb48"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i <span class="at">--save-exact</span> uuid@14.0.3 dayjs@1.11.23</span></code></pre></div>
+      <p>アイコン用に <a href="https://fontawesome.com/">Font Awesome</a> の React
+      コンポーネントとアイコンをインストールします。Font Awesome <span
+      class="math inline">\(\to\)</span> <i class="fa-solid fa-fish"></i>
+      <i class="fa-solid fa-envelope"></i> <i class="fa-solid fa-key"></i></p>
+      <div class="sourceCode" id="cb49"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i <span class="at">--save-exact</span> @fortawesome/react-fontawesome@3.5.0 @fortawesome/fontawesome-svg-core@7.3.1 @fortawesome/free-solid-svg-icons@7.3.1</span></code></pre></div>
+      <p>Tailwind 関連のユーティリティクラス (<code>font-bold</code> や <code>px-4</code> など)
+      を動的に結合する際に、<strong>スタイリングの衝突を解決</strong>してくれる <a
+      href="https://www.npmjs.com/package/tailwind-merge">tailwind-merge</a>
+      をインストールします。アプリの実行時にも使用するため、<code>-D</code>
+      を付けずにインストールします。</p>
+      <div class="sourceCode" id="cb50"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i <span class="at">--save-exact</span> tailwind-merge@3.7.0</span></code></pre></div>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>tailwind-mergeとは、どのようなライブラリですか？</p>
+      </blockquote>
+      <h2 data-number="8.2" id="準備-初期データの作成"><span
+      class="header-section-number">8.2</span> 準備: 初期データの作成</h2>
+      <p>Todoリストの「初期データ」を準備します。まずは、このTodoアプリで共通使用する「<strong>型</strong>」を定義しておくためのファイル
+      <code>src/types.ts</code> を新規作成してください。</p>
+      <ul>
+      <li>「<strong>src/types.ts</strong> を新規作成してください」とは「<strong>src</strong>
+      フォルダのなかに <strong>types.ts</strong> を新規作成してください」という意味です。</li>
+      </ul>
+      <p>作成したファイルに、以下のように <strong>Todo型</strong> を定義してください。また <span
+      class="masked">定義した型が、他のファイルで <code>import</code> できるように、先頭に
+      <code>export</code></span>
+      を付けてください。なお、このファイルは、単に型定義をしているだけのファイルなので拡張子は
+      <code>.tsx</code> ではなく、<code>.ts</code> としてください。</p>
+      <div class="sourceCode" id="cb51" data-caption="src/types.ts"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb51-1"><a href="#cb51-1"></a><span class="im">export type</span> Todo <span class="op">=</span> {</span>
+<span id="cb51-2"><a href="#cb51-2"></a>  id<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb51-3"><a href="#cb51-3"></a>  name<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb51-4"><a href="#cb51-4"></a>  isDone<span class="op">:</span> <span class="dt">boolean</span><span class="op">;</span></span>
+<span id="cb51-5"><a href="#cb51-5"></a>  priority<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb51-6"><a href="#cb51-6"></a>  deadline<span class="op">:</span> <span class="bu">Date</span> <span class="op">|</span> <span class="dt">null</span><span class="op">;</span> <span class="co">// 注意</span></span>
+<span id="cb51-7"><a href="#cb51-7"></a>}<span class="op">;</span></span></code></pre></div>
+      <p>ここで注意してほしいのは <strong>第06行目</strong> で、プロパティ <code>deadline</code>
+      の型を「Date」もしくは「null」に設定している点です ( <a
+      href="lecture03.html#型と宣言">前回講義の解説</a>
+      を参照)。特に「期限を設定しないTodo」については <code>deadline</code> を <code>null</code>
+      として扱うものとします。</p>
+      <p>次に、Todoリストの初期データを格納するファイルとして <code>src/initTodos.ts</code>
+      を作成し、以下のように初期値 <code>initTodos</code> を設定してください。この
+      <code>initTodos</code> も <span class="masked">他のファイルから参照するので忘れずに
+      <code>export</code>
+      キーワードを付与してください</span>。データの内容は自由に変更して問題ありませんが、このあとの展開の関係で
+      <strong>3個以上を設定</strong> してください。</p>
+      <p>なお、<strong>第06行目</strong> の <code>uuid()</code> は UUID v4 の文字列 (string型) を
+      <span class="masked">ランダム</span> に生成する関数になります (<strong>第02行目</strong> では
+      <code>v4</code> という関数を <code>uuid</code> という名前でインポートしています)。</p>
+      <div class="sourceCode" id="cb52" data-caption="src/initTodos.ts"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb52-1"><a href="#cb52-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types&quot;</span><span class="op">;</span></span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="im">import</span> { v4 <span class="im">as</span> uuid } <span class="im">from</span> <span class="st">&quot;uuid&quot;</span><span class="op">;</span> <span class="co">// v4 を uuid という名前でインポート</span></span>
+<span id="cb52-3"><a href="#cb52-3"></a></span>
+<span id="cb52-4"><a href="#cb52-4"></a><span class="im">export</span> <span class="kw">const</span> initTodos<span class="op">:</span> Todo[] <span class="op">=</span> [</span>
+<span id="cb52-5"><a href="#cb52-5"></a>  {</span>
+<span id="cb52-6"><a href="#cb52-6"></a>    id<span class="op">:</span> <span class="fu">uuid</span>()<span class="op">,</span> <span class="co">// UUID v4 を生成してIDにセット</span></span>
+<span id="cb52-7"><a href="#cb52-7"></a>    name<span class="op">:</span> <span class="st">&quot;解析2の宿題&quot;</span><span class="op">,</span></span>
+<span id="cb52-8"><a href="#cb52-8"></a>    isDone<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb52-9"><a href="#cb52-9"></a>    priority<span class="op">:</span> <span class="dv">2</span><span class="op">,</span></span>
+<span id="cb52-10"><a href="#cb52-10"></a>    deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">2</span><span class="op">,</span> <span class="dv">17</span><span class="op">,</span> <span class="dv">30</span>)<span class="op">,</span></span>
+<span id="cb52-11"><a href="#cb52-11"></a>  }<span class="op">,</span></span>
+<span id="cb52-12"><a href="#cb52-12"></a>  {</span>
+<span id="cb52-13"><a href="#cb52-13"></a>    id<span class="op">:</span> <span class="fu">uuid</span>()<span class="op">,</span></span>
+<span id="cb52-14"><a href="#cb52-14"></a>    name<span class="op">:</span> <span class="st">&quot;TypeScriptの勉強 (復習)&quot;</span><span class="op">,</span></span>
+<span id="cb52-15"><a href="#cb52-15"></a>    isDone<span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb52-16"><a href="#cb52-16"></a>    priority<span class="op">:</span> <span class="dv">3</span><span class="op">,</span></span>
+<span id="cb52-17"><a href="#cb52-17"></a>    deadline<span class="op">:</span> <span class="dt">null</span><span class="op">,</span> <span class="co">// このTodoには期限を設定しない</span></span>
+<span id="cb52-18"><a href="#cb52-18"></a>  }<span class="op">,</span></span>
+<span id="cb52-19"><a href="#cb52-19"></a>  {</span>
+<span id="cb52-20"><a href="#cb52-20"></a>    id<span class="op">:</span> <span class="fu">uuid</span>()<span class="op">,</span></span>
+<span id="cb52-21"><a href="#cb52-21"></a>    name<span class="op">:</span> <span class="st">&quot;基礎物理学3の宿題&quot;</span><span class="op">,</span></span>
+<span id="cb52-22"><a href="#cb52-22"></a>    isDone<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb52-23"><a href="#cb52-23"></a>    priority<span class="op">:</span> <span class="dv">1</span><span class="op">,</span></span>
+<span id="cb52-24"><a href="#cb52-24"></a>    deadline<span class="op">:</span> <span class="kw">new</span> <span class="bu">Date</span>(<span class="dv">2026</span><span class="op">,</span> <span class="dv">10</span><span class="op">,</span> <span class="dv">11</span>)<span class="op">,</span></span>
+<span id="cb52-25"><a href="#cb52-25"></a>  }<span class="op">,</span></span>
+<span id="cb52-26"><a href="#cb52-26"></a>]<span class="op">;</span></span></code></pre></div>
+      <ul>
+      <li>現在の開発環境では <code>import type { Todo } from "./types.js";</code>
+      のようにインポートファイルに <span class="masked">拡張子をつける必要はありません</span>。</li>
+      </ul>
+      <h2 data-number="8.3" id="todolistコンポーネントの作成"><span
+      class="header-section-number">8.3</span> TodoListコンポーネントの作成</h2>
+      <p>Todoリストを表示するための「<strong>TodoListコンポーネント</strong>」を作成します。<code>src/TodoList.tsx</code>
+      を作成して、以下の内容を記述してください。</p>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p>ここでは、練習のために<strong>コピペ</strong>ではなく<strong>コードを打ち込んで</strong>ください。<a
+      href="lecture03.html#react開発の支援機能">前回講義で紹介</a> しているように
+      <code>ES7+ React/Redux/React-Native snippets</code>
+      をVSCodeの拡張機能としてインストールしていると、次の図のように <code>rafce</code>
+      と打ち込むだけで <strong>アロー関数形式のReactコンポーネントのテンプレート</strong>
+      が得られます。</p>
+      <figure>
+      <img src="figs/03/vscode_04.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      </div>
+      <div class="sourceCode" id="cb53" data-caption="src/TodoList.tsx"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb53-1"><a href="#cb53-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types&quot;</span><span class="op">;</span></span>
+<span id="cb53-2"><a href="#cb53-2"></a></span>
+<span id="cb53-3"><a href="#cb53-3"></a><span class="kw">type</span> Props <span class="op">=</span> {</span>
+<span id="cb53-4"><a href="#cb53-4"></a>  todos<span class="op">:</span> Todo[]<span class="op">;</span></span>
+<span id="cb53-5"><a href="#cb53-5"></a>}<span class="op">;</span></span>
+<span id="cb53-6"><a href="#cb53-6"></a></span>
+<span id="cb53-7"><a href="#cb53-7"></a><span class="kw">const</span> TodoList <span class="op">=</span> (props<span class="op">:</span> Props) <span class="kw">=&gt;</span> {</span>
+<span id="cb53-8"><a href="#cb53-8"></a>  <span class="kw">const</span> todos <span class="op">=</span> props<span class="op">.</span><span class="at">todos</span><span class="op">;</span></span>
+<span id="cb53-9"><a href="#cb53-9"></a>  <span class="cf">return</span> (</span>
+<span id="cb53-10"><a href="#cb53-10"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;flex flex-col gap-y-1&quot;</span><span class="op">&gt;</span></span>
+<span id="cb53-11"><a href="#cb53-11"></a>      <span class="op">&lt;</span>div<span class="op">&gt;</span></span>
+<span id="cb53-12"><a href="#cb53-12"></a>        {todos[<span class="dv">0</span>]<span class="op">.</span><span class="at">name</span>} 優先度<span class="op">:</span> {todos[<span class="dv">0</span>]<span class="op">.</span><span class="at">priority</span>}</span>
+<span id="cb53-13"><a href="#cb53-13"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb53-14"><a href="#cb53-14"></a>      <span class="op">&lt;</span>div<span class="op">&gt;</span></span>
+<span id="cb53-15"><a href="#cb53-15"></a>        {todos[<span class="dv">1</span>]<span class="op">.</span><span class="at">name</span>} 優先度<span class="op">:</span> {todos[<span class="dv">1</span>]<span class="op">.</span><span class="at">priority</span>}</span>
+<span id="cb53-16"><a href="#cb53-16"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb53-17"><a href="#cb53-17"></a>      <span class="op">&lt;</span>div<span class="op">&gt;</span></span>
+<span id="cb53-18"><a href="#cb53-18"></a>        {todos[<span class="dv">2</span>]<span class="op">.</span><span class="at">name</span>} 優先度<span class="op">:</span> {todos[<span class="dv">2</span>]<span class="op">.</span><span class="at">priority</span>}</span>
+<span id="cb53-19"><a href="#cb53-19"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb53-20"><a href="#cb53-20"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb53-21"><a href="#cb53-21"></a>  )<span class="op">;</span></span>
+<span id="cb53-22"><a href="#cb53-22"></a>}<span class="op">;</span></span>
+<span id="cb53-23"><a href="#cb53-23"></a></span>
+<span id="cb53-24"><a href="#cb53-24"></a><span class="im">export</span> <span class="im">default</span> TodoList<span class="op">;</span></span></code></pre></div>
+      <div class="note type-caution">
+      <p>ここで定義する <code>TodoList</code> は、Reactの関数コンポーネントなので必ず <a
+      href="https://www.google.com/search?q=パスカルケースとは">パスカルケース</a>
+      としてください。また、同様に、ファイルの名前もパスカルケースとしてください。</p>
+      </div>
+      <p>このコンポーネントは、Todo型の配列 <code>todos</code> を <strong>Props
+      (プロップス)</strong>
+      として受け取り、先頭から3件分のTodoの「名前」と「優先度」を表示しています。なお、Reactの文脈において
+      Props とは <strong>Properties の略称</strong>で、<span
+      class="masked">コンポーネントが受け取る「引数」のようなもの</span> と考えてください。</p>
+      <p>なお、ここでの <strong>第11行目</strong> から <strong>第19行目</strong>
+      のコードは酷いものですが、これは後で書き換えます。</p>
+      <h2 data-number="8.4" id="appコンポーネントの編集"><span
+      class="header-section-number">8.4</span> Appコンポーネントの編集</h2>
+      <p><strong>src/App.tsx</strong> を次のように編集してください。<strong>第04行目</strong>
+      では、<a href="lecture04.html#reactにおけるコンポーネントとは">先ほどの演習</a>
+      で未完了タスク数も受け取れるようにした <strong>WelcomeMessage コンポーネント</strong>
+      をインポートしています。同様に <strong>第05行目</strong> では、Todo リストのコンポーネント
+      (<strong>src/TodoList.tsx</strong>) をインポートしています。</p>
+      <p>また、<strong>第03行目</strong>では、Todoリストの初期データとして <code>initTodos</code>
+      をインポートしています。なお、インポートする際に <span class="masked">波括弧 <code>{ }</code>
+      をつけてインポートしているケースと、そうでないケースがあること</span>
+      に気づくと思います。これらの理由については生成AIで解決してください。</p>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>Node.js 環境で TypeScript
+      の勉強をしています。サンプルコードを見ていると、ライブラリから関数や変数をインポートする際に、波括弧
+      <code>{}</code>
+      を付けているケースと、そうではないケースがあることに気づきました。違いについて教えてください。</p>
+      </blockquote>
+      <div class="sourceCode" id="cb54" data-caption="src/App.tsx"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb54-1"><a href="#cb54-1"></a><span class="im">import</span> { useState } <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
+<span id="cb54-2"><a href="#cb54-2"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types&quot;</span><span class="op">;</span></span>
+<span id="cb54-3"><a href="#cb54-3"></a><span class="im">import</span> { initTodos } <span class="im">from</span> <span class="st">&quot;./initTodos&quot;</span><span class="op">;</span></span>
+<span id="cb54-4"><a href="#cb54-4"></a><span class="im">import</span> WelcomeMessage <span class="im">from</span> <span class="st">&quot;./WelcomeMessage&quot;</span><span class="op">;</span></span>
+<span id="cb54-5"><a href="#cb54-5"></a><span class="im">import</span> TodoList <span class="im">from</span> <span class="st">&quot;./TodoList&quot;</span><span class="op">;</span></span>
+<span id="cb54-6"><a href="#cb54-6"></a></span>
+<span id="cb54-7"><a href="#cb54-7"></a><span class="kw">const</span> App <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb54-8"><a href="#cb54-8"></a>  <span class="kw">const</span> [todos<span class="op">,</span> setTodos] <span class="op">=</span> <span class="fu">useState</span><span class="op">&lt;</span>Todo[]<span class="op">&gt;</span>(initTodos)<span class="op">;</span></span>
+<span id="cb54-9"><a href="#cb54-9"></a>  <span class="kw">const</span> uncompletedCount <span class="op">=</span> todos<span class="op">.</span><span class="fu">filter</span>((todo<span class="op">:</span> Todo) <span class="kw">=&gt;</span> <span class="op">!</span>todo<span class="op">.</span><span class="at">isDone</span>)<span class="op">.</span><span class="at">length</span><span class="op">;</span> <span class="co">// 未完了タスクの数え上げ</span></span>
+<span id="cb54-10"><a href="#cb54-10"></a>  <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="bu">JSON</span><span class="op">.</span><span class="fu">stringify</span>(todos<span class="op">,</span> <span class="kw">null</span><span class="op">,</span> <span class="dv">2</span>))<span class="op">;</span></span>
+<span id="cb54-11"><a href="#cb54-11"></a></span>
+<span id="cb54-12"><a href="#cb54-12"></a>  <span class="cf">return</span> (</span>
+<span id="cb54-13"><a href="#cb54-13"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mx-4 mt-10 max-w-2xl md:mx-auto&quot;</span><span class="op">&gt;</span></span>
+<span id="cb54-14"><a href="#cb54-14"></a>      <span class="op">&lt;</span>h1 className<span class="op">=</span><span class="st">&quot;mb-4 text-2xl font-bold&quot;</span><span class="op">&gt;</span>TodoApp<span class="op">&lt;/</span>h1<span class="op">&gt;</span></span>
+<span id="cb54-15"><a href="#cb54-15"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mb-4&quot;</span><span class="op">&gt;</span></span>
+<span id="cb54-16"><a href="#cb54-16"></a>        <span class="op">&lt;</span>WelcomeMessage</span>
+<span id="cb54-17"><a href="#cb54-17"></a>          name<span class="op">=</span><span class="st">&quot;寝屋川タヌキ&quot;</span></span>
+<span id="cb54-18"><a href="#cb54-18"></a>          uncompletedCount<span class="op">=</span>{uncompletedCount}</span>
+<span id="cb54-19"><a href="#cb54-19"></a>        <span class="op">/&gt;</span></span>
+<span id="cb54-20"><a href="#cb54-20"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb54-21"><a href="#cb54-21"></a>      <span class="op">&lt;</span>TodoList todos<span class="op">=</span>{todos} <span class="op">/&gt;</span></span>
+<span id="cb54-22"><a href="#cb54-22"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb54-23"><a href="#cb54-23"></a>  )<span class="op">;</span></span>
+<span id="cb54-24"><a href="#cb54-24"></a>}<span class="op">;</span></span>
+<span id="cb54-25"><a href="#cb54-25"></a></span>
+<span id="cb54-26"><a href="#cb54-26"></a><span class="im">export</span> <span class="im">default</span> App<span class="op">;</span></span></code></pre></div>
+      <p>編集後、保存してから <strong>開発モード</strong> でアプリを実行してください
+      (<code>npm run dev</code>)。次のような実行結果が得られると思います。さらに、ブラウザで
+      <code>[F12]</code> を押下して <strong>デベロッパーツール</strong> を起動してコンソール出力
+      (<strong>第10行目</strong> で行われている <code>todos</code> の出力) も確認してください。</p>
+      <figure>
+      <img src="figs/04/app_07.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <p><code>src/App.tsx</code> と <code>src/TodoList.tsx</code>
+      について、生成AIなどを活用して読解・理解をしてください。特に、しっかりと理解してほしい箇所は次のとおりです。</p>
+      <ul>
+      <li><code>src/App.tsx</code> の <strong>第08行目</strong> : 現時点では <code>todos</code>
+      を変更 (追加・削除) する処理は含んでいませんが、今後、それらの機能を実装したときに
+      <code>todos</code> の変更をトリガーに再レンダリングをしたいので <code>useState</code>
+      を使って「状態」として扱うようにしています。
+      <ul>
+      <li><code>useState&lt;Todo[]&gt;(initTodos)</code> ではなく <code>useState(initTodos)</code>
+      のように型推論を利用して初期化が可能です。ただし、初期値を空配列にする場合は、明示的に型を与える必要があります。</li>
+      </ul></li>
+      <li><code>src/App.tsx</code> の <strong>第09行目</strong> :
+      ここでは、Todo型オブジェクトの配列から「未完了のタスク数」をカウントしています。前回講義で学んだ<strong>配列</strong>の
+      <a href="lecture03.html#オブジェクト配列の-filter-操作">filter操作</a> と <a
+      href="lecture03.html#第1形態-レガシーな手続き型スタイル">lengthプロパティ</a>
+      を活用している例になります。</li>
+      <li><code>src/App.tsx</code> の <strong>第21行目</strong> の
+      <code>&lt;TodoList todos={todos} /&gt;</code> と、<code>src/TodoList.tsx</code> で定義している
+      <code>TodoList</code> 関数の引数 (Props) が対応している点に注意してください。</li>
+      </ul>
+      <h2 data-number="8.5" id="todolistコンポーネントのブラッシュアップ"><span
+      class="header-section-number">8.5</span> TodoListコンポーネントのブラッシュアップ</h2>
+      <p>現状の <code>src/TodoList.tsx</code> は、<code>todos</code> の要素数に関わらず <span
+      class="masked">固定で「3件」のTodoしか表示すること</span>
+      ができません。しかも、<code>todos</code> の要素数が
+      <strong>2個以下のときは実行時エラー</strong> が生じます
+      (Todoが1個も表示されなくなります)。</p>
+      <p>そこで、前回講義で学んだ <span class="masked">mapメソッド</span>
+      を利用して、<code>todos</code> の要素数にあわせて表示するように変えたいと思います。この
+      mapメソッドを使うテクニックは <strong>Reactでは定番中の定番処理</strong>
+      となるので確実に読解かつ記述できるようにしてください。</p>
+      <div class="sourceCode" id="cb55" data-caption="src/TodoList.tsx (Before) 再掲"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb55-1"><a href="#cb55-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types&quot;</span><span class="op">;</span></span>
+<span id="cb55-2"><a href="#cb55-2"></a></span>
+<span id="cb55-3"><a href="#cb55-3"></a><span class="kw">type</span> Props <span class="op">=</span> {</span>
+<span id="cb55-4"><a href="#cb55-4"></a>  todos<span class="op">:</span> Todo[]<span class="op">;</span></span>
+<span id="cb55-5"><a href="#cb55-5"></a>}<span class="op">;</span></span>
+<span id="cb55-6"><a href="#cb55-6"></a></span>
+<span id="cb55-7"><a href="#cb55-7"></a><span class="kw">const</span> TodoList <span class="op">=</span> (props<span class="op">:</span> Props) <span class="kw">=&gt;</span> {</span>
+<span id="cb55-8"><a href="#cb55-8"></a>  <span class="kw">const</span> todos <span class="op">=</span> props<span class="op">.</span><span class="at">todos</span><span class="op">;</span></span>
+<span id="cb55-9"><a href="#cb55-9"></a>  <span class="cf">return</span> (</span>
+<span id="cb55-10"><a href="#cb55-10"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;flex flex-col gap-y-1&quot;</span><span class="op">&gt;</span></span>
+<span id="cb55-11"><a href="#cb55-11"></a>      <span class="op">&lt;</span>div<span class="op">&gt;</span></span>
+<span id="cb55-12"><a href="#cb55-12"></a>        {todos[<span class="dv">0</span>]<span class="op">.</span><span class="at">name</span>} 優先度<span class="op">:</span> {todos[<span class="dv">0</span>]<span class="op">.</span><span class="at">priority</span>}</span>
+<span id="cb55-13"><a href="#cb55-13"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb55-14"><a href="#cb55-14"></a>      <span class="op">&lt;</span>div<span class="op">&gt;</span></span>
+<span id="cb55-15"><a href="#cb55-15"></a>        {todos[<span class="dv">1</span>]<span class="op">.</span><span class="at">name</span>} 優先度<span class="op">:</span> {todos[<span class="dv">1</span>]<span class="op">.</span><span class="at">priority</span>}</span>
+<span id="cb55-16"><a href="#cb55-16"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb55-17"><a href="#cb55-17"></a>      <span class="op">&lt;</span>div<span class="op">&gt;</span></span>
+<span id="cb55-18"><a href="#cb55-18"></a>        {todos[<span class="dv">2</span>]<span class="op">.</span><span class="at">name</span>} 優先度<span class="op">:</span> {todos[<span class="dv">2</span>]<span class="op">.</span><span class="at">priority</span>}</span>
+<span id="cb55-19"><a href="#cb55-19"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb55-20"><a href="#cb55-20"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb55-21"><a href="#cb55-21"></a>  )<span class="op">;</span></span>
+<span id="cb55-22"><a href="#cb55-22"></a>}<span class="op">;</span></span>
+<span id="cb55-23"><a href="#cb55-23"></a></span>
+<span id="cb55-24"><a href="#cb55-24"></a><span class="im">export</span> <span class="im">default</span> TodoList<span class="op">;</span></span></code></pre></div>
+      <p>上記のプログラムを次のように書き換えます。前回講義の <a
+      href="lecture03.html#オブジェクト型の配列に対するmapの適用">オブジェクト型の配列に対するmapの適用</a>
+      を参考にしながら、この書き換えを理解してください。</p>
+      <div class="sourceCode" id="cb56" data-caption="src/TodoList.tsx (After)"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb56-1"><a href="#cb56-1"></a><span class="im">import</span> <span class="im">type</span> { Todo } <span class="im">from</span> <span class="st">&quot;./types&quot;</span><span class="op">;</span></span>
+<span id="cb56-2"><a href="#cb56-2"></a></span>
+<span id="cb56-3"><a href="#cb56-3"></a><span class="kw">type</span> Props <span class="op">=</span> {</span>
+<span id="cb56-4"><a href="#cb56-4"></a>  todos<span class="op">:</span> Todo[]<span class="op">;</span></span>
+<span id="cb56-5"><a href="#cb56-5"></a>}<span class="op">;</span></span>
+<span id="cb56-6"><a href="#cb56-6"></a></span>
+<span id="cb56-7"><a href="#cb56-7"></a><span class="kw">const</span> TodoList <span class="op">=</span> (props<span class="op">:</span> Props) <span class="kw">=&gt;</span> {</span>
+<span id="cb56-8"><a href="#cb56-8"></a>  <span class="kw">const</span> todos <span class="op">=</span> props<span class="op">.</span><span class="at">todos</span><span class="op">;</span></span>
+<span id="cb56-9"><a href="#cb56-9"></a></span>
+<span id="cb56-10"><a href="#cb56-10"></a>  <span class="cf">if</span> (todos<span class="op">.</span><span class="at">length</span> <span class="op">===</span> <span class="dv">0</span>) {</span>
+<span id="cb56-11"><a href="#cb56-11"></a>    <span class="cf">return</span> (</span>
+<span id="cb56-12"><a href="#cb56-12"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;text-red-500&quot;</span><span class="op">&gt;</span></span>
+<span id="cb56-13"><a href="#cb56-13"></a>        現在、登録されているタスクはありません。</span>
+<span id="cb56-14"><a href="#cb56-14"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb56-15"><a href="#cb56-15"></a>    )<span class="op">;</span></span>
+<span id="cb56-16"><a href="#cb56-16"></a>  }</span>
+<span id="cb56-17"><a href="#cb56-17"></a></span>
+<span id="cb56-18"><a href="#cb56-18"></a>  <span class="cf">return</span> (</span>
+<span id="cb56-19"><a href="#cb56-19"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;space-y-1&quot;</span><span class="op">&gt;</span></span>
+<span id="cb56-20"><a href="#cb56-20"></a>      {todos<span class="op">.</span><span class="fu">map</span>((todo) <span class="kw">=&gt;</span> (</span>
+<span id="cb56-21"><a href="#cb56-21"></a>        <span class="op">&lt;</span>div key<span class="op">=</span>{todo<span class="op">.</span><span class="at">id</span>}<span class="op">&gt;</span></span>
+<span id="cb56-22"><a href="#cb56-22"></a>          {todo<span class="op">.</span><span class="at">name</span>} 優先度<span class="op">:</span> {todo<span class="op">.</span><span class="at">priority</span>}</span>
+<span id="cb56-23"><a href="#cb56-23"></a>        <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb56-24"><a href="#cb56-24"></a>      ))}</span>
+<span id="cb56-25"><a href="#cb56-25"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb56-26"><a href="#cb56-26"></a>  )<span class="op">;</span></span>
+<span id="cb56-27"><a href="#cb56-27"></a>}<span class="op">;</span></span>
+<span id="cb56-28"><a href="#cb56-28"></a></span>
+<span id="cb56-29"><a href="#cb56-29"></a><span class="im">export</span> <span class="im">default</span> TodoList<span class="op">;</span></span></code></pre></div>
+      <p>書き換え後のプログラムでは、<code>todos</code> が <span class="masked">空配列のとき
+      (<code>todos.length === 0</code> のとき)</span>
+      には、Todoリストの代わりに「<strong>現在、登録されているタスクはありません。</strong>」というメッセージを表示するようにしています。</p>
+      <p>また、map の戻り値となる<strong>一番外側の JSX 要素</strong> (この例では
+      <code>&lt;div&gt;</code> 要素) については、<strong>第21行目</strong> のように <span
+      class="masked">必ず <code>key</code> 属性を設定してください</span>。<code>key</code> の値には
+      <span class="masked">配列内で重複せず、同じ Todo では再レンダリングしても変わらない値</span>
+      を指定します。このアプリでは、各 Todo の <code>id</code> を使用します。</p>
+      <div class="balloon char-01 face-01 tone-pink">
+      <p><code>key</code> 属性を設定していないと、実行時に
+      <code>Each child in a list should have a unique "key" prop</code>
+      という警告が表示されます。また、再レンダリングに際して意図した動作をしなくなる可能性があります。詳しい原理は生成AIで解決してください。</p>
+      </div>
+      <p><strong><i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例</strong></p>
+      <blockquote>
+      <p>Reactを使ったウェブアプリを開発しています。配列のmapメソッドを使用してJSXを構成する際、key属性が要求されるのは何故ですか。Reactは何のためにkey属性を必要としますか。</p>
+      </blockquote>
+      <h3 data-number="8.5.1" id="演習-3"><span class="header-section-number">8.5.1</span> 演習</h3>
+      <p>前回講義で学んだように、Todoの並び替えは「配列のsortメソッド」を利用して行なうことができます。例えば、優先度を昇順
+      (1👉2👉3の順) にしたいときは、<strong>第08行目</strong>の
+      <code>const todos = props.todos;</code> を以下のように書き換えます。</p>
+      <div class="sourceCode" id="cb57" data-caption="優先度で整列する" data-startFrom="8"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript" style="counter-reset: source-line 7;"><span id="cb57-8"><a href="#cb57-8"></a><span class="kw">const</span> todos <span class="op">=</span> [<span class="op">...</span>props<span class="op">.</span><span class="at">todos</span>]<span class="op">.</span><span class="fu">sort</span>((a<span class="op">,</span> b) <span class="kw">=&gt;</span> a<span class="op">.</span><span class="at">priority</span> <span class="op">-</span> b<span class="op">.</span><span class="at">priority</span>)<span class="op">;</span></span></code></pre></div>
+      <p>前回講義の <a
+      href="lecture03.html#複数のソートキーを使ったオブジェクト配列の並び替え">複数のソートキーを使ったオブジェクト配列の並び替え</a>
+      を参考にして、<strong>第1ソートキー</strong>を <code>isDone</code>
+      (未完了を先に表示)、<strong>第2ソートキー</strong>を <code>deadline</code>
+      (期限が早いものを先に表示) として並び替えた Todo
+      リストが表示されるようにしてください。期限がない Todo
+      は、同じ完了状態のグループのなかで最後に表示してください。</p>
+      <h1 data-number="9" id="演習-宿題"><span class="header-section-number">9</span> 演習
+      (宿題)</h1>
+      <p>主に <code>src/TodoList.tsx</code> の <strong>JSX (HTML)</strong> と <strong>Tailwind
+      CSS</strong> に編集を加えてTodoリストコンポーネントの表示を
+      <strong>自分流にカスタマイズ</strong>
+      してみてください。これは、UI/UXの設計練習も兼ねています。また、後期前半の大課題に関連する内容にもなってきます。</p>
+      <p>なお、現時点では「チェックボックス」や「ボタン」などの要素追加や、それに対するスタイリングは不要です
+      (これらの内容は次回講義で扱います)。</p>
+      <p><strong>(Todoリストのカスタマイズの例)</strong></p>
+      <figure>
+      <img src="figs/04/app_08.png" alt="img" />
+      <figcaption aria-hidden="true">img</figcaption>
+      </figure>
+      <ul>
+      <li>上記のサンプルのコードは <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/04/code05.tsx">こちら<i class="fa-solid fa-person-chalkboard"></i></a></li>
+      </ul>
+      <!-- ---------------------------------------- -->
+    </main>
+
+    <footer class="markdown-body">
+      <p><a href="https://takeshiwada1980.github.io/Programming3-2026/">講義資料のIndexに移動</a></p>
+    </footer>
+
+  </body>
+</html>
