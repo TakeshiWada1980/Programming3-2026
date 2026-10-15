@@ -6,12 +6,25 @@ var:
 
 # 第04回 3I-プログラミング3
 
-## 情報共有
+## 本日の授業概要と連絡
 
-- [第37回高専プロコン（2026年 香川（高松）大会）](https://www.procon.gr.jp/) YouTube 配信 2026/10/10・11（配信リンクは公式ページの「放送予定」を参照）
+### 小テスト❸
+
+「小テスト❸」を実施します。筆記用具を準備しておいてください。
+
+### 情報共有
+
+- [第37回高専プロコン（2026年 香川（高松）大会）](https://www.procon.gr.jp/)
+  - YouTube配信リンクは公式ページの「放送予定」を参照
 - [第36回高専プロコン（2025年 松江大会）](https://www.youtube.com/watch?v=8qzc-e9Czqc&list=PLTPqb9X7I-Lm7SDmwfmjg0oT-lvUmhRmU) YouTube配信 2025/10/11・12
 - [第35回高専プロコン（2024年 奈良大会）](https://www.youtube.com/playlist?list=PLTPqb9X7I-LlS8ZbJgHDC4DtaYo_DKszV)YouTube配信 2024/10/19・20
     - [全国の高専生はどんなアプリやソフトを開発しているの?](https://www.procon.gr.jp/archive/2024/) ...リンク先の「**大会パンフレット**」も確認してください。
+
+### 今回の達成目標
+
+- Vite を使って React・TypeScript・Tailwind CSS の開発環境を構築し、アプリの起動・ビルド・動作確認ができる。
+- コンポーネントと Props の役割、`useState` による状態の更新と画面表示の関係を説明できる。
+- Todo 配列を `map` で一覧表示し、Tailwind CSS を使って画面の見た目を調整できる。
 
 ## ここまでの流れ
 
@@ -21,7 +34,7 @@ var:
 2. TypeScript基礎学習
     - **<u>React / Next.js 開発に関連する文法や機能だけを集中的に学びます</u>**。
 3. React を用いた「Todoアプリ」開発のための環境構築 <font color="deeppink"><b>← 今回の授業のメイン</b></font>
-4. Todoアプリの設計・実装 (Reactによるフロントエンド) のチュートリアル
+4. Todoアプリの設計・実装 (Reactによるフロントエンド) のチュートリアル ← **今回と次回**
 5. Todoアプリのカスタマイズや作り込み → 📝**課題1**
     - 参考: [2025年度の学生作品](https://omunet-my.sharepoint.com/:t:/g/personal/z21707r_omu_ac_jp/IQC1PJskZdyCSZ8tH_0DUchyAWpzGP7ILbgQAaEtJ39a7M4?e=lUsZM5) (学内のみ)
     - 参考: [2024年度の学生作品](https://omunet-my.sharepoint.com/:t:/g/personal/z21707r_omu_ac_jp/ET7-SWbLKVlBvtsv3v5guw0BvXiUlGzUqjCKk6ES6X88-w) (学内のみ)

@@ -53,8 +53,16 @@ type="text/javascript"></script>
       <div id="g-nav-list">
         <!-- ---------------------------------------- -->
          <ul>
-<li><a href="#情報共有" id="toc-情報共有"><span class="toc-section-number">1</span>
+<li><a href="#本日の授業概要と連絡" id="toc-本日の授業概要と連絡"><span
+class="toc-section-number">1</span> 本日の授業概要と連絡</a>
+<ul>
+<li><a href="#小テスト❸" id="toc-小テスト❸"><span class="toc-section-number">1.1</span>
+小テスト❸</a></li>
+<li><a href="#情報共有" id="toc-情報共有"><span class="toc-section-number">1.2</span>
 情報共有</a></li>
+<li><a href="#今回の達成目標" id="toc-今回の達成目標"><span class="toc-section-number">1.3</span>
+今回の達成目標</a></li>
+</ul></li>
 <li><a href="#ここまでの流れ" id="toc-ここまでの流れ"><span class="toc-section-number">2</span>
 ここまでの流れ</a></li>
 <li><a href="#react開発環境の構築" id="toc-react開発環境の構築"><span
@@ -127,10 +135,18 @@ TodoListコンポーネントのブラッシュアップ</a></li>
 
     <main class="markdown-body">
       <!-- ---------------------------------------- -->
-      <h1 data-number="1" id="情報共有"><span class="header-section-number">1</span> 情報共有</h1>
+      <h1 data-number="1" id="本日の授業概要と連絡"><span class="header-section-number">1</span>
+      本日の授業概要と連絡</h1>
+      <h2 data-number="1.1" id="小テスト❸"><span class="header-section-number">1.1</span>
+      小テスト❸</h2>
+      <p>「小テスト❸」を実施します。筆記用具を準備しておいてください。</p>
+      <h2 data-number="1.2" id="情報共有"><span class="header-section-number">1.2</span>
+      情報共有</h2>
       <ul>
       <li><a href="https://www.procon.gr.jp/">第37回高専プロコン（2026年 香川（高松）大会）</a>
-      YouTube 配信 2026/10/10・11（配信リンクは公式ページの「放送予定」を参照）</li>
+      <ul>
+      <li>YouTube配信リンクは公式ページの「放送予定」を参照</li>
+      </ul></li>
       <li><a
       href="https://www.youtube.com/watch?v=8qzc-e9Czqc&amp;list=PLTPqb9X7I-Lm7SDmwfmjg0oT-lvUmhRmU">第36回高専プロコン（2025年
       松江大会）</a> YouTube配信 2025/10/11・12</li>
@@ -142,6 +158,16 @@ TodoListコンポーネントのブラッシュアップ</a></li>
       href="https://www.procon.gr.jp/archive/2024/">全国の高専生はどんなアプリやソフトを開発しているの?</a>
       …リンク先の「<strong>大会パンフレット</strong>」も確認してください。</li>
       </ul></li>
+      </ul>
+      <h2 data-number="1.3" id="今回の達成目標"><span class="header-section-number">1.3</span>
+      今回の達成目標</h2>
+      <ul>
+      <li>Vite を使って React・TypeScript・Tailwind CSS
+      の開発環境を構築し、アプリの起動・ビルド・動作確認ができる。</li>
+      <li>コンポーネントと Props の役割、<code>useState</code>
+      による状態の更新と画面表示の関係を説明できる。</li>
+      <li>Todo 配列を <code>map</code> で一覧表示し、Tailwind CSS
+      を使って画面の見た目を調整できる。</li>
       </ul>
       <h1 data-number="2" id="ここまでの流れ"><span class="header-section-number">2</span>
       ここまでの流れ</h1>
@@ -155,7 +181,8 @@ TodoListコンポーネントのブラッシュアップ</a></li>
       </ul></li>
       <li>React を用いた「Todoアプリ」開発のための環境構築 <font color="deeppink"><b>←
       今回の授業のメイン</b></font></li>
-      <li>Todoアプリの設計・実装 (Reactによるフロントエンド) のチュートリアル</li>
+      <li>Todoアプリの設計・実装 (Reactによるフロントエンド) のチュートリアル ←
+      <strong>今回と次回</strong></li>
       <li>Todoアプリのカスタマイズや作り込み → 📝<strong>課題1</strong>
       <ul>
       <li>参考: <a
@@ -421,7 +448,7 @@ TodoListコンポーネントのブラッシュアップ</a></li>
       <li><strong>答え</strong>: <span class="masked"><code>.gitignore</code></span></li>
       </ul></li>
       <li><code>.gitignore</code> に <code>node_modules</code> を記載すると、PC 内の
-      <strong><code>node_modules</code></strong>
+      <code>node_modules</code>
       フォルダ自体も削除される。この説明は「正しい」か「正しくない」か答えよ。
       <ul>
       <li><strong>答え</strong>: <span class="masked">正しくない。<code>.gitignore</code> は Git
@@ -1189,7 +1216,7 @@ Found 1 error.</code></pre>
       <li><code>src/App.tsx</code> で定義された <strong>App
       コンポーネント</strong>が呼び出される。</li>
       </ol>
-      <p>さらに、今後の演習では、<strong>App コンポーネント</strong>の内部に <strong>TodoList
+      <p>さらに、このあとの演習では、<strong>App コンポーネント</strong>の内部に <strong>TodoList
       コンポーネント</strong>（<code>src/TodoList.tsx</code>）を配置し、その内部に <strong>TodoItem
       コンポーネント</strong>（<code>src/TodoItem.tsx</code>）を配置していきます。</p>
       <p>この場合、コンポーネントの階層構造はさらに深くなり、次のような流れになります。</p>
