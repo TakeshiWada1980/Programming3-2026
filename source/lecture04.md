@@ -18,7 +18,6 @@ var:
   - YouTube配信リンクは公式ページの「放送予定」を参照
 - [第36回高専プロコン（2025年 松江大会）](https://www.youtube.com/watch?v=8qzc-e9Czqc&list=PLTPqb9X7I-Lm7SDmwfmjg0oT-lvUmhRmU) YouTube配信 2025/10/11・12
 - [第35回高専プロコン（2024年 奈良大会）](https://www.youtube.com/playlist?list=PLTPqb9X7I-LlS8ZbJgHDC4DtaYo_DKszV)YouTube配信 2024/10/19・20
-    - [全国の高専生はどんなアプリやソフトを開発しているの?](https://www.procon.gr.jp/archive/2024/) ...リンク先の「**大会パンフレット**」も確認してください。
 
 ### 今回の達成目標
 
