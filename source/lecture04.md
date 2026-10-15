@@ -18,47 +18,51 @@ var:
 後期中間試験ぐらいまでの授業の流れ (予定)
 
 1. モダンTypeScript基礎学習のための環境構築 ***済***
-2. TypeScript基礎学習 ***済***
-3. Reactを使ったTodoアプリのための環境構築 **← 今回 (前半)**
-4. Todoアプリ開発（Reactフロントエンド開発）のチュートリアル **← 今回と次回**
-5. Todoアプリのカスタマイズや作り込み → **_課題1_**
-    - 参考: [2024年度の学生作品](https://omunet-my.sharepoint.com/:t:/g/personal/z21707r_omu_ac_jp/ET7-SWbLKVlBvtsv3v5guw0BvXiUlGzUqjCKk6ES6X88-w)(学内のみ)
+2. TypeScript基礎学習
+    - **<u>React / Next.js 開発に関連する文法や機能だけを集中的に学びます</u>**。
+3. React を用いた「Todoアプリ」開発のための環境構築 <font color="deeppink"><b>← 今回の授業のメイン</b></font>
+4. Todoアプリの設計・実装 (Reactによるフロントエンド) のチュートリアル
+5. Todoアプリのカスタマイズや作り込み → 📝**課題1**
+    - 参考: [2025年度の学生作品](https://omunet-my.sharepoint.com/:t:/g/personal/z21707r_omu_ac_jp/IQC1PJskZdyCSZ8tH_0DUchyAWpzGP7ILbgQAaEtJ39a7M4?e=lUsZM5) (学内のみ)
+    - 参考: [2024年度の学生作品](https://omunet-my.sharepoint.com/:t:/g/personal/z21707r_omu_ac_jp/ET7-SWbLKVlBvtsv3v5guw0BvXiUlGzUqjCKk6ES6X88-w) (学内のみ)
 
-まずは、次のような📝**Todoアプリの開発** (Reactを採用したフロントエンド開発) を目標とします。
 
-- [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/) (ギリギリ合格水準のレベル、点数で言えば60点😨)
-- [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/2) (ここまで内容を理解して開発できたら90点🎉)
+しばらく、次のような「Todoアプリ」を開発することを目標として授業が展開します。
 
-今回講義の **後半の内容** は、前回講義で宿題として示した[【React入門】完全初心者OK！1から簡単なTodoアプリを作ってReactの1歩を踏み出してみよう ～Reactチュートリアル～](https://www.youtube.com/watch?v=nRCNL9T3J98)の視聴を前提とした内容です。
-
-- この講義でも、**上記動画とほぼ同じ機能を持ったTodoアプリ**を作成します。ただし、最終的に仕上がるアプリは同じであっても、本授業での開発環境やコードスタイル (<span class="masked">そもそも動画では TypeScript ではなく JavaScript で作成している</span>) などが違う点に注意してください。
-    - [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/) (ギリギリ合格水準のレベル、点数で言えば60点😨)
-    - [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/2) (ここまでつくれたら素晴らしい！90点超🎉)
-- 同じような機能を持ったアプリを開発する場合でも、**そのアプローチが無数にあること** を意識して学ぶと得られるものが多いです。
+- [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/) (チュートリアルそのままに近いもの)
+- [Todoアプリのサンプル](https://takeshiwada1980.github.io/react-todo-app-demo/2) (内容を理解して機能追加やカスタマイズされたもの)
 
 ## React開発環境の構築
 
-[Vite](https://www.google.com/search?q=viteとは)という**ビルドツール**を使用して「**Tailwind CSS**」と「**TypeScript**」を用いた **Reactアプリの開発環境を構築する手順** について解説します。
+[Vite](https://www.google.com/search?q=viteとは) という**ビルドツール**を使用して TypeScript と Tailwind CSS を組み合わせた **React アプリケーションの開発環境を構築する手順について解説** してきます。
 
-- [Tailwind CSS とは](https://www.google.com/search?q=Tailwindとは+CSS)
+**<i class="fa-solid fa-comment-dots fa-flip-horizontal"></i>プロンプト例**
+
+> React を用いたウェブアプリ (Todoアプリ) 開発で、Tailwind CSS というものを使うことになりました。ノーマルな CSS は少し書いたことがあるのですが、Tailwind CSS とはどのようなものなのですか？過去に CSS を書いた経験は生きますか？
 
 ### 準備
 
-ターミナル (PowerShell) を開いてプロジェクトフォルダを配置したいフォルダ (例えば ` C:\Users\xxxx\Documents\` など) に**移動**してください。いまから、このフォルダのなかに `react-todo-app` というプロジェクトフォルダを作成して、そこに「**React (TypeScript+Tailwind CSS) の開発環境**」を構築していきます。
+ターミナル (PowerShell) を開いてプロジェクトフォルダを配置したいフォルダ (例えば ` C:\Users\xxxx\Documents\` など) に**移動**してください。
+
+いまから、このフォルダのなかに `react-todo-app` というプロジェクトフォルダを作成して、そこに開発環境を構築していきます。
 
 <div class="note type-caution">
 **注意**
 
-ドキュメントフォルダを **OneDrive 同期**している学生は、その影響のないフォルダ (`c:\work` など) で作業することを強く推奨します。OneDrive 同期フォルダで作業すると予期せぬトラブルの発生や、OneDrive容量を圧迫することがあります。
+ドキュメントフォルダを **OneDrive と同期**している学生は、同期対象外のフォルダ (`c:\work` など) で作業することを強く推奨します。OneDrive の同期対象フォルダ内で開発作業を行うと、予期せぬトラブルが発生したり、OneDrive のストレージ容量を圧迫したりする可能性があります。
+
+また、`react-todo-app` フォルダを含む **パス全体に日本語** が含まれないようにしてください。
 </div>
 
 ### Viteによるプロジェクトフォルダの作成
 
-ここでは[Vite](https://www.google.com/search?q=Viteとは) という「**ウェブ開発用のビルドツール**」を使って環境を構築していきます。Vite は「ビート」「ヴィート」のように読みます (稀に「バイト」や「ビーテ」のように読む人もいます)。
+ここでは、[Vite](https://vite.dev/) という **ウェブアプリケーション開発用のビルドツール**を使用して開発環境を構築していきます。
 
-ターミナルから以下のコマンドを実行してください。
+- Vite は「ビート」または「ヴィート」と読みます（「バイト」や「ビーテ」と読まれることもあります）。
 
-```
+ターミナルを開いて、プロジェクトフォルダを作成したい位置 (`C:\Users\xxxx\Documents\`) に移動し、以下のコマンドを実行してください。
+
+```bash
 npx create-vite@latest react-todo-app --template react-swc-ts
 ```
 
@@ -68,7 +72,7 @@ npx create-vite@latest react-todo-app --template react-swc-ts
 <div class="note type-tips">
 **create-react-app**
 
-2024年の前半ぐらいまでは `npx create-react-app` というコマンドでも同様に環境構築が可能でしたが、現在はアップデートされていないので、Vite を使うようにしてください。
+以前は、`npx create-react-app` というコマンドを使用して React アプリの開発環境を構築する方法が広く利用されていました。しかし、**Create React App は2025年2月に公式に非推奨となった**ため、本授業では代わりに **Vite** を使用します。
 </div>
 
 
