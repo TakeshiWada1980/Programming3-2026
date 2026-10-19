@@ -1,6 +1,6 @@
 ---
 var:
-  header-title: "2026-3I プログラミング3 第04回 講義資料"
+  header-title: "2026-3I プログラミング3 第05回 講義資料"
   header-date: "2026年10月23日（金）1時限"
 ---
 
@@ -85,7 +85,7 @@ const App = () => {
       name: "新しいタスク",
       isDone: false,
       priority: 3,
-      deadline: new Date(2024, 10, 13),
+      deadline: new Date(2026, 10, 13),
     };
     // スプレッド構文を使って、末尾に新タスクを追加した配列を作成
     const updatedTodos = [...todos, newTodo];
@@ -104,12 +104,15 @@ const App = () => {
       <TodoList todos={todos} />
 
       {/* タスク追加関連のUI実装 ここから... */}
-      <div className="mt-5 space-y-2 rounded-md border p-3">
+      <div className="mt-5 space-y-2 rounded-md border border-slate-300 bg-white p-3 drop-shadow">
         <h2 className="text-lg font-bold">新しいタスクの追加</h2>
         <button
           type="button"
           onClick={addNewTodo} // ボタンを押下したときの処理
-          className="rounded-md bg-indigo-500 px-3 py-1 font-bold text-white hover:bg-indigo-600"
+          className={twMerge(
+            "rounded-md px-3 py-1 font-bold",
+            "bg-indigo-500 text-white hover:bg-indigo-600",
+          )}
         >
           追加
         </button>
@@ -122,7 +125,7 @@ const App = () => {
 export default App;
 ```
 
-上記のプログラムでは、**新しいタスクを追加するための「addNewTodo」という関数**を **第12～24行目** にアロー関数形式で実装しています。
+上記のプログラムでは、**新しいタスクを追加するための「addNewTodo」という関数**を **第13～24行目** にアロー関数形式で実装しています。
 
 JavaScript (TypeScript) では、[クロージャ](https://www.google.com/search?q=プログラム+クロージャとは)という仕組みによって...
 
@@ -130,26 +133,28 @@ JavaScript (TypeScript) では、[クロージャ](https://www.google.com/search
 
 ... となっています。ここで「**関数 addNewTodo**」は「**関数App**」の内部で定義されているため、**第22行目** のように **addNewTodo関数の外側にある変数** (＝**第09行目** で定義されている変数) `todos` の参照が可能になっています。なお、**Python** にもクロージャの仕組みがありますが、**C言語**ではクロージャは利用できません (そもそもC言語では、関数内部に関数を定義することができません)。
 
-UIに関連するものとしては **第38行目**～**第47行目** にJSX要素を追加しています。特に **第42行目** の `onClick={addNewTodo}` によって、ボタンがクリックしたときに **第13行目～** に定義した「addNewTodo関数」が呼び出されるようになっている点に注目してください。なお、ここで <span class="masked">`onClick={addNewTodo()}`</span> と書いてしまう間違いが多いので注意してください。もし、両者の違いが分からないときは生成AIを使って解決してください。
+UIに関連するものとしては **第38行目**～**第47行目** にJSX要素を追加しています。特に **第42行目** の `onClick={addNewTodo}` によって、ボタンがクリックされたときに **第13行目～** に定義した「addNewTodo関数」が呼び出されるようになっている点に注目してください。なお、ここで <span class="masked">`onClick={addNewTodo()}`</span> と書いてしまう間違いが多いので注意してください。もし、両者の違いが分からないときは生成AIを使って解決してください。
+
+::: prompts
+
+- TypeScript環境のReactで「Todoアプリ」を開発しています。ボタンを押下したとき に `addNewTodo` という関数 (引数なし) を実行したいです。このようなときは、ボタンの属性を `onClick={addNewTodo}` のように設定すると習いました。なぜ、`onClick={addNewTodo()}` のように書かないのですか？
+
+:::
+
 
 **(プロンプト例)**
 
-> TypeScript環境のReactで「Todoアプリ」を開発しています。ボタンを押下したとき に `addNewTodo` という関数 (引数なし) を実行したいです。このようなときは、ボタンの属性を `onClick={addNewTodo}` のように設定すると習いました。なぜ、`onClick={addNewTodo()}` のように書かないのですか？
-
-
-**(プロンプト例)**
-
-> TypeScriptに関する質問です。「クロージャ」とはなんですか？関数 `f1_outer` のなかに、関数 `f2_innter` を定義したとき、その内部処理で、外部 (`f1_outer`) の変数を参照できると聞いたのですが、意味不明です。あと、それにメリットはあるのですか。
+> TypeScriptに関する質問です。「クロージャ」とはなんですか？関数 `f1_outer` のなかに、関数 `f2_inner` を定義したとき、その内部処理で、外部 (`f1_outer`) の変数を参照できると聞いたのですが、意味不明です。あと、それにメリットはあるのですか。
 
 ### 動作確認
 
- `src/App.tsx` を更新・保存して、開発モード (`npm run dev`) でアプリを実行してください。以下の図ように「**追加**」ボタンを押下するたびに、**リスト末尾**に「新しいタスク」が追加されていくことが確認できます。
+ `src/App.tsx` を更新・保存して、開発モード (`npm run dev`) でアプリを実行してください。以下の図のように「**追加**」ボタンを押下するたびに、**リスト末尾**に「新しいタスク」が追加されていくことが確認できます。
 
 ![img](figs/05/app_02.png)
 
-※ 実際の実行画面 (＝**Todoリストの外観**) は「**TodoListコンポーネント** (`src/TodoList.tsx`)」の実装によって変化します。[前回講義の宿題](lecture04.html#演習-宿題-120分)として、TodoListコンポーネントをカスタマイズしてもらっているので、実行画面の外観は各々で異なるはずです。
+※ 実際の実行画面 (＝**Todoリストの外観**) は「**TodoListコンポーネント** (`src/TodoList.tsx`)」の実装によって変化します。[前回講義の宿題](lecture04.html#演習-宿題)として、TodoListコンポーネントをカスタマイズしてもらっているので、実行画面の外観は各々で異なるはずです。
 
-※ Todoリストの初期値 (`src/initTodos.ts`) は [こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/05/code03.ts)を使用しています。
+※ Todoリストの初期値 (`src/initTodos.ts`) は [こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/code03.ts)を使用しています。
 
 <div class="note type-caution">
 **注意**
@@ -187,7 +192,7 @@ const addNewTodo = () => {
     name: "新しいタスク",
     isDone: false,
     priority: 3,
-    deadline: new Date(2024, 10, 13),
+    deadline: new Date(2026, 10, 13),
   };
   todos.push(newTodo); // ミュータブルな配列操作 => ReactではNG
   setTodos(todos);
@@ -199,7 +204,7 @@ const addNewTodo = () => {
 
 ![img](figs/05/app_01.png)
 
-つまり、`push` メソッドなどの **ミュータブルな配列操作** で変更した配列を `setTodos` に与えても <span class="masked">React は画面の再レンダリングはしない</span> ということが確認できました。React は `setTodos` の引数に与えた **オブジェクトの参照** (C言語で言えばポインタ、Pythonで言えばオブジェクトID) が、前回から変化しているときに **変更が生じたと判断して** (=**変更を検知して**) ウェブ画面を再レンダリングする、という仕組みなっていることを覚えておいてください。
+つまり、`push` メソッドなどの **ミュータブルな配列操作** で変更した配列を `setTodos` に与えても <span class="masked">React は画面の再レンダリングをしない</span> ということが確認できました。React は `setTodos` の引数に与えた **オブジェクトの参照** (C言語で言えばポインタ、Pythonで言えばオブジェクトID) が、前回から変化しているときに **変更が生じたと判断して** (=**変更を検知して**) ウェブ画面を再レンダリングする、という仕組みになっていることを覚えておいてください。
 
 ## 新規タスクの名前設定テキストボックスの追加
 
@@ -238,7 +243,7 @@ const App = () => {
       name: newTodoName, // ◀◀ 編集
       isDone: false,
       priority: 3,
-      deadline: new Date(2024, 10, 13),
+      deadline: new Date(2026, 10, 13),
     };
     const updatedTodos = [...todos, newTodo];
     setTodos(updatedTodos);
@@ -290,7 +295,7 @@ const App = () => {
 export default App;
 ```
 
-ウェブアプリにおいて「**テキストボックス**」や「**チェックボックス**」「**ラジオボタン**」など入力系UI (フォーム入力) には「`<input>` タグ」を利用します (参考: [フォーム入力の種類](https://developer.mozilla.org/ja/docs/Web/HTML/Element/input))。そして、React開発においては、一般に `<input>` タグは <span class="masked">`useRef` または `useState` を組み合わせて使用</span> します。
+ウェブアプリにおいて「**テキストボックス**」や「**チェックボックス**」「**ラジオボタン**」など入力系UI (フォーム入力) には「`<input>` タグ」を利用します (参考: [フォーム入力の種類](https://developer.mozilla.org/ja/docs/Web/HTML/Reference/Elements/input))。そして、React開発においては、一般に `<input>` タグは <span class="masked">`useRef` または `useState` を組み合わせて使用</span> します。
 
 ここでは「新規タスクの名前」をテキストボックスから得たいので、**第10行目** において `useState` から<span class="masked">「変数 `newTodoName`」と「関数 `setNewTodoName`」</span> を生成しています (つまり `newTodoName` を「**状態**」として扱うように実装しています)。また **第10行目** では `newTodoName` の初期値を **空文字** `""` に設定しています。
 
@@ -300,7 +305,7 @@ export default App;
 
 **第55行目** では、この `newTodoName` の内容がテキストボックスに反映されるように `<input>` タグの **value属性** を `value={newTodoName}` のように設定しています。
 
-ただし、これだけでは**逆方向の値の反映がされません**。具体的には <span class="masked">ユーザによるテキストボックスの編集操作が、変数 `newTodoName` に対して</span> 反映されません。これを反映するには、まず **第56行目** のように `onChange={updateNewTodoName}` とする必要があります。これにより、**テキストボックスで文字列を編集するたびに**、**第17行目** で定義している「updateNewTodoName関数」がコールされるようになります (呼び出されるようになります)。この際、コールされる関数には「`React.ChangeEvent<HTMLInputElement>` 型の引数」が渡されます。この引数には、型の名前が表すように <span class="masked">HTML の Input要素 の変更イベントに関する各種情報</span> が格納されています。
+ただし、これだけでは**逆方向の値の反映がされません**。具体的には <span class="masked">ユーザによるテキストボックスの編集操作が、変数 `newTodoName` に対して</span> 反映されません。これを反映するには、まず **第56行目** のように `onChange={updateNewTodoName}` とする必要があります。これにより、**テキストボックスで文字列を編集するたびに**、**第15行目** で定義している「updateNewTodoName関数」がコールされるようになります (呼び出されるようになります)。この際、コールされる関数には「`React.ChangeEvent<HTMLInputElement>` 型の引数」が渡されます。この引数には、型の名前が表すように <span class="masked">HTML の Input要素 の変更イベントに関する各種情報</span> が格納されています。
 
 **第15行目** の「updateNewTodoName関数」では、それを `e` という仮引数で受け取って `e.target.value` から「変更された文字列」を取得して、**第17行目** で`setNewTodoName` にセットしています。
 
@@ -372,7 +377,7 @@ const App = () => {
       name: newTodoName,
       isDone: false,
       priority: newTodoPriority, // ◀◀ 追加
-      deadline: new Date(2024, 10, 13),
+      deadline: new Date(2026, 10, 13),
     };
     const updatedTodos = [...todos, newTodo];
     setTodos(updatedTodos);
@@ -451,12 +456,12 @@ Number関数を使用していないと、次のようにエラーとなりま�
 
 ---
 
-JSX部分の「ラジオボタンの実装」は、「テキストボックスの実装」と比較すると**かなり複雑**になっています。次に、以下の点を意識しながら **第69行目** ～ **第84行** のコードを読解してください。
+JSX部分の「ラジオボタンの実装」は、「テキストボックスの実装」と比較すると**かなり複雑**になっています。次に、以下の点を意識しながら **第69行目** ～ **第82行目** のコードを読解してください。
 
 - 前回講義で[解説](lecture04.html#todolistコンポーネントのブラッシュアップ)したようにJSX構文のなかで `map` を利用するときは <span class="masked">map の戻り値となる最外殻の要素には「key属性」</span> を設定する必要がありました。そのため **第70行目** に「key属性」を設定しています。
     - key属性を設定しないとブラウザのコンソールに「**Warning: Each child in a list should have a unique "key" prop.**」のような警告が表示されます。
 - テキストボックスを実装したときは `<label>` と `<input>` を並列に配置しました (いわゆる「兄弟」の関係になるように配置しました) 。一方で、ここでは <span class="masked">`<input>` が `<label>` の子要素</span> になるように配置 (いわゆる「親子」の関係になるように配置)しています。このように `<input>` を `<label>` の子要素とすると 「htmlFor属性」を設定せずに両者の紐づけが可能になります。
-    - (ラジオボタンの本体ではなく)「1」「2」「3」という文字列のクリックすることでも **対応するラジオボタンを選択できること** を確認してください。
+    - (ラジオボタンの本体ではなく)「1」「2」「3」という文字列をクリックすることでも **対応するラジオボタンを選択できること** を確認してください。
     - ラベルとインプットの対応付けという意味では **第72行目** の「id属性」は不要です。ただし、一般にインプット要素には「id属性」を与えることが作法であるため、ここでは ``id={`priority-${value}`}`` のように設定しています。
 - ラジオボタンでは **「name属性が同じもの」がグループ化** されて、<span class="masked">そのグループのなかで1個のボタンだけが選択できる</span> ようになります。そのため **第73行目** では各ボタンとも共通で `name="priorityGroup"` を設定しています。ただし、この実装では `onChange` と `checked` で選択を制御しているため、「name属性」を設定していなくともラジオボタンとしての動作をします。ただし、ここでも一般的な作法として「name属性」を設定しています。
 
@@ -571,7 +576,7 @@ const updateNewTodoPriority = (e: React.ChangeEvent<HTMLInputElement>) => {
 };
 ```
 
-なお、上記の以外にも <span class="masked">`value={value}` を `value={index+1}`</span> のようにしてしまうスマートな方法もあります (この方法では、そもそも `updateNewTodoPriority` を変更する必要がありません)。
+なお、上記以外にも <span class="masked">`value={value}` を `value={index+1}`</span> のようにしてしまうスマートな方法もあります (この方法では、そもそも `updateNewTodoPriority` を変更する必要がありません)。
 
 ## 期限を設定する日時設定UIの追加
 
@@ -579,9 +584,9 @@ const updateNewTodoPriority = (e: React.ChangeEvent<HTMLInputElement>) => {
 
 ![img](figs/05/app_05.png)
 
-日時設定UIには、属性を `type="datetime-local"` に設定した `<input>` タグを使用します。なお、Chrome において「**2024/10/31 () 17:20**」のように**括弧の内部が表示されない**のは仕様 (バグ?) です。
+日時設定UIには、属性を `type="datetime-local"` に設定した `<input>` タグを使用します。なお、Chrome において「**2026/10/31 () 17:20**」のように**括弧の内部が表示されない**のは仕様 (バグ?) です。
 
-- 新規タスクの期限設定を実装した `src/App.tsx` の全体のコードは[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/05/code01.tsx)を参照してください。
+- 新規タスクの期限設定を実装した `src/App.tsx` の全体のコードは[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/code01.tsx)を参照してください。
 
 ### 日時情報の更新 (UI→コード)
 
@@ -597,7 +602,7 @@ export type Todo = {
 };
 ```
 
-そのため、**第13行目** ([全体コード<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/05/code01.tsx)参照) のように、期限を扱う「状態」については `useState<Date | null>` のように **型を明示して初期化** する必要があります。このように、値が**「Date型」または「null」のどちらかになり得るような型** を <span class="masked">Union型 (ユニオン型)</span> とよびます。Union型では
+そのため、**第13行目** ([全体コード<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/code01.tsx)参照) のように、期限を扱う「状態」については `useState<Date | null>` のように **型を明示して初期化** する必要があります。このように、値が**「Date型」または「null」のどちらかになり得るような型** を <span class="masked">Union型 (ユニオン型)</span> とよびます。Union型では
  **初期値から型推論が不可能** であるため明示的に型を示す必要があります。
 
 ```ts{.numberLines caption="src/App.tsx (抜粋・期限を扱う状態の初期化)" startFrom=13}
@@ -620,13 +625,13 @@ const updateDeadline = (e: React.ChangeEvent<HTMLInputElement>) => {
 };
 ```
 
-日時設定UIを操作して日時を選択すると `e.target.value` からは <span class="masked">「2024-11-30T15:30」のようなISO8601形式の文字列</span> が得られます。実際に **第28行目** のコンソール出力の内容を確認してください。また、以下の図のように日時設定UIで「**削除**」を選択したときは `e.target.value` からは **空文字** (`""`) が得られます。
+日時設定UIを操作して日時を選択すると `e.target.value` からは <span class="masked">「2026-11-30T15:30」のようなISO8601形式の文字列</span> が得られます。実際に **第28行目** のコンソール出力の内容を確認してください。また、以下の図のように日時設定UIで「**削除**」を選択したときは `e.target.value` からは **空文字** (`""`) が得られます。
 
 ![img](figs/05/app_08.png)
 
-このような「**2024-11-30T15:30形式の文字列**」もしくは「**空文字**」を、`Date | null` 型の `deadline` にセットするために、**第29行目** では `dt === "" ? null : new Date(dt)` のように **条件演算子** を使った変換をしています。条件演算子 (三項演算子) については[第02回講義](lecture02.html#三項演算子)で学習済みです。
+このような「**2026-11-30T15:30形式の文字列**」もしくは「**空文字**」を、`Date | null` 型の `deadline` にセットするために、**第29行目** では `dt === "" ? null : new Date(dt)` のように **条件演算子** を使った変換をしています。条件演算子 (三項演算子) については[第02回講義](lecture02.html#三項演算子)で学習済みです。
 
-これにより、`dt === ""` が「真」となるとき、`newTodoDeadline` には `null` がセットされます。また、そうでないときは <span class="masked">`new Date("2024-11-30T15:30")` で生成される「Data型オブジェクト」</span>が `newTodoDeadline` にセットされます。[Dateクラス](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date)は `"2024-11-30T15:30"` 形式の文字列を使った初期化にも対応しています (ただし、ブラウザ互換性などを考慮して、より安全に使用するためには `new Date(Date.parse(dt))` とすることが**推奨**されます)。
+これにより、`dt === ""` が「真」となるとき、`newTodoDeadline` には `null` がセットされます。また、そうでないときは <span class="masked">`new Date("2026-11-30T15:30")` で生成される「Date型オブジェクト」</span>が `newTodoDeadline` にセットされます。[Dateクラス](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Global_Objects/Date)は `"2026-11-30T15:30"` 形式の文字列を使った初期化にも対応しています (ただし、ブラウザ互換性などを考慮して、より安全に使用するためには `new Date(Date.parse(dt))` とすることが**推奨**されます)。
 
 なお、空文字 `""` は、単体で `false` として評価されるため (<span class="masked">空文字は「falsyな値」であるため</span>)、**第29行目**は、次のように記述することもできます。
 
@@ -715,11 +720,11 @@ const addNewTodo = () => {
 
 上記の処理によって、「追加」のボタンを押下しても `newTodoName` が条件を満たしていなければタスクが追加できないようになりました。しかし、このままでは **UI/UX 的には大きな課題**が残ります (ユーザが「**なぜタスクが追加できないのか**」に気づきづらい不親切な UI/UX になっている)。
 
-そこで、条件を満たしていないときは、以下のように**画面上に注意喚起のメッセージを表示**するようにアプリを改良していきます。このために `newTodoNameError` という **文字列型の変数 (状態)** を導入します。そして、テキストボックスに入力されている値が適切であれば、この `newTodoNameError` には空文字 `""` が格納し、そうでないときは <span class="masked">不備を指摘する文字列</span> を格納するようにします。また、`newTodoNameError` を参照して、不備があるときは <span class="masked">「追加」ボタンが押下できない</span> ようにします。
+そこで、条件を満たしていないときは、以下のように**画面上に注意喚起のメッセージを表示**するようにアプリを改良していきます。このために `newTodoNameError` という **文字列型の変数 (状態)** を導入します。そして、テキストボックスに入力されている値が適切であれば、この `newTodoNameError` には空文字 `""` を格納し、そうでないときは <span class="masked">不備を指摘する文字列</span> を格納するようにします。また、`newTodoNameError` を参照して、不備があるときは <span class="masked">「追加」ボタンが押下できない</span> ようにします。
 
 ![img](figs/05/app_09.png)
 
-- このバリデーションを実装した `src/App.tsx` の全体のコードは[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/05/code02.tsx)を参照してください。まずは、コピペして動作を確認することからはじめたほうが分かりやすいと思います。
+- このバリデーションを実装した `src/App.tsx` の全体のコードは[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/code02.tsx)を参照してください。まずは、コピペして動作を確認することからはじめたほうが分かりやすいと思います。
 
 特に **第79行目** から **第107行目** にかけて大幅に書き換えをしています (その他の部分についても編集や追記があるので注意してください)。
 
@@ -759,7 +764,7 @@ const addNewTodo = () => {
 
 React のJSX構文のなかで、例えば `{ hoge && (<div>こんにちは</div>)}` というコードを書くと、変数 `hoge` が `false`、`null`、`undefined` のいずれかのときは、**そこに何もレンダリングされません** (つまり `{...}` の部分が存在していないのと同等の扱いとなります)。
 
-一方で、`hoge` が **truthyな値** のときは `<div>こんにちは</div>` がレンダリングされます。ただし、**falseな値** でも `0` と `""` は例外的に、以下のようになるので注意してください。
+一方で、`hoge` が **truthyな値** のときは `<div>こんにちは</div>` がレンダリングされます。ただし、**falsyな値** でも `0` と `""` は例外的に、以下のようになるので注意してください。
 
 - `hoge` が `0` のときは、<span class="masked">数値の「0」がレンダリング</span> されます。
 - `hoge` が空文字 `""` のときは**空文字がレンダリング**されます（画面上には何も表示されませんが、DOM上には存在します）
@@ -779,9 +784,9 @@ import { twMerge } from "tailwind-merge"; // ◀◀ 追加
 
 ### 補足: React Hook Form と Zod
 
-Reactにおいて、テキストボックスやラジオボタンなどを用いた **フォーム処理** には[ReactHookForm](https://www.react-hook-form.com/)というライブラリが活用できます。このTodoアプリのように入力項目が少ない場合は、現状のように useState を使ったシンプルな実装で十分ですが、フォームの規模が大きくなるほど **ReactHookFormの導入効果** が高まります。
+Reactにおいて、テキストボックスやラジオボタンなどを用いた **フォーム処理** には[ReactHookForm](https://react-hook-form.com/)というライブラリが活用できます。このTodoアプリのように入力項目が少ない場合は、現状のように useState を使ったシンプルな実装で十分ですが、フォームの規模が大きくなるほど **ReactHookFormの導入効果** が高まります。
 
-また、フォームのバリデーションには[zod](https://www.google.com/search?q=react+zodとは)というライブラリが活用できます。これは、ReactHookFormと組み合わせて使用可能であり、以下ような型安全なバリデーションルールを宣言的に記述できます。TypeScriptとの相性も良く、入力値の型推論も自動的に行われるため、開発効率の向上が期待できます。
+また、フォームのバリデーションには[zod](https://www.google.com/search?q=react+zodとは)というライブラリが活用できます。これは、ReactHookFormと組み合わせて使用可能であり、以下のような型安全なバリデーションルールを宣言的に記述できます。TypeScriptとの相性も良く、入力値の型推論も自動的に行われるため、開発効率の向上が期待できます。
 
 - 必須項目のチェック
 - 文字数制限や数値範囲の検証
@@ -810,7 +815,7 @@ const updateIsDone = (id: string, value: boolean) => {...}
 
 この関数は、引数で受け取った `id` と一致する Todo について、その `isDone` プロパティの値を引数 `value` の値で上書きするものです。例えば `updateIsDone("a001",false)` のように関数をコールしたら、`id` が `a001` のTodoの `isDone` を `false` に更新する機能を持たせます。特に、`todos` が変更されたことを **React が確実に検知できるように** <span class="masked">「`map`」と「スプレッド構文」を使ってイミュータブルな操作</span> で処理するように実装する必要があります。
 
-- [スプレッド構文によるイミュータブルなオブジェクト更新](lecture03.html#イミュータブルなオブジェクト更新)@第03回講義
+- [スプレッド構文によるイミュータブルなオブジェクト更新](lecture03.html#その2-イミュータブルなオブジェクト更新)@第03回講義
 
 次の `updateIsDone` を `src/App.tsx` のなかの **適切な位置** に追記してください。
 
@@ -1088,7 +1093,7 @@ export default TodoList;
 
 現状のTodoアプリは、Todoの追加や削除をしてもブラウザをリロード (再読み込み) すると初期状態に戻ってしまいます。このままでは、Todoアプリとして実用的に使えないため <span class="masked">データの永続化 (Data Persistence)</span> の機能が必要となります。「**データの永続化**」とは、簡単に言えば **ブラウザをリロードしたとき** や **次回アクセスしたとき** にも継続的にアプリを利用できるように <span class="masked">データや状態を不揮発性の領域に保存すること</span> です。
 
-ウェブアプリにおいて「データの永続化」は、通常、**バックエンド側 (サーバ側) でデータベース (RDBやNoSQLなど)** を利用して実装されます。バックエンドでの実装することで、ユーザは異なるデバイスからアクセスしても (ユーザ認証を経たうえで) 継続的にアプリの利用ができます。
+ウェブアプリにおいて「データの永続化」は、通常、**バックエンド側 (サーバ側) でデータベース (RDBやNoSQLなど)** を利用して実装されます。バックエンドで実装することで、ユーザは異なるデバイスからアクセスしても (ユーザ認証を経たうえで) 継続的にアプリの利用ができます。
 
 しかし、まだ現時点ではバックエンド開発は学んでいないので、ここではブラウザの「**LocalStorage**」という機能を使って、**フロントエンドでのデータの永続化** を実装します。LocalStorage とは、ウェブブラウザに組み込まれている **キーバリュー型のストレージ機能** (Pythonの `dict` のようなシンプルな <span class="masked">「キー(key)」と「値(Value)」のペアでデータを保存する機能</span>) で、ブラウザを終了してもデータが残ることが特徴です。
 
@@ -1106,7 +1111,7 @@ LocalStorageは **ブラウザごとに独立した保存領域** を持ちま�
 LocalStorage は、**1オリジンあたり約5MB** が一般的な容量制限になっています。ここでの「オリジン」とは「**プロトコル（http/https）**」「**ドメイン**」「**ポート**」の組み合わせを指します。
 
 
-例えば、Todoアプリを GitHub Pagaes にデプロイするとすれば、次のようになります。
+例えば、Todoアプリを GitHub Pages にデプロイするとすれば、次のようになります。
 
 - https://hoge777.github.io/react-todo-app/ の LocalStorage は約5MB
 - https://hoge777.github.io/portfolio/ は「同じオリジン」なので **上記とあわせて約5MB**
@@ -1131,7 +1136,7 @@ LocalStorage は、**1オリジンあたり約5MB** が一般的な容量制限�
 
 現在のTodoアプリに LocalStorage を組み込んでデータを永続化するには `src/App.tsx` に次のように実装します (<span class="masked">`useEffect` という Reactの Hook</span> の利用が実装のポイントとなります)。
 
-まずは、実際に動かしてみてください (**リロードしてもTodoリストが初期状態に戻ってしまわないこと**確認してください)。
+まずは、実際に動かしてみてください (**リロードしてもTodoリストが初期状態に戻ってしまわないこと**を確認してください)。
 
 ```ts{.numberLines caption="src/App.tsx (データの永続化)"}
 import { useState, useEffect } from "react"; // ◀◀ 追加
@@ -1184,12 +1189,12 @@ const App = () => {
 
 また、**第32行目** ～ **第36行目** の ` useEffect(() => {...}, [todos, initialized])` によって `todos` (または `initialized`) に更新があるときに、LocalStorage に `todos` をセーブする仕組みをつくっています。
 
-じつは、ここまでの解説では、あえて触れていはいなかったのですが、「**Reactによる画面更新のための再レンダリング**」=<span class="masked">第04回行目からの App関数 を再実行</span> という内部処理になっています。つまり、新規タスクの名前設定用の **テキストボックスに1文字入力するたびに** Reactにより画面の再レンダリングが実行されますが、その裏側では「**App関数の再実行**」が行なわれています (このあたりの仕組みは後述の動画を参照してください)。そのため、`useEffect` を利用しないと <span class="masked">テキストボックスに1文字打ち込むたびにTodoデータのロードやセーブが実行</span> されてしまいます。ここでは、LocalStorage を使っているため頻繁にロードとセーブをしても大きな問題はありません。しかし、一般的なウェブアプリでは **ウェブAPIを使ってデータの永続化** を行なうため、テキストボックスに１文字打ち込むたびにAPIを叩くような実装にすると、<span class="masked">短期間でAPIの利用上限に到達したり、膨大な課金が発生</span>してしまいます。注意してください。
+じつは、ここまでの解説では、あえて触れてはいなかったのですが、「**Reactによる画面更新のための再レンダリング**」=<span class="masked">第04行目からの App関数 を再実行</span> という内部処理になっています。つまり、新規タスクの名前設定用の **テキストボックスに1文字入力するたびに** Reactにより画面の再レンダリングが実行されますが、その裏側では「**App関数の再実行**」が行なわれています (このあたりの仕組みは後述の動画を参照してください)。そのため、`useEffect` を利用しないと <span class="masked">テキストボックスに1文字打ち込むたびにTodoデータのロードやセーブが実行</span> されてしまいます。ここでは、LocalStorage を使っているため頻繁にロードとセーブをしても大きな問題はありません。しかし、一般的なウェブアプリでは **ウェブAPIを使ってデータの永続化** を行なうため、テキストボックスに１文字打ち込むたびにAPIを叩くような実装にすると、<span class="masked">短期間でAPIの利用上限に到達したり、膨大な課金が発生</span>してしまいます。注意してください。
 
 
 `useEffect` の理解については [初心者向け！ReactのuseEffectが何してるのか20分で説明](https://www.youtube.com/watch?v=4INjmxXaPxU)@ Code Tips (動画) や[ウェブ検索](https://www.google.com/search?q=react+useeffect+解説)、生成AIを活用してください。
 
-この他、永続化の処理では「LocalStorageには文字列しか保存できない」という制約に対応するために `JSON.parse()` や `JSON.stringify()` を利用しています。特に、Date型の値は `JSON.stringify()` によって文字型に変換・保存された後、`JSON.stringify()` にはDate型の値に復元されない点に注意してください (文字列型として復元されます)。そのため **第21行目** のような工夫がされています。
+この他、永続化の処理では「LocalStorageには文字列しか保存できない」という制約に対応するために `JSON.parse()` や `JSON.stringify()` を利用しています。特に、Date型の値は `JSON.stringify()` によって文字列型に変換・保存された後、`JSON.parse()` ではDate型の値に復元されない点に注意してください (文字列型として復元されます)。そのため **第21行目** のような工夫がされています。
 
 以上のように、この永続化の処理は様々な工夫が詰められているので、色々と実験したり読み解いたりして理解を深めてください。
 
@@ -1400,14 +1405,14 @@ Published
 
 このチュートリアルで学んだことをベースとして **オリジナルのTodoアプリ** を開発して、GitHub Pages にデプロイし、その URL を提出してください。ゼロから構築しても、チュートリアルのなかで開発したものを改良する形でも OK です。
 
-- **_提出期限_** : **11月19日 (水) 23時**
+- **_提出期限_** : **11月12日 (木) 23時**
   - 上記の期日以降に採点します。
   - 課題の採点後は、**修正版の再提出・追提出があっても原則として再評価はしません** (＝採点がフィードバックされるまでは内容を更新して問題ありません)。
 - **_採点_** : GitHubリポジトリの **README** の内容を「5点満点」、アプリ本体やソースコードを「5点満点」で、**合計10点満点** で評価します。**7.6点** を標準とします。
 - **_提出先_** : Teamsの「**PG3-課題1**」にリポジトリのURLを提出
   - 🚨提出するURLは「**Todo アプリをホストしている GitHub Pages の URL**」ではなく、「**GitHub リポジトリの URL**」としてください。
   - `README.md` の先頭付近に「**Todoアプリをホストしている GitHub Pages の URL**」 を記載してください。
-  - `README.md` の末尾付近に「**開発期間: 2025.10.xx ~ 2025.11.xx (約XXX時間)**」のような内容を必ず記載してください。
+  - `README.md` の末尾付近に「**開発期間: 2026.10.xx ~ 2026.11.xx (約XXX時間)**」のような内容を必ず記載してください。
 - **_取り組み時間の目安_** : **16時間以上** ( 前回と今回の講義内容の取り組み時間を含む)。本科目は「学修単位科目」かつ「筆記試験がない科目」です。課題 (全3回) には十分な時間をかけて取り組んでください。
   - 結局、プログラミング系では、課題に取り組んでいる時間 (＝アウトプットに費やす時間) が、成長につながります。 
 - **_アドバイス_** : Todoアプリとしての「**機能 (独自性)**」や「**UI/UX**」を中心とした完成度の他、リポジトリの `README.md` の内容を評価します (最低、3枚以上のスクリーンショットを添えてください)。`README.md` には、次の内容を含めるようにしてください。
@@ -1419,7 +1424,7 @@ Published
 \
 
 
-提出された課題 (URL) は、知能情報コースの学生 (知能情報コースを志望する1年生を含む)、本校教員に共有します。また、この課題は、**インターンシップや就職の選考にポートフォリオとして使えるもの** (=<span class="masked">自分のスキルをや経験を証明するもの</span>) になるので、力を入れて取り組んで欲しいと考えています。
+提出された課題 (URL) は、知能情報コースの学生 (知能情報コースを志望する1年生を含む)、本校教員に共有します。また、この課題は、**インターンシップや就職の選考にポートフォリオとして使えるもの** (=<span class="masked">自分のスキルや経験を証明するもの</span>) になるので、力を入れて取り組んで欲しいと考えています。
 
 **(プロンプト例)**
 
