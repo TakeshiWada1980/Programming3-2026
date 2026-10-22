@@ -16,6 +16,10 @@ var:
 - 第05回講義 10月23日(金) [資料](lecture05.html)&ensp; **_小テスト4_** **_課題1_** <font size="-1">Todoアプリ開発2、GitHubPages にデプロイ</font>
 - 第06回講義 10月30日(木) 資料&ensp; <font size="-1">Next.js 開発環境の構築</font>
 
+---
+
+- 補講 (オンデマンド) 11月14日 (土) &ensp;[資料](additional01.html)&ensp;
+
 ## 参考資料
 
 - [2025年度 3I プログラミング3 講義資料](https://takeshiwada1980.github.io/Programming3-2025/)
