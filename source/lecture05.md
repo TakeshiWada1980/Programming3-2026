@@ -8,6 +8,8 @@ var:
 
 ## 連絡
 
+- 次回は「小テスト」はありません。
+
 ### 初回授業から現在までの授業の流れ
 
 1. モダンTypeScript基礎学習のための環境構築 ***済***
@@ -77,14 +79,14 @@ export default App;
 - **WelcomeMessage コンポーネントには、現在の `todos` から数えた未完了件数を渡す** 点も確認してください。
 
 ::: {.balloon .char-01 .face-05 .tone-blue}
-前回講義の [Todoリストのソートに関する処理 (演習) ](lecture04.html#演習-3) を実装している場合は、**src/TodoList.tsx** の `const todos = ...;` を、一旦 `const todos = props.todos;` に戻しておいてください
+前回講義の [Todoリストのソートに関する処理 (演習) ](lecture04.html#演習-3) を実装している場合は、**src/TodoList.tsx** の `const todos = ...;` を、一旦 `const todos = props.todos;` に戻しておいてください。
 
-また、同様に [宿題](lecture04.html#演習-宿題) で、**src/TodoList.tsx ** で Todo リストの「デザイン」や「スタイル」をカスタマイズしているときは、一旦、現在のファイルを **プロジェクトフォルダの外部にコピーするなどして退避** しておいてください。
+また、同様に [宿題](lecture04.html#演習-宿題) で、**src/TodoList.tsx** で Todo リストの「デザイン」や「スタイル」をカスタマイズしているときは、一旦、現在のファイルを **プロジェクトフォルダの外部にコピーするなどして退避** しておいてください。
 :::
 
 前回講義では **src/initTodos.ts** は 3件分の Todoオブジェクト配列 で構成されていたと思います。これを、[initTodos.ts](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step00/initTodos.ts) のように 4件分の Todoオブジェクト配列  に差し替えておいてください。
 
-以上について確認できたら、VSCode のターミナルから `npm run dev` を開発モードで起動してください。以下のような画面となっているはずです。
+以上について確認できたら、VSCode のターミナルから `npm run dev` を実行し、開発モードでアプリを起動してください。以下のような画面となっているはずです。
 
 ![img](figs/05/app_2_01.png)
 
@@ -396,7 +398,7 @@ React の状態を値の基準にして、このように入力を扱うもの�
 :::prompts
 - React の文脈で Controlled Input とはなんですか。
 
-- JSX (HTML) の `input` の属性 `id`、`name`、`tyep`、`value`、`onChange`、`className`、`placeholder` について解説してください。
+- JSX (HTML) の `input` の属性 `id`、`name`、`type`、`value`、`onChange`、`className`、`placeholder` について解説してください。
 
 :::
 
@@ -1339,7 +1341,7 @@ JSX の `<TodoList ... />` と `<form ...>` の間に、次のボタンを追加
 完了・未完了が混在した状態で押下し、完了済みだけが消えることを確認してください。削除後、**未完了件数は変化せず**、さらに、**第98行目** の設定によって <span class="masked">完了済みが 0 件になるとボタンが無効になること</span> も確認してください。
 
 ::: {.balloon .char-01 .face-02 .tone-yellow}
-ブラウザで「再読み込み」をすると、アプリが再起動し、`initTodo.ts` で定義された初期データをもとに Todo リストが再び初期化されます。データの永続化については、あとで学習します。
+ブラウザで「再読み込み」をすると、アプリが再起動し、`initTodos.ts` で定義された初期データをもとに Todo リストが再び初期化されます。データの永続化については、あとで学習します。
 :::
 
 - ここまでの実装例 👉 [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step07/App.tsx)。
@@ -1706,7 +1708,7 @@ LocalStorage は、**「キー」と「値」のペアでデータを保存す�
 
 LocalStorage の内容は、ブラウザを閉じたあとも保持できます。ただし、保存領域は **端末のブラウザ (プロファイル) ごと、オリジンごと**に分かれています。
 
-たとえば、寝屋川タヌキと萱島ウサギが、それぞれ別の PC のブラウザで Todo アプリを使っているとします。この場合、寝屋川タヌキが「高専に侵入」という Todo を追加しても、萱島ウサギの Todo リストには影響しません。
+たとえば、「寝屋川タヌキ」と「萱島ウサギ」が、それぞれ別の PC のブラウザで Todo アプリを使っているとします。この場合、「寝屋川タヌキ」が「高専に侵入」という Todo を追加しても、「萱島ウサギ」の Todo リストには影響しません。
 
 ::: {.note .type-tips}
 **保存領域とオリジンについて**
@@ -1872,137 +1874,69 @@ useEffect(() => {
 
 ## Reactアプリを GitHub Pages にデプロイする手順
 
-Todoアプリを GitHub Pages にデプロイ するための手順について解説します。
+ここまで開発した Todo アプリを **GitHub Pages にデプロイ（公開）** して、自分の PC 以外からも利用できるようにしていきます。
 
-以前に HTML/CSS でポートフォリオサイトを作成したときとは違って、**単純に GitHub Pages の機能を有効化するだけでは「Reactアプリは機能しない」ため注意** してください。
+::: {.balloon .char-01 .face-02 .tone-yellow}
 
-### 準備
+プログラミング1 の授業のなかで HTML と CSS で作成したポートフォリオサイトとは違って、今回のプロジェクトには TypeScript や JSX のコードが含まれています。
 
-VSCodeのターミナルから[gh-pages](https://www.npmjs.com/package/gh-pages)というパッケージのインストールしてください。開発だけに使用するので `-D` オプションを付けてください。
+そのため、ソースコードをそのまま GitHub に配置するだけではなく、**ビルドによって生成された HTML・CSS・JavaScript などのファイルを公開する必要があります**。前回の講義で学んだように、`npm run build` を実行すると、これらのファイルが **dist** フォルダに生成されます。
+::: 
 
-```
-npm i -D gh-pages
-```
+今回は、**GitHub Actions** という「GitHub 上で処理を自動実行する仕組み」を利用します。最初に設定しておくと、次の流れで公開・更新できるようになります。
 
-また、同様に `@types/node` という型定義ファイルも `-D` オプションを付けてインストールしてください。
+1. 自分の PC でコードを変更・コミットし、GitHub にプッシュする。
+2. GitHub Actions が、GitHub 上で依存パッケージのインストールとビルドを実行する。
+3. ビルドで生成された **dist フォルダ** の内容が、GitHub Pages に公開される。
 
-```
-npm i -D @types/node
-```
+以下では、リポジトリ名を **react-todo-app**、公開するコードのブランチを **main** として G説明します (この手順は [Vite の公式ドキュメント](https://vite.dev/guide/static-deploy.html#github-pages) を基にしています)。
 
-プロジェクトフォルダを GitHub の **パブリックリポジトリ** として発行してください。既にリポジトリを発行済みの場合は「**コミット**」と「**同期 (Push)**」を実行しておいてください。
+### GitHub リポジトリの準備
 
-![img](figs/05/deploy_01.png)
+まず、VSCode のソース管理から、現在のプロジェクトを GitHub の **パブリックリポジトリ** として発行してください。リポジトリ名は **react-todo-app** とします。既に発行済みの場合は、そのリポジトリを引き続き使用してください。
 
-![img](figs/05/deploy_02.png)
+`[Ctrl]+[Shift]+[P]` でコマンドパレットを起動して `Publish GitHub` を入力してください。
 
-### 初回設定
+![GitHub にリポジトリを発行する](figs/05/deploy_2_01.png)
 
-これは「**初回のみ必要な処理**」となります。
+![パブリックリポジトリとして発行する](figs/05/deploy_02.png)
 
-<div class="note type-caution">
-注意: 必ず `main` ブランチの **コミットとプッシュ (同期) を完了させた状態** で、以下の処理を実行してください。`main` ブランチのなかに「未保存のファイル」や「コミットしていないファイルが存在する状態」で以下の処理を実行すると予期せぬ問題が発生します。
-</div>
+また、**package.json** と **package-lock.json** が、どちらも Git の管理対象になっていることを確認してください。GitHub Actions は、これらのファイルを使ってビルドに必要な環境を復元します。
 
-VSCodeのターミナルから順番に実行してください (1行ずつ応答を確認しながら実行してください)。
-
-```
-git checkout --orphan gh-pages
-git rm -rf .
-git commit --allow-empty -m "Initial gh-pages commit"
-git push origin gh-pages
-git checkout main
-```
-
-- 途中、VSCodeで「`.gitignore` を更新しますか」という旨のダイアログが表示されることがありますが、無視してください。
-
-以上は、**GitHub Pages でウェブサイトをホストするための準備作業** として一般的に使用される一連のコマンドです。詳細について知りたいときは、生成AIを利用してください。
-
-なお、`git rm -rf .` によって**一時的に全ファイルが消去されますが**、 `git checkout main` で mainブランチに戻ると復活するので安心してください。
+- **node_modules フォルダ** と **dist フォルダ** は、これまでどおり **.gitignore** による除外対象のままで構いません。
 
 ### GitHub Pages の設定
 
-ウェブブラウザで「Todoアプリ」のリポジトリに移動して、**以下のように設定されていることを確認**してください。もし、自動的に設定されていない場合は、図のように設定してください。
+ウェブブラウザで、発行したリポジトリを開き、次のように設定してください。
 
-![img](figs/05/deploy_03.png)
+1. リポジトリの「**Settings**」タブを開き、左側の「**Pages**」を選択する。
+2. 「**Build and deployment**」の「**Source**」で「**GitHub Actions**」を選択する。
 
-なお、この時点では、`https://xxxx.github.io/react-todo-app/` にアクセスしても <span class="masked">「404」</span> となります。実際に確認してください。
+このあと、処理内容を記述するファイルを VSCode で作成します。この画面でワークフローのテンプレートを選択したり、ファイルを作成したりする必要はありません。
 
-### index.html の編集と 404.html の追加
+なお、以前に `github-pages` 環境で公開できるブランチを制限している場合は、その設定によってデプロイできないことがあります。
 
-プロジェクトフォルダの直下にある `index.html` の `<head>` タグの子要素として、次のような `<script>` タグを追加してください。`index.html` の全体コードは[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/05/index.html)のようになります。
+### Vite の公開先の設定
 
-```html{.numberLines caption="index.html (抜粋)"}
-<script type="text/javascript">
-  (function (l) {
-    if (l.search[1] === "/") {
-      var decoded = l.search
-        .slice(1)
-        .split("&")
-        .map(function (s) {
-          return s.replace(/~and~/g, "&");
-        })
-        .join("?");
-      window.history.replaceState(
-        null,
-        null,
-        l.pathname.slice(0, -1) + decoded + l.hash
-      );
-    }
-  })(window.location);
-</script>
+GitHub Pages での公開先は、通常、次のような URL になります。`xxxx` は **自分の GitHub アカウント名** に読み替えてください。
+
+```
+https://xxxx.github.io/react-todo-app/
 ```
 
-また、同様に **プロジェクトフォルダの直下** に `404.html` というファイルを新規作成して[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/05/404.html)のコードを貼付けて保存してください。
+このように、ドメインの直後ではなく **/react-todo-app/ の下に公開する** ことに合わせて、Vite の `base` を設定します。これは、ビルドした JavaScript や CSS などを、正しい URL から読み込めるようにするための設定です。
 
-![img](figs/05/deploy_04.png)
-
-### 各種設定ファイルの変更
-
-`package.json` のなかに `"homepage"` を追加し、さらに `"scripts"` のなかに `"predeploy"` と `"deploy"` を追加してください。
-
-- `"homepage"` の `xxxx` の部分は <span class="masked">自分のGitHubアカウント</span> に書き換えてください。
-
-```json{.numberLines caption="package.json (抜粋)"}
-"homepage": "https://xxxx.github.io/react-todo-app",
-"scripts": {
-  "dev": "vite",
-  "build": "tsc -b && vite build",
-  "lint": "eslint .",
-  "preview": "vite preview",
-  "predeploy": "npm run build",
-  "deploy": "gh-pages -d dist"
-},
-```
-
-設定項目を追加する際は、**カンマ** `,` **等の付け忘れに注意**してください。また、JSONファイルに「コメント」を追加するとビルドエラーになる可能性があるので注意してください。
-
-![img](figs/05/deploy_05.png)
-
-`vite.config.ts` を以下のように編集してください。
+プロジェクトのルートにある **vite.config.ts** を、以下のように変更してください。第 04 回の React・Tailwind CSS・開発サーバの設定は引き継ぎ、**第08行目** に `base` を追加しています。
 
 ```ts{.numberLines caption="vite.config.ts"}
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
-import path from "path"; // ◀◀ 追加
-
-const repositoryName = "react-todo-app"; // ◀◀ 追加
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  // ▼▼ 追加 ここから ▼▼
-  base: process.env.NODE_ENV === "production" ? `/${repositoryName}/` : "/",
-  build: {
-    rollupOptions: {
-      input: {
-        main: path.resolve(__dirname, "index.html"),
-        404: path.resolve(__dirname, "404.html"),
-      },
-    },
-  },
-  // ▲▲ 追加 ここまで ▲▲
+  base: "/react-todo-app/", // ◀◀ 追加
   server: {
     port: 3000,
     strictPort: false,
@@ -2011,57 +1945,178 @@ export default defineConfig({
 });
 ```
 
-一旦、ここまでの内容で「コミット」と「同期 (Push)」をしておいてください。以上で設定は終わりです。
+リポジトリ名が異なる場合は、`base` も **`"/自分のリポジトリ名/"`** に変更してください。前後のスラッシュ `/` も含めて指定します。
 
-### 発行 Publish
+また、この設定は開発中にも使われます。以降、`npm run dev` で起動したときは、**http://localhost:3000/react-todo-app/** のように、ターミナルに表示される URL を開いてください。
 
-ここからは、Todoアプリを書き換えて、その内容を GitHub Pages に反映したいときには、<span class="masked">その都度、実行する必要がある処理</span> になります。
+### ワークフローの作成
 
-VSCodeのターミナルから以下のコマンドを実行してください。
+GitHub Actions に実行してもらう処理の流れを「**ワークフロー**」といいます。ここでは、**main ブランチにプッシュされたら、ビルドして GitHub Pages に公開する** というワークフローを作成します。
 
-```
-npm run predeploy
-```
-
-このコマンドは実質的に `npm run build` と同じです。エラーがあれば修正してください。
-
-特にエラーがなければ、以下のコマンドを実行してください。
+VSCode で、プロジェクトのルートに **.github フォルダ** を作成し、そのなかに **workflows フォルダ** を作成してください。さらに、そのなかに **deploy.yml** を新規作成してください。配置は次のようになります。
 
 ```
-npm run deploy
+react-todo-app/
+├─ .github/
+│  └─ workflows/
+│     └─ deploy.yml
+├─ src/
+├─ package.json
+├─ package-lock.json
+└─ vite.config.ts
 ```
 
-以下のように「**Published**」と出力されたらデプロイが **成功**🎉 (完了) です。以降、ソースファイルのコミットとプッシュにあわせて、適宜、上記の `npm run deploy` でデプロイを実行してください。 **デプロイ操作をしない限り、ソースコードをコミット＆プッシュしても、GitHub Pages にホストしているTodoアプリは更新されません**。
+**.github/workflows/deploy.yml** に、以下の内容を記述して保存してください。これは **YAML** という形式の設定ファイルです。字下げにも意味があるため、スペースや階層を崩さないようにしてください。
 
+```yaml{.numberLines caption=".github/workflows/deploy.yml"}
+name: Deploy React app to Pages
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v7
+        with:
+          node-version: "24"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: "./dist"
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
 ```
-PS C:\Users\xxxx\Documents\react-todo-app> npm run deploy
 
-> react-todo-app@0.0.0 predeploy
-> npm run build
+`on` では、処理を開始するきっかけを指定しています。ここでは **main ブランチへのプッシュ** のほか、Actions の画面から手動で実行することもできるようにしています。
 
+::: {.balloon .char-01 .face-05 .tone-blue}
+使用しているブランチ名が `main` ではない場合 (たとえば `master` など) は、**第05行目** の `branches` の指定を変更してください。
+:::
 
-> react-todo-app@0.0.0 build
-> tsc -b && vite build
+`steps` は、実行する処理を順番に並べたものです。GitHub 上の実行環境にコードを取得し、Node.js 24 系列を用意して、`npm ci` と `npm run build` を実行します。そのあと、**dist フォルダ** を公開用のファイルとしてアップロードし、GitHub Pages にデプロイします。
 
-vite v5.4.9 building for production...
-✓ 69 modules transformed.
-dist/index.html                  1.58 kB │ gzip:  0.77 kB
-dist/404.html                    1.92 kB │ gzip:  0.82 kB
-dist/assets/main-wUGgSDZ4.css    8.60 kB │ gzip:  2.30 kB
-dist/assets/main-DWqE2Lov.js   232.21 kB │ gzip: 76.33 kB
-✓ built in 1.64s
+`permissions` は、GitHub Actions がコードを読み取り、Pages に公開するための権限です。今回の構成では、個人用アクセストークンなどを自分で作成・登録する必要はありません。
 
-> react-todo-app@0.0.0 deploy
-> gh-pages -d dist
+::: prompts
+- Vite + React + TypeScript で開発したアプリを、GitHub Actions でビルドして GitHub Pages に公開します。GitHub Actions と GitHub Pages は、それぞれ何を担当するのですか。また、公開したアプリを利用する人の PC にも Node.js のインストールが必要ですか。開発・ビルド・アプリの実行を区別して説明してください。
+- React アプリの GitHub Actions で、`npm ci` のあとに `npm run build` を実行します。なぜ npm install ではなく npm ci を使うのですか。package.json と package-lock.json の役割、Vite や TypeScript を devDependencies に入れていてもビルド時には必要になる理由も説明してください。
+:::
 
-Published
+### コミット・プッシュと公開結果の確認
+
+ここまでの設定ファイルを含めてすべて保存し、VSCode のターミナルで、プロジェクトのルートから次のコマンドを実行してください。
+
+```bash
+npm run build
 ```
 
-ウェブブラウザから `https://xxxx.github.io/react-todo-app/` にアクセスしてTodoアプリが実際に利用できることを確認してください。
+エラーがあれば修正し、ビルドできることを確認してください。そのあと、VSCode のソース管理から「**コミット**」と「**同期 (Push)**」を実行します。**vite.config.ts** と **.github/workflows/deploy.yml**、および **package-lock.json** を含めて、必要なファイルをプッシュしてください。
 
-![img](figs/05/deploy_06.png)
+プッシュが完了したら、ウェブブラウザでリポジトリの「**Actions**」タブを開いてください。「**Deploy React app to Pages**」という名前のワークフローが実行されます。
 
-なお、[react-router-dom](https://www.google.com/search?q=react-router-domとは)による **ルーティング** を使ったReactアプリを GitHub Pages でホストする場合は、さらにひと工夫が求められます。これについては個別に質問してくれれば個別にレクチャします ([main.tsx](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/05/main.tsx),[Router.tsx](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/05/Router.tsx))。
+![img](figs/05/deploy_2_02.png)
+
+その実行結果を開き、`deploy` の処理が **緑色のチェックマークで成功するまで** 待ってください。**プッシュが成功しただけでは、公開まで成功したとは限りません**。
+
+成功したら、「**Settings → Pages**」に表示される公開先の URL を開いてください。今回の例では **https://xxxx.github.io/react-todo-app/** です。Todo の追加・完了切り替え・削除を試し、リロードしても内容が保持されることを確認してください。
+
+![img](figs/05/deploy_2_03.png)
+
+::: {.balloon .char-01 .face-01 .tone-pink}
+
+自分の PC の **localhost** と GitHub Pages はオリジンが異なります。LocalStorage のデータも別になるため、**開発中に保存した Todo が、そのまま公開先に移るわけではありません**。
+
+:::
+
+### アプリを更新したときの手順
+
+初回の設定が済んだら、以降は次の流れでアプリを更新していきます。
+
+1. 自分の PC でコードを変更し、開発サーバで表示や動作を確認する。
+2. `npm run build` を実行し、ビルドできることを確認する。
+3. 変更をコミットし、main ブランチにプッシュする。
+4. GitHub の「Actions」で成功を確認し、公開先を開いて変更が反映されていることを確認する。
+
+このように、**main ブランチへのプッシュをきっかけに、ビルドと公開が自動で行われます**。修正をコミットしただけで、プッシュを忘れないようにしてください。
+
+### うまく公開できないとき
+
+公開できない場合は、まず「**Actions**」の実行結果を開き、**どの処理でエラーになったか** を確認してください。
+
+- **Install dependencies で失敗する場合**：**package-lock.json** がプッシュされているか、**package.json** と一緒に更新されているかを確認してください。パッケージを追加・変更した場合は、ローカルで `npm install` を実行したあとの両ファイルをコミット・プッシュします。
+- **Build で失敗する場合**：ログに表示される型エラーやファイル名を確認してください。GitHub 上では Linux でビルドするため、**TodoList.tsx** を **Todolist.tsx** としてインポートしているような、大文字・小文字の違いも問題になります。
+- **Setup Pages や Deploy to GitHub Pages で失敗する場合**：「Settings → Pages」の Source が **GitHub Actions** になっているか、ワークフローを記述し間違えていないかを確認してください。
+- **処理は成功したのに画面が表示されない場合**：開いている URL と、**vite.config.ts** の `base` がリポジトリ名に合っているかを確認してください。`F12` でデベロッパーツールを開くと、JavaScript や CSS の読み込みエラーなども確認できます。
+
+原因が分からない場合は、試したこととエラーメッセージを整理して、生成 AI や周囲の詳しい学生、教員に相談してください。
+
+#### 定着確認
+
+- React アプリのソースコードをコミットしたが、GitHub にプッシュしていない。main ブランチへのプッシュで公開するワークフローによって、公開先は更新されるか答えよ。
+  - 答え: <span class="masked">更新されない。main ブランチにプッシュする必要がある。</span>
+- Vite で開発した React アプリを `https://xxxx.github.io/my-todo/` に公開する場合、`base` に指定する文字列を答えよ。
+  - 答え: <span class="masked">`"/my-todo/"`。</span>
+- GitHub Actions で `npm ci` を使って環境を復元するために、package.json とともに Git で管理するファイル名を答えよ。
+  - 答え: <span class="masked">package-lock.json。</span>
+- GitHub へのプッシュが成功したあと、React アプリの公開まで成功したことを確認するには、何を確認するか答えよ。
+  - 答え: <span class="masked">Actions でワークフローの成功を確認し、公開先の URL でアプリの表示・動作を確認する。</span>
+
+### おまけ：URL に応じた画面切り替え（ルーティング）
+
+皆さんが普段利用している Web アプリには、「**一覧画面**」「**詳細画面**」「**設定画面**」のように、複数の画面を切り替えられるものがあります。また、画面を切り替えると URL も変わり、その URL を開くと目的の画面を直接表示できるものもあります。
+
+このように、**URL に応じて表示する画面を切り替える仕組みを「ルーティング」** といいます。React でも、[React Router](https://reactrouter.com/start/declarative/installation) というライブラリなどを使って実装できます。React Router には、通常の URL のパスを使う **BrowserRouter** や、URL の `#` 以降を使う **HashRouter** があります。
+
+ただし、**BrowserRouter を使うアプリを GitHub Pages に公開すると、アプリ内では画面を移動できても、移動先の URL を直接開いたり、リロードしたりすると「404」になることがあります**。例えば、`/react-todo-app/settings` という URL に対応するファイルは、GitHub Pages 上にはないためです。
+
+GitHub Pages で公開する場合は、[HashRouter](https://reactrouter.com/api/declarative-routers/HashRouter) を使い、**`/react-todo-app/#/settings`** のような URL にすることで、この問題を回避できます。なお、JavaScript や CSS を読み込むための Vite の `base` 設定は、引き続き必要です。
+
+今回の Todo アプリは、ルーティングを使わず、1 つの画面のなかで操作が完結するように作成しました。**画面切り替えにも挑戦したい人** は、以下のプロンプト例を利用して、ルーティングの仕組みや GitHub Pages で起こる問題、その解決方法について探究してみてください。
+
+::: prompts
+- React + TypeScript で、1 つの画面だけを持つ Todo アプリを作りました。ここに「Todo 一覧」と「アプリの説明」の 2 画面を用意したいです。そもそもルーティングとは何ですか。useState で表示内容を切り替える方法と、URL を使う方法には、どのような違いがありますか。ブラウザの戻る・進むや、URL を人に送る場合も含めて説明してください。
+- React Router の BrowserRouter と HashRouter は、どのように URL を扱うのですか。GitHub Pages の `https://xxxx.github.io/react-todo-app/` に公開する場合を例に、2 つの方式を比較してください。xxxx は GitHub のアカウント名です。
+- React Router の BrowserRouter を使ったアプリを GitHub Pages に公開しました。アプリ内のリンクから settings 画面には移動できますが、`https://xxxx.github.io/react-todo-app/settings` を直接開いたり、その画面でリロードしたりすると 404 になります。なぜ操作によって結果が違うのですか。ブラウザ内の処理と、サーバに送られるリクエストを分けて説明してください。
+- `https://xxxx.github.io/react-todo-app/#/settings` という URL を開くとき、サーバにはどの部分が送られますか。`#` 以降の部分を HashRouter がどのように使うのか、なぜ GitHub Pages の 404 問題を回避できるのかを説明してください。Chrome のデベロッパーツールでリクエストを確認する方法も知りたいです。
+- Vite の開発サーバでは BrowserRouter の画面をリロードできるのに、GitHub Pages では 404 になるのはなぜですか。`npm run preview` で確認できることと、実際に GitHub Pages に公開して確認する必要があることを区別して説明してください。
+- React + TypeScript + Vite のアプリを GitHub Pages の `/react-todo-app/` に公開し、HashRouter で `/react-todo-app/#/settings` のような URL を使います。Vite の `base` と React Router の `basename` は、それぞれ何のための設定ですか。この構成では、HashRouter にもリポジトリ名の basename を設定する必要がありますか。
+- React Router の HashRouter を使って画面を切り替えたいです。`<a href="/settings">` と `<Link to="/settings">` は、移動先の URL やページの読み込み方がどう違いますか。なぜアプリ内の画面切り替えでは Link を使うのか、短い例で説明してください。
+- React + TypeScript + Vite で Todo アプリを作り、GitHub Pages で公開しています。HashRouter を使って「Todo 一覧」と「アプリの説明」の 2 画面を作るための、最小限の構成を教えてください。既存のプロジェクトに React Router を追加する前提とし、HashRouter・Routes・Route・Link の役割と、変更するファイルを説明してください。コードを提示したあと、私が仕組みを理解できたか確認する質問もしてください。
+- HashRouter を使う React アプリを GitHub Pages に公開しました。画面内のリンク、URL の直接入力、リロード、戻る・進むを確認するには、どのような手順で試せばよいですか。また、`#/settings` と `#/存在しない画面` の両方を開いたとき、GitHub Pages と React Router のどちらが表示を担当するかも説明してください。
+:::
 
 ## 課題1
 
@@ -2077,19 +2132,18 @@ Published
   - 🚨提出するURLは「**Todo アプリをホストしている GitHub Pages の URL**」ではなく、「**GitHub リポジトリの URL**」としてください。
   - `README.md` の先頭付近に「**Todoアプリをホストしている GitHub Pages の URL**」 を記載してください。
   - `README.md` の末尾付近に「**開発期間: 2026.10.xx ~ 2026.11.xx (約XXX時間)**」のような内容を必ず記載してください。
-- **_取り組み時間の目安_** : **16時間以上** ( 前回と今回の講義内容の取り組み時間を含む)。本科目は「学修単位科目」かつ「筆記試験がない科目」です。課題 (全3回) には十分な時間をかけて取り組んでください。
+- **_取り組み時間の目安_** : **16時間以上** ( 前回と今回の講義内容の取り組み時間を含む)。本科目は「学修単位科目」かつ「筆記試験がない科目」です。課題には十分な時間をかけて取り組んでください。
   - 結局、プログラミング系では、課題に取り組んでいる時間 (＝アウトプットに費やす時間) が、成長につながります。 
-- **_アドバイス_** : Todoアプリとしての「**機能 (独自性)**」や「**UI/UX**」を中心とした完成度の他、リポジトリの `README.md` の内容を評価します (最低、3枚以上のスクリーンショットを添えてください)。`README.md` には、次の内容を含めるようにしてください。
+- **_アドバイス_** : Todoアプリとしての「**機能 (独自性)**」や「**UI/UX**」を中心とした完成度の他、リポジトリの `README.md` の内容を評価します (最低、3枚以上のスクリーンショットを添えてください)。次のような内容を含めるようにしてください。
     - アプリの機能やコンセプト。これを記載しておかないと「**頑張って実装した機能に気付いてもらえないこと**」があります。スクリーンショットなどがあると分かりやすいです。
       - **特に挑戦・工夫したところ、オリジナリティを持たせているところ**。それらの「着想」や「経緯」についても書かれていると (就活のポートフォリオとして) 高評価・好印象です👍また、汎用性を追求したアプリよりも、自身の体験や環境に基づく**ニッチなニーズを満たすアプリの方が圧倒的に受けが良い**です。
       - 「授業の課題だから仕方なしに作業的に作成した感」が透けて見えると低評価・悪印象です。README に「課題1」のような文言は記載しないことをお勧めします。
     - 使用技術 (技術スタック、主要ライブラリ)、開発に要した時間や期間など。
 
-\
-
+---
 
 提出された課題 (URL) は、知能情報コースの学生 (知能情報コースを志望する1年生を含む)、本校教員に共有します。また、この課題は、**インターンシップや就職の選考にポートフォリオとして使えるもの** (=<span class="masked">自分のスキルや経験を証明するもの</span>) になるので、力を入れて取り組んで欲しいと考えています。
 
-**(プロンプト例)**
-
-> IT系の就活を意識したポートフォリオでは、「汎用性を追求したアプリよりも、自身の体験や環境に基づくニッチなニーズを満たすアプリの方が圧倒的に受けが良い」と言われました。どういうことですか。
+:::prompts
+- IT系の就活を意識したポートフォリオでは、「汎用性を追求したアプリよりも、自身の体験や環境に基づくニッチなニーズを満たすアプリの方が圧倒的に受けが良い」と言われました。どういうことですか。
+:::

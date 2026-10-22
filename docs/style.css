@@ -502,6 +502,120 @@ div.note > pre {
   font-size: 85%;
 }
 
+/* ------- プロンプト例 ------- */
+
+.markdown-body .prompts {
+  margin: 1em 0;
+}
+
+.markdown-body .prompt-heading {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25em 0.7em;
+  margin-bottom: 0.5em;
+}
+
+.markdown-body .prompt-status {
+  color: #6a737d;
+  font-size: 0.75em;
+}
+
+.markdown-body .prompt-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35em;
+  font-size: 1.15em;
+  color: #7654a3;
+}
+
+.markdown-body .prompt-title i { margin: 0; }
+
+.markdown-body .prompts > ul > li {
+  display: block;
+  margin: 0.7em 0 0.7em 1em;
+  padding: 0;
+  text-indent: 0;
+}
+
+.markdown-body .prompts > ul > li::before {
+  content: none;
+}
+
+.markdown-body .prompt-copy {
+  display: flex;
+  align-items: start;
+  gap: 0.5em;
+  min-width: 0;
+  padding: 0.2em 0.4em 0.2em 1em;
+  border-left: 0.25em solid #d8cde7;
+  border-radius: 0 4px 4px 0;
+  color: #6a737d;
+  cursor: pointer;
+}
+
+.markdown-body .prompt-copy:hover {
+  background: #f6f8fa;
+}
+
+.markdown-body .prompt-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.markdown-body .prompt-text > :first-child { margin-top: 0; }
+.markdown-body .prompt-text > :last-child { margin-bottom: 0; }
+.markdown-body .prompt-text p { text-indent: 0; }
+.markdown-body .prompt-text :not(pre) > code { background: var(--code-quote-background); }
+
+.markdown-body .prompt-copy-icon {
+  color: #7b8188;
+  font-size: 0.8em;
+  padding-top: 0.15em;
+}
+
+.markdown-body .prompt-links {
+  display: flex;
+  border: 1px solid #d8cde7;
+  border-radius: 5px;
+  background: #f6f2fa;
+}
+
+.markdown-body a.prompt-ai-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2em;
+  height: 2em;
+  border: 0;
+  border-right: 1px solid #d8cde7;
+  color: #9a86b5;
+  background: transparent;
+  transition: none;
+}
+
+.markdown-body a.prompt-ai-link:first-child { border-radius: 4px 0 0 4px; }
+.markdown-body a.prompt-ai-link:last-child { border-right: 0; border-radius: 0 4px 4px 0; }
+.markdown-body a.prompt-ai-link:is(:hover, :focus-visible) {
+  color: #7654a3;
+  background: #ece3f5;
+}
+.markdown-body .prompt-ai-link svg { width: 1.1em; height: 1.1em; }
+.markdown-body .prompt-ai-link i,
+.markdown-body .prompt-copy-icon i { margin: 0; }
+
+.markdown-body .prompt-copy:focus-visible,
+.markdown-body .prompt-ai-link:focus-visible {
+  outline: 3px solid #7654a3;
+  outline-offset: 2px;
+}
+
+@media print {
+  .prompt-links,
+  .prompt-copy-icon,
+  .prompt-status { display: none !important; }
+}
+
 /* ------- 吹き出し ------- */
 
 .markdown-body div.balloon {
