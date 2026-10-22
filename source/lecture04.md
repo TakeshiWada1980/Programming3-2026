@@ -1165,7 +1165,7 @@ React では、**フック（Hook）** と呼ばれる特別な仕組みを利�
 
 先ほどのサンプルアプリでは、**カウント値が変更されたときに、その結果を自動的に画面へ反映させたいため**、**第04行目**で `useState` を使用しています。
 
-具体的には、`useState(0)` によって、**現在のカウント値を保持する `count`** と、<span class="masked">**その値を更新するための関数 `setCount`**</span> を取得しています。
+具体的には、`useState(0)` によって、**現在のカウント値を保持する `count`** と、<span class="masked">その値を更新するための関数 `setCount`</span> を取得しています。
 
 ```tsx
 const [count, setCount] = useState(0);

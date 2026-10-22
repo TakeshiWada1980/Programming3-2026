@@ -38,9 +38,9 @@ var:
 前回講義の [Todoアプリの実装](lecture04.html#todoアプリの実装) のセクションでは、**Todoオブジェクトの配列** を `useState` で管理し、`map` を使って一覧を表示するところまで取り組みました。今回の内容は、<u>**そこまでの内容を理解したうえで実装できていることを前提とします**</u>。
 
 
-今回は、そこに **追加・更新・削除の操作** を実装していきます。前回準備したライブラリと、**src/types.ts** の `Todo` 型は、そのまま利用していきます。
+今回は、そこに **Todoの「追加」「更新」「削除」の操作** を実装していきます。
 
-まず、**src/App.tsx** が次の状態になっていることを確認してください。前回の動作確認で追加した `console.log` は、ここでは削除しています。**WelcomeMessage コンポーネントには、現在の `todos` から数えた未完了件数を渡す** 点も確認してください。
+まず、足並みを揃えて解説していくために、**src/App.tsx** が次のような実装になっていることを確認してください。
 
 <!-- code-source: docs/codes/05/step00/App.tsx#L1-L26 -->
 
@@ -73,28 +73,42 @@ const App = () => {
 export default App;
 ```
 
-前回の宿題で一覧をカスタマイズした人は、現在のファイルをプロジェクトの外にコピーするなどして退避しておいてください。今回の操作を順番に確かめたいときは、次の確認用コードを使ってください。リンク先のコードは、リンクに付けた名前のファイルに保存します。
+- 前回の動作確認で追加した `console.log` は、ここでは削除しています。
+- **WelcomeMessage コンポーネントには、現在の `todos` から数えた未完了件数を渡す** 点も確認してください。
 
-- [App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step00/App.tsx)、[TodoList.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step00/TodoList.tsx)、[WelcomeMessage.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step00/WelcomeMessage.tsx)
-- [types.ts](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step00/types.ts)、[initTodos.ts](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step00/initTodos.ts)
+::: {.balloon .char-01 .face-05 .tone-blue}
+前回講義の [Todoリストのソートに関する処理 (演習) ](lecture04.html#演習-3) を実装している場合は、**src/TodoList.tsx** の `const todos = ...;` を、一旦 `const todos = props.todos;` に戻しておいてください
 
-確認用の初期データは、期限あり・なし、完了・未完了を試せる 4 件にしています。**src/initTodos.ts** だけを差し替えることもできます。
-
-::: {.note .type-caution}
-**一覧の並び替えについて**
-
-前回の[並び替え演習](lecture04.html#演習-3)を実装している場合は、**src/TodoList.tsx** の `const todos = ...;` を、一旦 `const todos = props.todos;` に戻してください。ここからは「新規タスクが配列の末尾に追加されたこと」を画面でも確かめながら進めます。
+また、同様に [宿題](lecture04.html#演習-宿題) で、**src/TodoList.tsx ** で Todo リストの「デザイン」や「スタイル」をカスタマイズしているときは、一旦、現在のファイルを **プロジェクトフォルダの外部にコピーするなどして退避** しておいてください。
 :::
 
-VSCode のターミナルで `npm run dev` を実行し、Todo の一覧が表示されることを確認してください。以下の実装例は、各段階で **変更するファイルだけ** を用意しています。ファイルの配置に迷ったときや、自分のコードと比べたいときに利用してください。
+前回講義では **src/initTodos.ts** は 3件分の Todoオブジェクト配列 で構成されていたと思います。これを、[initTodos.ts](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step00/initTodos.ts) のように 4件分の Todoオブジェクト配列  に差し替えておいてください。
+
+以上について確認できたら、VSCode のターミナルから `npm run dev` を開発モードで起動してください。以下のような画面となっているはずです。
+
+![img](figs/05/app_2_01.png)
+
+また、念のため `npm run build` を実行し、ビルドがエラーなく完了することも確認してください。そのうえで、**現在の状態を記録しておくために、一度コミットしておくことをおすすめします**。これにより、以降の作業で追加・変更したコードを確認しやすくなります。
+
+::: {.balloon .char-01 .face-04 .tone-blue}
+上記のスクリーンショットと手元での実行結果に **大きな差異がある場合** は、各ファイルを以下の内容に差し替えてください。
+
+- [App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step00/App.tsx)、[TodoList.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step00/TodoList.tsx)、[WelcomeMessage.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step00/WelcomeMessage.tsx)、[types.ts](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step00/types.ts)
+:::
+
 
 ## 新規タスクの追加
 
-現在の Todo リストに「**新しいタスクを追加する処理**」を実装します。まずは、名前・優先度・期限をコード内で決めた Todo を追加できるようにします。入力欄は、このあと順番に実装していきます。
+現在の Todo リストに「**新しいタスクを追加する処理**」の本体とUIを実装していきます。具体的には、次のような画面になるように実装していきます。
+
+![img](figs/05/app_2_02.png)
+
+- 完成形を先に確認したい場合は、こちらの実装例を参照してください 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step01/App.tsx)
+
 
 ### 追加ボタンとイベントハンドラ
 
-**src/App.tsx** を次のように書き換えてください。`uuid` と `twMerge` は、前回インストールしたライブラリからインポートしています。
+**src/App.tsx** を次のように書き換えてください。
 
 <!-- code-source: docs/codes/05/step01/App.tsx#L1-L56 -->
 
@@ -157,59 +171,101 @@ const App = () => {
 export default App;
 ```
 
-「追加」ボタンの `onClick={addNewTodo}` により、ボタンが押下されたときに `addNewTodo` がコールされます。このように、**クリックなどのイベントが発生したときに実行する関数** を <span class="masked">イベントハンドラ</span> といいます。
+- **第06行目**の `uuid` と **第07行目** の `twMerge` は、[前回講義でインストールしたライブラリ](lecture04.html#準備-ライブラリのインストール) からインポートしています。
 
-`onClick` に渡すのは <span class="masked">関数そのもの</span> です。`onClick={addNewTodo()}` と書くと、ボタンが押下されるのを待たず、JSX をつくっているときに関数を実行してしまいます。両者の違いを説明できるようにしておいてください。
 
-::: prompts
-- TypeScript 環境の React で Todo アプリを開発しています。ボタンを押したときに、引数なしの addNewTodo 関数を実行したいです。なぜ `onClick={addNewTodo}` と書き、`onClick={addNewTodo()}` とは書かないのですか。関数を渡すことと、関数を実行することの違いを短い例で説明してください。
+::: {.balloon .char-01 .face-02 .tone-yellow}
+**src/App.tsx** に追加したコードは、VSCode の Git の **差分表示機能** を利用して確認してみてください。変更前後のコードを比較できるため、追加箇所を把握しやすくなります。
+
+![img](figs/05/vscode_02.png)
 :::
 
-### 前の状態から次の状態をつくる
+まずは開発モードでアプリを動かし、動作を確認してください (「追加」ボタンを押下すると、リストの末尾に「新しいタスク」が追加され、未完了件数も増えることを確認してください)。
 
-`addNewTodo` では、最初に `newTodo` を生成しています。`id` は `uuid()` で生成し、「未完了」「優先度 3」「2026 年 11 月 13 日を期限」としています。`new Date(2026, 10, 13)` の月が `10` なのは、[Date の月は 0 から数える](lecture02.html#解説-月-month-の扱いについて)ためでした。
+![img](figs/05/app_2_02.png)
 
-つづいて、次の行で状態を更新しています。
+**追加** ボタンに設定された `onClick={addNewTodo}` により、ボタンがクリックされると、**第14行目** でアロー関数として定義された `addNewTodo` 関数が呼び出されます。このように、**クリックなどのイベントが発生したときに実行される関数** を <span class="masked">イベントハンドラ</span> といいます。
+
+`onClick` に渡すのは <span class="masked">関数そのもの</span> です。`onClick={addNewTodo()}` と記述すると、クリックされるのを待たずに、**コンポーネントのレンダリング時に関数が実行され、その戻り値が `onClick` に渡されてしまいます**。この違いは React を扱ううえで非常に重要なので、曖昧にせず、正確に理解しておいてください。
+
+::: prompts
+- TypeScript 環境の React で Todo アプリを開発しています。ボタンを押したときに、引数なしの addNewTodo 関数を実行したいです。なぜ `onClick={addNewTodo}` と書き、`onClick={addNewTodo()}` とは書かないのですか。関数を渡すことと、関数を実行することの違いが分かりません。
+:::
+
+### 「前の状態」から「次の状態」をつくる
+
+**第14行目** からの 関数 `addNewTodo` では、最初に `newTodo` を生成しています。
+
+id は `uuid()` で生成し、「未完了」「優先度 3」「2026 年 11 月 13 日を期限」としています。
+
+- `new Date(2026, 10, 13)` の「月」が `10` なのは、[Date の月は「0」から数える](lecture02.html#解説-月-month-の扱いについて) ためでした。
+
+つづいて、**第22行目** では、`setTodos` 関数を使って、Todoリストの「状態」を更新しています。
 
 <!-- code-source: docs/codes/05/step01/App.tsx#L22-L22 -->
 
 ```ts{.numberLines caption="src/App.tsx（抜粋）" startFrom=22}
 setTodos((currentTodos) => [...currentTodos, newTodo]);
 ```
+`setTodos` に渡している `(currentTodos) => [...currentTodos, newTodo]` を **updater 関数** といいます。引数名は `currentTodos` でなければならないわけではありません。例えば、`setTodos((t) => [...t, newTodo]);` でも問題ありませんが、この講義では、更新前の配列を表す名前として `currentTodos` を使っていきます。
 
-前回は、カウントアップの際に `setCount(count + 1)` のように、**次の値そのもの** を更新用の関数に渡しました。今回は、<span class="masked">前の状態を受け取り、次の状態を返す関数</span> を渡しています。
+::: {.balloon .char-01 .face-02 .tone-yellow}
 
-- `currentTodos` には、React がこの更新を処理する時点の配列が渡されます。
-- `[...currentTodos, newTodo]` で、末尾に `newTodo` を加えた **新しい配列** をつくって返します。
-- 返した配列が、次の `todos` になります。
+前回講義の [カウンタの実装](lecture04.html#状態管理) では、カウントアップの際に `setCount(count + 1)` のように、**次の値そのもの** を更新用の関数に渡しました。今回は、<span class="masked">前の状態を受け取り、次の状態を返す関数</span> を渡しています。
 
-このような関数を **updater 関数** といいます。名前は `currentTodos` でなければならないわけではありません。この講義では、更新前の配列を表す名前として使っていきます。
+1. `currentTodos` には、React がこの更新を処理する時点の配列が渡されます。
+2. `[...currentTodos, newTodo]` で、末尾に `newTodo` を加えた **新しい配列** をつくって返します。
+3. 返した配列が、次の `todos` になります。
 
-::: {.note .type-tips}
-`setTodos([...todos, newTodo])` という書き方でも、今回のような単独の追加操作は実装できます。ここでは、**前の状態を基に次の状態をつくる更新** を、追加・完了切り替え・削除で共通の書き方にそろえています。
-
-なお、updater 関数のなかでは、元の配列を書き換えずに次の配列を返してください。`uuid()` による ID の生成も、ここで示したように updater 関数の外で行ないます。
 :::
 
-### 動作確認と演習
 
-保存後、「追加」ボタンを何度か押下してください。**一覧の末尾に「新しいタスク」が追加され、未完了件数も増えること** を確認してください。
+::: {.note .type-senior}
 
-![Todo の追加](figs/05/app_02.png)
+**中級者向け**
 
-ここまでの実装例: [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step01/App.tsx)
+**第22行目** の追加処理は、`setTodos([...todos, newTodo])` と記述することもできます。しかし、ここでは追加・完了切り替え・削除のいずれについても、**updater 関数を利用して、前の状態から次の状態をイミュータブルに生成する方法**に統一しています。
+
+updater 関数のなかでは、**元の配列を変更（ミューテート）せず、新しい配列を返す**ようにしてください。また、React の updater 関数には**純粋関数であることが求められる**ため、`uuid()` による ID の生成も updater 関数の外で行ってください。
+
+例えば、以下のように updater 関数の内部で `uuid()` を呼び出す実装は不適切です。
+
+```ts{.numberLines caption="src/App.tsx" startFrom="14"}
+const addNewTodo = () => {
+  setTodos((currentTodos) => [
+    ...currentTodos,
+    {
+      id: uuid(),
+      name: "新しいタスク",
+      isDone: false,
+      priority: 3,
+      deadline: new Date(2026, 10, 13),
+    },
+  ]);
+};
+```
+
+この実装では、同じ `currentTodos` を受け取っても、呼び出すたびに異なる ID が生成されます。つまり、**同じ引数に対して同じ結果を返すという、純粋関数の性質を満たしていません**。React の開発環境 (Strict Mode) では updater 関数が2回呼び出される場合もあるため、このような処理は避けてください。
+
+:::
+
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+追加されたコードをじっくりと読み解き、それぞれの処理がアプリの動作にどのように紐付いているのかを確認・検証してみてください。
+:::
+
+- ここまでの実装例 👉 [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step01/App.tsx)
 
 #### 演習 <i class="fa-solid fa-stopwatch"></i>3分
 
-新規タスクを、配列の「末尾」ではなく「先頭」に追加するように変更してください。
-
-- 答え: <span class="masked">`setTodos((currentTodos) => [newTodo, ...currentTodos]);`</span>
+- 新規タスクを、配列の「末尾」ではなく「先頭」に追加するように変更してください。
+  - 答え: <span class="masked">`setTodos((currentTodos) => [newTodo, ...currentTodos]);`</span>
 
 画面上の追加位置が変わることを確認したら、末尾に追加する実装に戻しておいてください。
 
 ### NG: Todos 配列に対するミュータブルな操作
 
-第 03 回に学んだ[ミュータブルな配列操作](lecture03.html#参考-要素の追加と削除-ミュータブルな配列操作)を使うと、何が問題になるのか実験しておきます。**addNewTodo 関数だけ** を、一時的に次のように書き換えてください。
+Todoリストの更新を `push` メソッドなどを使った [ミュータブルな配列操作](lecture03.html#参考-要素の追加と削除-ミュータブルな配列操作) によって行なうと、どのような問題が生じるのかを実験しておきます。**addNewTodo 関数だけ** を、一時的に次のように書き換えてみてください。
 
 ```ts{.numberLines caption="src/App.tsx（実験用・NG な追加処理）"}
 const addNewTodo = () => {
@@ -226,30 +282,44 @@ const addNewTodo = () => {
 };
 ```
 
-「追加」ボタンを押下すると、デベロッパーツール (`F12`) のコンソールには、タスクが追加された配列が出力されます。しかし、<span class="masked">画面の一覧と未完了件数は更新されません</span>。
+この状態で「追加」ボタンを押してみてください。
 
-![ミュータブルな操作の確認](figs/05/app_01.png)
+デベロッパーツールのコンソールには、意図したように「新しいタスク」が追加された配列が出力されます。しかし、それにもかかわらず、画面上の Todo リストには「新しいタスク」の追加が反映されないという状態となってしまいます。
 
-`push` は元の配列を変更します。その配列を `setTodos` に渡しても、**前の状態と同じ参照の配列** なので、React は状態が変わっていないと判断して画面の更新を省略します。配列の内容が変わったかどうかを、React が隅々まで調べてくれるわけではありません。
+![ミュータブルな操作の確認](figs/05/app_2_03.png)
 
-実験後は、`push` と実験用の `console.log` を削除し、スプレッド構文を使った updater 関数の実装に戻してください。**ブラウザも一度リロードして、実験で直接変更した配列を初期状態に戻しておいてください**。
+::: {.balloon .char-01 .face-01 .tone-pink}
+なぜ、このようなことが生じるかは、前回、前々回の講義で解説済みですが非常に重要なことなので、改めて確認しておきます。
+:::
+
+配列の `push` メソッドは、元の配列そのものを書き換える処理となります (ミュータブルなオブジェクト操作です) 。そのため、`setTodos(todos)` を実行しても、**更新前と同じ配列（同じ参照）を渡している**ことになり、React は「<font color="deeppink"><b>状態が変化していない</b></font>」と判断して、再レンダリング (画面の再描画) を省略します。React は、**配列の中身までひとつひとつ調べて変更を検出しているわけではありません**。
+
+そのため、**配列の内容が実際には変わっていても、画面には反映されない**という問題が生じます。これが、React の状態をイミュータブルに更新する必要がある理由のひとつです。
+
+実験後は、`push` と実験用の `console.log` を削除し、**スプレッド構文を使った updater 関数による元の実装に戻してください**。また、実験中に直接書き換えた配列を初期状態に戻すため、**ブラウザも一度リロードしてください**。
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+ここまでの変更内容をコミットしておいてください。また、念のため `npm run build` を実行し、ビルドがエラーなく完了することも確認してください。
+:::
 
 #### 定着確認
 
-- React のボタンで、クリック時に関数 `addNewTodo` を実行したい。`onClick={addNewTodo}` と `onClick={addNewTodo()}` のうち、適切なほうを答えよ。
-  - 答え: <span class="masked">`onClick={addNewTodo}`。関数そのものをイベントハンドラとして渡す。</span>
-- React の状態である配列 `todos` に対し、`todos.push(newTodo); setTodos(todos);` と書く問題点を説明せよ。
-  - 答え: <span class="masked">元の配列を直接変更し、同じ参照を更新用の関数に渡している。新しい配列を渡す更新になっていない。</span>
-- `setTodos((currentTodos) => [...currentTodos, newTodo]);` の `currentTodos` と、アロー関数の戻り値が何を表すか答えよ。
-  - 答え: <span class="masked">`currentTodos` は更新を処理する時点の配列。戻り値は、末尾に `newTodo` を追加した次の状態の配列。</span>
+- React で、ボタンがクリックされたタイミングで `addNewTodo` 関数を実行したい。`onClick={addNewTodo}` と `onClick={addNewTodo()}` のどちらが適切か。また、その理由を説明せよ。
+  - 答え: <span class="masked">`onClick={addNewTodo}`。関数そのものを渡すことで、クリック時に実行される。`onClick={addNewTodo()}` では、レンダリング時に関数が実行されてしまう。</span>
+- React で、`useState` で管理している配列 `todos` に対して `todos.push(newTodo); setTodos(todos);` と記述すると、配列に新しい Todo が追加されても、画面に反映されないことがある。その理由を説明せよ。
+  - 答え: <span class="masked">`push` は元の配列を直接変更するため、`setTodos` に渡す配列の参照が更新前と変わらない。React は状態が変化していないと判断し、再レンダリングを省略するため。</span>
 
 ## 新規タスクの名前設定テキストボックスの追加
 
-つづいて、新規タスクの名前を設定する「**テキストボックス**」を追加します。前回の `useState` を使い、入力された文字列を状態として扱います。
+次に新規タスクの「名前」を設定するための「**テキストボックス**」を追加していきます。`useState` を用いてテキストボックスに入力された文字列を「状態」として扱います。
 
 ![名前入力欄](figs/05/app_03.png)
 
-### 入力文字列を状態にする
+- 完成形を先に確認したい場合は、こちらの実装例を参照してください 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step02/App.tsx)
+
+### 入力文字列を「状態」として扱う
+
+まずは、テキストボックスに入力された文字列を、React の「状態」として管理できるようにしていきます。入力内容を「状態」として保持することで、後々で、未入力のチェックなどのバリデーションにも活用できるようになります。
 
 **src/App.tsx** の `App` 関数内で、`todos` の状態の直後に次の行を追加してください。
 
@@ -269,7 +339,7 @@ const [newTodoName, setNewTodoName] = useState("");
 import type { ChangeEvent } from "react";
 ```
 
-`ChangeEvent` は、入力欄の変更イベントを扱うための **型** です。型だけのインポートなので `import type` を使います。
+`ChangeEvent` は、**入力欄の変更イベントを扱うための「型」**です。型だけのインポートなので `import type` を使います。
 
 次の `updateNewTodoName` 関数を、`App` 関数内の `addNewTodo` より前に追加してください。
 
@@ -281,11 +351,21 @@ const updateNewTodoName = (e: ChangeEvent<HTMLInputElement>) => {
 };
 ```
 
-`e` には、イベントに関する情報が渡されます。`ChangeEvent<HTMLInputElement>` の型注釈は、**HTML の input 要素に対する変更イベント** を受け取ることを表しています。`e.target.value` で、入力欄の現在の文字列を取得できます。
+この `updateNewTodoName` 関数は、**ユーザーが入力欄に文字を入力するたびに、その文字列を取得して `newTodoName` の状態を更新する処理**を担当します。つまり、入力欄の内容と React の状態を連動させるための関数となります。
 
-### 入力欄と状態を対応付ける
+::: {.balloon .char-01 .face-02 .tone-yellow}
+`e` には、イベントに関する情報が渡されます。
 
-JSX の「新しいタスクの追加」という見出しと「追加」ボタンの間に、次のコードを挿入してください。
+`ChangeEvent<HTMLInputElement>` の型注釈は、**HTML の input 要素に対する変更イベント** を受け取ることを表しています。`e.target.value` で、入力欄の現在の文字列を取得することができます。
+:::
+
+### 入力欄と「状態」を対応付ける
+
+JSX の `<h2 ...>新しいタスクの追加</h2>` と `<button ...>追加</button>` の間に、次のコードを挿入してください。これにより「`newTodoName`」と「テキストボックスの入力値」が**紐付けられ、互いに連動する仕組み**が完成します。
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+具体的には、プログラムから `newTodoName` を更新するとテキストボックスの表示も変わり、逆にユーザーがテキストボックスに入力すると、その内容が `newTodoName` に反映されるようになります。
+:::
 
 <!-- code-source: docs/codes/05/step02/App.tsx#L48-L61 -->
 
@@ -306,20 +386,30 @@ JSX の「新しいタスクの追加」という見出しと「追加」ボタ�
 </div>
 ```
 
-ここでは、値が反映される方向を区別して理解してください。
+ここでは、値が反映される「方向」を区別して理解するようにしてください。
 
 - `value={newTodoName}` は、**状態 → 入力欄** の反映です。
 - `onChange={updateNewTodoName}` は、**入力操作 → 状態の更新** を担当します。
 
-React の状態を値の基準にして、このように入力を扱うものを <span class="masked">制御された入力（controlled input）</span> といいます。`value` だけを指定しても、ユーザーの編集結果は状態に反映されません。必ず `onChange` と組み合わせてください。
+React の状態を値の基準にして、このように入力を扱うものを **Controlled Input** (制御コンポーネント、制御された入力) といいます。`value` 属性だけを指定しても、ユーザの編集結果は状態に反映されません。必ず `onChange` 属性と組み合わせてください。
+
+:::prompts
+- React の文脈で Controlled Input とはなんですか。
+
+- JSX (HTML) の `input` の属性 `id`、`name`、`tyep`、`value`、`onChange`、`className`、`placeholder` について解説してください。
+
+:::
 
 また、`label` の `htmlFor="newTodoName"` と `input` の `id="newTodoName"` が対応しています。「名前」というラベルをクリックすると、入力欄がアクティブになることも確認してください。
 
-![ラベルと入力欄の対応](figs/05/app_06.png)
+![ラベルと入力欄の対応](figs/05/app_2_05.png)
+
 
 ### 入力した名前で追加する
 
-最後に、`addNewTodo` を次のように書き換えてください。`newTodo` の `name` に状態 `newTodoName` を設定し、追加後は `setNewTodoName("")` で入力欄を空に戻します。
+ここまでで、テキストボックスに入力した文字列が、状態 `newTodoName` に反映されるようになりました。つづいて、この状態に保持された文字列を新しい Todo の名前として使用し、Todo リストに追加できるように処理を変更していきます。
+
+**src/App.tsx** の `addNewTodo` 関数を、次のように書き換えてください。
 
 <!-- code-source: docs/codes/05/step02/App.tsx#L20-L30 -->
 
@@ -337,33 +427,55 @@ const addNewTodo = () => {
 };
 ```
 
-名前を入力してから「追加」ボタンを押下し、**入力した名前の Todo が追加され、入力欄が空になること** を確認してください。この段階では、空欄でも追加できてしまいます。この点は、あとの[バリデーション](#バリデーション)で改善します。
+まずは、テキストボックスに「React の復習」などの名前を入力してから「追加」ボタンを押してみてください。**入力した名前の Todo がリストの末尾に追加され**、<span class="masked">テキストボックスが空になること</span> を確認してください。
 
-ここまでの実装例: [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step02/App.tsx)
+**第23行目** では、新しく生成する `newTodo` の `name` に、状態 `newTodoName` の値を設定しています。これにより、これまで「新しいタスク」という固定の名前で追加していた Todo を、入力した名前で追加できるようになります。また、**第29行目** の `setNewTodoName("")` は、Todo を追加したあとに、状態 `newTodoName` を空文字に戻す処理になっています。
+
+::: {.balloon .char-01 .face-02 .tone-yellow}
+状態を空文字に戻すと、`value={newTodoName}` を通して、その値がテキストボックスにも反映されます。前節で説明した **「状態 → 入力欄」** の反映が、ここでも機能していることを確認してください。
+:::
+
+なお、この段階では、名前を入力せずに「追加」ボタンを押すと <span class="masked">名前が空の Todo も追加できて</span> しまいます。この問題については、あとの [バリデーション](#バリデーション) で対応していきます。
+
+- ここまでの実装例 👉 [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step02/App.tsx)
 
 ::: prompts
-- React + TypeScript で `const [newTodoName, setNewTodoName] = useState("");` とし、input に `value={newTodoName}` と `onChange={updateNewTodoName}` を設定しています。文字を入力してから画面に反映されるまでの流れを説明してください。また、追加後に `setNewTodoName("")` とするとなぜ入力欄も空になるのですか。
-- TypeScript で、App 関数のなかに定義した addNewTodo 関数から、App 関数の変数 newTodoName を参照できました。このような関数と外側の変数の関係を、クロージャという用語と関連付けて説明してください。Python の短い例も示してください。
+- React + TypeScript で `const [newTodoName, setNewTodoName] = useState("");` とし、input に `value={newTodoName}` と `onChange={updateNewTodoName}` を設定しています。updateNewTodoName 関数では `setNewTodoName(e.target.value)` を呼び出しています。文字を入力したときに、入力欄と状態がどのように連動するのか説明してください。また、Todo の追加後に `setNewTodoName("")` を呼び出すと、なぜ入力欄も空になるのですか。
+
+- TypeScript で、`App` 関数内で定義した `addNewTodo` 関数から、外側の `App` 関数の変数 `newTodoName` を参照することができました。内側の関数は、外側の関数で定義された変数に制限なくアクセスできるのでしょうか。また、このような変数へのアクセスは、カプセル化の原則に反しないのでしょうか。
 :::
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+ここまでの変更内容をコミットしておいてください。また、念のため `npm run build` を実行し、ビルドがエラーなく完了することも確認してください。
+:::
+
 
 #### 演習 <i class="fa-solid fa-stopwatch"></i>3分
 
-名前の入力欄の `className` から `grow` を取り除き、入力欄の幅がどのように変化するか確認してください。確認後は元に戻しておいてください。
+入力欄の幅と `className` の関係も確認しておいてください。名前の入力欄の `className` から `grow` だけを取り除き、入力欄の幅がどのように変化するか確認してください。確認後は元に戻しておいてください。
+
+::: prompts
+- Tailwind CSS における「grow」というユーティリティクラスについて解説してください。特にテキストボックスに適用したときの挙動や注意点について知りたいです。
+:::
 
 #### 定着確認
 
-- React の input に設定する `value` と `onChange` は、それぞれ何を担当するか答えよ。
-  - 答え: <span class="masked">`value` は状態を入力欄に反映し、`onChange` はユーザーによる変更を受けて状態を更新する。</span>
+- React で入力文字列を `useState` で管理するとき、input に設定する `value` と `onChange` は、それぞれ何を担当するか答えよ。
+  - 答え: <span class="masked">`value` には入力欄に反映する状態の値を設定する。`onChange` には、ユーザーの入力を受けて状態を更新するイベントハンドラを設定する。</span>
 - React の input と label を対応付ける場合、input の `id` と同じ値を設定する label の属性を答えよ。
   - 答え: <span class="masked">`htmlFor`。</span>
-- `useState("")` で生成した状態の型と、初期値を答えよ。
+- React + TypeScript で `const [newTodoName, setNewTodoName] = useState("");` と記述したとき、`newTodoName` の型と初期値を答えよ。
   - 答え: <span class="masked">型は `string`、初期値は空文字 `""`。</span>
 
 ## 優先度を設定するラジオボタンの追加
 
-新規タスクの優先度を `1`・`2`・`3` から選ぶ「**ラジオボタン**」を追加します。名前入力と同様に、優先度も状態として扱います。
+新規タスクの優先度を「1」「2」「3」から選んで設定する「**ラジオボタン**」を追加します。名前入力と同様に、優先度についても「状態」として扱います。
 
-![優先度の選択](figs/05/app_04.png)
+![優先度の選択](figs/05/app_2_06.png)
+
+- 完成形を先に確認したい場合は、こちらの実装例を参照してください 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step03/App.tsx)
+
+---
 
 **src/App.tsx** の `newTodoName` の状態の直後に、次の行を追加してください。初期値は `3` です。
 
@@ -383,11 +495,16 @@ const updateNewTodoPriority = (e: ChangeEvent<HTMLInputElement>) => {
 };
 ```
 
-`e.target.value` は、`type="radio"` の入力欄でも <span class="masked">文字列</span> です。`newTodoPriority` は数値の状態なので、`Number` で変換してからセットしています。
+`e.target.value` は、`type="radio"` の入力欄でも <span class="masked">文字列</span> となります。`newTodoPriority` は数値の状態なので、上記のように `Number` で変換してからセットしています。
 
-**文字列のままセットしようとすると型のエラーになること** を、VSCode で確認してください。確認後は `Number` を使うコードに戻しておいてください。
+::: {.balloon .char-01 .face-04 .tone-blue}
+文字列である `e.target.value` を、そのまま `setNewTodoPriority` に与えようとすると型エラーになることを確認してください。
 
 ![優先度の型チェック](figs/05/vscode_01.png)
+
+確認後は `Number` を使うコードに戻しておいてください。
+
+:::
 
 ### map でラジオボタンを構成する
 
@@ -423,13 +540,36 @@ JSX の名前入力欄と「追加」ボタンの間に、次のコードを挿�
 - `checked={newTodoPriority === value}` は、どのボタンを選択状態にするかを指定します。数値として比較している点も確認してください。
 - `onChange` で呼び出される `updateNewTodoPriority` が状態を更新します。
 
-ここでは `input` を `label` の内側に配置しているため、`htmlFor` を設定しなくても両者が対応します。「1」「2」「3」という文字をクリックしても、対応するボタンが選択されることを確認してください。
+:::{.note .type-tips}
+**key について**
 
-また、`fieldset` は関連する入力欄のまとまり、`legend` はそのまとまりの見出しを表します。見た目だけでなく、読み上げなどでも入力欄の意味が伝わるようにしています。
+前回講義で [解説](lecture04.html#todolistコンポーネントのブラッシュアップ) したように JSX 構文のなかで `map` を利用するときは <span class="masked">map の戻り値となる最外殻の要素には「key属性」</span> を設定する必要がありました。そのため **第73行目** に「key属性」を設定しています。
 
-最後に、`addNewTodo` 内の `newTodo` の `priority` を `newTodoPriority` に変更し、追加後に `setNewTodoPriority(3)` を実行するようにしてください。名前と同様に、**選択した優先度で追加され、追加後は優先度 3 の選択に戻ること** を確認してください。
+key属性を設定しないとブラウザのコンソールに「**Warning: Each child in a list should have a unique "key" prop.**」のような警告が表示されます。
+:::
 
-ここまでの実装例: [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step03/App.tsx)
+最後に、関数 `addNewTodo` において、以下のように `priority` を `newTodoPriority` に変更し、追加後に `setNewTodoPriority(3)` を実行するようにしてください。
+
+```ts{.numberLines caption="src/App.tsx（抜粋）" startFrom=25}
+  const addNewTodo = () => {
+    const newTodo: Todo = {
+      id: uuid(),
+      name: newTodoName,
+      isDone: false,
+      priority: newTodoPriority, // 変更
+      deadline: new Date(2026, 10, 13),
+    };
+    setTodos((currentTodos) => [...currentTodos, newTodo]);
+    setNewTodoName("");
+    setNewTodoPriority(3); // 変更
+  };
+```
+
+- ここまでの実装例 👉 [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step03/App.tsx)
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+ここまでの変更内容をコミットしておいてください。また、念のため `npm run build` を実行し、ビルドがエラーなく完了することも確認してください。
+:::
 
 ### 補足: onChange 属性の設定
 
@@ -445,7 +585,7 @@ onChange={(e) => setNewTodoPriority(Number(e.target.value))}
 
 優先度の内部値は `1`・`2`・`3` のままにして、ラベルだけを「高」「中」「低」に変えてください。
 
-![優先度のラベル](figs/05/app_07.png)
+![優先度のラベル](figs/05/app_2_07.png)
 
 - ヒント: <span class="masked">`[1, 2, 3]` を `["高", "中", "低"]` に変更し、`map((label, index) => ...)` とする。内部値には `index + 1` を使う。</span>
 - 変更する対応: <span class="masked">`key={label}`、``id={`priority-${index + 1}`}``、`value={index + 1}`、`checked={newTodoPriority === index + 1}`、表示は `<span>{label}</span>`。</span>
@@ -465,7 +605,11 @@ onChange={(e) => setNewTodoPriority(Number(e.target.value))}
 
 新規タスクの期限を設定する「**日時入力欄**」を追加します。ここでは、日付と時刻をまとめて選ぶ `type="datetime-local"` を使います。
 
-![期限の設定](figs/05/app_05.png)
+![期限の設定](figs/05/app_2_08.png)
+
+完成形を先に確認したい場合は、こちらの実装例を参照してください 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step04/App.tsx)
+
+なお、`type="datetime-local"` を指定した `input` 要素の外観（GUI）は、ブラウザによって異なります。本講義資料では、Google Chrome での表示をスクリーンショットとして掲載しています。
 
 ### 期限の状態を用意する
 
@@ -479,7 +623,14 @@ onChange={(e) => setNewTodoPriority(Number(e.target.value))}
 const [newTodoDeadline, setNewTodoDeadline] = useState<Date | null>(null);
 ```
 
-初期値は `null` ですが、あとで `Date` もセットするため、ここでは **型を明示** しています。`useState(null)` だけでは、`Date` を入れる状態として推論されません。`Date | null` のように、複数の型のいずれかを表す型を <span class="masked">ユニオン型（Union 型）</span> といいました。
+初期値は `null` ですが、あとで `Date` もセットするため、ここでは `useState<Date | null>` のように **型を明示** しています。
+
+::: {.balloon .char-01 .face-02 .tone-yellow}
+`useState(null)` だけでは、`Date` を入れる状態として推論されません。
+
+`Date | null` のように、複数の型のいずれかを表す型を <span class="masked">ユニオン型（Union 型）</span> といいました。
+:::
+
 
 ### 日時情報の更新（UI → コード）
 
@@ -496,11 +647,16 @@ const updateDeadline = (e: ChangeEvent<HTMLInputElement>) => {
 
 日時入力欄で選択した値も、`e.target.value` からは <span class="masked">文字列</span> として得られます。日付と時刻がそろっているときは、`"2026-11-12T23:00"` のような文字列です。空欄のときは `""` になります。
 
-そのため、条件演算子で「空文字なら `null`、そうでなければ `new Date(dt)` で Date オブジェクトに変換」としています。第 02 回の[三項演算子](lecture02.html#三項演算子)の利用例です。
+そのため、条件演算子で「空文字なら `null`、そうでなければ `new Date(dt)` で Date オブジェクトに変換」としています。第02回講義で学んだ [三項演算子](lecture02.html#三項演算子) の利用例です。
 
 値の変化を確認したいときは、一時的に `const dt = e.target.value;` の次に `console.log(dt, typeof dt);` を入れて実験してください。**表示されている日時と、コードが受け取る文字列の形式は異なること** が確認できます。確認後、ログ出力は削除しておいてください。
 
+
+:::{.note .type-tips}
+期限を **削除したいとき** (**空欄に戻したいとき**) は、以下のように「削除」を押下してください。
+
 ![日時入力を空にする操作](figs/05/app_08.png)
+:::
 
 ### 日時情報の更新（コード → UI）
 
@@ -528,29 +684,55 @@ const updateDeadline = (e: ChangeEvent<HTMLInputElement>) => {
 </div>
 ```
 
-入力欄の `value` には、Date オブジェクトそのものではなく、**入力欄が扱う形式の文字列** を渡します。ここでは、前回インストールした Day.js を使い、`YYYY-MM-DDTHH:mm:ss` の形式に変換しています。`T` は日付と時刻を区切る文字です。`newTodoDeadline` が `null` なら、空文字を渡します。
+入力欄の `value` には、Date オブジェクトそのものではなく「**入力欄が扱う形式の文字列**」を渡す必要があります。
+
+ここでは、前回インストールした **Day.js** のライブラリを使い、`YYYY-MM-DDTHH:mm:ss` の形式に変換しています。`T` は日付と時刻を区切る文字です。`newTodoDeadline` が `null` なら、空文字を渡します。
 
 この入力欄で扱うのは、**利用している環境のローカルな日時** です。ここで `toISOString()` を使うと UTC の文字列になるため、そのまま入力欄の値に使わないようにしてください。
 
-最後に、`addNewTodo` 内の `newTodo` の `deadline` を `newTodoDeadline` に変更し、追加後に `setNewTodoDeadline(null)` を実行するようにしてください。
+最後に、関数 `addNewTodo` において、以下のように　`newTodo` の `deadline` を `newTodoDeadline` に変更し、追加後に `setNewTodoDeadline(null)` を実行するようにしてください。
 
-- 期限を入力して追加すると、Todo の `deadline` が Date オブジェクトになる。
-- 期限を空欄にして追加すると、`deadline` は `null` になる。
-- 追加後は日時入力欄も空に戻る。
+```ts{.numberLines caption="src/App.tsx（抜粋）" startFrom=32}
+  const addNewTodo = () => {
+    const newTodo: Todo = {
+      id: uuid(),
+      name: newTodoName,
+      isDone: false,
+      priority: newTodoPriority,
+      deadline: newTodoDeadline, // 変更
+    };
+    setTodos((currentTodos) => [...currentTodos, newTodo]);
+    setNewTodoName("");
+    setNewTodoPriority(3);
+    setNewTodoDeadline(null); // 追加
+  };
+```
 
-以上の 3 点を、画面と、必要に応じたコンソール出力で確認してください。**日時を設定した Todo と、期限なしの Todo の両方を追加してみてください**。
+- ここまでの実装例 👉 [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step04/App.tsx)
 
-ここまでの実装例: [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step04/App.tsx)
-
-::: {.note .type-tips}
-`datetime-local` は、日付と時刻をまとめて入力する欄です。今回は、日付だけの入力欄と時刻だけの入力欄には分けません。
-
-初期データの `new Date(2026, 10, 11)` も、内部的には **2026 年 11 月 11 日 00:00:00** です。日付だけの期限のように表示したいときは、時刻を `00:00` にします。日時を一覧に表示する処理は、後半で追加していきます。
+::: {.balloon .char-01 .face-05 .tone-blue}
+ここまでの変更内容をコミットしておいてください。また、念のため `npm run build` を実行し、ビルドがエラーなく完了することも確認してください。
 :::
+
+#### 演習
+
+次の 3 点について、画面とコンソール出力で確認してください。日時を設定した Todo と、期限なしの Todo の両方を追加してみてください。
+
+1. 期限を入力して追加すると、Todo の `deadline` が Date オブジェクトになる。
+2. 期限を空欄にして追加すると、`deadline` は `null` になる。
+3. 追加後は日時入力欄も、空欄に戻る。
+
+確認用として、`addNewTodo` 関数で `newTodo` を生成した直後（`setTodos` を呼び出す前）に、次の行を一時的に追加してください。
+
+```ts{.numberLines caption="確認用のログ出力"}
+console.log(newTodo.deadline, newTodo.deadline instanceof Date);
+```
+
+- `newTodo.deadline instanceof Date` は、newTodo.deadline が Date オブジェクトかどうかを判定する処理になります。期限を設定した場合は日時と `true`、期限なしの場合は `null` と `false` が出力されることを確認してください。確認後は、このログ出力を削除しておいてください。
 
 #### 定着確認
 
-- Todo の期限を表す `Date | null` の `null` は、このアプリで何を意味するか答えよ。
+- Todo の期限を表す `Date | null` の `null` は、この Todoアプリでは何を意味するか答えよ。
   - 答え: <span class="masked">期限を設定しないこと。</span>
 - 初期値が `null` で、あとで Date オブジェクトもセットする React の状態を宣言する場合、`useState` に指定する型を答えよ。
   - 答え: <span class="masked">`useState<Date | null>(null)`。</span>
@@ -559,11 +741,14 @@ const updateDeadline = (e: ChangeEvent<HTMLInputElement>) => {
 
 ## バリデーション
 
-ここまでは、名前が空欄でも Todo を追加できる状態でした。ここからは、**前後の空白を除いた名前が 2 文字以上、32 文字以内のときだけ追加できる** ようにします。
+これまでの実装では、名前 (タスク名) が空の Todo も追加できてしまう状態でした。そこで、**名前の前後の空白を除いた文字数が 2 文字以上、32 文字以内であることを追加の条件とし、この条件を満たす場合にのみ Todo を追加できる** ようにします。
 
-このように、入力されたデータが条件を満たすかチェックする処理を <span class="masked">バリデーション（Validation）</span> といいます。単に追加を拒否するだけではなく、**入力の不備を画面に表示し、追加ボタンも無効化する** ところまで実装します。
+このように、入力されたデータが条件を満たすかチェックする処理を <span class="masked">バリデーション（Validation）</span> といいます。このセクションでは、名前を検証する関数を用意し、**条件を満たさない場合にエラーメッセージを表示する処理** を実装します。さらに、条件を満たさない場合は、追加ボタンも無効化して、以下のような画面にしていきます。
 
-![入力エラーの表示](figs/05/app_09.png)
+![入力エラーの表示](figs/05/app_2_10.png)
+
+- 完成形を先に確認したい場合は、こちらの実装例を参照してください 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step05/App.tsx)
+  - 次のセクション [フォームの送信と追加ボタンの無効化](#フォームの送信と追加ボタンの無効化) の変更も含みます。
 
 ### 検証する関数を用意する
 
@@ -581,13 +766,21 @@ const getTodoNameError = (name: string): string => {
 };
 ```
 
-`trim()` は、文字列の前後の空白を取り除いた **新しい文字列** を返します。元の `name` を変更する処理ではありません。これにより、空白だけの名前も条件を満たさなくなります。名前の途中にある空白は取り除きません。
+**第14行目** の `trim()` は、文字列の前後の空白を取り除いた **新しい文字列** を返すメソッドです。例えば、`"  買い物  "` に対して実行すると `"買い物"` になります。元の `name` は変更せず、文字列の途中にある空白も取り除きません。
 
-戻り値は、条件を満たさない場合は「不備を説明する文字列」、満たす場合は「空文字 `""`」です。単独の文字列を受け取って検証できるため、この関数を `App` 関数の外に定義しています。
+**第15行目** では、前後の空白を取り除いた名前の長さを調べています。`||` は「または」なので、2 文字未満、または 32 文字を超える場合に、エラーメッセージを返します。空白だけの名前も、`trim()` によって空文字になるため、この条件に該当します。
+
+一方、条件を満たす名前であれば、**第18行目** で空文字 `""` を返します。つまり、この関数の戻り値は <span class="masked">不備がある場合はエラーメッセージ、不備がない場合は空文字</span> となります。
+
+::: {.balloon .char-01 .face-01 .tone-pink}
+この関数は、React の状態を直接参照せず、引数 `name` だけを使って検証します。そのため、`App` 関数の外に定義しています。
+:::
 
 ### 検証結果は入力から計算する
 
-`App` 関数内で、状態を宣言している箇所の最後に次の行を追加してください。
+まだ名前を入力していないのに、画面を開いた瞬間からエラーメッセージが表示されるのは、UI/UX として適切な設計ではありません。そこで、**名前を一度でも入力・編集したあとに、入力内容が条件を満たしていなければエラーメッセージを表示する** ようにしていきます。
+
+まず、`App` 関数内で、状態を宣言している箇所の最後に次の行を追加してください。
 
 <!-- code-source: docs/codes/05/step05/App.tsx#L26-L26 -->
 
@@ -595,7 +788,7 @@ const getTodoNameError = (name: string): string => {
 const [isNameTouched, setIsNameTouched] = useState(false);
 ```
 
-`isNameTouched` は、「名前を入力・編集したことがあるか」を表す状態です。最初は `false` なので、画面を開いた直後からエラーメッセージが表示されることを避けられます。
+`isNameTouched` は、「名前を入力・編集したことがあるか」を表す「状態」です。初期値は `false` とし、名前の入力欄を編集したときに `true` に変更します。
 
 つづいて、未完了件数を計算する行のあとに、次の 3 行を追加してください。
 
@@ -607,13 +800,17 @@ const isNewTodoNameInvalid = newTodoNameError !== "";
 const showNewTodoNameError = isNameTouched && isNewTodoNameInvalid;
 ```
 
-- `newTodoNameError` は、入力された名前を検証した結果です。
-- `isNewTodoNameInvalid` は、入力が不適切なときに `true` になります。
-- `showNewTodoNameError` は、**入力を編集済みで、かつ、不適切なとき** に `true` になります。
+- **第29行目** の `newTodoNameError` には、現在の名前を検証した結果（エラーメッセージ、または空文字）が入ります。
+- **第30行目** の `isNewTodoNameInvalid` は、エラーメッセージが空文字でない、つまり、名前が条件を満たしていないときに `true` になります。
+- **第31行目** の `showNewTodoNameError` は、`&&`（かつ）によって、**名前を編集済みで、かつ、条件を満たしていないとき** に `true` になります。
 
-ここで、`newTodoNameError` などを `useState` で管理していない点に注目してください。**名前が分かれば計算できる値** なので、その都度計算しています。前回、未完了件数を `todos` から計算したのと同じ考え方です。入力文字列とエラー文字列をそれぞれ状態として持つと、片方だけを更新して食い違う余地ができます。
+例えば、画面を開いた直後は名前が空なので、`isNewTodoNameInvalid` は `true` です。しかし、`isNameTouched` は `false` なので、`showNewTodoNameError` は <span class="masked">`false`</span> になります。**「名前に不備があるか」と「エラーを表示するか」は、別々に判断している** ことを確認してください。
 
-`updateNewTodoName` も、編集済みの状態を更新するように書き換えてください。
+::: {.balloon .char-01 .face-02 .tone-yellow}
+`newTodoNameError` などを、別の `useState` で管理する必要はありません。`App` 関数が再実行されるたびに、現在の名前と編集済みの状態から計算できます。前回、未完了件数を `todos` から計算したのと同じ考え方です。
+:::
+
+つづいて、`updateNewTodoName` を次のように書き換えてください。これまでの名前の更新に加えて、**第35行目** で編集済みの状態を `true` に変更します。
 
 <!-- code-source: docs/codes/05/step05/App.tsx#L33-L36 -->
 
@@ -624,18 +821,20 @@ const updateNewTodoName = (e: ChangeEvent<HTMLInputElement>) => {
 };
 ```
 
+これにより、一度入力した文字をすべて消して空欄に戻した場合も、`isNameTouched` は `true` のままになります。最初から空欄だった場合とは、エラーの表示を分けられるわけです。
+
 ### 不備があるときにメッセージを表示する
 
-先頭のインポートに、次の 2 行を追加してください。アイコン用のライブラリは、前回インストール済みです。
+次に、入力欄の下にエラーメッセージを表示するようにします。まず、**src/App.tsx** の先頭のインポートに、次の 2 行を追加してください。警告アイコンに使うライブラリは、前回インストール済みです。
 
 ```ts{.numberLines caption="src/App.tsx（インポートの追加）"}
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
 ```
 
-名前の `label` と `input` を囲んでいる `div` を、次のコードに書き換えてください。
+つづいて、名前の `label` と `input` を囲んでいる `<div className="flex items-center space-x-2">` 全体を、次のコードに書き換えてください。**入力欄とメッセージをまとめる外側の `div`** も含めて記述してください。
 
-<!-- code-source: docs/codes/05/step05/App.tsx#L90-L112 -->
+<!-- code-source: docs/codes/05/step05/App.tsx#L90-L126 -->
 
 ```ts{.numberLines caption="src/App.tsx（抜粋）" startFrom=90}
 <div>
@@ -661,17 +860,45 @@ import { faTriangleExclamation } from "@fortawesome/free-solid-svg-icons";
       placeholder="2文字以上、32文字以内で入力してください"
     />
   </div>
+  {showNewTodoNameError && (
+    <div
+      id="newTodoNameError"
+      aria-live="polite"
+      className="ml-10 flex items-center space-x-1 text-sm font-medium text-red-500"
+    >
+      <FontAwesomeIcon
+        icon={faTriangleExclamation}
+        className="mr-0.5"
+      />
+      <div>{newTodoNameError}</div>
+    </div>
+  )}
+</div>
 ```
 
-`showNewTodoNameError && (...)` は、条件が `true` のときだけメッセージ部分を表示する <span class="masked">条件付きレンダリング</span> です。メッセージの表示条件を、入力欄の色にも使っています。
+**第113行目** の `{showNewTodoNameError && (...)}` は、`showNewTodoNameError` が `true` のときだけ、後ろの JSX を表示する記述です。このように、条件によって表示する内容を切り替えることを <span class="masked">条件付きレンダリング</span> といいます。ここでは、警告アイコンと `newTodoNameError` の文字列を表示しています。
 
-`twMerge` は、第 04 回に使った Tailwind CSS のクラスを結合する関数でした。ここでは、エラーがある場合に `border-red-500` を追加し、通常時の `border-gray-300` と衝突しないようにしています。
+また、**第108行目** では、同じ条件を使って入力欄の枠線も赤色にしています。`twMerge` は Tailwind CSS のクラスを結合する関数となります。通常時の `border-gray-300` と、エラー表示時の `border-red-500` が衝突しないようにしています。
 
-また、`aria-invalid` で不備の有無を、`aria-describedby` で入力欄とエラー説明の対応を伝えています。`aria-live="polite"` は、表示内容の変化を読み上げなどに知らせるための指定です。色の変化だけで不備を伝えないようにしています。
+名前の入力欄に `a` と入力し、エラーメッセージと赤い枠線が表示されることを確認してください。
+
+![img](figs/05/app_2_11.png)
+
+つづけて `b` を入力して `ab` にすると、エラーメッセージが消え、枠線の色が戻ることも確認してください。
+
+![img](figs/05/app_2_12.png)
+
+なお、`aria-invalid` や `aria-describedby`、`aria-live` は、不備の有無や説明との対応、表示の変化を読み上げなどに伝えるための指定です。
+
+:::prompts
+- tailwind-merge ライブラリの twMerge の使い方を解説してください。また、これを使うことのメリットについて教えてください。
+
+- JSX (HTML) の `div` の属性 `aria-invalid`、`aria-describedby`、`aria-live` について解説してください。
+:::
 
 ### 不適切な名前を追加させない
 
-`addNewTodo` を次のように書き換えてください。先頭に検証結果によるガードを追加し、Todo の名前には前後の空白を取り除いた文字列を使います。
+エラーメッセージが表示されるようになりましたが、このままでは「追加」ボタンを押すと、不適切な名前でも Todo が追加されてしまいます。最後に、`addNewTodo` を次のように書き換えてください。
 
 <!-- code-source: docs/codes/05/step05/App.tsx#L47-L65 -->
 
@@ -697,15 +924,33 @@ const addNewTodo = () => {
 };
 ```
 
-名前を入力するときから `trim()` してしまうと、文字列の末尾に空白を入力しづらくなります。ここでは、**入力欄には入力した文字列を保持し、検証時と Todo の生成時に `trim()` する** ようにしています。
+**第48〜51行目** では、名前が条件を満たしていない場合に、`isNameTouched` を `true` にしてから `return` しています。これにより、エラーを表示する状態にし、Todo を生成・追加する処理に進まずに関数を終了します。
 
-追加後は、名前・優先度・期限とともに `isNameTouched` も初期状態に戻します。そのため、新しい Todo の入力を始める前からエラーメッセージが出ることもありません。
+また、**第55行目** では、`newTodoName.trim()` を Todo の名前に設定しています。例えば、入力欄に `"  買い物  "` と入力して追加すると、Todo の名前は <span class="masked">`"買い物"`</span> になります。
+
+::: {.balloon .char-01 .face-04 .tone-blue}
+入力のたびに `trim()` すると、名前の途中に空白を入れたい場合も、いったん末尾に入力した空白が消えてしまいます。そのため、**入力欄には入力した文字列を保持し、検証時と Todo の生成時に `trim()` する** ようにしています。
+:::
+
+**第64行目** では、追加後に `isNameTouched` も `false` に戻しています。名前を空文字に戻しても、次の入力を始める前からエラーメッセージが出ることを防いでいます。
+
+名前が空欄の場合や 1 文字の場合は追加されず、`"  買い物  "` なら前後の空白を除いて追加されることを確認してください。また、追加後に入力欄が空になり、エラーメッセージも消えることを確認してください。
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+ここまでの変更内容をコミットしておいてください。また、念のため `npm run build` を実行し、ビルドがエラーなく完了することも確認してください。
+:::
 
 ## フォームの送信と追加ボタンの無効化
 
-入力欄がそろったので、「新しいタスクの追加」の領域を **form 要素** に変更します。これにより、追加ボタンのクリックだけでなく、**名前の入力欄で Enter キーを押しても追加できる** ようにします。
+前節では、名前に不備がある場合に、`addNewTodo` の途中で処理を終了するようにしました。この節では、さらに **名前が条件を満たさない間は「追加」ボタンを操作できない** ようにします。また、ボタンのクリックだけでなく、**名前の入力欄で Enter キーを押しても追加できる** ようにしていきます。
 
-**src/App.tsx** で、追加領域を囲んでいる `<div className="mt-4 ...">` を、次の開始タグに書き換えてください。対応する終了タグも `</div>` から `</form>` に変更します。内部の見出し・入力欄はそのまま残してください。
+- 完成形を先に確認したい場合は、こちらの実装例を参照してください 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step05/App.tsx)
+
+### form 要素で送信を扱う
+
+まず、「新しいタスクの追加」の領域を **form 要素** に変更します。`form` は、入力欄やボタンをひとまとまりにして、送信を扱うための要素です。
+
+**src/App.tsx** で、追加領域を囲んでいる `<div className="mt-4 ...">` の開始タグを、次のコードに書き換えてください。また、「追加」ボタンの直後にある、この領域を閉じる `</div>` を `</form>` に変更してください。内部の見出し・入力欄はそのまま残します。
 
 <!-- code-source: docs/codes/05/step05/App.tsx#L78-L85 -->
 
@@ -720,9 +965,18 @@ const addNewTodo = () => {
 >
 ```
 
-`onSubmit` は、フォームが送信されるときのイベントハンドラです。`e.preventDefault()` は、ブラウザ標準のフォーム送信によるページ遷移・リロードを止めています。このアプリでは、React の状態更新によって Todo を追加したいので、この処理を入れています。
+**第79行目** の `onSubmit` に設定した関数は、フォームが送信されるときに実行されます。これまではボタンの `onClick` で呼び出していた `addNewTodo` を、**第81行目** のように、この関数のなかで呼び出すようにしています。
 
-次に、追加ボタンを以下のように書き換えてください。以前の `onClick={addNewTodo}` は削除します。
+ここで、**第80行目** の `e.preventDefault()` に注目してください。これは、ブラウザ標準のフォーム送信によるページ遷移・リロードを止める処理です。このアプリでは、これまでと同じように React の状態を更新して Todo を追加するため、標準の送信動作を止めてから `addNewTodo` を呼び出しています。
+
+:::prompts
+
+- React において、`input` 要素を `form` 要素の内部に配置することには、どのようなメリットがありますか。`form` 要素で囲まなくても、各 `input` 要素は問題なく機能しますし、入力値の取得や状態管理もできています。それでも `form` 要素を使用する理由は何でしょうか。
+:::
+
+### 追加ボタンを無効化する
+
+つづいて、「追加」ボタン全体を次のコードに書き換えてください。`type="button"` を `type="submit"` に変更し、以前の `onClick={addNewTodo}` は削除します。
 
 <!-- code-source: docs/codes/05/step05/App.tsx#L165-L175 -->
 
@@ -740,35 +994,62 @@ const addNewTodo = () => {
 </button>
 ```
 
-`type="submit"` はフォームを送信するボタンです。**追加処理を呼ぶ場所を form の `onSubmit` にそろえた** ことで、クリックでも Enter でも同じ検証と追加処理が実行されます。
+**第166行目** の `type="submit"` は、このボタンがフォームを送信するボタンであることを示しています。これにより、ボタンのクリックと、名前の入力欄での Enter キーの両方が、form の `onSubmit` につながります。**どちらの操作でも同じ `addNewTodo` が呼び出される** わけです。
 
-`disabled={isNewTodoNameInvalid}` は、不適切な入力のときにボタン自体を無効化します。**色を薄くするだけでは、ボタンの操作は無効になりません**。`disabled:...` の Tailwind クラスは、無効化されたときの見た目を設定しています。
+**第167行目** の `disabled` は、`true` を渡すとボタンを無効化する属性です。ここでは、名前が条件を満たしていないときに `true` になる `isNewTodoNameInvalid` を渡しています。
 
-名前の input に追加した `required` は、この入力が必須であることを示しています。前後の空白を除いた 2〜32 文字という条件は、引き続き `getTodoNameError` で検証します。
+::: {.balloon .char-01 .face-02 .tone-yellow}
+`disabled` に渡しているのは、エラーの表示条件である `showNewTodoNameError` ではありません。画面を開いた直後は、メッセージを表示しなくても、名前が空欄なので追加ボタンは無効にします。
+
+前のセクションで分けた「名前に不備があるか」と「エラーを表示するか」の違いが、ここでも関係しています。
+:::
+
+また、**第171行目** の `disabled:...` は、ボタンが無効なときの見た目を設定する Tailwind CSS のクラスです。`disabled:opacity-50` で半透明にし、`disabled:cursor-not-allowed` でマウスカーソルを変更しています。`disabled:hover:bg-indigo-500` は、無効なボタンにマウスを重ねても背景色が変わらないようにする指定です。
+
+**ボタンの操作を無効化するのは `disabled` 属性、無効な状態の見た目を設定するのは `disabled:...` のクラス** であることを確認してください。
+
+なお、前節で名前の `input` に追加した `required` は、この入力が必須であることを示しています。前後の空白を除いた 2〜32 文字という条件は、引き続き `getTodoNameError` で検証します。
 
 ### 動作確認
 
-名前に次の値を入力し、エラー表示と追加ボタンの状態を確認してください。
+ここまで変更できたら、画面を再読み込みして、次の順に確認してください。各ケースで名前を入力し直し、エラーメッセージと追加ボタンの状態を見比べてください。
 
 1. 画面を開いた直後の空欄：**メッセージなし、追加は無効**。
 2. `a` のような 1 文字：**エラーメッセージあり、追加は無効**。
-3. `ab` のような 2 文字、または 32 文字：**追加できる**。
-4. 33 文字、または空白だけ：**追加は無効**。
+3. `ab` のような 2 文字、または 32 文字：**メッセージなし、追加できる**。
+4. 33 文字、または空白だけ：**エラーメッセージあり、追加は無効**。
 5. 前後に空白を付けた `  買い物  `：**「買い物」という名前で追加される**。
 
-クリックと Enter の両方で試してください。追加後に、名前は空欄、優先度は `3`、期限は空欄に戻り、エラー表示も消えることを確認してください。
+名前が条件を満たす場合は、優先度を `1` にし、期限も設定してから、ボタンのクリックと名前の入力欄での Enter キーの両方で追加してみてください。**ページ全体がリロードされず、リストの末尾に Todo が 1 件ずつ追加されること** を確認してください。名前が条件を満たさない場合は、Enter キーを押しても追加されないことを確認してください。
 
-ここまでの実装例: [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step05/App.tsx)
+また、追加後は名前が空欄、優先度が `3`、期限が空欄に戻り、エラーメッセージも消えることを確認してください。このとき、名前は再び空欄になるので、追加ボタンも <span class="masked">無効な状態</span> に戻ります。
+
+- ここまでの実装例 👉 [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step05/App.tsx)
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+ここまでの変更内容をコミットしておいてください。また、念のため `npm run build` を実行し、ビルドがエラーなく完了することも確認してください。
+:::
 
 ### 「truthy な値」「falsy な値」と条件付きレンダリング
 
-JavaScript / TypeScript では、条件式で `true` と解釈される値を **truthy な値**、`false` と解釈される値を **falsy な値** といいます。
+前節では、`showNewTodoNameError && (...)` で、エラーメッセージを表示するかどうかを切り替えました。この書き方を理解するために、条件式での値の扱いも確認しておきます。
 
-今回扱う値では、`false`、空文字 `""`、`null`、`undefined`、`0`、`-0`、`0n`、`NaN` が falsy な値です。空配列 `[]`、空オブジェクト `{}`、文字列 `"0"` は <span class="masked">truthy な値</span> です。
+JavaScript / TypeScript では、条件式で `true` と解釈される値を **truthy な値**、`false` と解釈される値を **falsy な値** といいます。真偽値以外も、条件式で使うことができます。
 
-`&&` は、常に真偽値を返す演算子ではありません。例えば、`0 && "こんにちは"` の結果は `0` です。JSX の `{0 && <div>こんにちは</div>}` では、**数値の「0」が画面に表示されます**。一方、`false`・`null`・`undefined`・空文字は、ここでは画面に何も表示しません。
+例えば、`false`、空文字 `""`、`null`、`undefined`、`0`、`-0`、`0n`、`NaN` は falsy な値です。一方、空配列 `[]`、空オブジェクト `{}`、文字列 `"0"` は <span class="masked">truthy な値</span> となります。数値の `0` と文字列の `"0"` は、扱いが異なります。
 
-今回の `showNewTodoNameError` は真偽値として計算しているため、条件部分に数値の `0` が入ることを避けられます。
+ここで、`&&` は、常に `true` や `false` を返す演算子ではないことに注意してください。`左の式 && 右の式` では、左の値が falsy なら、その値を返して右の式を評価しません。左の値が truthy なら、右の式を評価した結果を返します。
+
+```js{.numberLines caption="JavaScript の && が返す値"}
+false && "表示"; // false
+0 && "表示";     // 0
+"" && "表示";    // ""
+true && "表示";  // "表示"
+```
+
+React の JSX でも、この評価結果が使われます。`false`・`null`・`undefined`・空文字は画面に何も表示しませんが、数値の `0` は表示されます。そのため、`{0 && <div>こんにちは</div>}` では、「こんにちは」の代わりに <span class="masked">数値の「0」</span> が画面に表示されます。
+
+今回の `showNewTodoNameError` は、真偽値として計算しています。そのため、`false` なら何も表示せず、`true` ならメッセージ部分の JSX を表示する、という動作になります。
 
 #### 定着確認
 
@@ -776,6 +1057,8 @@ JavaScript / TypeScript では、条件式で `true` と解釈される値を **
   - 答え: <span class="masked">その必要はない。名前から計算できる値を別の状態にすると、更新漏れで内容が食い違う余地ができる。</span>
 - HTML のボタンを操作できない状態にする属性を答えよ。
   - 答え: <span class="masked">`disabled`。色や透明度の変更だけでは操作を無効化できない。</span>
+- 名前の不備を表す真偽値を `isNewTodoNameInvalid`、名前を編集済みで不備がある場合だけ `true` になる真偽値を `showNewTodoNameError` とする。追加ボタンの `disabled` に渡すべき値と、その理由を答えよ。
+  - 答え: <span class="masked">`isNewTodoNameInvalid`。入力を編集したかどうかにかかわらず、名前に不備があれば追加を無効にするため。</span>
 - React の form の `onSubmit` 内で `e.preventDefault()` を実行する目的を答えよ。
   - 答え: <span class="masked">ブラウザ標準の送信によるページ遷移・リロードを防ぎ、React 側の追加処理を行なうため。</span>
 - JavaScript の `"0" ? "truthy" : "falsy"` の結果を答えよ。
@@ -798,13 +1081,17 @@ JavaScript / TypeScript では、条件式で `true` と解釈される値を **
 
 ## 既存Todoの 完了/未完了 の切り替え
 
-ここからは、既存の Todo を更新する機能を追加します。最初に、**チェックボックスのオン・オフによって、Todo の完了状態を切り替える** ようにしていきます。
+ここまでで、名前・優先度・期限を設定して、新しい Todo を追加できるようになりました。ここからは、**既存の Todo を更新する処理**を実装していきます。
 
-![完了状態の切り替え](figs/05/app_10.png)
+まずは、次のように各 Todo にチェックボックスを配置し、**チェックを入れると「完了」、外すと「未完了」に切り替わる**ようにしていきます。
+
+![完了状態の切り替え](figs/05/app_2_13.png)
+
+- 完成形を先に確認したい場合は、こちらの実装例を参照してください 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step06/App.tsx)、[**src/TodoList.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step06/TodoList.tsx)
 
 ### map で対象の Todo を更新する
 
-**src/App.tsx** の `App` 関数内で、`addNewTodo` のあとに、次の `updateIsDone` 関数を追加してください。
+最初に、Todo の `isDone` を更新する関数を用意します。**src/App.tsx** の `App` 関数内で、`addNewTodo` 関数のあと、`return` の前に、次の `updateIsDone` 関数を追加してください。
 
 <!-- code-source: docs/codes/05/step06/App.tsx#L67-L77 -->
 
@@ -822,16 +1109,51 @@ const updateIsDone = (id: string, value: boolean) => {
 };
 ```
 
-`id` は更新対象の Todo の ID、`value` は更新後の完了状態です。第 03 回の[イミュータブルなオブジェクト更新](lecture03.html#その2-イミュータブルなオブジェクト更新)と同じように、次のものを新しくつくっています。
+**第67行目** の引数 `id` は「更新対象の Todo の ID」、`value` は「更新後の完了状態」です。`value` に `true` を渡すと「完了」に、`false` を渡すと「未完了」に更新するようにしています。
 
-- `map` による **新しい外側の配列**。
-- 対象の Todo だけ、スプレッド構文による **新しいオブジェクト**。
+ここでも、追加処理と同じように、`setTodos` に updater 関数を渡しています。今回は、前の配列に対して `map` を適用し、次の状態となる配列をつくっています。それぞれの処理を順番に確認してみてください。
 
-対象でない Todo は、元のオブジェクトをそのまま返します。`deadline` の Date オブジェクトまで複製しているわけではありません。今回は `isDone` だけを変更するため、このつくり方で問題ありません。
+1. **第69行目** の `map` で、現在の配列の Todo をひとつずつ取り出します。
+2. **第70行目** で ID を比較し、更新対象であれば、**第71行目** で `isDone` を変更した **新しい Todo オブジェクト** を返します。
+3. 更新対象でなければ、**第73行目** で元の Todo オブジェクトをそのまま返します。
 
-### 関数を Props として子に渡す
+この結果、**新しい配列**が生成され、そのなかの **更新対象の Todo だけが新しいオブジェクト** になります。第03回講義の [オブジェクト配列の更新](lecture03.html#ok-イミュータブルな操作) で学んだ方法を、React の状態の更新に利用していることを確認できたでしょうか。
 
-前回は、親である App から子である TodoList に、Todo の配列を渡しました。今回は、**状態を更新するための関数も Props として渡します**。
+::: {.note .type-senior}
+**中級者向け**
+
+`{ ...todo, isDone: value }` では、`deadline` が参照する Date オブジェクトまで複製しているわけではありません。今回は `isDone` だけを変更するため、`deadline` は元の参照をそのまま利用しています。すべてのプロパティを深くコピーする必要はありません。
+:::
+
+::: prompts
+
+- React + TypeScript で、Todo の配列を useState で管理しています。次のコードの挙動を丁寧に解説してください。まったく理解できません😭
+
+    ```ts{.numberLines}
+    const updateIsDone = (id: string, value: boolean) => {
+      setTodos((currentTodos) =>
+        currentTodos.map((todo) => {
+          if (todo.id === id) {
+            return { ...todo, isDone: value };
+          } else {
+            return todo;
+          }
+        }),
+      );
+    };
+    ```
+
+:::
+
+### 関数を Props として子コンポーネントに渡す
+
+前回は、「親コンポーネント」である App から、「子コンポーネント」である TodoList に、Todo の配列を渡しました。今回は、これに加えて、**状態を更新するための「関数」も Props として渡します**。
+
+
+::: {.balloon .char-01 .face-05 .tone-yellow}
+
+Todo の配列を `useState` で管理しているのは App ですが、チェックボックスを配置するのは TodoList となります。そこで、先ほどの `updateIsDone` 関数を TodoList に渡し、**チェックボックスが操作されたときに、TodoList から App に更新を依頼できるように**していきます。
+:::
 
 **src/TodoList.tsx** の `Props` の型を、次のように変更してください。
 
@@ -840,13 +1162,13 @@ const updateIsDone = (id: string, value: boolean) => {
 ```ts{.numberLines caption="src/TodoList.tsx（抜粋）" startFrom=7}
 type Props = {
   todos: Todo[];
-  updateIsDone: (id: string, value: boolean) => void;
+  updateIsDone: (id: string, value: boolean) => void; // 追加
 };
 ```
 
-`(id: string, value: boolean) => void` は、文字列と真偽値を受け取り、戻り値を使わない関数の型です。
+**第09行目** では、Props として受け取る `updateIsDone` の型を指定しています。`(id: string, value: boolean) => void` は、**文字列と真偽値を引数に取り、戻り値を使わない「関数の型」**です。ここでは、関数の処理そのものを記述しているわけではない点にも注意してください。
 
-また、**src/App.tsx** の `<TodoList ... />` を、次のように変更してください。`updateIsDone` を定義しただけでは、子のコンポーネントからは呼び出せないため、この受け渡しが必要です。
+つづいて、**src/App.tsx** の `<TodoList ... />` を、次のように変更してください。
 
 <!-- code-source: docs/codes/05/step06/App.tsx#L88-L88 -->
 
@@ -854,40 +1176,89 @@ type Props = {
 <TodoList todos={todos} updateIsDone={updateIsDone} />
 ```
 
+これにより、App で定義した `updateIsDone` 関数を、TodoList のなかで `props.updateIsDone` として利用できるようになります。ここでも、波括弧のなかで渡しているのは **関数そのもの** です。
+
 ### チェックボックスから更新を依頼する
 
-**src/TodoList.tsx** の `todos.map(...)` 内で、各 Todo の名前を表示する部分を、次のような `label` とチェックボックスの組み合わせに変更してください。既存の名前表示は重複して残さず、`label` の内側に移します。
+次に、**src/TodoList.tsx** を [こちらの実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step06/TodoList.tsx) のように書き換えてください。今回は、チェックボックスの追加とともに、優先度を表現する星 (★～★★★)、期限、「完了済み」の表示も配置しています。先頭のインポートと表示用の関数も含めて書き換え、VSCode の Git の差分表示機能で変更箇所を確認してみてください。
 
-```ts{.numberLines caption="src/TodoList.tsx（名前とチェックボックス）"}
-<label className="flex cursor-pointer items-center">
+そのうえで、Todo の名前とチェックボックスを表示している **第45行目** から **第59行目** に注目してください。
+
+<!-- code-source: docs/codes/05/step06/TodoList.tsx#L45-L59 -->
+
+```ts{.numberLines caption="src/TodoList.tsx（抜粋）" startFrom=45}
+<label className="flex min-w-0 cursor-pointer items-center">
   <input
     type="checkbox"
     checked={todo.isDone}
     onChange={(e) => props.updateIsDone(todo.id, e.target.checked)}
-    className="mr-3 cursor-pointer"
+    className="mr-3 shrink-0 cursor-pointer"
   />
-  <span>{todo.name}</span>
+  <FontAwesomeIcon
+    icon={faPersonDigging}
+    className="mr-2 shrink-0 text-slate-500"
+  />
+  <span className="min-w-0 text-lg font-medium wrap-anywhere text-slate-700">
+    {todo.name}
+  </span>
 </label>
 ```
 
-チェックボックスで取得したいのは、文字列の `value` ではなく、<span class="masked">真偽値の `checked`</span> です。ここでは `e.target.checked` を、更新後の完了状態として渡しています。
+名前の入力欄では、`value` を使って入力文字列と状態を対応付けました。チェックボックスでは、<span class="masked">`checked`</span> を使ってチェックの有無と状態を対応付けます。
 
-また、`onChange` にアロー関数を渡すことで、**その Todo の ID と、チェック後の状態** を引数として `updateIsDone` をコールしています。`onChange={props.updateIsDone(todo.id, todo.isDone)}` のように、その場で実行する書き方にしないように注意してください。
+- **第48行目** の `checked={todo.isDone}` は、**状態 → チェックボックス** の反映です。`isDone` が `true` ならチェックが入り、`false` ならチェックが外れます。
+- **第49行目** の `onChange` は、**チェックボックスの操作 → 状態の更新依頼** を担当します。`e.target.checked` で、操作後のチェック状態を真偽値として取得します。
 
-この段階の全体の実装例では、名前に加えて、優先度の星・期限・完了表示も配置しています。上記の Props とチェックボックスの処理を組み込んだら、**src/TodoList.tsx** を実装例と照合し、これらの表示も同じ構成になるように書き換えてください。JSX だけでなく、先頭のインポートと、表示用の関数も含めて確認してください。
+::: {.balloon .char-01 .face-01 .tone-pink}
+`onChange` に渡しているのは、`(e) => props.updateIsDone(todo.id, e.target.checked)` というアロー関数です。この関数がチェックボックスの操作時に実行され、**その Todo の ID と、操作後のチェック状態** を引数として、App から受け取った関数をコールします。
 
-- [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step06/App.tsx)
-- [src/TodoList.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step06/TodoList.tsx)
-
-`num2star` は、優先度 `1`・`2`・`3` を、それぞれ `★★★`・`★★`・`★` にする関数です。`formattedDate` は、時刻が `00:00` の場合は日付だけ、それ以外は日付と時刻を表示する関数です。期限が `null` の場合は、期限表示の部分をレンダリングしません。表示部分を取り込んだら、追加した Todo の優先度と期限も画面で確認してください。
-
-::: {.note .type-caution}
-Todo の配列を状態として持っているのは、親の **App コンポーネント** です。TodoList が受け取った Todo を直接書き換えるのではなく、**Props として受け取った関数を使い、親に更新を依頼する** という流れを意識してください。
+ここを `onChange={props.updateIsDone(todo.id, todo.isDone)}` と記述すると、**レンダリング時に関数を実行し、その戻り値を `onChange` に渡してしまいます**。また、操作後のチェック状態も取得できていません。前半の「追加」ボタンと同じように、**関数を渡すことと、関数を実行することの違い**を曖昧にしないようにしてください。
 :::
+
+また、ここでは `label` の内側にチェックボックスと名前を配置しているので、**Todo の名前をクリックしてもチェックを切り替えられます**。こちらも実際に確認してみてください。
+
+::: {.note .type-tips}
+**優先度と期限の表示について**
+
+`num2star` は、優先度 `1`・`2`・`3` を、それぞれ `★★★`・`★★`・`★` にする関数です。
+
+`formattedDate` は、時刻が `00:00` の場合は日付だけ、それ以外は日付と時刻を表示する関数です。期限が `null` の場合は、期限表示の部分をレンダリングしません。
+:::
+
+::: prompts
+- React において、JSX の input 要素に記述する内容として `onChange={(e) => props.updateIsDone(todo.id, e.target.checked)}` と `onChange={props.updateIsDone(todo.id, todo.isDone)}` の違いが分かりません。何が違うのですか。究極に噛み砕いて解説してください。
+:::
+
+### 動作確認
+
+ここまで実装できたら、開発モードでアプリを動かし、未完了の Todo にチェックを入れてみてください。チェックを入れると、**「完了済み」の表示が付き、未完了件数が1件減ること**を確認してください。つづいてチェックを外し、未完了の状態に戻ることも確認しておいてください。
+
+![img](figs/05/app_2_16.png)
+
+そのうえで、チェックボックスを操作してから画面が更新されるまでの流れを、追加したコードと対応させて読み解いてみてください。
+
+1. TodoList でチェックボックスを操作すると、`onChange` のイベントハンドラが実行されます。
+2. `props.updateIsDone` を通して、対象の ID と操作後のチェック状態が、App の `updateIsDone` 関数に渡されます。
+3. App が `setTodos` で状態を更新すると、新しい配列が Props として TodoList に渡され、チェック状態や完了表示が更新されます。App で数えている未完了件数も更新されます。
+
+::: {.balloon .char-01 .face-02 .tone-yellow}
+Todo の配列を状態として持っているのは、親の **App コンポーネント** でした。子の TodoList は、**Props として受け取った関数をコールして、親に更新を依頼する**役割を担当しています。このような親子間のやりとりは、React を使った開発で繰り返し登場するので、ここでしっかりと理解しておいてください。
+:::
+
+操作した Todo 以外は影響を受けないことや、チェックを外すと未完了件数が元に戻ることも確認してください。優先度や期限を設定した Todo を新たに追加し、それらの表示と完了状態の切り替えも試しておいてください。
+
+- ここまでの実装例 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step06/App.tsx)、[**src/TodoList.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step06/TodoList.tsx)
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+ここまでの変更内容をコミットしておいてください。また、念のため `npm run build` を実行し、ビルドがエラーなく完了することも確認してください。
+:::
+
 
 ### NG: 元の Todo を直接変更する
 
-次のように実装すると、新しい配列も新しい Todo オブジェクトもつくっていません。**参考の NG 例** として、先ほどの実装と比較してください。
+前半では、`push` で元の配列を直接書き換える実装の問題を確認しました。既存の Todo を更新する場合も、**元の配列や Todo を直接書き換える処理は避ける**必要があります。
+
+以下は **参考の NG 例** です。先ほどの実装と見比べて、配列と Todo の更新方法がどのように異なるか確認してください。
 
 ```ts{.numberLines caption="src/App.tsx（NG な完了状態の更新）"}
 const updateIsDone = (id: string, value: boolean) => {
@@ -900,26 +1271,30 @@ const updateIsDone = (id: string, value: boolean) => {
 };
 ```
 
-同じ参照の配列を `setTodos` に渡しているため、一覧や未完了件数が適切に更新されません。コピーした配列をつくるだけでなく、**変更する Todo オブジェクトも新しくする** 必要があることを確認してください。
+この例では、`todo.isDone = value` で元の Todo を直接書き換えています。さらに、`setTodos(todos)` に更新前と同じ参照の配列を渡しているため、React は状態が変わっていないと判断し、画面の更新がスキップされます。
 
-### 動作確認
-
-未完了の Todo を完了にし、完了済みの Todo を未完了に戻してみてください。チェック状態・完了表示・未完了件数が連動し、**操作した Todo 以外の内容は変わらないこと** を確認してください。
+また、配列だけをコピーしても、そのなかの元の Todo を直接書き換えていれば、イミュータブルな更新にはなりません。先ほどの `map` とスプレッド構文では、**配列と更新対象の Todo の両方を新しく生成している**ことを、改めて確認しておいてください。
 
 #### 定着確認
 
 - React で Todo 配列を状態として持つ親コンポーネントがあり、子のチェックボックス操作で Todo を更新したい。親から子に渡すものを答えよ。
   - 答え: <span class="masked">対象のデータと、親の状態を更新するための関数。子はその関数をコールして更新を依頼する。</span>
-- React のチェックボックスの変更イベントで、チェック後の真偽値を取得するプロパティを答えよ。
+- React のチェックボックスの変更イベントを引数 `e` で受け取るとき、操作後のチェック状態を真偽値として取得する式を答えよ。
   - 答え: <span class="masked">`e.target.checked`。</span>
-- Todo 配列のうち 1 件の `isDone` をイミュータブルに更新する場合、新しくつくるものを答えよ。
+- React の状態として管理している Todo 配列のうち、1件の `isDone` を `map` とスプレッド構文でイミュータブルに更新する場合、新しくつくるものと、そのまま利用できるものを答えよ。
   - 答え: <span class="masked">外側の配列と、更新対象の Todo オブジェクト。対象でない Todo の参照は維持できる。</span>
 
 ## 完了済みのタスクを削除するボタンの追加
 
-完了済みのタスクを一括削除する機能を実装します。第 03 回の[オブジェクト配列に対する filter](lecture03.html#オブジェクト型の配列に対するfilterの適用)を、そのまま使える場面です。
+完了済みのタスクを一括削除する機能を実装します。第03回の [オブジェクト配列に対する filter](lecture03.html#オブジェクト型の配列に対するfilterの適用) で実装したコードを、ほぼそのまま利用できる内容となります。
 
-**src/App.tsx** の `App` 関数内に、次の `removeCompletedTodos` 関数を追加してください。
+![完了済みタスクの一括削除](figs/05/app_2_14.png)
+
+- 完成形を先に確認したい場合は、こちらの実装例を参照してください 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step07/App.tsx)、[**src/TodoList.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step06/TodoList.tsx)
+
+---
+
+まず、**src/App.tsx** の `App` 関数内に、次の `removeCompletedTodos` 関数を追加してください。
 
 <!-- code-source: docs/codes/05/step07/App.tsx#L80-L82 -->
 
@@ -929,7 +1304,7 @@ const removeCompletedTodos = () => {
 };
 ```
 
-`filter` の条件は「削除するもの」ではなく、<span class="masked">新しい配列に残すもの</span> を表します。ここでは、`!todo.isDone` が `true` になる未完了の Todo を残しています。
+`filter` の条件は「削除するもの」ではなく、<span class="masked">新しい配列に残すもの</span> を表します。ここでは、`!todo.isDone` が `true` になる Todo、つまり「未完了の Todo」を残しています。
 
 また、未完了件数を計算した行の直後に、次の行を追加してください。完了済みの件数は、全件数から未完了件数を引いて求められます。
 
@@ -960,19 +1335,32 @@ JSX の `<TodoList ... />` と `<form ...>` の間に、次のボタンを追加
 
 完了済みの Todo がない場合は、ボタンを無効化しています。このボタンはフォームの送信に使わないため、`type="button"` としています。
 
-![完了済みタスクの一括削除](figs/05/app_11.png)
 
-完了・未完了が混在した状態で押下し、完了済みだけが消えることを確認してください。削除後、未完了件数が変わらず、完了済みが 0 件になるとボタンが無効になることも確認してください。
+完了・未完了が混在した状態で押下し、完了済みだけが消えることを確認してください。削除後、**未完了件数は変化せず**、さらに、**第98行目** の設定によって <span class="masked">完了済みが 0 件になるとボタンが無効になること</span> も確認してください。
 
-ここまでの実装例: [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step07/App.tsx)。TodoList は、直前の完了切り替えの段階のものを使います。
+::: {.balloon .char-01 .face-02 .tone-yellow}
+ブラウザで「再読み込み」をすると、アプリが再起動し、`initTodo.ts` で定義された初期データをもとに Todo リストが再び初期化されます。データの永続化については、あとで学習します。
+:::
+
+- ここまでの実装例 👉 [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step07/App.tsx)。
+  - TodoList については変更がないので、直前の完了切り替えの段階のものを使用してください。
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+ここまでの変更内容をコミットしておいてください。また、念のため `npm run build` を実行し、ビルドがエラーなく完了することも確認してください。
+:::
+
 
 ## タスクの個別削除
 
-次に、完了・未完了に関係なく、**指定した Todo を 1 件だけ削除する機能** を実装します。
+ここまでで、完了済みの Todo を一括で削除できるようになりました。つづいて、各 Todo に「削除」ボタンを配置し、**完了・未完了に関係なく、指定した Todo を1件だけ削除できるように**していきます。
 
-![タスクの個別削除](figs/05/app_12.png)
+![タスクの個別削除](figs/05/app_2_15.png)
 
-**src/App.tsx** の `App` 関数内に、次の `remove` 関数を追加してください。
+- 完成形を先に確認したい場合は、こちらの実装例を参照してください 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step08/App.tsx)、[**src/TodoList.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step08/TodoList.tsx)
+
+### filter で削除対象を除いた配列をつくる
+
+最初に、削除対象の ID を受け取る関数を用意します。**src/App.tsx** の `App` 関数内で、`removeCompletedTodos` 関数のあと、`return` の前に、次の `remove` 関数を追加してください。
 
 <!-- code-source: docs/codes/05/step08/App.tsx#L84-L86 -->
 
@@ -982,17 +1370,26 @@ const remove = (id: string) => {
 };
 ```
 
-引数 `id` と一致しない Todo を `filter` で集めています。ID が一致する Todo を「残す条件」から外すことで、削除した配列を得ています。
+**第84行目** の引数 `id` は、削除したい Todo の ID です。**第85行目** では、`setTodos` に updater 関数を渡し、現在の配列に対して `filter` を適用しています。
 
-完了切り替えの関数と同じように、この `remove` も TodoList に Props として渡してください。**src/App.tsx** の呼び出しを次のように変更します。
+`filter` に渡す関数は、**配列に残す要素の条件を判定する関数**でした。この例では、`todo.id !== id` によって次のように判定しています。
 
-<!-- code-source: docs/codes/05/step08/App.tsx#L97-L97 -->
+- ID が削除対象と一致する Todo では、条件が `false` になり、新しい配列に含まれません。
+- ID が削除対象と異なる Todo では、条件が `true` になり、新しい配列に残ります。
 
-```ts{.numberLines caption="src/App.tsx（抜粋）" startFrom=97}
-<TodoList todos={todos} updateIsDone={updateIsDone} remove={remove} />
-```
+この結果、**削除対象を除いた新しい配列**が、次の `todos` になります。一括削除で使った `!todo.isDone` から、**ID による判定**に変わっていることを確認してみてください。
 
-**src/TodoList.tsx** の Props の型にも、`remove` を追加してください。
+::: {.balloon .char-01 .face-02 .tone-yellow}
+`filter` は、元の配列を直接書き換えることなく、条件を満たす要素を集めた新しい配列を返すメソッドでした。今回は残す Todo の内容を変更しないので、それぞれの Todo オブジェクトは、そのまま利用しています。
+:::
+
+::: prompts
+- React + TypeScript で Todo アプリを開発しています。各 Todo は文字列の id を持ち、配列 todos は useState で管理しています。個別削除に `setTodos((currentTodos) => currentTodos.filter((todo) => todo.id !== id));` と記述しました。変数 id は削除したい Todo の ID です。なぜ「削除したい ID と一致しない」という条件で削除できるのかが分かりません。
+:::
+
+### 削除用の関数を Props として渡す
+
+完了状態を切り替えるときと同じように、今回も、**子の TodoList から親の App に更新を依頼する仕組み** を利用していきます。**src/TodoList.tsx** の `Props` の型に、次のように `remove` を追加してください。
 
 <!-- code-source: docs/codes/05/step08/TodoList.tsx#L7-L11 -->
 
@@ -1000,11 +1397,25 @@ const remove = (id: string) => {
 type Props = {
   todos: Todo[];
   updateIsDone: (id: string, value: boolean) => void;
-  remove: (id: string) => void;
+  remove: (id: string) => void; // 追加
 };
 ```
 
-`todos.map(...)` のなかで、各 Todo の表示に、次のボタンを追加してください。ボタンと名前を左右に配置するなど、全体の JSX とスタイリングは[実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step08/TodoList.tsx)も参考にしてください。
+**第10行目** の `(id: string) => void` は、**文字列の ID を引数に取り、戻り値を使わない関数の型**です。
+
+つづいて、**src/App.tsx** の `<TodoList ... />` を、次のように変更してください。これにより、App で定義した `remove` 関数を、TodoList のなかで `props.remove` として利用できるようになります。
+
+<!-- code-source: docs/codes/05/step08/App.tsx#L97-L97 -->
+
+```ts{.numberLines caption="src/App.tsx（抜粋）" startFrom=97}
+<TodoList todos={todos} updateIsDone={updateIsDone} remove={remove} />
+```
+
+### 各 Todo に削除ボタンを追加する
+
+次に、**src/TodoList.tsx** の `todos.map(...)` のなかに、削除ボタンを追加します。各 Todo を囲む `<div key={todo.id} ...>` のなかで、**名前・優先度・期限などをまとめている内側の `<div>` の閉じタグ `</div>` の直後**に、次のボタンを配置してください。
+
+配置に迷った場合は、[実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step08/TodoList.tsx) の **第78行目** から **第90行目** と見比べてみてください。名前などの表示と削除ボタンが、左右に並ぶ構成になっています。
 
 <!-- code-source: docs/codes/05/step08/TodoList.tsx#L79-L89 -->
 
@@ -1022,15 +1433,34 @@ type Props = {
 </button>
 ```
 
-`onClick={() => props.remove(todo.id)}` によって、クリックされた Todo の ID を渡しています。`aria-label` には「どの Todo を削除するボタンか」を設定しています。画面の「削除」という文字が同じでも、読み上げなどで区別できるようにするためです。
+**第81行目** では、`onClick` に `() => props.remove(todo.id)` というアロー関数を渡しています。この関数がクリック時に実行され、**そのボタンに対応する Todo の ID** を引数として、App から受け取った `remove` 関数をコールします。
 
-完了・未完了の Todo をそれぞれ削除し、未完了の Todo を削除したときだけ未完了件数も減ることを確認してください。また、すべて削除したときに、前回つくった「**現在、登録されているタスクはありません。**」という表示になることも確認してください。
+::: {.balloon .char-01 .face-01 .tone-pink}
+ここでも、`onClick` に渡すのは **関数そのもの** でした。`onClick={props.remove(todo.id)}` と記述すると、クリックを待たず、レンダリング時に削除処理を実行してしまいます。引数を付けて呼び出したいときは、今回のようにアロー関数で包む書き方を利用してください。
+:::
 
-ここまでの実装例: [src/App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step08/App.tsx)、[src/TodoList.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step08/TodoList.tsx)
+また、**第82行目** の `aria-label` には、「React の復習を削除」のように、Todo の名前を含む説明を設定しています。画面上は同じ「削除」という文字でも、スクリーンリーダーなどで、どの Todo を削除するボタンかを区別できるようにするためです。
+
+### 動作確認
+
+ここまで実装できたら、開発モードでアプリを動かし、次の点を確認してください。
+
+1. 未完了の Todo の「削除」ボタンを押すと、**その Todo だけが消え、未完了件数が1件減ること**。
+2. 完了済みの Todo の「削除」ボタンを押すと、その Todo だけが消え、**未完了件数は変わらないこと**。
+3. すべての Todo を削除すると、前回つくった「**現在、登録されているタスクはありません。**」という表示になること。
+
+今回も、子コンポーネントの TodoList が Props として受け取った関数をコールし、親コンポーネントである App が状態を更新するという流れでした。未完了件数も現在の `todos` から数えているので、削除後の状態に合わせて更新されていることを確認してください。
+
+- ここまでの実装例 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step08/App.tsx)、[**src/TodoList.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step08/TodoList.tsx)
+
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+ここまでの変更内容をコミットしておいてください。また、念のため `npm run build` を実行し、ビルドがエラーなく完了することも確認してください。
+:::
 
 ### 演習 <i class="fa-solid fa-stopwatch"></i>5分
 
-一括削除と個別削除について、次の操作で何が変わるか実際に確認し、その理由を説明してください。
+一括削除と個別削除では、Todo を残す条件が異なります。リストに表示される内容と未完了件数に注目して、次の操作で何が変わるか実際に確認し、その理由を説明してください。
 
 1. 完了・未完了が混在する一覧で、一括削除する。
 2. 未完了の Todo を 1 件だけ個別削除する。
@@ -1040,20 +1470,33 @@ type Props = {
 
 #### 定着確認
 
-- Todo の配列 `currentTodos` から、完了済みだけを削除する `filter` の条件を答えよ。
+- 各 Todo が完了状態を表す `isDone` を持つ配列 `currentTodos` から、`isDone` が `true` の Todo だけを除いた配列を得る、`filter` を使った式を答えよ。
   - 答え: <span class="masked">`currentTodos.filter((todo) => !todo.isDone)`。</span>
-- Todo の配列 `currentTodos` から、変数 `id` と同じ ID の Todo だけを削除する `filter` の条件を答えよ。
+- 各 Todo が文字列の `id` を持つ配列 `currentTodos` から、Todo の `id` プロパティが削除対象を表す変数 `id` と一致する Todo だけを除いた配列を得る、`filter` を使った式を答えよ。
   - 答え: <span class="masked">`currentTodos.filter((todo) => todo.id !== id)`。</span>
 - Todo の完了状態の変更に `map`、削除に `filter` を使う理由を説明せよ。
   - 答え: <span class="masked">`map` は各要素を対応する要素に変換し、`filter` は条件を満たす要素だけを残すから。更新では件数を保ち、削除では対象を除いた配列を得たい。</span>
 
 ## リファクタリング: コンポーネントに分割
 
-TodoList に、一覧全体の処理と、個々の Todo の表示・操作の処理が集まってきました。ここで、**1 件分の Todo を表示する役割** を、TodoItem コンポーネントに切り分けます。動作を変えず、役割ごとにコードを整理する作業です。
+ここまでの実装では、Todo の一覧表示から、名前・優先度・期限の表示、チェックボックス・削除ボタンの処理まで、すべてを `TodoList` コンポーネントに記述してきました。しかし、1つのコンポーネントに多くの役割を持たせると、コードが肥大化し、修正や機能追加が難しくなってしまいます。
+
+そこで、**1件分の Todo の表示と操作を `TodoItem` コンポーネントとして独立させる** リファクタリングを行い、役割ごとにコードを整理していきます。
+
+このように、**外から見た動作を保ちながら、内部のコードを整理・改善すること**を「**リファクタリング**」といいます。今回は、次のようにコンポーネントの役割を分けていきます。
+
+- **TodoList**: Todo の配列を受け取り、一覧に並べる。Todo がない場合のメッセージも表示する。
+- **TodoItem**: 1件の Todo を受け取り、名前・優先度・期限や、チェックボックス・削除ボタンを表示する。
+
+App の状態管理と、追加・更新・削除の処理は、引き続きそのまま利用していきます。
+
+完成形を先に確認したい場合は、こちらの実装例を参照してください 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/App.tsx)、[**src/TodoList.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/TodoList.tsx)、[**src/TodoItem.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/TodoItem.tsx)
 
 ### TodoItem コンポーネントの作成
 
-**src/TodoItem.tsx** を新規作成し、次のコードを記述してください。直前の TodoList から 1 件分の表示を移し、`num2star`・`formattedDate` と、それらの表示に必要なインポートも移しています。
+最初に、**src/TodoItem.tsx** を新規作成し、次のコードを記述してください。これまで **src/TodoList.tsx** に記述していた、**1件分の Todo を表示する JSX** を、このファイルに移します。
+
+表示用の `num2star`・`formattedDate` 関数と、dayjs やアイコンなどのインポートも、表示処理と一緒に移している点に注目してください。
 
 <!-- code-source: docs/codes/05/step09/TodoItem.tsx#L1-L81 -->
 
@@ -1141,11 +1584,15 @@ const TodoItem = (props: Props) => {
 export default TodoItem;
 ```
 
-TodoItem は、`todos` という配列ではなく、**1 件の `todo`** を受け取ります。また、完了切り替えと削除は、引き続き受け取った関数で親に依頼しています。状態の持ち主が TodoItem に移ったわけではありません。
+**第08行目** の `todo: Todo` は、このコンポーネントが **1件分の Todo オブジェクト** を受け取ることを表しています。TodoList が受け取る `todos: Todo[]` との違いを確認してください。**第23行目** では、受け取った1件を変数 `todo` に得ています。
+
+また、**第09行目** と **第10行目** では、完了状態の更新と個別削除に使う関数を Props として受け取っています。これらを利用する **第37行目** と **第68行目** は、これまで TodoList に記述していた処理と同じです。
+
+Todo の配列の状態は、引き続き **App コンポーネント** が管理します。TodoItem は、受け取った Todo を表示し、Props として受け取った関数を使って App に更新を依頼する役割を担当します。
 
 ### TodoList コンポーネントの変更
 
-**src/TodoList.tsx** を、次のように書き換えてください。個々の Todo の表示を TodoItem に任せることで、TodoList には「空の一覧の表示」と「配列を `map` して並べる処理」が残ります。
+つづいて、**src/TodoList.tsx** の全体を、次のように書き換えてください。1件分の表示と表示用の関数を TodoItem にまとめ、TodoList には「Todo がない場合の表示」と「配列を `map` して並べる処理」を残すようにします。
 
 <!-- code-source: docs/codes/05/step09/TodoList.tsx#L1-L35 -->
 
@@ -1187,167 +1634,241 @@ const TodoList = (props: Props) => {
 export default TodoList;
 ```
 
-この `map` が返す一番外側の要素は `<TodoItem ... />` なので、**key 属性も TodoItem に設定します**。ID は表示の順番ではなく、Todo の `id` を使います。追加や削除によって表示位置が変わっても、同じ Todo を識別するためでした。
+ここまで実装できたら、開発モードでアプリを動かしてみてください。**分割前と同じ画面が表示され、完了状態の切り替えと個別削除も、これまでどおり動作すること**を確認してください。そのうえで、コンポーネント間の受け渡しを読み解いていきます。
 
-また、App → TodoList → TodoItem と、関数を渡していることにも注目してください。TodoList 自身が状態を更新しなくても、**受け取った関数を、そのまま次の子に渡す** ことができます。
+**第02行目** では、新しく作成した TodoItem をインポートしています。そして、**第23行目** の `map` で Todo をひとつずつ取り出し、**第26行目** の `todo={todo}` で、1件分のデータを TodoItem に渡しています。
+
+この `map` が返す一番外側の要素は `<TodoItem ... />` なので、**第25行目** のように、`key` も TodoItem に設定します。値には、一意で安定した **Todo の `id`** を使います。追加や削除で表示位置が変わっても、同じ Todo を識別するためでした。
+
+また、**第27行目** と **第28行目** では、App から受け取った関数を、そのまま TodoItem に渡しています。TodoList のなかで、それらの関数を実行しているわけではない点にも注意してください。
+
+::: {.balloon .char-01 .face-02 .tone-yellow}
+例えば、TodoItem の「削除」ボタンを押したときの流れは、次のようになります。
+
+1. App で定義した `remove` 関数が、**App → TodoList → TodoItem** と Props を通して渡されます。
+2. TodoItem のボタンを押すと、`props.remove(todo.id)` が呼び出され、App で定義した削除処理が実行されます。
+3. App が状態を更新すると、新しい配列が TodoList に渡され、その配列に含まれる Todo が TodoItem で表示されます。
+
+コンポーネントを分けたあとも、**状態を管理している App に更新を依頼する**という流れが保たれていることを確認できたでしょうか。
+:::
 
 ::: prompts
-- React + TypeScript の Todo アプリで、App が Todo 配列を useState で持ち、TodoList が配列を受け取り、TodoItem が 1 件を表示しています。TodoItem の削除ボタンから、Props で渡した remove 関数を呼び出すとき、データと処理がどのように流れるか説明してください。子の TodoItem が Todo を直接変更してはいけない理由も説明してください。
+- React + TypeScript の Todo アプリで、App が Todo 配列を useState で持ち、TodoList が配列を受け取り、TodoItem が1件を表示しています。App で定義した remove 関数は、TodoList を経由して Props として TodoItem に渡しています。TodoItem の削除ボタンからこの関数を呼び出すとき、データと処理がどのように流れるか説明してください。子の TodoItem が Todo を直接変更してはいけない理由も説明してください。
+:::
+
+- ここまでの実装例 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/App.tsx)、[**src/TodoList.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/TodoList.tsx)、[**src/TodoItem.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/TodoItem.tsx)
+
+::: {.balloon .char-01 .face-05 .tone-blue}
+ここまでの変更内容をコミットしておいてください。また、念のため `npm run build` を実行し、ビルドがエラーなく完了することも確認してください。
+:::
+
+
+#### 定着確認
+
+- React で、Todo 配列を `map` し、各要素について TodoItem を返す場合、`key` を設定する要素と、その値に適したものを答えよ。ただし、各 Todo は一意で安定した `id` を持つものとする。
+  - 答え: <span class="masked">`map` が直接返す TodoItem に設定し、値には安定した一意の `todo.id` を使う。</span>
+- React の Todo アプリが App → TodoList → TodoItem という構成で、Todo の配列を状態として持つのは App である。TodoItem が削除を実行したい場合、どのようにするか説明せよ。
+  - 答え: <span class="masked">App で定義して Props 経由で渡した削除関数を、対象の ID を引数にしてコールする。</span>
+- React + TypeScript の Todo アプリで、TodoList から1件分の表示を TodoItem に移す際、JSX 以外に、移したり新しく用意したりする必要があるものを挙げよ。
+  - 答え: <span class="masked">表示用の補助関数と、ライブラリ・アイコン・Todo 型などのインポート。TodoItem が受け取る Props の型も用意する。</span>
+
+## ここまでの動作確認
+
+ここまでで、**追加・完了切り替え、一括削除、個別削除、入力検証** ができるようになりました。この段階の完成コードは、次のリンクから確認することができます。一括ダウンロードは [こちら](codes/05/todo-before-localstorage.zip)。
+
+- [App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/App.tsx)、[TodoList.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/TodoList.tsx)、[TodoItem.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/TodoItem.tsx)、[WelcomeMessage.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/WelcomeMessage.tsx)、[types.ts](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/types.ts)、[initTodos.ts](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/initTodos.ts)
+
+最後にブラウザをリロードし、追加や削除が初期状態に戻ることも確認してください。
+
+ここまでは **メモリ上の状態** を変更しているため、リロード後までデータは残りません。次のセクションでは、この問題を改善するために「データの永続化」について学んでいきます。
+
+## LocalStorageを利用したデータの永続化
+
+ここまでの Todo アプリでは、追加・更新・削除をしても、ブラウザをリロードすると初期状態に戻ってしまいます。つづいて、**リロードしたときや、次回アクセスしたときにも、前回の Todo リストを使えるように**していきます。
+
+このように、アプリを終了したあとも利用できるように、データや状態を保存することを <span class="masked">データの永続化 (Data Persistence)</span> といいます。
+
+
+:::{.balloon .char-01 .face-02 .tone-yellow}
+
+ウェブアプリでは、サーバ側のデータベースなどにデータを保存する方法も使われます。ユーザー認証と組み合わせれば、異なる端末から同じデータを利用することもできます。今回は、まだバックエンド開発を学んでいないので、**ブラウザに組み込まれた LocalStorage を使って、フロントエンドで永続化を実装**していきます。
+:::
+
+- 完成形を先に確認したい場合は、こちらの実装例を参照してください 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step10/App.tsx)。
+
+### LocalStorage とは
+
+LocalStorage は、**「キー」と「値」のペアでデータを保存する機能**です。Python の `dict` のような仕組みですが、保存するキーと値は <span class="masked">文字列</span> になります。JavaScript からは、`window.localStorage`、または単に `localStorage` と記述して利用できます。
+
+- `localStorage.setItem(key, value)`: キーを指定して、文字列を保存する。
+- `localStorage.getItem(key)`: キーに対応する文字列を取得する。キーがなければ <span class="masked">`null`</span> を返す。
+- `localStorage.removeItem(key)`: キーを指定して、保存データを削除する。
+
+LocalStorage の内容は、ブラウザを閉じたあとも保持できます。ただし、保存領域は **端末のブラウザ (プロファイル) ごと、オリジンごと**に分かれています。
+
+たとえば、寝屋川タヌキと萱島ウサギが、それぞれ別の PC のブラウザで Todo アプリを使っているとします。この場合、寝屋川タヌキが「高専に侵入」という Todo を追加しても、萱島ウサギの Todo リストには影響しません。
+
+::: {.note .type-tips}
+**保存領域とオリジンについて**
+
+オリジンとは、**プロトコル・ホスト名・ポート番号**の組み合わせを指します。保存容量は、1 オリジンあたり **5 MiB 程度 (約 5 MB)** が目安です。
+
+- `http://localhost:5173/` と `http://localhost:5174/` は、ポート番号が異なるので、別の保存領域になります。
+- `https://hoge777.github.io/react-todo-app/` と `https://hoge777.github.io/portfolio/` は、パスが異なっていても同じオリジンなので、保存領域を共有します。同じキーを使えば、同じ保存データを読み書きします。
+
+このため、開発中の localhost と、公開先のウェブサイトでも、保存されているデータは別になります。
 :::
 
 #### 定着確認
 
-- Todo 配列を `map` し、各要素について TodoItem を返す場合、`key` を設定する要素と、その値に適したものを答えよ。
-  - 答え: <span class="masked">`map` が直接返す TodoItem に設定し、値には安定した一意の `todo.id` を使う。</span>
-- App → TodoList → TodoItem という構成で、Todo の配列を状態として持つのは App である。TodoItem が削除を実行したい場合、どのようにするか説明せよ。
-  - 答え: <span class="masked">App で定義して Props 経由で渡した削除関数を、対象の ID を引数にしてコールする。</span>
-- TodoList から TodoItem に 1 件分の表示を移す際、JSX 以外に移す必要があるものを挙げよ。
-  - 答え: <span class="masked">1 件分の表示で使う関数、型、ライブラリやアイコンのインポートなど。</span>
+- LocalStorage のキーと値に使えるデータ型を答えよ。
+  - 答え: <span class="masked">文字列。</span>
+- 同じ PC で Edge と Chrome を使用しているとき、同一オリジンに対して各ブラウザは「独立した LocalStorage を持つ」か「共通の LocalStorage を持つ」か答えよ。
+  - 答え: <span class="masked">独立した LocalStorage を持つ。</span>
+- 画像ファイルなどのバイナリデータを、そのまま LocalStorage の値として保存できるか答えよ。
+  - 答え: <span class="masked">そのままでは保存できない。Base64 などで文字列に変換すれば保存できる。</span>
 
-## ここまでの動作確認
+### 保存データを読み込む関数の用意
 
-ここまでで、**追加・完了切り替え・一括削除・個別削除と、入力検証** ができるようになりました。次の確認は、最終コードを貼り付けて終わりにするのではなく、自分が変更したコードとの対応を説明しながら行なってください。
+最初に、アプリの起動時に使う **Todo の配列を読み込む処理**を用意します。**src/App.tsx** のインポートのあと、`getTodoNameError` 関数の前に、次のコードを追加してください。
 
-1. 名前・優先度・期限を指定した Todo と、期限を指定しない Todo を追加する。
-2. ボタンと Enter の両方で追加し、追加後に各入力が初期状態に戻ることを確認する。
-3. 不適切な名前では追加できず、入力後の不備がメッセージと色で示されることを確認する。
-4. 完了・未完了を切り替え、チェック状態・完了表示・未完了件数の対応を確認する。
-5. 一括削除・個別削除と、空の一覧からの追加を確認する。
+今回の例では、このアプリが保存した、正しい形式の JSON データを読み込むことを前提に進めます。
 
-そのあと、VSCode のターミナルで次の 2 つを実行してください。
+<!-- code-source: docs/codes/05/step10/App.tsx#L13-L34 -->
 
-```
-npm run build
-npm run lint
-```
+```ts{.numberLines caption="src/App.tsx（抜粋）" startFrom=13}
+const localStorageKey = "TodoApp";
 
-前回確認したように、**開発モードで表示できることと、型チェック・ビルド・Lint が通ることは別** です。エラーや警告があれば、その内容と該当するコードを確認して修正してください。
+type StoredTodo = {
+  id: string;
+  name: string;
+  isDone: boolean;
+  priority: number;
+  deadline: string | null;
+};
 
-この段階の完成コードは、次のリンクから確認できます。**src 内の 6 ファイル** が対象です。前回の環境設定・ライブラリ・**src/main.tsx**・**src/index.css** は、そのまま利用します。
+const loadTodos = (): Todo[] => {
+  const todoJsonStr = localStorage.getItem(localStorageKey);
+  if (todoJsonStr === null) {
+    return initTodos;
+  }
 
-- [App.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/App.tsx)、[TodoList.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/TodoList.tsx)、[TodoItem.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/TodoItem.tsx)
-- [WelcomeMessage.tsx](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/WelcomeMessage.tsx)、[types.ts](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/types.ts)、[initTodos.ts](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step09/initTodos.ts)
-- [6 ファイルをまとめてダウンロード](codes/05/todo-before-localstorage.zip)
-
-最後にブラウザをリロードし、追加や削除が初期状態に戻ることも確認してください。ここまでは **メモリ上の状態** を変更しているため、リロード後までデータは残りません。次の節では、この点を改善するために「データの永続化」を扱います。
-
-
-## LocalStorageを利用したデータの永続化
-
-現状のTodoアプリは、Todoの追加や削除をしてもブラウザをリロード (再読み込み) すると初期状態に戻ってしまいます。このままでは、Todoアプリとして実用的に使えないため <span class="masked">データの永続化 (Data Persistence)</span> の機能が必要となります。「**データの永続化**」とは、簡単に言えば **ブラウザをリロードしたとき** や **次回アクセスしたとき** にも継続的にアプリを利用できるように <span class="masked">データや状態を不揮発性の領域に保存すること</span> です。
-
-ウェブアプリにおいて「データの永続化」は、通常、**バックエンド側 (サーバ側) でデータベース (RDBやNoSQLなど)** を利用して実装されます。バックエンドで実装することで、ユーザは異なるデバイスからアクセスしても (ユーザ認証を経たうえで) 継続的にアプリの利用ができます。
-
-しかし、まだ現時点ではバックエンド開発は学んでいないので、ここではブラウザの「**LocalStorage**」という機能を使って、**フロントエンドでのデータの永続化** を実装します。LocalStorage とは、ウェブブラウザに組み込まれている **キーバリュー型のストレージ機能** (Pythonの `dict` のようなシンプルな <span class="masked">「キー(key)」と「値(Value)」のペアでデータを保存する機能</span>) で、ブラウザを終了してもデータが残ることが特徴です。
-
-### LocalStorage とは
-
-LocalStorageは、JavaScriptの **Window.localStorage API** を通じて利用可能で、保存可能なデータは <span class="masked">文字列 (string型) のみ</span> ですが、**約5MB** までのデータが保存可能となっています。
-
-LocalStorageは **ブラウザごとに独立した保存領域** を持ちます。例えば `https://hoge777.github.io/react-todo-app/` にホストされた TodoApp に2人のユーザ「寝屋川タヌキ」と「萱島ウサギ」がアクセスした場合、各データは <span class="masked">各ユーザーが使用するデバイスのブラウザに独立して保存</span> されます。
-
-そのため、例えば寝屋川タヌキが「高専に侵入」というTodoを追加しても、萱島ウサギは影響を受けません。
-
-<div class="note type-tips">
-**LocalStorage の容量制限**
-
-LocalStorage は、**1オリジンあたり約5MB** が一般的な容量制限になっています。ここでの「オリジン」とは「**プロトコル（http/https）**」「**ドメイン**」「**ポート**」の組み合わせを指します。
-
-
-例えば、Todoアプリを GitHub Pages にデプロイするとすれば、次のようになります。
-
-- https://hoge777.github.io/react-todo-app/ の LocalStorage は約5MB
-- https://hoge777.github.io/portfolio/ は「同じオリジン」なので **上記とあわせて約5MB**
-- https://lofoo123.github.io/ → 異なるオリジンなので上記とは、別途、約5MB
-
-また、ローカル環境の開発サーバでホストするとすれば、次のようになります。
-
-- http://localhost:3000/ の LocalStorage は約5MB
-- http://localhost:5500/ は異なるオリジン (異なるポート番号) なので、上記とは別途約5MB
-</div>
-
-#### 定着確認
-
-- LocalStorage における1オリジンあたりの最大保存容量は約何MBか答えよ。
-    - 答え: <span class="masked">5MB</span>
-- 同じデバイスで Edge と Chrome を使用しているとき、同一オリジンに対して各ブラウザは「独立したLocalStorageを持つ」か「共通のLocalStorageを持つ」か答えよ。
-    - 答え: <span class="masked">独立したLocalStorageを持つ</span>
-- LocalStorage に画像などのバイナリデータを保存することは「可能」か「不可能」か答えよ。
-    - 答え: <span class="masked">不可能。LocalStorageは文字列（String型）のデータしか保存できない。ただし、Base64などで文字列にエンコードすれば可能である。</span>
-
-### LocalStorage を利用した保存機能の実装
-
-現在のTodoアプリに LocalStorage を組み込んでデータを永続化するには `src/App.tsx` に次のように実装します (<span class="masked">`useEffect` という Reactの Hook</span> の利用が実装のポイントとなります)。
-
-まずは、実際に動かしてみてください (**リロードしてもTodoリストが初期状態に戻ってしまわないこと**を確認してください)。
-
-```ts{.numberLines caption="src/App.tsx (データの永続化)"}
-import { useState, useEffect } from "react"; // ◀◀ 追加
-// ～ 省略 ～
-
-const App = () => {
-  const [todos, setTodos] = useState<Todo[]>([]); // ◀◀ 編集
-  const [newTodoName, setNewTodoName] = useState("");
-  const [newTodoPriority, setNewTodoPriority] = useState(3);
-  const [newTodoDeadline, setNewTodoDeadline] = useState<Date | null>(null);
-  const [newTodoNameError, setNewTodoNameError] = useState("");
-
-  const [initialized, setInitialized] = useState(false); // ◀◀ 追加
-  const localStorageKey = "TodoApp"; // ◀◀ 追加
-
-  // App コンポーネントの初回実行時のみLocalStorageからTodoデータを復元
-  useEffect(() => {
-    const todoJsonStr = localStorage.getItem(localStorageKey);
-    if (todoJsonStr && todoJsonStr !== "[]") {
-      const storedTodos: Todo[] = JSON.parse(todoJsonStr);
-      const convertedTodos = storedTodos.map((todo) => ({
-        ...todo,
-        deadline: todo.deadline ? new Date(todo.deadline) : null,
-      }));
-      setTodos(convertedTodos);
-    } else {
-      // LocalStorage にデータがない場合は initTodos をセットする
-      setTodos(initTodos);
-    }
-    setInitialized(true);
-  }, []);
-
-  // 状態 todos または initialized に変更があったときTodoデータを保存
-  useEffect(() => {
-    if (initialized) {
-      localStorage.setItem(localStorageKey, JSON.stringify(todos));
-    }
-  }, [todos, initialized]);
-
-  const uncompletedCount = todos.filter(
-    (todo: Todo) => !todo.isDone
-  ).length;
-
-  // ～ 以下、省略 ～
+  const storedTodos: StoredTodo[] = JSON.parse(todoJsonStr);
+  return storedTodos.map((todo) => ({
+    ...todo,
+    deadline: todo.deadline === null ? null : new Date(todo.deadline),
+  }));
+};
 ```
 
-ここでは `useEffect` が重要な役割を果たします。
+**第13行目** の `localStorageKey` は、保存と読み込みに使うキーです。ここでは「`TodoApp`」という名前で、Todo の配列全体を保存するようにします。
 
-まず、**第15行目** ～ **第29行目** の ` useEffect(() => {...}, [])` によって Appコンポーネントの <span class="masked">初回の実行時のみ (ブラウザでリロードされたときは、そのリロードの実行時のみ)</span> LocalStorage から Todoデータ をロードして `todos` にセットする仕組みをつくっています。
+`loadTodos` 関数では、**第24行目** で保存されている文字列を取得し、キーがない場合に限って、**第26行目** で `initTodos` を返しています。
 
-また、**第32行目** ～ **第36行目** の ` useEffect(() => {...}, [todos, initialized])` によって `todos` (または `initialized`) に更新があるときに、LocalStorage に `todos` をセーブする仕組みをつくっています。
+キーがある場合は、**第29行目** の `JSON.parse` で JSON 文字列を配列に戻します。`JSON.stringify` が「データ → JSON 文字列」への変換であるのに対し、`JSON.parse` は「JSON 文字列 → データ」への変換を担当します。
 
-じつは、ここまでの解説では、あえて触れてはいなかったのですが、「**Reactによる画面更新のための再レンダリング**」=<span class="masked">第04行目からの App関数 を再実行</span> という内部処理になっています。つまり、新規タスクの名前設定用の **テキストボックスに1文字入力するたびに** Reactにより画面の再レンダリングが実行されますが、その裏側では「**App関数の再実行**」が行なわれています (このあたりの仕組みは後述の動画を参照してください)。そのため、`useEffect` を利用しないと <span class="masked">テキストボックスに1文字打ち込むたびにTodoデータのロードやセーブが実行</span> されてしまいます。ここでは、LocalStorage を使っているため頻繁にロードとセーブをしても大きな問題はありません。しかし、一般的なウェブアプリでは **ウェブAPIを使ってデータの永続化** を行なうため、テキストボックスに１文字打ち込むたびにAPIを叩くような実装にすると、<span class="masked">短期間でAPIの利用上限に到達したり、膨大な課金が発生</span>してしまいます。注意してください。
+::: {.balloon .char-01 .face-02 .tone-yellow}
+すべての Todo を削除すると、保存される文字列は `"[]"` になります。これは **「空の Todo リストが保存されている状態」** です。キーが存在しない `null` とは区別してください。ここを同じ扱いにすると、リロードしたときに削除済みの初期データが戻ってしまいます。
+:::
 
+また、**第15行目** からの `StoredTodo` の型では、`deadline` を **`string | null`** としています。これまで使ってきた `Todo` 型の `Date | null` との違いに注目してください。
 
-`useEffect` の理解については [初心者向け！ReactのuseEffectが何してるのか20分で説明](https://www.youtube.com/watch?v=4INjmxXaPxU)@ Code Tips (動画) や[ウェブ検索](https://www.google.com/search?q=react+useeffect+解説)、生成AIを活用してください。
+Date オブジェクトは、`JSON.stringify` によって文字列に変換されますが、`JSON.parse` だけでは Date オブジェクトに戻りません。そのため、**第32行目** の `new Date(todo.deadline)` で、期限の文字列を Date オブジェクトに戻しています。期限がない場合の `null` は、そのまま利用します。
 
-この他、永続化の処理では「LocalStorageには文字列しか保存できない」という制約に対応するために `JSON.parse()` や `JSON.stringify()` を利用しています。特に、Date型の値は `JSON.stringify()` によって文字列型に変換・保存された後、`JSON.parse()` ではDate型の値に復元されない点に注意してください (文字列型として復元されます)。そのため **第21行目** のような工夫がされています。
+### 状態の初期化と保存処理の追加
 
-以上のように、この永続化の処理は様々な工夫が詰められているので、色々と実験したり読み解いたりして理解を深めてください。
+つづいて、**src/App.tsx** の **第01行目** に `useEffect` を追加してください。
+
+<!-- code-source: docs/codes/05/step10/App.tsx#L1-L1 -->
+
+```ts{.numberLines caption="src/App.tsx（抜粋）"}
+import { useState, useEffect } from "react";
+```
+
+そして、`todos` を初期化している行を、次のように変更してください。
+
+<!-- code-source: docs/codes/05/step10/App.tsx#L45-L45 -->
+
+```ts{.numberLines caption="src/App.tsx（抜粋）" startFrom=45}
+const [todos, setTodos] = useState<Todo[]>(loadTodos);
+```
+
+ここでは、`useState` に **初期値を生成する関数**として `loadTodos` を渡しています。React が状態を初期化するときに、この関数の戻り値を使って、保存データから `todos` を用意するようになります。
+
+さらに、`App` 関数内の `showNewTodoNameError` を求めている行のあと、`updateNewTodoName` 関数の前に、次のコードを追加してください。
+
+<!-- code-source: docs/codes/05/step10/App.tsx#L57-L59 -->
+
+```ts{.numberLines caption="src/App.tsx（抜粋）" startFrom=57}
+useEffect(() => {
+  localStorage.setItem(localStorageKey, JSON.stringify(todos));
+}, [todos]);
+```
+
+**第58行目** では、現在の `todos` を `JSON.stringify` で JSON 文字列に変換し、LocalStorage に保存しています。
+
+### リロードして動作を確認する
+
+ここまで実装できたら、開発モードでアプリを動かし、次の操作を試してみてください。
+
+1. 名前・優先度・期限を設定した Todo を追加し、ブラウザをリロードする。
+2. Todo の完了状態を切り替え、もう一度リロードする。
+3. Todo を個別に削除してから、リロードする。
+4. すべての Todo を削除してから、リロードする。
+
+それぞれの操作について、**リロード前の Todo リストが復元されること**を確認してください。特に、**すべて削除した場合は、空の一覧のままになること**、期限を設定した Todo では **リロード後も日付や時刻が正しく表示されること**を確認しておいてください。
+
+### useEffect で保存するタイミングを制御する
+
+保存処理で利用している `useEffect` は、**React の状態と、ブラウザの API などの外部の仕組みを同期させるための Hook** です。今回は、`todos` の内容を LocalStorage に反映させるために使っています。
+
+**第59行目** の `[todos]` は、<span class="masked">依存配列</span> といいます。この記述によって、**最初の表示後と、`todos` が変わったあとの表示後**に、保存処理が実行されるようになります。
+
+前回のカウンタでも確認したように、状態が変わると、React は App 関数を再実行して画面を更新します。名前の入力欄に 1 文字入力したときにも App 関数は再実行されますが、このとき変わるのは `newTodoName` などで、`todos` は変わりません。そのため、この保存処理は実行されません。
+
+一方、Todo の追加・完了切り替え・削除では、新しい配列を `setTodos` に渡していました。これによって `todos` が変わると、保存処理が実行されます。**入力欄の編集と、Todo リスト自体の変更を区別して保存している**ことを確認できたでしょうか。
+
+::: {.note .type-senior}
+**中級者向け**
+
+`useState<Todo[]>(loadTodos)` は、状態の初期化に使う関数を渡す書き方です。`useState<Todo[]>(loadTodos())` とすると、App 関数が再実行されるたびに、引数の `loadTodos()` も実行されてしまいます。
+
+また、開発環境の Strict Mode では、確認のため、初期化関数や Effect が追加で実行されることがあります。今回の `loadTodos` は読み込みと変換だけを行い、保存用の Effect は現在の配列を保存するので、追加で実行されても Todo が増えたり、読み込む前に保存データを空にしたりする処理にはなっていません。
+:::
+
+`useEffect` については、[React の公式リファレンス](https://react.dev/reference/react/useEffect) や、[初心者向け！ReactのuseEffectが何してるのか20分で説明](https://www.youtube.com/watch?v=4INjmxXaPxU) @ Code Tips (動画)、以下のプロンプト例などを使って理解を深めてください。
+
+::: prompts
+- React + TypeScript で Todo アプリを開発しています。配列 todos を useState で管理し、`useEffect(() => { localStorage.setItem("TodoApp", JSON.stringify(todos)); }, [todos]);` としています。なぜ、名前の入力欄の状態 newTodoName を更新したときには保存されず、todos を更新したときには保存されるのですか。App 関数の再実行と Effect の実行の違いが分かりません。
+- React + TypeScript で、期限を Date または null で持つ Todo の配列を LocalStorage に保存しています。JSON.stringify で保存し、JSON.parse で読み込んだあと、なぜ期限を new Date で変換する必要があるのですか。TypeScript の型注釈と、実際のデータ型の関係も含めて説明してください。
+:::
 
 ### ローカルストレージの管理
 
-ローカルストレージの管理 (確認・編集・削除) は、以下のようにウェブブラウザの**デベロッパーツール** (`F12` で起動) から行なうことができます。
+保存されたデータは、ウェブブラウザの **デベロッパーツール** から確認・削除することができます。Chrome や Edge で `F12` を押し、次の順序で確認してみてください。
 
-![img](figs/05/chrome-01.png)
+1. 「**アプリケーション (Application)**」タブを開く。
+2. 「**ローカル ストレージ (Local storage)**」を展開し、現在のアプリのオリジンを選択する。
+3. キー「**TodoApp**」に保存されている JSON 文字列を確認する。
 
-上記の❸で、右クリックして「**削除**」を選択すれば手動で当該のローカルストレージを削除することができます。
+![ローカルストレージの確認](figs/05/chrome-01.png)
+
+保存内容と画面上の Todo を見比べ、名前・完了状態・優先度・期限がどのように保存されているか確認してください。期限がある場合は、保存データでは文字列になっていることにも注目してください。
+
+また、キー「TodoApp」の行を右クリックして削除し、そのあとブラウザをリロードしてみてください。保存データがないため、**`initTodos` から初期化されること**を確認できます。最初の表示後に保存処理も実行されるので、キー「TodoApp」は初期データの内容で再作成されます。
+
+- ここまでの実装例 👉 [**src/App.tsx**](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/05/step10/App.tsx)
+
+#### 定着確認
+
+- LocalStorage のキー「TodoApp」にデータがない場合と、文字列 `"[]"` が保存されている場合では、Todo アプリの初期化をどのように区別するか答えよ。
+  - 答え: <span class="masked">キーがない場合だけ initTodos を使い、`"[]"` が保存されていれば空の配列として復元する。</span>
+- LocalStorage に保存するために Todo 配列を JSON 文字列へ変換するメソッドと、その文字列をデータに戻すメソッドを、それぞれ答えよ。
+  - 答え: <span class="masked">`JSON.stringify` と `JSON.parse`。</span>
+- Todo の期限を Date オブジェクトとして持つ配列を JSON.stringify で保存し、JSON.parse で復元した。期限がある Todo の deadline は、その直後にどのデータ型になっているか答えよ。
+  - 答え: <span class="masked">文字列。Date オブジェクトに戻すには `new Date(...)` が必要。</span>
+- React で `useEffect(() => { localStorage.setItem("TodoApp", JSON.stringify(todos)); }, [todos]);` と記述した場合、保存処理が実行されるタイミングを答えよ。
+  - 答え: <span class="masked">最初の表示後と、依存配列にある todos が変わったあとの表示後。開発環境の Strict Mode では確認のため追加で実行される場合もある。</span>
 
 ## Reactアプリを GitHub Pages にデプロイする手順
 
