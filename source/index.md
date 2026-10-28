@@ -14,7 +14,8 @@ var:
 - 第03回講義 10月09日(金) [資料](lecture03.html)&ensp; **_小テスト2_** <font size="-1">配列操作メソッド (map, filter, sort)</font>
 - 第04回講義 10月16日(金) [資料](lecture04.html)&ensp; **_小テスト3_** <font size="-1">React開発環境の構築, Todoアプリ開発1</font>
 - 第05回講義 10月23日(金) [資料](lecture05.html)&ensp; **_小テスト4_** **_課題1_** <font size="-1">Todoアプリ開発2、GitHubPages にデプロイ</font>
-- 第06回講義 10月30日(木) 資料&ensp; <font size="-1">Next.js 開発環境の構築</font>
+- 第06回講義 10月30日(金) [資料](lecture06.html)&ensp; <font size="-1">Next.js 開発環境の構築</font>
+- 第07回講義 11月13日(金) 資料&ensp; **_小テスト5_** <font size="-1">microCMS を利用したバックエンド構築</font>
 
 ---
 

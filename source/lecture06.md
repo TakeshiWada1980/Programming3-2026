@@ -104,7 +104,14 @@ node -v
 
 ## Next.js の 開発環境構築
 
-本授業では **Next.js 16** を使用し、**Cache Components は無効**にして開発を進めます。
+### スキャフォールディング
+
+::: {.balloon .char-01 .face-02 .tone-yellow}
+[第03回講義](lecture04.html#viteによるプロジェクトフォルダの作成) でも紹介したように、開発に必要なファイルやフォルダ、設定ファイル、サンプルコードなどをまとめて自動生成し、プロジェクトの骨組みを用意することを「**スキャフォールディング**」といいます。
+:::
+
+
+本授業では **Next.js** のバージョン **16** を使用して、**Cache Components は無効**にして開発を進めます。
 
 以下、プロジェクト名称を `next-blog-app` として、**Next.js 16.4.3 の開発環境**を構築していきます。
 
@@ -665,7 +672,7 @@ export default eslintConfig;
   "semi": true,
   "plugins": ["prettier-plugin-tailwindcss"],
   "tailwindStylesheet": "./src/app/globals.css",
-  "tailwindFunctions": ["twMerge"]
+  "tailwindFunctions": ["cn"]
 }
 ```
 
@@ -765,12 +772,15 @@ export default RootLayout;
 
 ### FontAwesome の利用
 
-Next.js で[FontAwesome](https://fontawesome.com/icons/categories)の各種アイコンを使用する場合は少し注意が必要になってきます。
+Next.js で [FontAwesome](https://fontawesome.com/icons/categories) の各種アイコンを使用する場合は少し注意が必要になってきます。
 
 まずは、同様にパッケージをインストールしてください。
 
-```
+```bash
 npm i --save-exact @fortawesome/react-fontawesome@3.5.0 @fortawesome/fontawesome-svg-core@7.3.1
+```
+
+```bash
 npm i --save-exact @fortawesome/free-solid-svg-icons@7.3.1
 ```
 
@@ -857,17 +867,17 @@ export default nextConfig;
 
 ![img](figs/06/app_05.png)
 
-まずは、ReactによるTodoアプリ開発でも使用した「tailwind-merge」をインストールしてください。
+まずは、Tailwind CSS のクラスの結合と競合の解決に使う「cn」をインストールしてください。
 
-```
-npm i --save-exact tailwind-merge@3.7.0
+```bash
+npm i --save-exact cn@0.5.0
 ```
 
 次に `src/app/_components/Header.tsx` を次のように編集してください。**第19行目** の「Header」の文字列は「**XXX's Tech Notes**」や「**XXXのブログ**」のように適当に書き換えてください。
 
 ```ts{.numberLines caption="src/app/_components/Header.tsx"}
 "use client";
-import { twMerge } from "tailwind-merge";
+import { cn } from "cn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFish } from "@fortawesome/free-solid-svg-icons";
 
@@ -876,7 +886,7 @@ const Header: React.FC = () => {
     <header>
       <div className="bg-slate-800 py-2">
         <div
-          className={twMerge(
+          className={cn(
             "mx-4 max-w-2xl md:mx-auto",
             "flex items-center justify-between",
             "text-lg font-bold text-white"
@@ -896,7 +906,7 @@ const Header: React.FC = () => {
 export default Header;
 ```
 
-上記は、主に **第09行目** から **第16行目** に編集を加えています。ここでは解説と可読性・保守性の都合で `twMerge` を使ってクラスを3分割して記述していますが、実際には `twMerge` を使わずに `className="..."` として全てのクラスを列挙可能です。
+上記は、主に **第09行目** から **第16行目** に編集を加えています。ここでは解説と可読性・保守性の都合で `cn` を使ってクラスを3分割して記述していますが、実際には `cn` を使わずに `className="..."` として全てのクラスを列挙可能です。
 
 まず、**第12行目** は、`max-w-2x` によって <span class="masked">div要素の最大幅</span> を 2xl (=672px) に設定しています。また、`mx-4` によって **X方向 (左右) のマージン** を 16px に設定しています。また、`md:mx-auto` によって画面幅が md (=768px) を超えるときに左右のマージンを自動に設定して、要素を水平方向に中央揃えにするようにしています。
 
@@ -965,7 +975,7 @@ const RootLayout: React.FC<Props> = (props) => {
 
 ![img](figs/06/app_07.png)
 
-[<i class="fa-solid fa-person-chalkboard"></i> 上記レイアウトの実装例](codes/06/code01.tsx)
+[<i class="fa-solid fa-person-chalkboard"></i> 上記レイアウトの実装例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/06/code01.tsx)
 
 変更後は、一旦、元の状態に戻しておいてください。以降の解説は、元の状態を前提としたものになります。
 
@@ -1013,7 +1023,7 @@ Next.js において、プロジェクトフォルダの直下に作成した `p
 ```ts{.numberLines caption="src/app/about/page.tsx"}
 "use client";
 import Image from "next/image";
-import { twMerge } from "tailwind-merge";
+import { cn } from "cn";
 
 const Page: React.FC = () => {
   return (
@@ -1021,7 +1031,7 @@ const Page: React.FC = () => {
       <div className="mb-5 text-2xl font-bold">About</div>
 
       <div
-        className={twMerge(
+        className={cn(
           "mx-auto mb-5 w-full md:w-2/3",
           "flex justify-center"
         )}
