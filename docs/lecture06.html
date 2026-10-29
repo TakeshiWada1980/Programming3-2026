@@ -58,6 +58,9 @@
 <li><a href="#テスト" id="toc-テスト"><span class="toc-section-number">1.2</span> テスト</a></li>
 <li><a href="#node.js-のセキュリティアップデート" id="toc-node.js-のセキュリティアップデート"><span
 class="toc-section-number">1.3</span> Node.js のセキュリティアップデート</a></li>
+<li><a href="#セキュリティ技術を支えるプログラミングとシステム開発"
+id="toc-セキュリティ技術を支えるプログラミングとシステム開発"><span
+class="toc-section-number">1.4</span> セキュリティ技術を支えるプログラミングとシステム開発</a></li>
 </ul></li>
 <li><a href="#バックエンド処理を含めたブログアプリの開発"
 id="toc-バックエンド処理を含めたブログアプリの開発"><span class="toc-section-number">2</span>
@@ -233,6 +236,25 @@ class="toc-section-number">7.2</span> 投稿記事のモックを生成</a></li>
       <li>2026年10月21日に修正された Node.js の脆弱性 CVE-2026-105483
       について、どのような問題で、どのような悪用が起き得るのか、情報系の高専3年生向けに分かりやすく解説してください。</li>
       </ul>
+      </div>
+      <h2 data-number="1.4" id="セキュリティ技術を支えるプログラミングとシステム開発"><span
+      class="header-section-number">1.4</span>
+      セキュリティ技術を支えるプログラミングとシステム開発</h2>
+      <p>近年、企業や組織における情報漏洩やサイバー攻撃が相次いでおり、情報セキュリティを担う人材の重要性や需要は、今後ますます高まっていくと考えられます。</p>
+      <p>「<strong>情報セキュリティ</strong>」は、<span
+      class="masked">情報通信技術の基礎を理解して初めて深く学ぶことができる分野</span>
+      です。システムが本来どのように動作するのかを知らなければ、何が異常なのか、どこに弱点があるのか、なぜ攻撃が成立するのかを十分に理解することはできません。</p>
+      <p>そして、<strong>システムの仕組みを理解するための最も有効な方法のひとつ</strong>が、<span
+      class="masked">自分自身でシステムを開発すること</span>
+      です。実際に設計・実装する経験を通じて、システムがどのように動作するのかを理解するとともに、どのような設計や実装が脆弱性につながるのかを考えられるようになります。</p>
+      <p>本科目におけるウェブアプリ開発も、単にアプリを作成できるようになることだけが目的ではありません。開発を通じて、その背後にある仕組みまで理解することが本質です。</p>
+      <ul>
+      <li>単に開発するだけなら AI でできてしまいます。</li>
+      </ul>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <p>例えば、城を敵の侵入から守る場合を考えてみてください。<u>城の構造や出入口、通路のつながりを知らなければ、どこが侵入されやすいのか、どのような経路で攻め込まれるのかを判断することは困難です</u>。当然、効果的な防御策を考えることもできません。</p>
+      <p>「<strong>城の構造を理解して初めて、その弱点や侵入経路を把握できる</strong>」というのは、言うまでもありません。</p>
+      <p>情報セキュリティも同じです。<strong>正常な仕組みを理解してこそ、そこに潜む弱点や問題、異常な動作を理解できる</strong>ようになります。</p>
       </div>
       <h1 data-number="2" id="バックエンド処理を含めたブログアプリの開発"><span
       class="header-section-number">2</span> バックエンド処理を含めたブログアプリの開発</h1>
@@ -2235,10 +2257,8 @@ Ok to proceed? (y)</code></pre>
       <p>このバージョンには Node.js 22.22.2 以降の 22 系列、24.15.0 以降の 24 系列、または 26
       以降が必要です。連絡欄で案内したセキュリティアップデートを適用して進めてください。</p>
       <div class="balloon char-01 face-05 tone-blue">
-      <p>XSS (Cross-Site Scripting)
-      脆弱性については、次年度の「知能情報実験実習2」でも扱う予定です。参考として <a
-      href="https://takeshiwada1980.github.io/Eii2-2026/">2026年度の前期テーマ</a>
-      を参照できます。</p>
+      <p>XSS (Cross-Site Scripting) 脆弱性については、次年度の「知能情報実験実習2」の <a
+      href="https://takeshiwada1980.github.io/Eii2-2026/">前期テーマ</a> で扱います。</p>
       </div>
       <div class="prompts">
       <ul>
@@ -2262,7 +2282,7 @@ Ok to proceed? (y)</code></pre>
       </ul></li>
       <li><code>post.content</code> が <code>"前半&lt;br/&gt;後半"</code>
       という文字列のとき、<code>&lt;div&gt;{post.content}&lt;/div&gt;</code>
-      の表示として、適切な選択肢を1つ選択せよ。
+      の表示として、適切なものを1つ選べ。
       <ul>
       <li>① 「前半」と「後半」の間で改行される。</li>
       <li>② <code>前半&lt;br/&gt;後半</code> と、タグも文字として表示される。</li>
@@ -2289,7 +2309,7 @@ Ok to proceed? (y)</code></pre>
       </ul></li>
       <li>DOMPurify の <code>ALLOWED_TAGS</code> に <code>["b", "br"]</code>
       を指定し、<code>&lt;b&gt;重要&lt;/b&gt;&lt;br&gt;&lt;img src="x" onerror="alert(1)"&gt;</code>
-      をサニタイズした結果として、適切な選択肢を1つ選択せよ。ただし、それ以外の設定は変更していないものとする。
+      をサニタイズした結果として、適切なものを1つ選べ。ただし、それ以外の設定は変更していないものとする。
       <ul>
       <li>① <code>重要</code></li>
       <li>② <code>&lt;b&gt;重要&lt;/b&gt;&lt;br&gt;&lt;img src="x"&gt;</code></li>
