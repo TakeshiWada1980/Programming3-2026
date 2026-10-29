@@ -8,14 +8,11 @@ const Page: React.FC = () => {
       <div className="mb-5 text-2xl font-bold">About</div>
 
       <div
-        className={cn(
-          "mx-auto mb-5 w-full md:w-2/3",
-          "flex justify-center"
-        )}
+        className={cn("mx-auto mb-5 w-full md:w-2/3", "flex justify-center")}
       >
         <Image
           src="/images/avatar.png"
-          alt="Example Image"
+          alt="ブログ運営者のアバター"
           width={350}
           height={350}
           preload
@@ -24,19 +21,19 @@ const Page: React.FC = () => {
       </div>
 
       <div className="space-y-3">
-        <div className="md:flex md:justify-center">
-          <div className="font-bold md:w-1/6 md:text-center">名 前</div>
-          <div className="md:w-5/6">寝屋川 タヌキ (Tanuki Neyagawa)</div>
+        <div className="md:flex md:justify-center md:gap-x-4">
+          <div className="font-bold md:w-1/6 md:shrink-0 md:text-center">名 前</div>
+          <div className="md:min-w-0 md:flex-1">寝屋川 タヌキ (Tanuki Neyagawa)</div>
         </div>
-        <div className="md:flex md:justify-center">
-          <div className="font-bold md:w-1/6 md:text-center">連絡先</div>
-          <div className="md:w-5/6">tanuki.neyagawa@example.com</div>
+        <div className="md:flex md:justify-center md:gap-x-4">
+          <div className="font-bold md:w-1/6 md:shrink-0 md:text-center">連絡先</div>
+          <div className="md:min-w-0 md:flex-1">tanuki.neyagawa@example.com</div>
         </div>
-        <div className="md:flex md:justify-center">
-          <div className="font-bold md:w-1/6 md:text-center">
+        <div className="md:flex md:justify-center md:gap-x-4">
+          <div className="font-bold md:w-1/6 md:shrink-0 md:text-center">
             ポートフォリオ
           </div>
-          <div className="md:w-5/6">
+          <div className="md:min-w-0 md:flex-1">
             <a
               href="https://google.com"
               className="mr-1 text-blue-500 underline"
@@ -46,9 +43,9 @@ const Page: React.FC = () => {
             (GitHub Pages)
           </div>
         </div>
-        <div className="md:flex md:justify-center">
-          <div className="font-bold md:w-1/6 md:text-center">自己紹介</div>
-          <div className="md:w-5/6">
+        <div className="md:flex md:justify-center md:gap-x-4">
+          <div className="font-bold md:w-1/6 md:shrink-0 md:text-center">自己紹介</div>
+          <div className="md:min-w-0 md:flex-1">
             とある高専の情報系学科3年生です。最近は、ウェブアプリ開発やデザインに興味があって、Next.js
             (React) の勉強を兼ねて、このブログアプリを構築しました。
             <br />

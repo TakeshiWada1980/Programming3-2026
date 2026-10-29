@@ -54,12 +54,20 @@
          <ul>
 <li><a href="#連絡" id="toc-連絡"><span class="toc-section-number">1</span> 連絡</a>
 <ul>
+<li><a href="#課題1" id="toc-課題1"><span class="toc-section-number">1.1</span> 課題1</a></li>
+<li><a href="#テスト" id="toc-テスト"><span class="toc-section-number">1.2</span> テスト</a></li>
 <li><a href="#node.js-のセキュリティアップデート" id="toc-node.js-のセキュリティアップデート"><span
-class="toc-section-number">1.1</span> Node.js のセキュリティアップデート</a></li>
+class="toc-section-number">1.3</span> Node.js のセキュリティアップデート</a></li>
 </ul></li>
 <li><a href="#バックエンド処理を含めたブログアプリの開発"
 id="toc-バックエンド処理を含めたブログアプリの開発"><span class="toc-section-number">2</span>
-バックエンド処理を含めたブログアプリの開発</a></li>
+バックエンド処理を含めたブログアプリの開発</a>
+<ul>
+<li><a href="#react-から-next.js-へ" id="toc-react-から-next.js-へ"><span
+class="toc-section-number">2.1</span> React から Next.js へ</a></li>
+<li><a href="#ブログアプリ開発の全体像" id="toc-ブログアプリ開発の全体像"><span
+class="toc-section-number">2.2</span> ブログアプリ開発の全体像</a></li>
+</ul></li>
 <li><a href="#next.js-の-開発環境構築" id="toc-next.js-の-開発環境構築"><span
 class="toc-section-number">3</span> Next.js の 開発環境構築</a>
 <ul>
@@ -149,39 +157,59 @@ class="toc-section-number">7.2</span> 投稿記事のモックを生成</a></li>
     <main class="markdown-body">
       <!-- ---------------------------------------- -->
       <h1 data-number="1" id="連絡"><span class="header-section-number">1</span> 連絡</h1>
-      <ul>
-      <li><a href="lecture05.html#課題1">課題1</a><font size=-1>～
+      <h2 data-number="1.1" id="課題1"><span class="header-section-number">1.1</span> 課題1</h2>
+      <p><a href="lecture05.html#課題1">課題1</a><font size=-1>～
       ぼくのかんがえたさいきょうのTodoアプリ ～</font> の提出期限は「<strong>11月19日 (木)
-      18時</strong>」です。
+      18時</strong>」です。</p>
       <ul>
       <li><strong><em>提出先</em></strong> : Teams「<strong>PG3-課題1</strong>」</li>
-      <li>課題1は、ポートフォリオ (自己紹介と作品集) として作成したページからも
-      <strong>リンクを貼っておくように</strong> してください。</li>
-      <li>その他、ポートフォリオには <strong>今年度の文化祭展示の概要</strong>
-      (スクリーンショットや会場写真があると説得力が高くなります)
-      や、他科目で開発したソフトウエアや修得したスキルなども、(記憶が鮮明なうちに)
-      こまめに追記することを推奨します。<br />
-      </li>
-      <li>特に、文化祭展示などは <span
-      class="masked">チームプロジェクトでの開発の経験があること</span>
-      のアピールができるので必ず記載してください。</li>
-      </ul></li>
+      <li>課題1で開発した Todo アプリは、以前に作成した <strong>ポートフォリオ (自己紹介と作品集)
+      からも閲覧できるようにリンクを追加</strong> してください。</li>
+      <li>ポートフォリオは、単なる作品集ではなく、<strong><u>自分が何を学び、どのようなものを開発してきたかを示す実績の記録</u></strong>
+      でもあります。他科目で開発したソフトウェアや修得したスキルなども、記憶が鮮明なうちにこまめに追加していきましょう。</li>
+      <li>特に、高専祭展示は、<strong><u>チームでの開発経験を具体的にアピールできる貴重な機会</u></strong>
+      です。必ずポートフォリオに掲載し、展示内容だけでなく、自分が担当した役割や工夫した点なども記録しておいてください。スクリーンショットや会場写真があると、より説得力のある実績紹介になります。</li>
+      </ul>
+      <h2 data-number="1.2" id="テスト"><span class="header-section-number">1.2</span> テスト</h2>
+      <ul>
       <li>次回の講義で <strong><em>小テスト5</em></strong>
       を実施します。主に、今回の講義内容からの出題となります。</li>
+      <li><strong>第04回講義</strong> で実施した <strong>小テスト3</strong>
+      は、全体的に非常に成績が悪い結果となりました。<strong>オブジェクト配列のイミュータブルな操作</strong>は、React
+      (Next.js)
+      を使ったアプリ開発における基本的かつ重要な処理です。十分に復習し、確実に理解しておいてください。なお、<strong>当該範囲
+      (第03回講義) から、<u>予告なしに小テストを出題する可能性</u> があります</strong>。
+      <ul>
+      <li><a
+      href="https://paiza.io/projects/YJQ8ke9lZeheb79VM34Bjw">出題された問題を実装した例</a></li>
+      </ul></li>
       </ul>
-      <h2 data-number="1.1" id="node.js-のセキュリティアップデート"><span
-      class="header-section-number">1.1</span> Node.js のセキュリティアップデート</h2>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p>第03回講義で学んだ内容のうち、<strong>React (Next.js)
+      を正しく理解し、使いこなすために欠かせないセクション</strong>
+      は以下のとおりです。確実に理解しておいてください。</p>
+      <ul>
+      <li><a href="lecture03.html#要素の追加-イミュータブルな変更">オブジェクト配列の要素追加
+      (スプレッド構文)</a></li>
+      <li><a href="lecture03.html#オブジェクト配列の-map-操作">オブジェクト配列の map 操作</a></li>
+      <li><a href="lecture03.html#オブジェクト配列の-filter-操作">オブジェクト配列の filter
+      操作</a></li>
+      <li><a href="lecture03.html#オブジェクト配列のsort操作">オブジェクト配列の sort 操作</a></li>
+      </ul>
+      </div>
+      <h2 data-number="1.3" id="node.js-のセキュリティアップデート"><span
+      class="header-section-number">1.3</span> Node.js のセキュリティアップデート</h2>
       <p>2026年10月21日に、重大な脆弱性を修正する <a
       href="https://nodejs.org/en/blog/vulnerability/october-2026-security-releases">Node.js
       のセキュリティアップデート</a>
       が公開されました。各自、使用中の系列にあわせて、次のバージョン以上にアップデートしてください。</p>
       <ul>
-      <li>Node.js <strong>24 系列</strong>を使用している場合：<strong>24.<u>22.1</u>
-      以上</strong></li>
-      <li>Node.js <strong>22 系列</strong>を使用している場合：<strong>22.<u>23.4</u>
-      以上</strong></li>
-      <li>Node.js <strong>26 系列</strong>を使用している場合：<strong>26.<u>12.1</u>
-      以上</strong></li>
+      <li>Node.js <strong>24 系列</strong>を使用している場合：<strong>24.<u>22.1</u> 以上</strong>
+      であれば OK</li>
+      <li>Node.js <strong>22 系列</strong>を使用している場合：<strong>22.<u>23.4</u> 以上</strong>
+      であれば OK</li>
+      <li>Node.js <strong>26 系列</strong>を使用している場合：<strong>26.<u>12.1</u> 以上</strong>
+      であれば OK</li>
       </ul>
       <p>アップデートの手順は、<a
       href="lecture01.html#インストーラのダウンロードと実行">第01回の「インストーラのダウンロードと実行」</a>
@@ -191,7 +219,7 @@ class="toc-section-number">7.2</span> 投稿記事のモックを生成</a></li>
       <p>インストール後は VSCode
       とターミナルを開きなおし、次のコマンドでバージョンを確認してください。</p>
       <div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">node</span> <span class="at">-v</span></span></code></pre></div>
-      <div class="balloon char-01 face-05 tone-blue">
+      <div class="balloon char-01 face-01 tone-pink">
       <p>先日の <a href="https://www.php.net/archive/2026.php#2026-10-21-5">PHP の深刻な脆弱性</a>
       に続き、今回の Node.js の更新にも、条件によっては
       <strong>攻撃者が外部から任意のプログラムを実行できる脆弱性</strong>
@@ -208,68 +236,206 @@ class="toc-section-number">7.2</span> 投稿記事のモックを生成</a></li>
       </div>
       <h1 data-number="2" id="バックエンド処理を含めたブログアプリの開発"><span
       class="header-section-number">2</span> バックエンド処理を含めたブログアプリの開発</h1>
-      <p>ここまでの授業では、フロントエンドのみで完結する <strong>Todoアプリの開発</strong>
-      を通じて、「React」を使ったモダンウェブ開発の基礎について学んできました。ここからの授業では
-      <strong><em>Next.js</em></strong> というフレームワークを使用し <strong>バックエンド
-      (サーバサイド) を含めた「本格的なモダンウェブアプリ開発」</strong>
+      <p>ここからは、これまでに学んだ React の知識を発展させ、<strong><u>Next.js
+      を使ったバックエンド処理を含むブログアプリの開発</u></strong>
+      に取り組みます。まずは、「Next.js」というフレームワークの特徴を理解し、これから開発するブログアプリの全体像について把握していきます。</p>
+      <h2 data-number="2.1" id="react-から-next.js-へ"><span
+      class="header-section-number">2.1</span> React から Next.js へ</h2>
+      <p>ここまでの授業では、フロントエンドのみで完結する <strong>Todo アプリの開発</strong>
+      を通じて、<strong>React を使ったモダンウェブアプリ開発の基礎</strong> を学んできました。</p>
+      <p>ここからの授業では、<strong>React をベースとしたフレームワーク</strong> である
+      <strong><em>Next.js</em></strong> を使用し、<font color="deeppink"><b>バックエンド
+      (サーバサイド) の処理も含めた、より本格的なモダンウェブアプリ開発</b></font>
       について体験的に学んでいきます。</p>
       <div class="balloon char-01 face-02 tone-yellow">
-      <p>現代のウェブアプリは「❶ ウェブブラウザで実行されるフロントエンド部分」と「❷
-      サーバ上で実行されるバックエンド部分」を <strong>RESTfulなウェブAPI
-      (主にHTTP/HTTPSプロトコル上で実装)
-      を介して「疎結合」な形で構成</strong>することが一般的となっています。</p>
-      <p>そして、この設計によってフロントエンドとバックエンドで <span
-      class="masked">異なる「プログラミング言語」や「フレームワーク」を使用すること</span>
-      が可能になっています。</p>
-      </div>
-      <p><strong>フロントエンドの開発言語</strong> は実質的に <span
-      class="masked">HTML/CSS/JavaScript (TypeScript)</span>
-      に限定されており、<strong>React</strong> や <strong>Vue.js</strong>、<strong>Svelte</strong>
-      などの<a
-      href="https://www.google.com/search?q=コンポーネント指向フレームワーク">コンポーネント指向フレームワーク</a>が主流となっています。かつて広く使用されていた
-      <span class="masked">jQuery</span>
-      は、これらのモダンフレームワークの登場と普及によって、<strong>新規開発案件での採用は減少傾向</strong>
-      にあります。</p>
-      <p>一方、<strong>バックエンド</strong>においては、次のような多様な「プログラミング言語」と「フレームワーク」の組み合わせの選択肢があり、実際に幅広く活用されています。</p>
+      <p>現代のウェブアプリでは、処理を次の2つに分担させる設計が広く採用されています。</p>
       <ol type="1">
-      <li> <strong>Ruby</strong> (Ruby on Rails)</li>
-      <li> <strong>PHP</strong> (Laravel)</li>
-      <li> <strong>Java</strong> (Spring Boot)</li>
-      <li> <strong>Python</strong> (Django、FastAPI、Flask)</li>
-      <li> <strong>C#</strong> (.NET ASP Core)</li>
-      <li> <strong>Rust</strong> (Actix)</li>
-      <li> <strong>Go</strong> (Gin、Echo)</li>
-      <li> <strong>JavaScript/TypeScript</strong> (Express、Fastify)</li>
+      <li>ユーザーとの対話や画面表示を担当する <strong>フロントエンド</strong>
+      (ウェブブラウザ上で動作)</li>
+      <li>データの管理や業務処理などを担当する <strong>バックエンド</strong> (サーバ上で動作)</li>
       </ol>
-      <p>このような状況のなか「<strong>Next.js</strong>」は、TypeScript (JavaScript) を用いて
-      <strong>フロントエンドとバックエンドを単一のプロジェクトとして統合的に開発できるという異色 (
-      革新的?! ) のフレームワーク</strong> として人気を集めています。Next.js のフロントエンドは
-      <span class="masked">Reactをベースとしているため
-      (ただしルーティングなどの一部機能を除く)</span>、Todoアプリ開発で学んだ React
-      のスキルと経験をそのまま活かして開発することができます。</p>
-      <p>今回の授業からは、この <strong>Next.js</strong>
-      を使用して「<strong>ブログアプリ</strong>」の開発に取り組んでいきます（<span
-      class="masked">チュートリアル的に「ブログアプリ」の開発を進めていきます</span>）。最終的には<a
-      href="https://supabase.com/">Supabase</a>という Baas (Backend As A Service)
-      を活用し、ブログ記事の <strong>CRUD操作</strong> ( Create/Read/Update/Delete
-      )、<strong>ログイン機能 (ユーザ認証機能)</strong> までを実装していきます。</p>
-      <p>ブログアプリの完成後は、<strong><em>最終課題</em></strong>
+      <p>両者は、HTTP/HTTPS を利用した Web API (RESTful API など)
+      を介して通信することで、<strong>互いの内部実装に依存しない疎結合な構成</strong>
+      にできます。</p>
+      <p>この設計では、フロントエンドとバックエンドを独立して開発でき、<span
+      class="masked">それぞれに異なるプログラミング言語やフレームワークを採用すること</span>
+      も可能です。</p>
+      <p>一方、フロントエンドとバックエンドを別々のプロジェクトとして開発・管理する場合、<strong>環境構築やプログラム間の連携、データの受け渡しなどに追加の手間が生じる</strong>
+      こともあります。</p>
+      <p>そこで、<strong>フロントエンドとバックエンドの両方を、ひとつのフレームワークで効率的に開発するアプローチ</strong>
+      も広く利用されています。その代表例が「<strong>Next.js</strong>」となります。Next.js
+      では、React
+      による画面の構築からサーバ上でのデータ取得・更新などの処理まで、ひとつのプロジェクト内で、TypeScript
+      を使って実装することができます。</p>
+      </div>
+      <div class="prompts">
+      <ul>
+      <li>ウェブアプリ開発における「フロントエンド」と「バックエンド」とは、それぞれ何を指しますか。両者はどのような基準で切り分けられ、担当する役割や処理にはどのような違いがあるのですか。具体例を交えて説明してください。</li>
+      <li>ソフトウェア設計における「互いの内部実装に依存しない疎結合な構成」とは、どのような状態を指しますか。「密結合な構成」との違いや、疎結合に設計することで得られるメリットについて、具体例を交えて説明してください。</li>
+      <li>ウェブアプリ開発において、フロントエンドとバックエンドを Web API
+      を介して疎結合に構成する方式には、どのようなメリットとデメリットがありますか。また、Next.js
+      のようなフルスタックフレームワークを使用して、両者をひとつのプロジェクト内で開発する方式には、どのようなメリットとデメリットがありますか。それぞれの特徴を比較するとともに、両者は対立する設計・開発手法なのか、それとも両立できるものなのかについても説明してください。</li>
+      </ul>
+      </div>
+      <p><strong>フロントエンドの開発で使用される技術</strong> は、実質的に <span
+      class="masked">HTML/CSS と JavaScript (TypeScript)</span>
+      が中心となっており、<strong>React</strong> や <strong>Vue.js</strong>、<strong>Svelte</strong>
+      など、コンポーネントを基本単位として UI
+      を構築するライブラリやフレームワークが広く利用されています。かつて広く使用されていた <span
+      class="masked">jQuery</span>
+      は、こうしたモダンな開発技術の普及にともない、<strong>新規開発での採用が減少傾向</strong>
+      にあります。</p>
+      <div class="prompts">
+      <ul>
+      <li>「コンポーネント指向フレームワーク」ってなんですか。React や Vue.js、Svelte
+      などはコンポーネント指向フレームワークだと聞いたのですが…</li>
+      <li>いま、私は React を勉強しています。そのなかで、React などの普及にともない jQuery
+      は新規開発では使用されなくなっってきている、と聞きました。jQuery って何ですか。React
+      と組み合わせて使用することはできないのですか。</li>
+      </ul>
+      </div>
+      <p>一方、<strong>バックエンド</strong>
+      では、次のように多様な「プログラミング言語」と「フレームワーク」の組み合わせが選択でき、実際の開発現場でも幅広く活用されています。</p>
+      <ol type="1">
+      <li><strong>Ruby</strong> (Ruby on Rails)</li>
+      <li><strong>PHP</strong> (Laravel)</li>
+      <li><strong>Java</strong> (Spring Boot)</li>
+      <li><strong>Python</strong> (Django、FastAPI、Flask)</li>
+      <li><strong>C#</strong> (ASP.NET Core)</li>
+      <li><strong>Rust</strong> (Actix Web)</li>
+      <li><strong>Go</strong> (Gin、Echo)</li>
+      <li><strong>JavaScript/TypeScript</strong> (Express、Fastify など、Node.js を利用)</li>
+      </ol>
+      <p>このように、フロントエンドとバックエンドでは、使用される技術やフレームワークに大きな違いがあります。</p>
+      <p>こうしたなか、<strong>Next.js</strong> は、<strong>TypeScript (JavaScript)
+      を使用して、フロントエンドとバックエンドの両方を、ひとつのプロジェクト内で統合的に開発できるフルスタックフレームワーク</strong>
+      として広く利用されています。</p>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p>Next.js は、<strong>UI の構築に React を採用しているため</strong>、これまでの Todo
+      アプリ開発で学んだ <span class="masked">React
+      の知識やスキルを、そのまま多くの場面で活かすこと</span>
+      ができます。さらに、ルーティングやサーバサイドの処理など、React
+      単体では提供されない機能も備えており、より本格的なウェブアプリ開発に対応できます。</p>
+      </div>
+      <h3 data-number="2.1.1" id="定着確認"><span class="header-section-number">2.1.1</span>
+      定着確認</h3>
+      <p>選択肢のある問題は最も適切なものを1つ選び、それ以外は説明が「適切」か「不適切」かを答えよ。</p>
+      <ol type="1">
+      <li>ウェブアプリにおける「バックエンド」の説明として、最も適切なものはどれか。
+      <ul>
+      <li>A. ウェブページの下部や、画面に表示されていない部分のこと。</li>
+      <li>B. サーバ上で動作し、データの管理や業務処理などを担当する部分のこと。</li>
+      <li>C. ウェブブラウザ上で動作し、画面の見た目を整える部分のこと。</li>
+      <li>D. アプリ開発が終わったあとに行う、保守作業のこと。
+      <ul>
+      <li>答え: <span
+      class="masked">B。「画面の裏側」という見た目の区分ではなく、処理の役割や実行場所で考えてください。</span></li>
+      </ul></li>
+      </ul></li>
+      <li>次のうち、バックエンドに担当させる処理として最も適切なものはどれか。
+      <ul>
+      <li>A. ボタンにマウスを重ねたときに、ボタンの色を変える。</li>
+      <li>B. 入力中の記事の文字数を、ブラウザ上で表示する。</li>
+      <li>C. 記事を投稿する権限をサーバ上で確認し、データベースに保存する。</li>
+      <li>D. 画面幅に合わせて、記事一覧の表示を2列から1列に切り替える。
+      <ul>
+      <li>答え: <span
+      class="masked">C。サーバ上での権限確認やデータの保存は、バックエンドの代表的な役割です。</span></li>
+      </ul></li>
+      </ul></li>
+      <li>React 単体が主に担当する役割として、最も適切なものはどれか。
+      <ul>
+      <li>A. コンポーネントを組み合わせて、フロントエンドの UI を構築する。</li>
+      <li>B. サーバ上のデータベースの作成・管理を行う。</li>
+      <li>C. フロントエンドとバックエンドの通信プロトコルを定める。</li>
+      <li>D. UI の構築に加え、サーバ側の認証・データ保存など、バックエンド開発の機能一式を提供する。
+      <ul>
+      <li>答え: <span class="masked">A。React は UI を構築するためのライブラリであり、React
+      単体でバックエンド開発の機能一式を提供するわけでありません。</span></li>
+      </ul></li>
+      </ul></li>
+      <li>Next.js の特徴として、最も適切なものはどれか。
+      <ul>
+      <li>A. React を使わず、独自の仕組みで UI を構築する。</li>
+      <li>B. フロントエンド専用で、サーバ上の処理は実装できない。</li>
+      <li>C. バックエンド専用で、画面は必ず別のプロジェクトで開発する。</li>
+      <li>D. React による UI
+      の構築と、サーバ上でのデータ取得・更新などを、ひとつのプロジェクト内で開発できる。
+      <ul>
+      <li>答え: <span class="masked">D。Next.js
+      は、フロントエンドとバックエンドの両方を扱えるフルスタックフレームワークです。</span></li>
+      </ul></li>
+      </ul></li>
+      <li>「Next.js では、フロントエンドとバックエンドの両方を TypeScript
+      で開発できる。」という説明は「適切」か「不適切」か答えよ。
+      <ul>
+      <li>答え: <span
+      class="masked">適切。バックエンドを開発するために、別のプログラミング言語を使う必要はありません。</span></li>
+      </ul></li>
+      <li>「Next.js ではフロントエンドもバックエンドも TypeScript
+      で記述可能で、すべての処理はウェブブラウザ上で実行される。」という説明は「適切」か「不適切」か答えよ。
+      <ul>
+      <li>答え: <span class="masked">不適切</span></li>
+      </ul></li>
+      <li>「フロントエンドを React、バックエンドを Python で開発し、HTTP/HTTPS を利用した Web API
+      を介して連携させることができる。」という説明は「適切」か「不適切」か答えよ。
+      <ul>
+      <li>答え: <span class="masked">適切。Web API
+      を介してデータをやり取りすることで、異なる言語で開発したプログラム同士でも連携できる。</span></li>
+      </ul></li>
+      <li>フロントエンドとバックエンドが「疎結合」である状態として、最も適切なものはどれか。
+      <ul>
+      <li>A. 同じプログラミング言語を使い、互いの内部変数を直接読み書きしている。</li>
+      <li>B. API の仕様に従って連携し、互いが内部でどのように処理しているかに依存しない。</li>
+      <li>C. 両者の間で、データのやり取りを一切行わない。</li>
+      <li>D. 必ず異なるプログラミング言語を使っている。
+      <ul>
+      <li>答え: <span
+      class="masked">B。疎結合は、連携しないことや、異なる言語を使うことを意味するものではありません。</span></li>
+      </ul></li>
+      </ul></li>
+      <li>「Next.js に移行すると React
+      を使わなくなるので、これまで学んだコンポーネントの知識は使えなくなる。」という説明は「適切」か「不適切」か答えよ。
+      <ul>
+      <li>答え: <span class="masked">不適切。Next.js は UI の構築に React を採用しているため、React
+      の知識を引き続き活かすことができます。</span></li>
+      </ul></li>
+      <li>「Next.js でフロントエンドとバックエンドをひとつのプロジェクトにまとめる方式と、Web API
+      を介して疎結合に構成する方式は、両立できない。」という説明は「適切」か「不適切」か答えよ。
+      <ul>
+      <li>答え: <span class="masked">不適切。ひとつのプロジェクト内でも Web API
+      を設け、画面側とサーバ側を疎結合に構成できる。プロジェクトの分け方と、内部実装への依存の程度は別の観点となる。</span></li>
+      </ul></li>
+      </ol>
+      <h2 data-number="2.2" id="ブログアプリ開発の全体像"><span
+      class="header-section-number">2.2</span> ブログアプリ開発の全体像</h2>
+      <p>今回の授業からは、<strong>Next.js</strong>
+      を使用して「<strong>ブログアプリ</strong>」を開発していきます。</p>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p>これまでの Todo
+      アプリ開発と同様に、<strong>チュートリアル形式で少しずつ機能を追加しながら</strong>、Next.js
+      によるウェブアプリ開発の基本を学んでいきます。</p>
+      </div>
+      <p>最終的には <a href="https://supabase.com/">Supabase</a> という Baas (Backend As A Service)
+      を活用し、ブログ記事の <strong>CRUD操作</strong> (＝ <span class="masked">Create / Read /
+      Update /Delete</span> )、<strong>ログイン機能 (ユーザ認証機能)</strong>
+      までを実装していきます。チュートリアルとしてのブログアプリの完成後は、<strong><em>最終課題</em></strong>
       として「<strong>オリジナルのウェブアプリを開発</strong>」に取り組んでもらいます。</p>
       <p>大まかな流れは、次のようになっています。</p>
       <ol type="1">
-      <li>Next.js 開発環境の構築 <strong>← 今回の授業</strong></li>
-      <li>ブログアプリの「<strong>フロントエンド開発</strong>」のチュートリアル <strong>←
-      今回の授業</strong>
+      <li>Next.js 開発環境の構築 <font color="deeppink"><b>← 今回の授業</b></font></li>
+      <li>ブログアプリの「<strong>フロントエンド開発</strong>」のチュートリアル
+      <font color="deeppink"><b>← 今回と次回の授業</b></font>
       <ul>
       <li><a href="https://microcms.io/">microCMS</a> の利用</li>
       </ul></li>
       <li>ブログアプリの「<strong>バックエンド開発</strong>」のチュートリアル
       <ul>
-      <li><a href="https://supabase.com/">supabase</a> と <a href="https://vercel.com/">varcel</a>
+      <li><a href="https://supabase.com/">supabase</a> と <a href="https://vercel.com/">vercel</a>
       の利用</li>
       </ul></li>
-      <li>ブログアプリのカスタマイズとつくり込み → <strong><em>課題2</em></strong></li>
-      <li>オリジナルのウェブアプリ → <strong><em>課題3</em></strong> (最終課題)</li>
+      <li>ブログアプリのカスタマイズとつくり込み</li>
+      <li>オリジナルのウェブアプリ</li>
       </ol>
       <figure>
       <img src="https://takeshiwada1980.github.io/Programming3-2024/figs/07/app_03.png" alt="img" />
@@ -283,7 +449,20 @@ class="toc-section-number">7.2</span> 投稿記事のモックを生成</a></li>
       <img src="https://takeshiwada1980.github.io/Programming3-2024/figs/10/app_02.png" alt="img" />
       <figcaption aria-hidden="true">img</figcaption>
       </figure>
-      <h3 data-number="2.0.1" id="定着確認"><span class="header-section-number">2.0.1</span>
+      <div class="prompts">
+      <ul>
+      <li>授業で、Next.js を使ったブログアプリの開発において、<strong>microCMS</strong>
+      というサービスを利用するそうです。microCMS
+      とはどのようなサービスですか。また、ブログアプリの開発において、どのような役割を担うと考えられますか。具体的な利用方法を推測して説明してください。</li>
+      <li>授業で、Next.js を使ったブログアプリの開発において、<strong>Supabase</strong>
+      というサービスも利用するそうです。Supabase
+      とはどのようなサービスですか。また、ブログアプリの開発において、どのような役割を担うと考えられますか。具体的な利用方法を推測して説明してください。</li>
+      <li>授業で、Next.js を使ったブログアプリの開発において、<strong>Vercel</strong>
+      というサービスも利用するそうです。Vercel
+      とはどのようなサービスですか。また、ブログアプリの開発において、どのような役割を担うと考えられますか。具体的な利用方法を推測して説明してください。</li>
+      </ul>
+      </div>
+      <h3 data-number="2.2.1" id="定着確認-1"><span class="header-section-number">2.2.1</span>
       定着確認</h3>
       <ul>
       <li>Next.js
@@ -309,6 +488,7 @@ class="toc-section-number">7.2</span> 投稿記事のモックを生成</a></li>
       </ul>
       <h1 data-number="3" id="next.js-の-開発環境構築"><span class="header-section-number">3</span>
       Next.js の 開発環境構築</h1>
+      <p>まずは、Next.js を使ったアプリ開発を始めるための環境を構築していきます。</p>
       <h2 data-number="3.1" id="スキャフォールディング"><span
       class="header-section-number">3.1</span> スキャフォールディング</h2>
       <div class="balloon char-01 face-02 tone-yellow">
@@ -378,7 +558,7 @@ Ok to proceed? (y)</code></pre>
       <code>next-blog-app</code> ) を完全削除してから、再度 <code>npx create-next-app@16.4.3</code>
       を実行してください。</p>
       </div>
-      <h3 data-number="3.1.1" id="定着確認-1"><span class="header-section-number">3.1.1</span>
+      <h3 data-number="3.1.1" id="定着確認-2"><span class="header-section-number">3.1.1</span>
       定着確認</h3>
       <ul>
       <li>Next.js 16.4.3 を使った開発環境 (の雛形) を構築するためのコマンドを答えよ。
@@ -574,7 +754,7 @@ Ok to proceed? (y)</code></pre>
       でもチェックするようにしてください。</p>
       </div>
       <p>以降の解説は、ESLint の拡張機能がインストールされ、有効化されていることを前提とします。</p>
-      <h3 data-number="3.7.5" id="定着確認-2"><span class="header-section-number">3.7.5</span>
+      <h3 data-number="3.7.5" id="定着確認-3"><span class="header-section-number">3.7.5</span>
       定着確認</h3>
       <ul>
       <li>標準設定で Next.js 16 をセットアップした場合、内部的に利用される React
@@ -633,10 +813,10 @@ Ok to proceed? (y)</code></pre>
       </div>
       <h3 data-number="3.11.1" id="next.js-のルーティング"><span
       class="header-section-number">3.11.1</span> Next.js のルーティング</h3>
-      <p>Next.js ( バージョン13から導入された AppRouter ) では、<code>src/app</code>
-      のなかに<strong>規約に従った名前でファイルを配置</strong> (基本的には <code>layout.tsx</code>
-      もしくは <code>page.tsx</code>)、<strong>フォルダ階層を構成</strong>することで (自動的に)
-      ルーティングが設定され、<strong>フォルダ構成がそのままURLのパス</strong>となります。</p>
+      <p>Next.js の App Router では、基本的に <code>src/app</code> 内のフォルダ階層に対応して URL
+      のパスが決まります。それぞれの URL で表示する画面は
+      <code>page.tsx</code>、複数のページで共有するレイアウトは <code>layout.tsx</code>
+      に定義します。</p>
       <p>例えば、次のようにプロジェクトフォルダを構成すると…</p>
       <pre><code>📂 src/app/
 ├─ page.tsx    # / のコンテンツを定義
@@ -694,9 +874,13 @@ Ok to proceed? (y)</code></pre>
       <span class="masked">「Next.js 16 + TypeScript + App Router を使用し、Cache Components
       は無効にしています。」</span> のような文をプロンプトに含めるようにしてください。</p>
       </div>
-      <h3 data-number="3.11.2" id="定着確認-3"><span class="header-section-number">3.11.2</span>
+      <h3 data-number="3.11.2" id="定着確認-4"><span class="header-section-number">3.11.2</span>
       定着確認</h3>
       <ul>
+      <li>ソフトウェア開発において、プロジェクトの基本的なフォルダ構成や設定ファイルなどを自動生成し、開発のひな形を用意することを何というか。
+      <ul>
+      <li>答え: <span class="masked">スキャフォールディング</span></li>
+      </ul></li>
       <li>アプリケーションの振る舞いを細かく設定ファイルで指定するのではなく、フレームワークが想定する命名規則や配置ルールに従うことで、設定コードを書く手間を省くプログラミングパラダイムのことを何というか。「XXX
       よりYYY」もしくは「XXX over YYY」の形式で答えよ。
       <ul>
@@ -715,6 +899,21 @@ Ok to proceed? (y)</code></pre>
       (大文字と小文字を明確に区別すること)。
       <ul>
       <li>答え: <span class="masked"><code>page.tsx</code></span></li>
+      </ul></li>
+      <li>「App Router では、<code>src/app/about</code> フォルダを作成すれば、<code>page.tsx</code>
+      を作成しなくても <code>/about</code>
+      の画面が自動的に用意される。」という説明は「適切」か「不適切」か答えよ。
+      <ul>
+      <li>答え: <span class="masked">不適切。フォルダを作成するだけでは画面は用意されず、その URL
+      に対応する UI を定義する page.tsx が必要となる。</span></li>
+      </ul></li>
+      <li>上記の <code>bar</code> と <code>baz</code> のフォルダ構成で「<code>/bar/baz</code>
+      にアクセスすると、<code>src/app/bar/page.tsx</code> と <code>src/app/bar/baz/page.tsx</code>
+      の両方のコンテンツが表示される。」という説明は適切か、不適切か。
+      <ul>
+      <li>答え: <span class="masked">不適切。表示されるページは
+      src/app/bar/baz/page.tsx。親階層から順に適用されるのは layout.tsx であり、親階層の page.tsx
+      が重ねて表示されるわけではない。</span></li>
       </ul></li>
       </ul>
       <h1 data-number="4" id="最小構成の-next.js-アプリ"><span
@@ -781,7 +980,7 @@ Ok to proceed? (y)</code></pre>
       <p>次項で説明しますが、同じ階層 (フォルダ内) に <code>layout.tsx</code> と
       <code>page.tsx</code> が存在するときは、<code>layout.tsx</code> のなかの
       <code>{children}</code> に <code>page.tsx</code> が埋め込まれてレンダリングされます。</p>
-      <h3 data-number="4.2.1" id="定着確認-4"><span class="header-section-number">4.2.1</span>
+      <h3 data-number="4.2.1" id="定着確認-5"><span class="header-section-number">4.2.1</span>
       定着確認</h3>
       <p>「リスト1」は、Next.js のプロジェクトに配置したファイルである。以下の問いに答えよ。</p>
       <ul>
@@ -1266,7 +1465,7 @@ Ok to proceed? (y)</code></pre>
       <h1 data-number="6" id="ページの追加"><span class="header-section-number">6</span>
       ページの追加</h1>
       <p>ここでは、アプリに以下のような「<strong>About (自己紹介)</strong>」のページを追加し、<span
-      class="masked">サイト内外へのハイパーリンク</span>を作成する方法、<span
+      class="masked">サイト内外へのハイパーリンク</span> を作成する方法、<span
       class="masked">画像を表示</span> する方法などについて学びます。</p>
       <figure>
       <img src="figs/06/app_08.png" alt="img" />
@@ -1274,36 +1473,54 @@ Ok to proceed? (y)</code></pre>
       </figure>
       <h2 data-number="6.1" id="アバター画像の準備と配置"><span
       class="header-section-number">6.1</span> アバター画像の準備と配置</h2>
-      <p>プロジェクトフォルダの <strong>直下</strong> に <code>public</code>
-      という名前のフォルダがあることを確認してください。</p>
-      <p>Next.js において、プロジェクトフォルダの直下に作成した <code>public</code>
+      <p>プロジェクトフォルダの <strong>直下</strong> に <strong>public</strong>
+      という名前のフォルダが存在することを確認してください。</p>
+      <p>Next.js において、プロジェクトフォルダの直下に作成した <strong>public</strong>
       という名前のフォルダは特別な意味を持ち、<strong>静的アセット</strong> (= <span
-      class="masked">画像、PDF、Zipファイル、ファビコン、静的なHTML/CSS、robots.txt など</span>)
+      class="masked">画像、PDF、Zipファイル、ファビコン、静的なHTML/CSS、robots.txt など</span> )
       を配置するために使用します。</p>
-      <p>例えば、<code>public</code> に <code>test.png</code> という画像を配置しておけば <span
-      class="masked"><code>http://localhost:3000/test.png</code></span>
+      <p>例えば、<strong>public</strong> に <strong>test.png</strong> という画像を配置しておけば
+      <span class="masked"><code>http://localhost:3000/test.png</code></span>
       のようにリクエストすることで<strong>直接的に画像が取得できる</strong>ようになります。</p>
-      <p>ここでは、<code>public</code> のなかに <code>images</code>
+      <p>ここでは、<strong>public</strong> のなかに <strong>images</strong>
       というサブフォルダを作成して「About」のページで表示する<strong>アバター画像</strong>
       <code>avatar.png</code> を配置してください。画像は <strong>アスペクト比が「1:1」</strong>
-      のものを用意してください。あるいは<a
-      href="figs/06/avatar.png">こちらの画像</a>を利用してください
-      (AIで生成した画像なので自由に利用可能です)。</p>
+      のものを用意してください。あるいは <a href="figs/06/avatar.png">こちらの画像</a>
+      を利用してください。</p>
       <figure>
       <img src="figs/06/vscode_05.png" alt="img" />
       <figcaption aria-hidden="true">img</figcaption>
       </figure>
-      <p><strong>(プロンプト例)</strong></p>
-      <blockquote>
-      <p>次のキーワードに基づき、JRPGスタイルのドット絵でアバター画像を作成してください。<br />
-      【キャラクタ】<br />
-      ・（キーワードを列挙）<br />
-      【背景】<br />
-      ・（キーワードを列挙）<br />
-      【雰囲気】<br />
-      ・（キーワードを列挙）</p>
-      </blockquote>
-      <h3 data-number="6.1.1" id="定着確認-5"><span class="header-section-number">6.1.1</span>
+      <ul>
+      <li><strong>public</strong> フォルダにある
+      <strong>file.svg</strong>、<strong>globe.svg</strong>、<strong>next.svg</strong>、<strong>vercel.svg</strong>、<strong>window.svg</strong>
+      などの画像ファイルは、スキャフォールディングにより生成されたものです。今後、使用する予定はないので削除して問題ありません。</li>
+      </ul>
+      <div class="prompts">
+      <ul>
+      <li><p>次のキーワードに基づき、1990 年代の 16bit JRPG をイメージした、レトロなドット絵
+      (ピクセルアート) で、正方形のアバター画像を作成してください。</p>
+      <div class="sourceCode" id="cb40"><pre class="sourceCode md"><code class="sourceCode markdown"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>【キャラクタ】</span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>（キーワードを列挙）</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>【背景】</span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>（キーワードを列挙）</span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-7"><a href="#cb40-7" aria-hidden="true" tabindex="-1"></a>【雰囲気】</span>
+<span id="cb40-8"><a href="#cb40-8" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>（キーワードを列挙）</span>
+<span id="cb40-9"><a href="#cb40-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-10"><a href="#cb40-10" aria-hidden="true" tabindex="-1"></a>【描画スタイル・品質指定】</span>
+<span id="cb40-11"><a href="#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**512×512ピクセルの正方形画像** とする。</span>
+<span id="cb40-12"><a href="#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**64×64〜128×128ピクセル程度の低解像度で描いた絵を、最近傍補間（Nearest Neighbor）で拡大したような、粗く明瞭なドット絵** にする。</span>
+<span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>1つひとつのピクセルが視認できるようにし、曲線や斜線は階段状の輪郭で表現する。</span>
+<span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>使用する色数を抑え、限られたカラーパレットで表現する。</span>
+<span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>陰影は滑らかなグラデーションではなく、色の異なるピクセルの塊で表現する。</span>
+<span id="cb40-16"><a href="#cb40-16" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>キャラクタの輪郭は暗い色で明確に縁取り、背景と区別する。</span>
+<span id="cb40-17"><a href="#cb40-17" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>キャラクタを画面中央に大きく配置し、背景は比較的シンプルにする。</span>
+<span id="cb40-18"><a href="#cb40-18" aria-hidden="true" tabindex="-1"></a><span class="ss">- </span>**アンチエイリアス、滑らかな輪郭、ぼかし、写真風の質感、3Dレンダリングは使用しない。**</span></code></pre></div></li>
+      </ul>
+      </div>
+      <h3 data-number="6.1.1" id="定着確認-6"><span class="header-section-number">6.1.1</span>
       定着確認</h3>
       <ul>
       <li>Next.js
@@ -1315,66 +1532,65 @@ Ok to proceed? (y)</code></pre>
       </ul>
       <h2 data-number="6.2" id="aboutコンポーネントの作成"><span
       class="header-section-number">6.2</span> Aboutコンポーネントの作成</h2>
-      <p><code>/about</code> というURL (パス)
-      でアクセス可能なコンテンツを作成するために、<code>src/app</code>
-      フォルダのなかに<code>about</code> というサブフォルダを作成して <code>page.tsx</code>
+      <p><strong>/about</strong> というURL (パス)
+      でアクセス可能なコンテンツを作成するために、<strong>src/app</strong> フォルダのなかに
+      <strong>about</strong> というサブフォルダを作成して <strong>page.tsx</strong>
       というファイルを新規作成してください。</p>
       <figure>
       <img src="figs/06/vscode_06.png" alt="img" />
       <figcaption aria-hidden="true">img</figcaption>
       </figure>
-      <p><code>page.tsx</code>
-      を次のような内容で保存してください。そして、開発モードでアプリを起動して
-      <code>http://localhost:3000/about</code>
-      のURLで「About」のコンテンツにアクセスできることを確認してください。</p>
-      <div class="sourceCode" id="cb40" data-caption="src/app/about/page.tsx"><pre
-      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb40-1"><a href="#cb40-1"></a><span class="st">&quot;use client&quot;</span><span class="op">;</span></span>
-<span id="cb40-2"><a href="#cb40-2"></a><span class="im">import</span> Image <span class="im">from</span> <span class="st">&quot;next/image&quot;</span><span class="op">;</span></span>
-<span id="cb40-3"><a href="#cb40-3"></a><span class="im">import</span> { cn } <span class="im">from</span> <span class="st">&quot;cn&quot;</span><span class="op">;</span></span>
-<span id="cb40-4"><a href="#cb40-4"></a></span>
-<span id="cb40-5"><a href="#cb40-5"></a><span class="kw">const</span> Page<span class="op">:</span> React<span class="op">.</span><span class="at">FC</span> <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb40-6"><a href="#cb40-6"></a>  <span class="cf">return</span> (</span>
-<span id="cb40-7"><a href="#cb40-7"></a>    <span class="op">&lt;</span>main<span class="op">&gt;</span></span>
-<span id="cb40-8"><a href="#cb40-8"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mb-5 text-2xl font-bold&quot;</span><span class="op">&gt;</span>About<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb40-9"><a href="#cb40-9"></a></span>
-<span id="cb40-10"><a href="#cb40-10"></a>      <span class="op">&lt;</span>div</span>
-<span id="cb40-11"><a href="#cb40-11"></a>        className<span class="op">=</span>{<span class="fu">cn</span>(</span>
-<span id="cb40-12"><a href="#cb40-12"></a>          <span class="st">&quot;mx-auto mb-5 w-full md:w-2/3&quot;</span><span class="op">,</span></span>
-<span id="cb40-13"><a href="#cb40-13"></a>          <span class="st">&quot;flex justify-center&quot;</span></span>
-<span id="cb40-14"><a href="#cb40-14"></a>        )}</span>
-<span id="cb40-15"><a href="#cb40-15"></a>      <span class="op">&gt;</span></span>
-<span id="cb40-16"><a href="#cb40-16"></a>        <span class="op">&lt;</span>Image</span>
-<span id="cb40-17"><a href="#cb40-17"></a>          src<span class="op">=</span><span class="st">&quot;/images/avatar.png&quot;</span></span>
-<span id="cb40-18"><a href="#cb40-18"></a>          alt<span class="op">=</span><span class="st">&quot;Example Image&quot;</span></span>
-<span id="cb40-19"><a href="#cb40-19"></a>          width<span class="op">=</span>{<span class="dv">350</span>}</span>
-<span id="cb40-20"><a href="#cb40-20"></a>          height<span class="op">=</span>{<span class="dv">350</span>}</span>
-<span id="cb40-21"><a href="#cb40-21"></a>          preload</span>
-<span id="cb40-22"><a href="#cb40-22"></a>          className<span class="op">=</span><span class="st">&quot;rounded-full border-4 border-slate-500 p-1.5&quot;</span></span>
-<span id="cb40-23"><a href="#cb40-23"></a>        <span class="op">/&gt;</span></span>
-<span id="cb40-24"><a href="#cb40-24"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb40-25"><a href="#cb40-25"></a>    <span class="op">&lt;/</span>main<span class="op">&gt;</span></span>
-<span id="cb40-26"><a href="#cb40-26"></a>  )<span class="op">;</span></span>
-<span id="cb40-27"><a href="#cb40-27"></a>}<span class="op">;</span></span>
-<span id="cb40-28"><a href="#cb40-28"></a></span>
-<span id="cb40-29"><a href="#cb40-29"></a><span class="im">export</span> <span class="im">default</span> Page<span class="op">;</span></span></code></pre></div>
+      <p><strong>src/app/about/page.tsx</strong>
+      を次のような内容で保存してください。そして、開発モードでアプリを起動して <a
+      href="http://localhost:3000/about">http://localhost:3000/about</a> の URL
+      で「About」のコンテンツにアクセスできることを確認してください。</p>
+      <div class="sourceCode" id="cb41" data-caption="src/app/about/page.tsx"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb41-1"><a href="#cb41-1"></a><span class="st">&quot;use client&quot;</span><span class="op">;</span></span>
+<span id="cb41-2"><a href="#cb41-2"></a><span class="im">import</span> Image <span class="im">from</span> <span class="st">&quot;next/image&quot;</span><span class="op">;</span></span>
+<span id="cb41-3"><a href="#cb41-3"></a><span class="im">import</span> { cn } <span class="im">from</span> <span class="st">&quot;cn&quot;</span><span class="op">;</span></span>
+<span id="cb41-4"><a href="#cb41-4"></a></span>
+<span id="cb41-5"><a href="#cb41-5"></a><span class="kw">const</span> Page<span class="op">:</span> React<span class="op">.</span><span class="at">FC</span> <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb41-6"><a href="#cb41-6"></a>  <span class="cf">return</span> (</span>
+<span id="cb41-7"><a href="#cb41-7"></a>    <span class="op">&lt;</span>main<span class="op">&gt;</span></span>
+<span id="cb41-8"><a href="#cb41-8"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mb-5 text-2xl font-bold&quot;</span><span class="op">&gt;</span>About<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb41-9"><a href="#cb41-9"></a>      <span class="op">&lt;</span>div</span>
+<span id="cb41-10"><a href="#cb41-10"></a>        className<span class="op">=</span>{<span class="fu">cn</span>(</span>
+<span id="cb41-11"><a href="#cb41-11"></a>          <span class="st">&quot;mx-auto mb-5 w-full md:w-2/3&quot;</span><span class="op">,</span></span>
+<span id="cb41-12"><a href="#cb41-12"></a>          <span class="st">&quot;flex justify-center&quot;</span></span>
+<span id="cb41-13"><a href="#cb41-13"></a>        )}</span>
+<span id="cb41-14"><a href="#cb41-14"></a>      <span class="op">&gt;</span></span>
+<span id="cb41-15"><a href="#cb41-15"></a>        <span class="op">&lt;</span>Image</span>
+<span id="cb41-16"><a href="#cb41-16"></a>          src<span class="op">=</span><span class="st">&quot;/images/avatar.png&quot;</span></span>
+<span id="cb41-17"><a href="#cb41-17"></a>          alt<span class="op">=</span><span class="st">&quot;ブログ運営者のアバター&quot;</span></span>
+<span id="cb41-18"><a href="#cb41-18"></a>          width<span class="op">=</span>{<span class="dv">350</span>}</span>
+<span id="cb41-19"><a href="#cb41-19"></a>          height<span class="op">=</span>{<span class="dv">350</span>}</span>
+<span id="cb41-20"><a href="#cb41-20"></a>          preload</span>
+<span id="cb41-21"><a href="#cb41-21"></a>          className<span class="op">=</span><span class="st">&quot;h-auto max-w-full rounded-full border-4 border-slate-500 p-1.5&quot;</span></span>
+<span id="cb41-22"><a href="#cb41-22"></a>        <span class="op">/&gt;</span></span>
+<span id="cb41-23"><a href="#cb41-23"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb41-24"><a href="#cb41-24"></a>    <span class="op">&lt;/</span>main<span class="op">&gt;</span></span>
+<span id="cb41-25"><a href="#cb41-25"></a>  )<span class="op">;</span></span>
+<span id="cb41-26"><a href="#cb41-26"></a>}<span class="op">;</span></span>
+<span id="cb41-27"><a href="#cb41-27"></a></span>
+<span id="cb41-28"><a href="#cb41-28"></a><span class="im">export</span> <span class="im">default</span> Page<span class="op">;</span></span></code></pre></div>
       <p>まず、上記の <strong>第08行目</strong> では「About」という文字列を出力しています。</p>
-      <p>また <strong>第16行目</strong> から <strong>第23行目</strong> にかけて <code>Image</code>
+      <p>また <strong>第15行目</strong> から <strong>第22行目</strong> にかけて
+      <strong>Image</strong>
       というコンポーネントを使って「<strong>アバター画像</strong>」を出力しています (<span
-      class="masked">Imageコンポーネントは「第02行目」でインポートしています</span>)。ここでは Image
-      の <code>src</code> に
+      class="masked">Imageコンポーネントは「第02行目」でインポートしています</span>)。ここでは
+      <code>Image</code> の <code>src</code> 属性に
       <code>"/images/avatar.png"</code>というパスを与えていることに注目してください。このパスは、プロジェクトフォルダの
-      <code>/public/images/avatar.png</code> に対応しています。</p>
-      <p>Image要素 をラップしている div要素
-      では、<strong>レスポンシブデザインになるようにCSSを設定</strong>
-      しています。実際にブラウザの画面幅を変化させ <span
+      <strong>/public/images/avatar.png</strong> に対応しています。</p>
+      <p>Image 要素 をラップしている div 要素 では、<strong>レスポンシブデザインになるように CSS
+      を設定</strong> しています。実際にブラウザの画面幅を変化させ <span
       class="masked">アバター画像が適切に拡大縮小・レイアウトされること</span>
       を確認してください。<strong>CSSクラスの詳細</strong> (特に <code>w-full md:w-2/3</code> や
-      <code>flex justify-center</code> など)
-      については、生成AIを利用して解決してください。このあたりを理解しておくと、標準的なレイアウトはそこそこ組むことができます。</p>
+      <code>flex justify-center</code> など) については、生成 AI
+      を利用して解決してください。このあたりを理解しておくと、標準的なレイアウトはそこそこ組むことができます。</p>
       <p>なお、このファイルでは <strong>第05行目</strong> のように <code>Page</code>
       という名前で関数コンポーネントを作成していますが、<code>AboutPage</code> や <code>About</code>
       のような任意の名前にすることもできます。ただし、パスカルケースとするように注意してください。</p>
-      <h3 data-number="6.2.1" id="定着確認-6"><span class="header-section-number">6.2.1</span>
+      <h3 data-number="6.2.1" id="定着確認-7"><span class="header-section-number">6.2.1</span>
       定着確認</h3>
       <ul>
       <li>Next.js で画像を表示するための標準コンポーネント名を答えよ。
@@ -1384,6 +1600,29 @@ Ok to proceed? (y)</code></pre>
       <li>Next.js でリンクを作成するための標準コンポーネント名を答えよ。
       <ul>
       <li><strong>答え</strong> : <span class="masked">Link</span></li>
+      </ul></li>
+      <li><strong>public/images/avatar.png</strong> に配置した画像を表示する際、Image
+      コンポーネントの <code>src</code> に指定する値として適切なものを1つ選べ。
+      <ul>
+      <li>① <code>"/public/images/avatar.png"</code></li>
+      <li>② <code>"/images/avatar.png"</code></li>
+      <li>③ <code>"/src/app/images/avatar.png"</code></li>
+      <li>④ <code>"/about/images/avatar.png"</code></li>
+      <li><strong>答え</strong> : <span class="masked">②。public フォルダ内のファイルは、public
+      を含めない URL のパスで参照する。</span></li>
+      </ul></li>
+      <li>「Image コンポーネントに <code>width={350}</code> と <code>height={350}</code>
+      を指定すると、画面幅や CSS の指定に関係なく、必ず 350×350
+      ピクセルで表示される。」という説明は適切か、不適切か。
+      <ul>
+      <li><strong>答え</strong> : <span class="masked">不適切。実際の表示サイズは CSS
+      や親要素の幅にも左右される。</span></li>
+      </ul></li>
+      <li>「画像に指定した <code>h-auto max-w-full</code>
+      は、画像の幅が親要素を超えないようにし、縦横比を保ったまま縮小できるようにするための指定である。」という説明は適切か、不適切か。
+      <ul>
+      <li><strong>答え</strong> : <span class="masked">適切。max-w-full
+      は最大幅を親要素の幅に制限し、h-auto は高さを縦横比に応じて自動調整する。</span></li>
       </ul></li>
       </ul>
       <h3 data-number="6.2.2" id="演習-10分-1"><span class="header-section-number">6.2.2</span> 演習
@@ -1408,17 +1647,19 @@ Ok to proceed? (y)</code></pre>
       に画面遷移するように設定していきます。</p>
       <p><code>src/app/_components/Header.tsx</code> を開いて、まずは、関数コンポーネントの定義前に
       <span class="masked"><code>import Link from "next/link";</code></span> を追加し、その
-      <strong>Linkコンポーネント</strong> を使って以下のようにJSXを編集してください。</p>
-      <div class="sourceCode" id="cb41" data-caption="src/app/_components/Header.tsx (抜粋)"><pre
-      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb41-1"><a href="#cb41-1"></a><span class="op">&lt;</span>div<span class="op">&gt;</span></span>
-<span id="cb41-2"><a href="#cb41-2"></a>  <span class="op">&lt;</span>Link href<span class="op">=</span><span class="st">&quot;/&quot;</span><span class="op">&gt;</span></span>
-<span id="cb41-3"><a href="#cb41-3"></a>    <span class="op">&lt;</span>FontAwesomeIcon icon<span class="op">=</span>{faFish} className<span class="op">=</span><span class="st">&quot;mr-1&quot;</span> <span class="op">/&gt;</span></span>
-<span id="cb41-4"><a href="#cb41-4"></a>    Header</span>
-<span id="cb41-5"><a href="#cb41-5"></a>  <span class="op">&lt;/</span>Link<span class="op">&gt;</span></span>
-<span id="cb41-6"><a href="#cb41-6"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb41-7"><a href="#cb41-7"></a><span class="op">&lt;</span>div<span class="op">&gt;</span></span>
-<span id="cb41-8"><a href="#cb41-8"></a>  <span class="op">&lt;</span>Link href<span class="op">=</span><span class="st">&quot;/about&quot;</span><span class="op">&gt;</span>About<span class="op">&lt;/</span>Link<span class="op">&gt;</span></span>
-<span id="cb41-9"><a href="#cb41-9"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span></code></pre></div>
+      <strong>Linkコンポーネント</strong> を使って JSX を以下のように編集してください。</p>
+      <div class="sourceCode" id="cb42" data-caption="src/app/_components/Header.tsx"
+      data-startFrom="5"><pre class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript" style="counter-reset: source-line 4;"><span id="cb42-5"><a href="#cb42-5"></a><span class="im">import</span> Link <span class="im">from</span> <span class="st">&quot;next/link&quot;</span><span class="op">;</span></span></code></pre></div>
+      <div class="sourceCode" id="cb43" data-caption="src/app/_components/Header.tsx (抜粋)"
+      data-startFrom="18"><pre class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript" style="counter-reset: source-line 17;"><span id="cb43-18"><a href="#cb43-18"></a><span class="op">&lt;</span>div<span class="op">&gt;</span></span>
+<span id="cb43-19"><a href="#cb43-19"></a>  <span class="op">&lt;</span>Link href<span class="op">=</span><span class="st">&quot;/&quot;</span><span class="op">&gt;</span></span>
+<span id="cb43-20"><a href="#cb43-20"></a>    <span class="op">&lt;</span>FontAwesomeIcon icon<span class="op">=</span>{faFish} className<span class="op">=</span><span class="st">&quot;mr-1&quot;</span> <span class="op">/&gt;</span></span>
+<span id="cb43-21"><a href="#cb43-21"></a>    Header</span>
+<span id="cb43-22"><a href="#cb43-22"></a>  <span class="op">&lt;/</span>Link<span class="op">&gt;</span></span>
+<span id="cb43-23"><a href="#cb43-23"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb43-24"><a href="#cb43-24"></a><span class="op">&lt;</span>div<span class="op">&gt;</span></span>
+<span id="cb43-25"><a href="#cb43-25"></a>  <span class="op">&lt;</span>Link href<span class="op">=</span><span class="st">&quot;/about&quot;</span><span class="op">&gt;</span>About<span class="op">&lt;/</span>Link<span class="op">&gt;</span></span>
+<span id="cb43-26"><a href="#cb43-26"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span></code></pre></div>
       <p>上記では「About」という文字列に <code>/about</code>
       のハイパーリンクを設定すると共に、「<i class="fa-solid fa-fish"></i>Header」に <code>/</code>
       へのハイパーリンクも設定しています。通常のHTMLでは <span
@@ -1427,39 +1668,41 @@ Ok to proceed? (y)</code></pre>
       では、<strong>遷移先がアプリ内となるハイパーリンクには</strong> <code>next/link</code>
       からインポートする <strong>Linkコンポーネント</strong> を使用します。</p>
       <p>両差の違いについては、生成AIを利用して解決してください。</p>
-      <p><strong>(プロンプト例)</strong></p>
-      <blockquote>
-      <p>Next.jsにおいて、「“next/link”
-      からインポートしたLinkコンポーネントを使ってハイパーリンクを作成した場合」と「通常のaタグを使ってハイパーリンクを作成した場合」の違いについて教えてください。また、どのように使い分ければよいですか。</p>
-      </blockquote>
+      <div class="prompts">
+      <ul>
+      <li>Next.jsにおいて、「“next/link”
+      からインポートしたLinkコンポーネントを使ってハイパーリンクを作成した場合」と「通常のaタグを使ってハイパーリンクを作成した場合」の違いについて教えてください。また、どのように使い分ければよいですか。</li>
+      </ul>
+      </div>
       <p>開発モードでアプリを起動し、意図したようにハイパーリンクが機能することを確認してください。</p>
       <h2 data-number="6.4" id="next.jsにおける画像の表示"><span
       class="header-section-number">6.4</span> Next.jsにおける画像の表示</h2>
       <p>Next.js では、通常のHTMLの <code>&lt;img&gt;</code> タグではなく、<code>next/image</code>
       からインポートした <span class="masked">Imageという組み込みのコンポーネント</span>
       を使って画像を表示することが「<strong>推奨</strong>」されています。</p>
-      <div class="sourceCode" id="cb42"
+      <div class="sourceCode" id="cb44"
       data-caption="src/app/about/page.tsx (抜粋・Imageコンポーネントによる画像表示)"
-      data-startFrom="16"><pre class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript" style="counter-reset: source-line 15;"><span id="cb42-16"><a href="#cb42-16"></a><span class="op">&lt;</span>Image</span>
-<span id="cb42-17"><a href="#cb42-17"></a>  src<span class="op">=</span><span class="st">&quot;/images/avatar.png&quot;</span></span>
-<span id="cb42-18"><a href="#cb42-18"></a>  alt<span class="op">=</span><span class="st">&quot;Example Image&quot;</span></span>
-<span id="cb42-19"><a href="#cb42-19"></a>  width<span class="op">=</span>{<span class="dv">350</span>}</span>
-<span id="cb42-20"><a href="#cb42-20"></a>  height<span class="op">=</span>{<span class="dv">350</span>}</span>
-<span id="cb42-21"><a href="#cb42-21"></a>  preload</span>
-<span id="cb42-22"><a href="#cb42-22"></a>  className<span class="op">=</span><span class="st">&quot;rounded-full border-4 border-slate-500 p-1.5&quot;</span></span>
-<span id="cb42-23"><a href="#cb42-23"></a><span class="op">/&gt;</span></span></code></pre></div>
+      data-startFrom="16"><pre class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript" style="counter-reset: source-line 15;"><span id="cb44-16"><a href="#cb44-16"></a><span class="op">&lt;</span>Image</span>
+<span id="cb44-17"><a href="#cb44-17"></a>  src<span class="op">=</span><span class="st">&quot;/images/avatar.png&quot;</span></span>
+<span id="cb44-18"><a href="#cb44-18"></a>  alt<span class="op">=</span><span class="st">&quot;ブログ運営者のアバター&quot;</span></span>
+<span id="cb44-19"><a href="#cb44-19"></a>  width<span class="op">=</span>{<span class="dv">350</span>}</span>
+<span id="cb44-20"><a href="#cb44-20"></a>  height<span class="op">=</span>{<span class="dv">350</span>}</span>
+<span id="cb44-21"><a href="#cb44-21"></a>  preload</span>
+<span id="cb44-22"><a href="#cb44-22"></a>  className<span class="op">=</span><span class="st">&quot;h-auto max-w-full rounded-full border-4 border-slate-500 p-1.5&quot;</span></span>
+<span id="cb44-23"><a href="#cb44-23"></a><span class="op">/&gt;</span></span></code></pre></div>
       <p>Next.js
       における「画像の取り扱い」は、大きく「<strong>ローカル画像</strong>」と「<strong>リモート画像</strong>」の2種類に分類されます。</p>
       <p>ここでの「<strong>ローカル画像</strong>」とは、プロジェクトフォルダ内に配置した画像のことで、これはさらに
-      <span class="masked">publicフォルダに配置した静的画像</span> と <span
-      class="masked">srcフォルダに配置した画像</span> に分けることができます。</p>
+      「public フォルダに配置した静的画像」と「src
+      フォルダに配置した画像」に分けることができます。</p>
+      <div class="balloon char-01 face-02 tone-yellow">
       <p>publicフォルダの画像を Imageコンポーネントで表示するときは (面倒ですが) <code>width</code>
-      と <code>height</code>
-      の<strong>指定が必須</strong>となります。一方で、srcフォルダに配置した画像は
-      <strong>ビルド時に最適化</strong> され、<span
+      と <code>height</code> の<strong>指定が必須</strong>となります。</p>
+      <p>一方で、srcフォルダに配置した画像は <strong>ビルド時に最適化</strong> され、<span
       class="masked">サイズ圧縮、フォーマット変換、複数解像度への対応など、パフォーマンスとレスポンシブ性を考慮した処理</span>
       が自動的に適用されます (Imageコンポーネントでは <code>width</code> と <code>height</code>
       の省略が可能です)。</p>
+      </div>
       <div class="note type-tips">
       <p><strong>publicフォルダの配置した画像へのアクセス</strong></p>
       <p>publicフォルダに配置した「画像」などのコンテンツは、URLを使ってダイレクトにアクセスができます。例えば、<code>/images/avatar.png</code>
@@ -1472,57 +1715,56 @@ Ok to proceed? (y)</code></pre>
       <code>next.config.ts</code> に登録しておく必要があります。</p>
       <p>以下は、ダミー画像生成サービス <a href="https://placehold.jp/">placehold.jp</a> や、<a
       href="https://getavataaars.com/">avataaars generator</a>
-      で動的生成した画像を参照するための設定を追加した例です。</p>
-      <div class="sourceCode" id="cb43" data-caption="next.config.ts (設定例)"><pre
-      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb43-1"><a href="#cb43-1"></a><span class="im">import</span> <span class="im">type</span> { NextConfig } <span class="im">from</span> <span class="st">&quot;next&quot;</span><span class="op">;</span></span>
-<span id="cb43-2"><a href="#cb43-2"></a></span>
-<span id="cb43-3"><a href="#cb43-3"></a><span class="kw">const</span> nextConfig<span class="op">:</span> NextConfig <span class="op">=</span> {</span>
-<span id="cb43-4"><a href="#cb43-4"></a>  cacheComponents<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb43-5"><a href="#cb43-5"></a>  devIndicators<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
-<span id="cb43-6"><a href="#cb43-6"></a>  turbopack<span class="op">:</span> {</span>
-<span id="cb43-7"><a href="#cb43-7"></a>    rules<span class="op">:</span> {</span>
-<span id="cb43-8"><a href="#cb43-8"></a>      <span class="st">&quot;*.css&quot;</span><span class="op">:</span> {</span>
-<span id="cb43-9"><a href="#cb43-9"></a>        loaders<span class="op">:</span> [<span class="st">&quot;@tailwindcss/turbopack&quot;</span>]<span class="op">,</span></span>
-<span id="cb43-10"><a href="#cb43-10"></a>        as<span class="op">:</span> <span class="st">&quot;*.css&quot;</span><span class="op">,</span></span>
-<span id="cb43-11"><a href="#cb43-11"></a>      }<span class="op">,</span></span>
-<span id="cb43-12"><a href="#cb43-12"></a>    }<span class="op">,</span></span>
-<span id="cb43-13"><a href="#cb43-13"></a>  }<span class="op">,</span></span>
-<span id="cb43-14"><a href="#cb43-14"></a>  images<span class="op">:</span> {</span>
-<span id="cb43-15"><a href="#cb43-15"></a>    remotePatterns<span class="op">:</span> [</span>
-<span id="cb43-16"><a href="#cb43-16"></a>      { protocol<span class="op">:</span> <span class="st">&quot;https&quot;</span><span class="op">,</span> hostname<span class="op">:</span> <span class="st">&quot;placehold.jp&quot;</span> }<span class="op">,</span></span>
-<span id="cb43-17"><a href="#cb43-17"></a>      {</span>
-<span id="cb43-18"><a href="#cb43-18"></a>        protocol<span class="op">:</span> <span class="st">&quot;https&quot;</span><span class="op">,</span></span>
-<span id="cb43-19"><a href="#cb43-19"></a>        hostname<span class="op">:</span> <span class="st">&quot;avataaars.io&quot;</span><span class="op">,</span></span>
-<span id="cb43-20"><a href="#cb43-20"></a>      }<span class="op">,</span></span>
-<span id="cb43-21"><a href="#cb43-21"></a>    ]<span class="op">,</span></span>
-<span id="cb43-22"><a href="#cb43-22"></a>  }<span class="op">,</span></span>
-<span id="cb43-23"><a href="#cb43-23"></a>}<span class="op">;</span></span>
-<span id="cb43-24"><a href="#cb43-24"></a></span>
-<span id="cb43-25"><a href="#cb43-25"></a><span class="im">export</span> <span class="im">default</span> nextConfig<span class="op">;</span></span></code></pre></div>
-      <p>Imageコンポーネントに関連して詳しいことが知りたい学生は<a
-      href="https://nextjs.org/docs/app/building-your-application/optimizing/images">公式ドキュメント</a>を確認するか、生成AIを利用して解決してください。</p>
+      で動的生成した画像を参照するための設定 ( <strong>第14行目</strong>～<strong>第22行目</strong>
+      ) を追加した例です。</p>
+      <div class="sourceCode" id="cb45" data-caption="next.config.ts (設定例)"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb45-1"><a href="#cb45-1"></a><span class="im">import</span> <span class="im">type</span> { NextConfig } <span class="im">from</span> <span class="st">&quot;next&quot;</span><span class="op">;</span></span>
+<span id="cb45-2"><a href="#cb45-2"></a></span>
+<span id="cb45-3"><a href="#cb45-3"></a><span class="kw">const</span> nextConfig<span class="op">:</span> NextConfig <span class="op">=</span> {</span>
+<span id="cb45-4"><a href="#cb45-4"></a>  cacheComponents<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb45-5"><a href="#cb45-5"></a>  devIndicators<span class="op">:</span> <span class="kw">false</span><span class="op">,</span></span>
+<span id="cb45-6"><a href="#cb45-6"></a>  turbopack<span class="op">:</span> {</span>
+<span id="cb45-7"><a href="#cb45-7"></a>    rules<span class="op">:</span> {</span>
+<span id="cb45-8"><a href="#cb45-8"></a>      <span class="st">&quot;*.css&quot;</span><span class="op">:</span> {</span>
+<span id="cb45-9"><a href="#cb45-9"></a>        loaders<span class="op">:</span> [<span class="st">&quot;@tailwindcss/turbopack&quot;</span>]<span class="op">,</span></span>
+<span id="cb45-10"><a href="#cb45-10"></a>        as<span class="op">:</span> <span class="st">&quot;*.css&quot;</span><span class="op">,</span></span>
+<span id="cb45-11"><a href="#cb45-11"></a>      }<span class="op">,</span></span>
+<span id="cb45-12"><a href="#cb45-12"></a>    }<span class="op">,</span></span>
+<span id="cb45-13"><a href="#cb45-13"></a>  }<span class="op">,</span></span>
+<span id="cb45-14"><a href="#cb45-14"></a>  images<span class="op">:</span> {</span>
+<span id="cb45-15"><a href="#cb45-15"></a>    remotePatterns<span class="op">:</span> [</span>
+<span id="cb45-16"><a href="#cb45-16"></a>      { protocol<span class="op">:</span> <span class="st">&quot;https&quot;</span><span class="op">,</span> hostname<span class="op">:</span> <span class="st">&quot;placehold.jp&quot;</span> }<span class="op">,</span></span>
+<span id="cb45-17"><a href="#cb45-17"></a>      {</span>
+<span id="cb45-18"><a href="#cb45-18"></a>        protocol<span class="op">:</span> <span class="st">&quot;https&quot;</span><span class="op">,</span></span>
+<span id="cb45-19"><a href="#cb45-19"></a>        hostname<span class="op">:</span> <span class="st">&quot;avataaars.io&quot;</span><span class="op">,</span></span>
+<span id="cb45-20"><a href="#cb45-20"></a>      }<span class="op">,</span></span>
+<span id="cb45-21"><a href="#cb45-21"></a>    ]<span class="op">,</span></span>
+<span id="cb45-22"><a href="#cb45-22"></a>  }<span class="op">,</span></span>
+<span id="cb45-23"><a href="#cb45-23"></a>}<span class="op">;</span></span>
+<span id="cb45-24"><a href="#cb45-24"></a></span>
+<span id="cb45-25"><a href="#cb45-25"></a><span class="im">export</span> <span class="im">default</span> nextConfig<span class="op">;</span></span></code></pre></div>
+      <p>Imageコンポーネントに関連して詳しいことが知りたい学生は <a
+      href="https://nextjs.org/docs/app/building-your-application/optimizing/images">公式ドキュメント</a>
+      を確認するか、生成AIを利用して解決してください。</p>
+      <div class="prompts">
       <ul>
-      <li>参考 https://getavataaars.com/</li>
+      <li>Next.js において、<code>next/image</code>
+      からインポートした「Imageコンポーネント」を使用する際の注意点について教えてください。特に初心者がよくハマるポイントなどを教えてください。</li>
+      <li>Next.js において、<code>&lt;img&gt;</code> タグではなく、<code>next/image</code>
+      からインポートした「Imageコンポーネント」を使って画像を表示するメリットを教えてください。</li>
+      <li>Next.js において、<code>src</code>
+      フォルダに配置した画像については、ビルド時に最適化されると聞きました。具体的には、何のために、どのような処理が行われてるのか教えてください。</li>
       </ul>
-      <p><strong>(プロンプト例)</strong></p>
-      <blockquote>
-      <p>Next.js において、<code>next/image</code>
-      からインポートした「Imageコンポーネント」を使用する際の注意点について教えてください。特に初心者がよくハマるポイントなどを教えてください。</p>
-      </blockquote>
-      <blockquote>
-      <p>Next.js において、<code>&lt;img&gt;</code> タグではなく、<code>next/image</code>
-      からインポートした「Imageコンポーネント」を使って画像を表示するメリットを教えてください。</p>
-      </blockquote>
-      <blockquote>
-      <p>Next.js において、<code>src</code>
-      フォルダに配置した画像については、ビルド時に最適化されると聞きました。具体的には、何のために、どのような処理が行われてるのか教えてください。</p>
-      </blockquote>
+      </div>
       <h3 data-number="6.4.1" id="演習-宿題-30分"><span class="header-section-number">6.4.1</span>
       演習 (宿題: <i class="fa-solid fa-stopwatch"></i> 30分)</h3>
       <p>Aboutページについて、「コンテンツ」と「デザイン」を各自で自由に設計して実装してください。</p>
-      <p><a href="codes/06/code02.tsx"><i class="fa-solid fa-person-chalkboard"></i>
-      実装例</a>(レスポンシブデザイン対応)</p>
-      <h3 data-number="6.4.2" id="定着確認-7"><span class="header-section-number">6.4.2</span>
+      <ul>
+      <li><i class="fa-solid fa-person-chalkboard"></i> <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/06/code02.tsx">実装例</a>
+      (レスポンシブデザイン対応)</li>
+      </ul>
+      <h3 data-number="6.4.2" id="定着確認-8"><span class="header-section-number">6.4.2</span>
       定着確認</h3>
       <ul>
       <li>Next.js において <code>&lt;a&gt;</code>
@@ -1534,6 +1776,48 @@ Ok to proceed? (y)</code></pre>
       タグの代わりに使用される組み込みコンポーネントをインポートするための文を答えよ。このコンポーネントは、自動画像最適化、遅延読み込み、サイズ最適化などの機能を提供する。
       <ul>
       <li>答え: <span class="masked"><code>import Image from "next/image";</code></span></li>
+      </ul></li>
+      <li>現在の URL のパスが <code>/posts/1</code> のとき、アプリ内の <code>/about</code>
+      に移動するリンクとして、適切な記述を1つ選べ。ただし、Link
+      コンポーネントはインポート済みとする。
+      <ul>
+      <li>① <code>&lt;Link href="about"&gt;About&lt;/Link&gt;</code></li>
+      <li>② <code>&lt;Link href="/about"&gt;About&lt;/Link&gt;</code></li>
+      <li>③ <code>&lt;Link href="/about/page"&gt;About&lt;/Link&gt;</code></li>
+      <li>④ <code>&lt;Link href="/src/app/about/page.tsx"&gt;About&lt;/Link&gt;</code></li>
+      <li>答え: <span class="masked">②。先頭の /
+      はサイトのルートを基準とする指定。①は相対パスなので、この場合は /posts/about
+      となる。また、href にはソースファイルの場所ではなく、遷移先の URL
+      のパスを指定する。</span></li>
+      </ul></li>
+      <li>「Link
+      コンポーネントが提供するプリフェッチとは、利用者がリンクをクリックする前に、遷移先の表示に必要なデータなどを先読みする仕組みである。」という説明は適切か、不適切か。
+      <ul>
+      <li>答え: <span
+      class="masked">適切。先読みすることで、クリック後の画面遷移を速くすることができる。</span></li>
+      </ul></li>
+      <li>「画像を静的にインポートし、その値を Image コンポーネントの src に渡す場合、Next.js
+      が画像の幅と高さを取得できるため、width と height
+      の指定を省略できる。」という説明は適切か、不適切か。
+      <ul>
+      <li>答え: <span
+      class="masked">適切。フォルダに画像を置くだけではなく、静的にインポートして利用する点に注意する。</span></li>
+      </ul></li>
+      <li>「標準の画像最適化機能を使って外部の画像を表示する場合、Image コンポーネントの src
+      に指定する画像の URL が、next.config.ts の images.remotePatterns
+      で許可した条件に一致する必要がある。」という説明は適切か、不適切か。
+      <ul>
+      <li>答え: <span class="masked">適切。プロトコルやホスト名など、images.remotePatterns
+      に設定した許可条件に一致する外部画像を使用する。</span></li>
+      </ul></li>
+      <li>Image コンポーネントによる画像最適化の目的として、最も適切なものを1つ選べ。
+      <ul>
+      <li>① 元画像には存在しない細部を生成し、必ず高画質にする。</li>
+      <li>② ページ内のすべての画像を、画面に表示される位置に関係なく、一度にダウンロードする。</li>
+      <li>③ 端末に適したサイズや画像形式で配信し、転送量や読み込み時間を抑える。</li>
+      <li>④ 画像ファイルを JavaScript のソースコードに置き換え、画像の取得を不要にする。</li>
+      <li>答え: <span
+      class="masked">③。画像最適化は、元画像以上の細部を作り出す処理ではなく、表示に適した画像を効率よく配信するための機能。</span></li>
       </ul></li>
       </ul>
       <h1 data-number="7" id="投稿記事の一覧"><span class="header-section-number">7</span>
@@ -1552,72 +1836,117 @@ Ok to proceed? (y)</code></pre>
       <strong>ウェブAPIを叩いて「JSON形式」でバックエンドから取得するように実装</strong>します。具体的には、次のような
       <strong>JSONリテラル (文字列化されたJSONデータ)</strong>
       をバックエンド経由でデータベースから取得することを想定します。DBは、リレーショナルデータベースを想定します。</p>
-      <div class="sourceCode" id="cb44"
+      <div class="sourceCode" id="cb46"
       data-caption="投稿記事一覧のデータサンプル (JSON文字列形式)"><pre
-      class="sourceCode numberSource json numberLines"><code class="sourceCode json"><span id="cb44-1"><a href="#cb44-1"></a><span class="ot">[</span></span>
-<span id="cb44-2"><a href="#cb44-2"></a>  <span class="fu">{</span></span>
-<span id="cb44-3"><a href="#cb44-3"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;24f932b8-231b-429b-b9dc-569f07ba16a7&quot;</span><span class="fu">,</span></span>
-<span id="cb44-4"><a href="#cb44-4"></a>    <span class="dt">&quot;createdAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2024-10-24T22:37:17.367Z&quot;</span><span class="fu">,</span></span>
-<span id="cb44-5"><a href="#cb44-5"></a>    <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;投稿2&quot;</span><span class="fu">,</span></span>
-<span id="cb44-6"><a href="#cb44-6"></a>    <span class="dt">&quot;content&quot;</span><span class="fu">:</span> <span class="st">&quot;夏は夜。&lt;br/&gt;月のころは...(略)&quot;</span><span class="fu">,</span></span>
-<span id="cb44-7"><a href="#cb44-7"></a>    <span class="dt">&quot;coverImage&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb44-8"><a href="#cb44-8"></a>      <span class="dt">&quot;url&quot;</span><span class="fu">:</span> <span class="st">&quot;https://w1980.blob.core.windows.net/pg3/cover-img-green.jpg&quot;</span><span class="fu">,</span></span>
-<span id="cb44-9"><a href="#cb44-9"></a>      <span class="dt">&quot;height&quot;</span><span class="fu">:</span> <span class="dv">768</span><span class="fu">,</span></span>
-<span id="cb44-10"><a href="#cb44-10"></a>      <span class="dt">&quot;width&quot;</span><span class="fu">:</span> <span class="dv">1365</span></span>
-<span id="cb44-11"><a href="#cb44-11"></a>    <span class="fu">},</span></span>
-<span id="cb44-12"><a href="#cb44-12"></a>    <span class="dt">&quot;categories&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb44-13"><a href="#cb44-13"></a>      <span class="fu">{</span></span>
-<span id="cb44-14"><a href="#cb44-14"></a>        <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;587ac4ab-92de-450c-9423-5e091d16ecb5&quot;</span><span class="fu">,</span></span>
-<span id="cb44-15"><a href="#cb44-15"></a>        <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;TypeScript&quot;</span></span>
-<span id="cb44-16"><a href="#cb44-16"></a>      <span class="fu">}</span></span>
-<span id="cb44-17"><a href="#cb44-17"></a>    <span class="ot">]</span></span>
-<span id="cb44-18"><a href="#cb44-18"></a>  <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb44-19"><a href="#cb44-19"></a>  <span class="fu">{</span></span>
-<span id="cb44-20"><a href="#cb44-20"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;36b7c693-4cce-4d73-afa3-acb54a404290&quot;</span><span class="fu">,</span></span>
-<span id="cb44-21"><a href="#cb44-21"></a>    <span class="dt">&quot;createdAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2024-10-22T11:22:34.684Z&quot;</span><span class="fu">,</span></span>
-<span id="cb44-22"><a href="#cb44-22"></a>    <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;投稿1&quot;</span><span class="fu">,</span></span>
-<span id="cb44-23"><a href="#cb44-23"></a>    <span class="dt">&quot;content&quot;</span><span class="fu">:</span> <span class="st">&quot;春はあけぼの。&lt;br/&gt;やうやう白くなりゆく...(略)&quot;</span><span class="fu">,</span></span>
-<span id="cb44-24"><a href="#cb44-24"></a>    <span class="dt">&quot;coverImage&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
-<span id="cb44-25"><a href="#cb44-25"></a>      <span class="dt">&quot;url&quot;</span><span class="fu">:</span> <span class="st">&quot;https://w1980.blob.core.windows.net/pg3/cover-img-purple.jpg&quot;</span><span class="fu">,</span></span>
-<span id="cb44-26"><a href="#cb44-26"></a>      <span class="dt">&quot;height&quot;</span><span class="fu">:</span> <span class="dv">768</span><span class="fu">,</span></span>
-<span id="cb44-27"><a href="#cb44-27"></a>      <span class="dt">&quot;width&quot;</span><span class="fu">:</span> <span class="dv">1365</span></span>
-<span id="cb44-28"><a href="#cb44-28"></a>    <span class="fu">},</span></span>
-<span id="cb44-29"><a href="#cb44-29"></a>    <span class="dt">&quot;categories&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
-<span id="cb44-30"><a href="#cb44-30"></a>      <span class="fu">{</span></span>
-<span id="cb44-31"><a href="#cb44-31"></a>        <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;587ac4ab-92de-450c-9423-5e091d16ecb5&quot;</span><span class="fu">,</span></span>
-<span id="cb44-32"><a href="#cb44-32"></a>        <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;TypeScript&quot;</span></span>
-<span id="cb44-33"><a href="#cb44-33"></a>      <span class="fu">}</span><span class="ot">,</span></span>
-<span id="cb44-34"><a href="#cb44-34"></a>      <span class="fu">{</span></span>
-<span id="cb44-35"><a href="#cb44-35"></a>        <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;5cf22131-bac8-4bd0-be8e-757cec2bcc9a&quot;</span><span class="fu">,</span></span>
-<span id="cb44-36"><a href="#cb44-36"></a>        <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;React&quot;</span></span>
-<span id="cb44-37"><a href="#cb44-37"></a>      <span class="fu">}</span></span>
-<span id="cb44-38"><a href="#cb44-38"></a>    <span class="ot">]</span></span>
-<span id="cb44-39"><a href="#cb44-39"></a>  <span class="fu">}</span></span>
-<span id="cb44-40"><a href="#cb44-40"></a><span class="ot">]</span></span></code></pre></div>
+      class="sourceCode numberSource json numberLines"><code class="sourceCode json"><span id="cb46-1"><a href="#cb46-1"></a><span class="ot">[</span></span>
+<span id="cb46-2"><a href="#cb46-2"></a>  <span class="fu">{</span></span>
+<span id="cb46-3"><a href="#cb46-3"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;24f932b8-231b-429b-b9dc-569f07ba16a7&quot;</span><span class="fu">,</span></span>
+<span id="cb46-4"><a href="#cb46-4"></a>    <span class="dt">&quot;createdAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-10-24T22:37:17.367Z&quot;</span><span class="fu">,</span></span>
+<span id="cb46-5"><a href="#cb46-5"></a>    <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;投稿2&quot;</span><span class="fu">,</span></span>
+<span id="cb46-6"><a href="#cb46-6"></a>    <span class="dt">&quot;content&quot;</span><span class="fu">:</span> <span class="st">&quot;夏は夜。&lt;br/&gt;月のころは...(略)&quot;</span><span class="fu">,</span></span>
+<span id="cb46-7"><a href="#cb46-7"></a>    <span class="dt">&quot;coverImage&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb46-8"><a href="#cb46-8"></a>      <span class="dt">&quot;url&quot;</span><span class="fu">:</span> <span class="st">&quot;https://w1980.blob.core.windows.net/pg3/cover-img-green.jpg&quot;</span><span class="fu">,</span></span>
+<span id="cb46-9"><a href="#cb46-9"></a>      <span class="dt">&quot;height&quot;</span><span class="fu">:</span> <span class="dv">768</span><span class="fu">,</span></span>
+<span id="cb46-10"><a href="#cb46-10"></a>      <span class="dt">&quot;width&quot;</span><span class="fu">:</span> <span class="dv">1365</span></span>
+<span id="cb46-11"><a href="#cb46-11"></a>    <span class="fu">},</span></span>
+<span id="cb46-12"><a href="#cb46-12"></a>    <span class="dt">&quot;categories&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb46-13"><a href="#cb46-13"></a>      <span class="fu">{</span></span>
+<span id="cb46-14"><a href="#cb46-14"></a>        <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;587ac4ab-92de-450c-9423-5e091d16ecb5&quot;</span><span class="fu">,</span></span>
+<span id="cb46-15"><a href="#cb46-15"></a>        <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;TypeScript&quot;</span></span>
+<span id="cb46-16"><a href="#cb46-16"></a>      <span class="fu">}</span></span>
+<span id="cb46-17"><a href="#cb46-17"></a>    <span class="ot">]</span></span>
+<span id="cb46-18"><a href="#cb46-18"></a>  <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb46-19"><a href="#cb46-19"></a>  <span class="fu">{</span></span>
+<span id="cb46-20"><a href="#cb46-20"></a>    <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;36b7c693-4cce-4d73-afa3-acb54a404290&quot;</span><span class="fu">,</span></span>
+<span id="cb46-21"><a href="#cb46-21"></a>    <span class="dt">&quot;createdAt&quot;</span><span class="fu">:</span> <span class="st">&quot;2026-10-22T11:22:34.684Z&quot;</span><span class="fu">,</span></span>
+<span id="cb46-22"><a href="#cb46-22"></a>    <span class="dt">&quot;title&quot;</span><span class="fu">:</span> <span class="st">&quot;投稿1&quot;</span><span class="fu">,</span></span>
+<span id="cb46-23"><a href="#cb46-23"></a>    <span class="dt">&quot;content&quot;</span><span class="fu">:</span> <span class="st">&quot;春はあけぼの。&lt;br/&gt;やうやう白くなりゆく...(略)&quot;</span><span class="fu">,</span></span>
+<span id="cb46-24"><a href="#cb46-24"></a>    <span class="dt">&quot;coverImage&quot;</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb46-25"><a href="#cb46-25"></a>      <span class="dt">&quot;url&quot;</span><span class="fu">:</span> <span class="st">&quot;https://w1980.blob.core.windows.net/pg3/cover-img-purple.jpg&quot;</span><span class="fu">,</span></span>
+<span id="cb46-26"><a href="#cb46-26"></a>      <span class="dt">&quot;height&quot;</span><span class="fu">:</span> <span class="dv">768</span><span class="fu">,</span></span>
+<span id="cb46-27"><a href="#cb46-27"></a>      <span class="dt">&quot;width&quot;</span><span class="fu">:</span> <span class="dv">1365</span></span>
+<span id="cb46-28"><a href="#cb46-28"></a>    <span class="fu">},</span></span>
+<span id="cb46-29"><a href="#cb46-29"></a>    <span class="dt">&quot;categories&quot;</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb46-30"><a href="#cb46-30"></a>      <span class="fu">{</span></span>
+<span id="cb46-31"><a href="#cb46-31"></a>        <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;587ac4ab-92de-450c-9423-5e091d16ecb5&quot;</span><span class="fu">,</span></span>
+<span id="cb46-32"><a href="#cb46-32"></a>        <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;TypeScript&quot;</span></span>
+<span id="cb46-33"><a href="#cb46-33"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb46-34"><a href="#cb46-34"></a>      <span class="fu">{</span></span>
+<span id="cb46-35"><a href="#cb46-35"></a>        <span class="dt">&quot;id&quot;</span><span class="fu">:</span> <span class="st">&quot;5cf22131-bac8-4bd0-be8e-757cec2bcc9a&quot;</span><span class="fu">,</span></span>
+<span id="cb46-36"><a href="#cb46-36"></a>        <span class="dt">&quot;name&quot;</span><span class="fu">:</span> <span class="st">&quot;React&quot;</span></span>
+<span id="cb46-37"><a href="#cb46-37"></a>      <span class="fu">}</span></span>
+<span id="cb46-38"><a href="#cb46-38"></a>    <span class="ot">]</span></span>
+<span id="cb46-39"><a href="#cb46-39"></a>  <span class="fu">}</span></span>
+<span id="cb46-40"><a href="#cb46-40"></a><span class="ot">]</span></span></code></pre></div>
       <p>ただし、ウェブAPIからの取得の前に、まずはローカルに配置した
       <code>_mocks/dummyPosts.ts</code> から上記の取得することからはじめていきます。</p>
       <p>ここで、以下の2点に注意してください。</p>
       <ol type="1">
       <li><p><code>"createdAt"</code>
-      は記事が作成され日時を「<strong>ISO8601形式</strong>」で表したものですが、末尾に
+      は記事が作成された日時を「<strong>ISO8601形式</strong>」で表したものですが、末尾に
       <code>Z</code> が付いている点です。この末尾の Z は、その日時が <span
       class="masked">UTC（協定世界時）であること</span> を示しています。そのため、「投稿1」の
-      <code>"2024-10-22T11:22:34.684Z"</code> は、日本時間 (JST、UTC+9) でいえば<span
-      class="masked">2024年10月22日 20時22分34.684秒</span> を意味します。</p></li>
+      <code>"2026-10-22T11:22:34.684Z"</code> は、日本時間 (JST、UTC+9) でいえば<span
+      class="masked">2026年10月22日 20時22分34.684秒</span> を意味します。</p></li>
       <li><p><code>"content":</code> には <strong>HTMLタグを含んだ文字列</strong>
       が格納されていま1す。ブログ記事中の「改行」を画面に反映させるためには
       <strong>HTMLタグを有効化する必要</strong>がありますが、許可するタグを制限し適切なサニタイズ処理を実装しないと
       <span class="masked">XSS（クロスサイトスクリプティング）攻撃のリスク</span>
       が生じます。</p></li>
       </ol>
-      <h3 data-number="7.1.1" id="定着確認-8"><span class="header-section-number">7.1.1</span>
+      <h3 data-number="7.1.1" id="定着確認-9"><span class="header-section-number">7.1.1</span>
       定着確認</h3>
       <ul>
-      <li>ISO8601 形式の <code>"2025-11-10T18:45:15.000Z"</code>
+      <li>ISO8601 形式の <code>"2026-11-10T18:45:15.000Z"</code>
       というデータがある。これは、日本時間 (JST)
       でいえば、何月何日、何時何分何秒を意味するか答えよ。
       <ul>
-      <li><strong>答え</strong> : <span class="masked">2025年11月11日 03時45分15秒</span></li>
+      <li><strong>答え</strong> : <span class="masked">2026年11月11日 03時45分15秒</span></li>
+      </ul></li>
+      <li><code>"2026-10-22T11:22:34.684Z"</code> の末尾の <code>Z</code>
+      が示すものとして、適切なものを1つ選べ。
+      <ul>
+      <li>① 日時が日本標準時 (JST) で記録されていること。</li>
+      <li>② 日時にタイムゾーンが指定されていないこと。</li>
+      <li>③ 日時が協定世界時 (UTC) で記録されていること。</li>
+      <li>④ その日時が記録されたコンピュータの現地時刻であること。</li>
+      <li><strong>答え</strong> : <span class="masked">③。日本時間で読むには、UTC
+      の日時に9時間を加える。</span></li>
+      </ul></li>
+      <li>サンプルの「投稿2」の作成日時 <code>"2026-10-24T22:37:17.367Z"</code>
+      を日本時間で表したものとして、適切なものを1つ選べ。
+      <ul>
+      <li>① 2026年10月24日 22時37分17.367秒</li>
+      <li>② 2026年10月25日 07時37分17.367秒</li>
+      <li>③ 2026年10月25日 13時37分17.367秒</li>
+      <li>④ 2026年10月24日 13時37分17.367秒</li>
+      <li><strong>答え</strong> : <span
+      class="masked">②。9時間を加えると、日付も翌日に変わる。</span></li>
+      </ul></li>
+      <li>上記の JSON を JavaScript で解析し、配列 <code>posts</code>
+      に格納したとする。「投稿1」のカテゴリ名 <code>"React"</code>
+      を取得する式として、適切なものを1つ選べ。
+      <ul>
+      <li>① <code>posts[0].categories[0].name</code></li>
+      <li>② <code>posts[1].categories[0].name</code></li>
+      <li>③ <code>posts[1].categories[1].name</code></li>
+      <li>④ <code>posts[0].categories[1].name</code></li>
+      <li><strong>答え</strong> : <span
+      class="masked">③。配列の添字は0から始まる。「投稿1」は配列の2番目、その React カテゴリも
+      categories 配列の2番目にある。</span></li>
+      </ul></li>
+      <li>「JavaScript の JSON.parse に上記の JSON 文字列を渡してそのまま解析すると、createdAt
+      は文字列ではなく、Date オブジェクトに自動変換される。」という説明は適切か、不適切か。
+      <ul>
+      <li><strong>答え</strong> : <span class="masked">不適切。createdAt
+      は解析後も文字列。日時として扱うには、日付を扱う機能やライブラリで別途処理する。</span></li>
+      </ul></li>
+      <li>「取得した content を HTML
+      として画面に反映させる場合、許可するタグを制限して適切にサニタイズすることは、XSS
+      攻撃への対策となる。」という説明は適切か、不適切か。
+      <ul>
+      <li><strong>答え</strong> : <span class="masked">適切。文字列を HTML
+      として扱う際には、悪意のあるスクリプトなどが実行されないようにする必要がある。</span></li>
       </ul></li>
       </ul>
       <h2 data-number="7.2" id="投稿記事のモックを生成"><span
@@ -1633,38 +1962,39 @@ Ok to proceed? (y)</code></pre>
       class="masked">拡張子は「<code>.tsx</code>」ではなく「<code>.ts</code>」</span> としてください
       (React関数コンポーネントのように <strong>JSX構文を使うファイル</strong> だけを拡張子
       <code>.tsx</code> としてください)。</p>
-      <div class="sourceCode" id="cb45"
-      data-caption="src/app/_types/Category.ts (カテゴリ情報の型定義)"><pre
-      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb45-1"><a href="#cb45-1"></a><span class="im">export type</span> Category <span class="op">=</span> {</span>
-<span id="cb45-2"><a href="#cb45-2"></a>  id<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
-<span id="cb45-3"><a href="#cb45-3"></a>  name<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
-<span id="cb45-4"><a href="#cb45-4"></a>}<span class="op">;</span></span></code></pre></div>
-      <div class="sourceCode" id="cb46"
-      data-caption="src/app/_types/CoverImage.ts (カバーイメージ情報の型定義)"><pre
-      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb46-1"><a href="#cb46-1"></a><span class="im">export type</span> CoverImage <span class="op">=</span> {</span>
-<span id="cb46-2"><a href="#cb46-2"></a>  url<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
-<span id="cb46-3"><a href="#cb46-3"></a>  width<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
-<span id="cb46-4"><a href="#cb46-4"></a>  height<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
-<span id="cb46-5"><a href="#cb46-5"></a>}<span class="op">;</span></span></code></pre></div>
       <div class="sourceCode" id="cb47"
+      data-caption="src/app/_types/Category.ts (カテゴリ情報の型定義)"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb47-1"><a href="#cb47-1"></a><span class="im">export type</span> Category <span class="op">=</span> {</span>
+<span id="cb47-2"><a href="#cb47-2"></a>  id<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb47-3"><a href="#cb47-3"></a>  name<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb47-4"><a href="#cb47-4"></a>}<span class="op">;</span></span></code></pre></div>
+      <div class="sourceCode" id="cb48"
+      data-caption="src/app/_types/CoverImage.ts (カバーイメージ情報の型定義)"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb48-1"><a href="#cb48-1"></a><span class="im">export type</span> CoverImage <span class="op">=</span> {</span>
+<span id="cb48-2"><a href="#cb48-2"></a>  url<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb48-3"><a href="#cb48-3"></a>  width<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb48-4"><a href="#cb48-4"></a>  height<span class="op">:</span> <span class="dt">number</span><span class="op">;</span></span>
+<span id="cb48-5"><a href="#cb48-5"></a>}<span class="op">;</span></span></code></pre></div>
+      <div class="sourceCode" id="cb49"
       data-caption="src/app/_types/Post.ts (投稿記事の型定義)"><pre
-      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb47-1"><a href="#cb47-1"></a><span class="im">import</span> <span class="im">type</span> { Category } <span class="im">from</span> <span class="st">&quot;./Category&quot;</span><span class="op">;</span></span>
-<span id="cb47-2"><a href="#cb47-2"></a><span class="im">import</span> <span class="im">type</span> { CoverImage } <span class="im">from</span> <span class="st">&quot;./CoverImage&quot;</span><span class="op">;</span></span>
-<span id="cb47-3"><a href="#cb47-3"></a></span>
-<span id="cb47-4"><a href="#cb47-4"></a><span class="im">export type</span> Post <span class="op">=</span> {</span>
-<span id="cb47-5"><a href="#cb47-5"></a>  id<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
-<span id="cb47-6"><a href="#cb47-6"></a>  title<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
-<span id="cb47-7"><a href="#cb47-7"></a>  content<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
-<span id="cb47-8"><a href="#cb47-8"></a>  createdAt<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
-<span id="cb47-9"><a href="#cb47-9"></a>  categories<span class="op">:</span> Category[]<span class="op">;</span></span>
-<span id="cb47-10"><a href="#cb47-10"></a>  coverImage<span class="op">:</span> CoverImage<span class="op">;</span></span>
-<span id="cb47-11"><a href="#cb47-11"></a>}<span class="op">;</span></span></code></pre></div>
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb49-1"><a href="#cb49-1"></a><span class="im">import</span> <span class="im">type</span> { Category } <span class="im">from</span> <span class="st">&quot;./Category&quot;</span><span class="op">;</span></span>
+<span id="cb49-2"><a href="#cb49-2"></a><span class="im">import</span> <span class="im">type</span> { CoverImage } <span class="im">from</span> <span class="st">&quot;./CoverImage&quot;</span><span class="op">;</span></span>
+<span id="cb49-3"><a href="#cb49-3"></a></span>
+<span id="cb49-4"><a href="#cb49-4"></a><span class="im">export type</span> Post <span class="op">=</span> {</span>
+<span id="cb49-5"><a href="#cb49-5"></a>  id<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb49-6"><a href="#cb49-6"></a>  title<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb49-7"><a href="#cb49-7"></a>  content<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb49-8"><a href="#cb49-8"></a>  createdAt<span class="op">:</span> <span class="dt">string</span><span class="op">;</span></span>
+<span id="cb49-9"><a href="#cb49-9"></a>  categories<span class="op">:</span> Category[]<span class="op">;</span></span>
+<span id="cb49-10"><a href="#cb49-10"></a>  coverImage<span class="op">:</span> CoverImage<span class="op">;</span></span>
+<span id="cb49-11"><a href="#cb49-11"></a>}<span class="op">;</span></span></code></pre></div>
       <p>次に <code>src/app</code> フォルダのなかに <code>_mocks</code> フォルダを作成し、そこに
       <code>dummyPosts.ts</code> というファイルを作成してください。そして、投稿記事の一覧を格納した
       <code>dummyPosts</code> というオブジェクトを作成してください。</p>
       <ul>
-      <li><code>dummyPosts.ts</code> のコードは<a
-      href="codes/06/dummyPosts.ts">こちら<i class="fa-solid fa-person-chalkboard"></i></a>を参照してください。</li>
+      <li><code>dummyPosts.ts</code> のコードは <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/06/dummyPosts.ts">こちら<i class="fa-solid fa-person-chalkboard"></i></a>
+      を参照してください。</li>
       </ul>
       <p>最終的に、次のようなフォルダ構成になっていることを確認してください。</p>
       <figure>
@@ -1682,26 +2012,26 @@ Ok to proceed? (y)</code></pre>
       <p>まずは、<code>src/app/_components</code> のなかに、次のような <code>PostSummary.tsx</code>
       を作成してください。PostSummaryコンポーネントは <span
       class="masked">投稿記事の「概要」を表示するためのコンポーネント</span> になります。</p>
-      <div class="sourceCode" id="cb48"
+      <div class="sourceCode" id="cb50"
       data-caption="src/app/_components/PostSummary.tsx (投稿記事の概要を表示するコンポーネント)"><pre
-      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb48-1"><a href="#cb48-1"></a><span class="st">&quot;use client&quot;</span><span class="op">;</span></span>
-<span id="cb48-2"><a href="#cb48-2"></a><span class="im">import</span> <span class="im">type</span> { Post } <span class="im">from</span> <span class="st">&quot;@/app/_types/Post&quot;</span><span class="op">;</span></span>
-<span id="cb48-3"><a href="#cb48-3"></a></span>
-<span id="cb48-4"><a href="#cb48-4"></a><span class="kw">type</span> Props <span class="op">=</span> {</span>
-<span id="cb48-5"><a href="#cb48-5"></a>  post<span class="op">:</span> Post<span class="op">;</span></span>
-<span id="cb48-6"><a href="#cb48-6"></a>}<span class="op">;</span></span>
-<span id="cb48-7"><a href="#cb48-7"></a></span>
-<span id="cb48-8"><a href="#cb48-8"></a><span class="kw">const</span> PostSummary<span class="op">:</span> React<span class="op">.</span><span class="at">FC</span><span class="op">&lt;</span>Props<span class="op">&gt;</span> <span class="op">=</span> (props) <span class="kw">=&gt;</span> {</span>
-<span id="cb48-9"><a href="#cb48-9"></a>  <span class="kw">const</span> { post } <span class="op">=</span> props<span class="op">;</span></span>
-<span id="cb48-10"><a href="#cb48-10"></a>  <span class="cf">return</span> (</span>
-<span id="cb48-11"><a href="#cb48-11"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;border border-slate-400 p-3&quot;</span><span class="op">&gt;</span></span>
-<span id="cb48-12"><a href="#cb48-12"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;font-bold&quot;</span><span class="op">&gt;</span>{post<span class="op">.</span><span class="at">title</span>}<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb48-13"><a href="#cb48-13"></a>      <span class="op">&lt;</span>div<span class="op">&gt;</span>{post<span class="op">.</span><span class="at">content</span>}<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb48-14"><a href="#cb48-14"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb48-15"><a href="#cb48-15"></a>  )<span class="op">;</span></span>
-<span id="cb48-16"><a href="#cb48-16"></a>}<span class="op">;</span></span>
-<span id="cb48-17"><a href="#cb48-17"></a></span>
-<span id="cb48-18"><a href="#cb48-18"></a><span class="im">export</span> <span class="im">default</span> PostSummary<span class="op">;</span></span></code></pre></div>
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb50-1"><a href="#cb50-1"></a><span class="st">&quot;use client&quot;</span><span class="op">;</span></span>
+<span id="cb50-2"><a href="#cb50-2"></a><span class="im">import</span> <span class="im">type</span> { Post } <span class="im">from</span> <span class="st">&quot;@/app/_types/Post&quot;</span><span class="op">;</span></span>
+<span id="cb50-3"><a href="#cb50-3"></a></span>
+<span id="cb50-4"><a href="#cb50-4"></a><span class="kw">type</span> Props <span class="op">=</span> {</span>
+<span id="cb50-5"><a href="#cb50-5"></a>  post<span class="op">:</span> Post<span class="op">;</span></span>
+<span id="cb50-6"><a href="#cb50-6"></a>}<span class="op">;</span></span>
+<span id="cb50-7"><a href="#cb50-7"></a></span>
+<span id="cb50-8"><a href="#cb50-8"></a><span class="kw">const</span> PostSummary<span class="op">:</span> React<span class="op">.</span><span class="at">FC</span><span class="op">&lt;</span>Props<span class="op">&gt;</span> <span class="op">=</span> (props) <span class="kw">=&gt;</span> {</span>
+<span id="cb50-9"><a href="#cb50-9"></a>  <span class="kw">const</span> { post } <span class="op">=</span> props<span class="op">;</span></span>
+<span id="cb50-10"><a href="#cb50-10"></a>  <span class="cf">return</span> (</span>
+<span id="cb50-11"><a href="#cb50-11"></a>    <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;space-y-2 border border-slate-400 p-3&quot;</span><span class="op">&gt;</span></span>
+<span id="cb50-12"><a href="#cb50-12"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;font-semibold&quot;</span><span class="op">&gt;</span>{post<span class="op">.</span><span class="at">title</span>}<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb50-13"><a href="#cb50-13"></a>      <span class="op">&lt;</span>div<span class="op">&gt;</span>{post<span class="op">.</span><span class="at">content</span>}<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb50-14"><a href="#cb50-14"></a>    <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb50-15"><a href="#cb50-15"></a>  )<span class="op">;</span></span>
+<span id="cb50-16"><a href="#cb50-16"></a>}<span class="op">;</span></span>
+<span id="cb50-17"><a href="#cb50-17"></a></span>
+<span id="cb50-18"><a href="#cb50-18"></a><span class="im">export</span> <span class="im">default</span> PostSummary<span class="op">;</span></span></code></pre></div>
       <p>この PostSummaryコンポーネント は Props (<strong>第04行目</strong> から
       <strong>第06行目</strong>) として、<strong>(単一の) 投稿記事</strong> を受け取り、その
       <code>title</code> と <code>content</code> を表示するコンポーネントとなっています。</p>
@@ -1711,58 +2041,59 @@ Ok to proceed? (y)</code></pre>
       を以下のように編集してください。<strong>第04行目</strong>
       で「PostSummaryコンポーネント」をインポートして、<strong>第41行目</strong>から<strong>第43行目</strong>
       で <span class="masked">mapメソッド</span>
-      のなかで、呼び出しています。この処理の理解が怪しいときは<a
-      href="lecture04.html#todolistコンポーネントのブラッシュアップ">Todoアプリの解説</a>に戻って復習してください。</p>
-      <div class="sourceCode" id="cb49" data-caption="src/app/page.tsx"><pre
-      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb49-1"><a href="#cb49-1"></a><span class="st">&quot;use client&quot;</span><span class="op">;</span></span>
-<span id="cb49-2"><a href="#cb49-2"></a><span class="im">import</span> { useState<span class="op">,</span> useEffect } <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
-<span id="cb49-3"><a href="#cb49-3"></a><span class="im">import</span> <span class="im">type</span> { Post } <span class="im">from</span> <span class="st">&quot;@/app/_types/Post&quot;</span><span class="op">;</span></span>
-<span id="cb49-4"><a href="#cb49-4"></a><span class="im">import</span> PostSummary <span class="im">from</span> <span class="st">&quot;@/app/_components/PostSummary&quot;</span><span class="op">;</span></span>
-<span id="cb49-5"><a href="#cb49-5"></a><span class="im">import</span> dummyPosts <span class="im">from</span> <span class="st">&quot;@/app/_mocks/dummyPosts&quot;</span><span class="op">;</span></span>
-<span id="cb49-6"><a href="#cb49-6"></a><span class="im">import</span> { FontAwesomeIcon } <span class="im">from</span> <span class="st">&quot;@fortawesome/react-fontawesome&quot;</span><span class="op">;</span></span>
-<span id="cb49-7"><a href="#cb49-7"></a><span class="im">import</span> { faSpinner } <span class="im">from</span> <span class="st">&quot;@fortawesome/free-solid-svg-icons&quot;</span><span class="op">;</span></span>
-<span id="cb49-8"><a href="#cb49-8"></a></span>
-<span id="cb49-9"><a href="#cb49-9"></a><span class="kw">const</span> Page<span class="op">:</span> React<span class="op">.</span><span class="at">FC</span> <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
-<span id="cb49-10"><a href="#cb49-10"></a>  <span class="co">// 投稿データを「状態」として管理 (初期値はnull)</span></span>
-<span id="cb49-11"><a href="#cb49-11"></a>  <span class="kw">const</span> [posts<span class="op">,</span> setPosts] <span class="op">=</span> <span class="fu">useState</span><span class="op">&lt;</span>Post[] <span class="op">|</span> <span class="dt">null</span><span class="op">&gt;</span>(<span class="kw">null</span>)<span class="op">;</span></span>
-<span id="cb49-12"><a href="#cb49-12"></a></span>
-<span id="cb49-13"><a href="#cb49-13"></a>  <span class="co">// コンポーネントが読み込まれたときに「1回だけ」実行する処理</span></span>
-<span id="cb49-14"><a href="#cb49-14"></a>  <span class="fu">useEffect</span>(() <span class="kw">=&gt;</span> {</span>
-<span id="cb49-15"><a href="#cb49-15"></a>    <span class="co">// 本来はウェブAPIを叩いてデータを取得するが、まずはモックデータを使用</span></span>
-<span id="cb49-16"><a href="#cb49-16"></a>    <span class="co">// (ネットからのデータ取得をシミュレートして１秒後にデータをセットする)</span></span>
-<span id="cb49-17"><a href="#cb49-17"></a>    <span class="kw">const</span> timer <span class="op">=</span> <span class="pp">setTimeout</span>(() <span class="kw">=&gt;</span> {</span>
-<span id="cb49-18"><a href="#cb49-18"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;ウェブAPIからデータを取得しました (虚言)&quot;</span>)<span class="op">;</span></span>
-<span id="cb49-19"><a href="#cb49-19"></a>      <span class="fu">setPosts</span>(dummyPosts)<span class="op">;</span></span>
-<span id="cb49-20"><a href="#cb49-20"></a>    }<span class="op">,</span> <span class="dv">1000</span>)<span class="op">;</span> <span class="co">// 1000ミリ秒 = 1秒</span></span>
-<span id="cb49-21"><a href="#cb49-21"></a></span>
-<span id="cb49-22"><a href="#cb49-22"></a>    <span class="co">// データ取得の途中でページ遷移したときにタイマーを解除する処理</span></span>
-<span id="cb49-23"><a href="#cb49-23"></a>    <span class="cf">return</span> () <span class="kw">=&gt;</span> <span class="pp">clearTimeout</span>(timer)<span class="op">;</span></span>
-<span id="cb49-24"><a href="#cb49-24"></a>  }<span class="op">,</span> [])<span class="op">;</span></span>
-<span id="cb49-25"><a href="#cb49-25"></a></span>
-<span id="cb49-26"><a href="#cb49-26"></a>  <span class="co">// 投稿データが取得できるまでは「Loading...」を表示</span></span>
-<span id="cb49-27"><a href="#cb49-27"></a>  <span class="cf">if</span> (<span class="op">!</span>posts) {</span>
-<span id="cb49-28"><a href="#cb49-28"></a>    <span class="cf">return</span> (</span>
-<span id="cb49-29"><a href="#cb49-29"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;text-gray-500&quot;</span><span class="op">&gt;</span></span>
-<span id="cb49-30"><a href="#cb49-30"></a>        <span class="op">&lt;</span>FontAwesomeIcon icon<span class="op">=</span>{faSpinner} className<span class="op">=</span><span class="st">&quot;mr-1 animate-spin&quot;</span> <span class="op">/&gt;</span></span>
-<span id="cb49-31"><a href="#cb49-31"></a>        Loading<span class="op">...</span></span>
-<span id="cb49-32"><a href="#cb49-32"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb49-33"><a href="#cb49-33"></a>    )<span class="op">;</span></span>
-<span id="cb49-34"><a href="#cb49-34"></a>  }</span>
-<span id="cb49-35"><a href="#cb49-35"></a></span>
-<span id="cb49-36"><a href="#cb49-36"></a>  <span class="co">// 投稿データが取得できたら「投稿記事の一覧」を出力</span></span>
-<span id="cb49-37"><a href="#cb49-37"></a>  <span class="cf">return</span> (</span>
-<span id="cb49-38"><a href="#cb49-38"></a>    <span class="op">&lt;</span>main<span class="op">&gt;</span></span>
-<span id="cb49-39"><a href="#cb49-39"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mb-2 text-2xl font-bold&quot;</span><span class="op">&gt;</span>Main<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb49-40"><a href="#cb49-40"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;space-y-3&quot;</span><span class="op">&gt;</span></span>
-<span id="cb49-41"><a href="#cb49-41"></a>        {posts<span class="op">.</span><span class="fu">map</span>((post) <span class="kw">=&gt;</span> (</span>
-<span id="cb49-42"><a href="#cb49-42"></a>          <span class="op">&lt;</span>PostSummary key<span class="op">=</span>{post<span class="op">.</span><span class="at">id</span>} post<span class="op">=</span>{post} <span class="op">/&gt;</span></span>
-<span id="cb49-43"><a href="#cb49-43"></a>        ))}</span>
-<span id="cb49-44"><a href="#cb49-44"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
-<span id="cb49-45"><a href="#cb49-45"></a>    <span class="op">&lt;/</span>main<span class="op">&gt;</span></span>
-<span id="cb49-46"><a href="#cb49-46"></a>  )<span class="op">;</span></span>
-<span id="cb49-47"><a href="#cb49-47"></a>}<span class="op">;</span></span>
-<span id="cb49-48"><a href="#cb49-48"></a></span>
-<span id="cb49-49"><a href="#cb49-49"></a><span class="im">export</span> <span class="im">default</span> Page<span class="op">;</span></span></code></pre></div>
+      のなかで、呼び出しています。この処理の理解が怪しいときは <a
+      href="lecture04.html#todolistコンポーネントのブラッシュアップ">Todoアプリの解説</a>
+      に戻って復習してください。</p>
+      <div class="sourceCode" id="cb51" data-caption="src/app/page.tsx"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb51-1"><a href="#cb51-1"></a><span class="st">&quot;use client&quot;</span><span class="op">;</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a><span class="im">import</span> { useState<span class="op">,</span> useEffect } <span class="im">from</span> <span class="st">&quot;react&quot;</span><span class="op">;</span></span>
+<span id="cb51-3"><a href="#cb51-3"></a><span class="im">import</span> <span class="im">type</span> { Post } <span class="im">from</span> <span class="st">&quot;@/app/_types/Post&quot;</span><span class="op">;</span></span>
+<span id="cb51-4"><a href="#cb51-4"></a><span class="im">import</span> PostSummary <span class="im">from</span> <span class="st">&quot;@/app/_components/PostSummary&quot;</span><span class="op">;</span></span>
+<span id="cb51-5"><a href="#cb51-5"></a><span class="im">import</span> dummyPosts <span class="im">from</span> <span class="st">&quot;@/app/_mocks/dummyPosts&quot;</span><span class="op">;</span></span>
+<span id="cb51-6"><a href="#cb51-6"></a><span class="im">import</span> { FontAwesomeIcon } <span class="im">from</span> <span class="st">&quot;@fortawesome/react-fontawesome&quot;</span><span class="op">;</span></span>
+<span id="cb51-7"><a href="#cb51-7"></a><span class="im">import</span> { faSpinner } <span class="im">from</span> <span class="st">&quot;@fortawesome/free-solid-svg-icons&quot;</span><span class="op">;</span></span>
+<span id="cb51-8"><a href="#cb51-8"></a></span>
+<span id="cb51-9"><a href="#cb51-9"></a><span class="kw">const</span> Page<span class="op">:</span> React<span class="op">.</span><span class="at">FC</span> <span class="op">=</span> () <span class="kw">=&gt;</span> {</span>
+<span id="cb51-10"><a href="#cb51-10"></a>  <span class="co">// 投稿データを「状態」として管理 (初期値はnull)</span></span>
+<span id="cb51-11"><a href="#cb51-11"></a>  <span class="kw">const</span> [posts<span class="op">,</span> setPosts] <span class="op">=</span> <span class="fu">useState</span><span class="op">&lt;</span>Post[] <span class="op">|</span> <span class="dt">null</span><span class="op">&gt;</span>(<span class="kw">null</span>)<span class="op">;</span></span>
+<span id="cb51-12"><a href="#cb51-12"></a></span>
+<span id="cb51-13"><a href="#cb51-13"></a>  <span class="co">// コンポーネントが読み込まれたときに「1回だけ」実行する処理</span></span>
+<span id="cb51-14"><a href="#cb51-14"></a>  <span class="fu">useEffect</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb51-15"><a href="#cb51-15"></a>    <span class="co">// 本来はウェブAPIを叩いてデータを取得するが、まずはモックデータを使用</span></span>
+<span id="cb51-16"><a href="#cb51-16"></a>    <span class="co">// (ネットからのデータ取得をシミュレートして１秒後にデータをセットする)</span></span>
+<span id="cb51-17"><a href="#cb51-17"></a>    <span class="kw">const</span> timer <span class="op">=</span> <span class="pp">setTimeout</span>(() <span class="kw">=&gt;</span> {</span>
+<span id="cb51-18"><a href="#cb51-18"></a>      <span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">&quot;ウェブAPIからデータを取得しました (虚言)&quot;</span>)<span class="op">;</span></span>
+<span id="cb51-19"><a href="#cb51-19"></a>      <span class="fu">setPosts</span>(dummyPosts)<span class="op">;</span></span>
+<span id="cb51-20"><a href="#cb51-20"></a>    }<span class="op">,</span> <span class="dv">1000</span>)<span class="op">;</span> <span class="co">// 1000ミリ秒 = 1秒</span></span>
+<span id="cb51-21"><a href="#cb51-21"></a></span>
+<span id="cb51-22"><a href="#cb51-22"></a>    <span class="co">// データ取得の途中でページ遷移したときにタイマーを解除する処理</span></span>
+<span id="cb51-23"><a href="#cb51-23"></a>    <span class="cf">return</span> () <span class="kw">=&gt;</span> <span class="pp">clearTimeout</span>(timer)<span class="op">;</span></span>
+<span id="cb51-24"><a href="#cb51-24"></a>  }<span class="op">,</span> [])<span class="op">;</span></span>
+<span id="cb51-25"><a href="#cb51-25"></a></span>
+<span id="cb51-26"><a href="#cb51-26"></a>  <span class="co">// 投稿データが取得できるまでは「Loading...」を表示</span></span>
+<span id="cb51-27"><a href="#cb51-27"></a>  <span class="cf">if</span> (<span class="op">!</span>posts) {</span>
+<span id="cb51-28"><a href="#cb51-28"></a>    <span class="cf">return</span> (</span>
+<span id="cb51-29"><a href="#cb51-29"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;text-gray-500&quot;</span><span class="op">&gt;</span></span>
+<span id="cb51-30"><a href="#cb51-30"></a>        <span class="op">&lt;</span>FontAwesomeIcon icon<span class="op">=</span>{faSpinner} className<span class="op">=</span><span class="st">&quot;mr-1 animate-spin&quot;</span> <span class="op">/&gt;</span></span>
+<span id="cb51-31"><a href="#cb51-31"></a>        Loading<span class="op">...</span></span>
+<span id="cb51-32"><a href="#cb51-32"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb51-33"><a href="#cb51-33"></a>    )<span class="op">;</span></span>
+<span id="cb51-34"><a href="#cb51-34"></a>  }</span>
+<span id="cb51-35"><a href="#cb51-35"></a></span>
+<span id="cb51-36"><a href="#cb51-36"></a>  <span class="co">// 投稿データが取得できたら「投稿記事の一覧」を出力</span></span>
+<span id="cb51-37"><a href="#cb51-37"></a>  <span class="cf">return</span> (</span>
+<span id="cb51-38"><a href="#cb51-38"></a>    <span class="op">&lt;</span>main<span class="op">&gt;</span></span>
+<span id="cb51-39"><a href="#cb51-39"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;mb-2 text-2xl font-bold&quot;</span><span class="op">&gt;</span>Main<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb51-40"><a href="#cb51-40"></a>      <span class="op">&lt;</span>div className<span class="op">=</span><span class="st">&quot;space-y-3&quot;</span><span class="op">&gt;</span></span>
+<span id="cb51-41"><a href="#cb51-41"></a>        {posts<span class="op">.</span><span class="fu">map</span>((post) <span class="kw">=&gt;</span> (</span>
+<span id="cb51-42"><a href="#cb51-42"></a>          <span class="op">&lt;</span>PostSummary key<span class="op">=</span>{post<span class="op">.</span><span class="at">id</span>} post<span class="op">=</span>{post} <span class="op">/&gt;</span></span>
+<span id="cb51-43"><a href="#cb51-43"></a>        ))}</span>
+<span id="cb51-44"><a href="#cb51-44"></a>      <span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb51-45"><a href="#cb51-45"></a>    <span class="op">&lt;/</span>main<span class="op">&gt;</span></span>
+<span id="cb51-46"><a href="#cb51-46"></a>  )<span class="op">;</span></span>
+<span id="cb51-47"><a href="#cb51-47"></a>}<span class="op">;</span></span>
+<span id="cb51-48"><a href="#cb51-48"></a></span>
+<span id="cb51-49"><a href="#cb51-49"></a><span class="im">export</span> <span class="im">default</span> Page<span class="op">;</span></span></code></pre></div>
       <p>または、ここでは <strong>第14行目</strong> からの <code>useEffect</code>
       が処理において極めて重要な意味を持ちます。<code>useEffect</code>
       を使用することで、コンポーネントが読み込まれたときに <strong>1回だけ</strong> <span
@@ -1783,12 +2114,66 @@ Ok to proceed? (y)</code></pre>
       class="masked">従量課金制のAPIを使用している場合は予期せぬ高額請求
       (いわゆるAPI破産やクラウド破産)</span>、<strong>サーバへの過剰な負荷</strong>
       につながるため、十分に注意してください。</p>
-      <ul>
-      <li><a href="https://www.google.com/search?q=クラウド破産">api破産/クラウド破産💀</a></li>
-      </ul>
       <p>なお、<a href="lecture05.html#localstorage-を利用した保存機能の実装">前回講義の</a>
       でも紹介しましたが <code>useEffect</code> については「<a
       href="https://www.youtube.com/watch?v=4INjmxXaPxU">初心者向け！ReactのuseEffectが何してるのか20分で説明</a>」の動画、ウェブ検索、生成AIを活用して理解を深めてください。</p>
+      <div class="prompts">
+      <ul>
+      <li>「API破産」あるいは「クラウド破産」とは何ですか。</li>
+      </ul>
+      </div>
+      <h3 data-number="7.3.1" id="定着確認-10"><span class="header-section-number">7.3.1</span>
+      定着確認</h3>
+      <ul>
+      <li>このセクションで示した <strong>src/app/components/PostSummary.tsx</strong> の
+      <code>PostSummary</code> コンポーネントが <code>props.post</code>
+      として受け取るデータはどれか。適切なものを1つ選べ。
+      <ul>
+      <li>① 1件の投稿記事を表す <code>Post</code> 型のオブジェクト。</li>
+      <li>② 投稿記事全件を格納した <code>Post[]</code> 型の配列。</li>
+      <li>③ 1件のカテゴリを表す <code>Category</code> 型のオブジェクト。</li>
+      <li>④ 投稿記事の本文だけを格納した文字列。
+      <ul>
+      <li>答え: <span class="masked">①。親コンポーネントが posts.map
+      で記事を1件ずつ取り出し、PostSummary に渡している。</span></li>
+      </ul></li>
+      </ul></li>
+      <li>上記のコードで、データ取得結果が 0 件だったとして <code>setPosts([])</code>
+      を実行した場合、表示はどうなるか。適切なものを1つ選べ。
+      <ul>
+      <li>① 空配列も <code>!posts</code> が true になるため、Loading… のままとなる。</li>
+      <li>② Main の見出しは表示されるが、記事概要は1件も表示されない。</li>
+      <li>③ 空配列に map を使うと、実行時エラーになる。</li>
+      <li>④ 空配列による状態更新は無視され、更新前の表示が維持される。
+      <ul>
+      <li>答え: <span class="masked">②。null と空配列は異なる。空配列は !posts
+      の条件に当てはまらず、map によって表示される記事も0件となる。</span></li>
+      </ul></li>
+      </ul></li>
+      <li>「上記の useEffect は依存配列が空でも、setPosts によって Page
+      関数が再実行されるたびに、タイマーを新しく登録する。」という説明は適切か、不適切か。
+      <ul>
+      <li>答え: <span class="masked">不適切。状態更新で Page 関数は再実行されるが、依存配列が空の
+      Effect は、その状態更新による再レンダリングだけでは再実行されない。</span></li>
+      </ul></li>
+      <li>このセクションで示した <strong>src/app/page.tsx</strong> の <code>useEffect</code> 内の
+      <code>return () =&gt; clearTimeout(timer)</code> の主な目的として、適切なものを1つ選べ。
+      <ul>
+      <li>① タイマーを登録した直後に、待機せずその場で解除する。</li>
+      <li>② 1秒ごとにタイマーを登録し直し、投稿データの取得を繰り返す。</li>
+      <li>③
+      待機中にページ遷移などでコンポーネントが取り除かれた場合に、不要になったタイマーを解除する。</li>
+      <li>④ 投稿データをセットした直後に、posts を初期値の null に戻す。</li>
+      <li>答え: <span class="masked">③。解除処理を行う関数を、Effect
+      のクリーンアップ関数として返している。</span></li>
+      </ul></li>
+      <li>「Next.js においては画面が正常に表示されていても、不要な API
+      呼び出しが繰り返されていないかを確認する必要がある。呼び出し回数の増加は、利用制限への抵触や、従量課金の場合の費用増加につながることがある。」という説明は適切か、不適切か。
+      <ul>
+      <li>答え: <span
+      class="masked">適切。表示結果だけでなく、データ取得処理が実行されるタイミングや回数にも注意する。</span></li>
+      </ul></li>
+      </ul>
       <h2 data-number="7.4" id="動作確認-1"><span class="header-section-number">7.4</span>
       動作確認</h2>
       <p>ここまでの実装について、開発モードで実行確認する次のような出力が得られることが分かります。つまり、HTMLタグが
@@ -1803,35 +2188,35 @@ Ok to proceed? (y)</code></pre>
       <p>ただし、<strong>信頼できるコンテンツを HTML
       として意図的に描画したい場合</strong>は、次のように <code>dangerouslySetInnerHTML</code>
       属性を使用します。</p>
-      <div class="sourceCode" id="cb50" data-caption="HTMLをサニタイズせずに出力する例"><pre
-      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb50-1"><a href="#cb50-1"></a>{<span class="co">/* &lt;div&gt;{post.content}&lt;/div&gt; */</span>}</span>
-<span id="cb50-2"><a href="#cb50-2"></a><span class="op">&lt;</span>div dangerouslySetInnerHTML<span class="op">=</span>{{ __html<span class="op">:</span> post<span class="op">.</span><span class="at">content</span> }} <span class="op">/&gt;</span></span></code></pre></div>
+      <div class="sourceCode" id="cb52" data-caption="HTMLをサニタイズせずに出力する例"><pre
+      class="sourceCode numberSource ts numberLines"><code class="sourceCode typescript"><span id="cb52-1"><a href="#cb52-1"></a>{<span class="co">/* &lt;div&gt;{post.content}&lt;/div&gt; */</span>}</span>
+<span id="cb52-2"><a href="#cb52-2"></a><span class="op">&lt;</span>div dangerouslySetInnerHTML<span class="op">=</span>{{ __html<span class="op">:</span> post<span class="op">.</span><span class="at">content</span> }} <span class="op">/&gt;</span></span></code></pre></div>
       <p>実際に、<code>src/app/_components/PostSummary.tsx</code>
       を書き換えて、<code>post.content</code> の <code>&lt;br/&gt;</code>
       が「<strong>改行</strong>」に置き換わって表示されることを確認してください。</p>
       <p>なお、改行や太字/斜線/下線などの <strong>特定のタグだけを許可</strong> し、それ以外のタグ
       (例えば <code>&lt;script&gt;</code> などの危険なタグ) は削除したいときには
-      <code>dompurify</code> (Next.jsでバックエンドでも使用する可能性があるのであれば
-      <code>isomorphic-dompurify</code>)
-      などの<strong>ライブラリを使用</strong>します。今回は、次のコマンドで
-      <code>isomorphic-dompurify</code>
+      <code>dompurify</code> (Next.js でバックエンドでも使用する可能性があるのであれば
+      <code>isomorphic-dompurify</code>) などの<strong>ライブラリを使用</strong>します。</p>
+      <p>ここでは、次のコマンドで <code>isomorphic-dompurify</code>
       を追加してください。詳しい使い方は生成AIなどで調べてください。</p>
-      <pre><code>npm i --save-exact isomorphic-dompurify@4.6.0</code></pre>
+      <div class="sourceCode" id="cb53"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i <span class="at">--save-exact</span> isomorphic-dompurify@4.6.0</span></code></pre></div>
       <p>このバージョンには Node.js 22.22.2 以降の 22 系列、24.15.0 以降の 24 系列、または 26
       以降が必要です。連絡欄で案内したセキュリティアップデートを適用して進めてください。</p>
-      <ul>
-      <li>XSS脆弱性については、来年前期の「知能情報実験実習2」の<a
-      href="https://takeshiwada1980.github.io/Eii2-2025/">前期テーマ</a>で扱います。</li>
-      </ul>
+      <div class="balloon char-01 face-05 tone-blue">
+      <p>XSS (Cross-Site Scripting) 脆弱性については、次年度の「知能情報実験実習2」の <a
+      href="https://takeshiwada1980.github.io/Eii2-2026/">前期テーマ</a> で扱います。</p>
+      </div>
       <p><strong>(プロンプト例)</strong></p>
       <blockquote>
       <p>TypeScript を採用した Next.js 環境において、<code>isomorphic-dompurify</code>
       を利用し、HTMLコンテンツから「改行」と「太字・斜線・下線」以外のタグを削除したいです。どのようにすればよいですか。</p>
       </blockquote>
-      <h3 data-number="7.4.1" id="定着確認-9"><span class="header-section-number">7.4.1</span>
+      <h3 data-number="7.4.1" id="定着確認-11"><span class="header-section-number">7.4.1</span>
       定着確認</h3>
       <ul>
-      <li>ウェブアプリにおいて、HTMLコンテンツに含まれる可能性のある「悪意のあるスクリプト」や「HTMLタグ」を無害化し、XSS攻撃を防ぐための処理のことを何というか答えよ。英語またはカタカナで答えること。
+      <li>ウェブアプリにおいて、HTMLコンテンツに含まれる可能性のある「悪意のあるスクリプト」や「HTMLタグ」を無害化し、XSS
+      攻撃を防ぐための処理のことを何というか答えよ。英語またはカタカナで答えること。
       <ul>
       <li>答え: <span class="masked">「サニタイズ (サニタイゼーション)」「sanitize
       (sanitization)」</span></li>
@@ -1841,45 +2226,109 @@ Ok to proceed? (y)</code></pre>
       <li>答え: <span class="masked">「クロスサイト・スクリプティング攻撃」「Cross-Site
       Scripting攻撃」</span></li>
       </ul></li>
+      <li><code>post.content</code> が <code>"前半&lt;br/&gt;後半"</code>
+      という文字列のとき、<code>&lt;div&gt;{post.content}&lt;/div&gt;</code>
+      の表示として、適切なものを1つ選べ。
+      <ul>
+      <li>① 「前半」と「後半」の間で改行される。</li>
+      <li>② <code>前半&lt;br/&gt;後半</code> と、タグも文字として表示される。</li>
+      <li>③ タグだけが削除され、<code>前半後半</code> と表示される。</li>
+      <li>④ 文字列に HTML タグが含まれるため、React のエラーになる。
+      <ul>
+      <li>答え: <span class="masked">②。文字列として渡した内容はエスケープされ、HTML
+      タグとして解釈されない。</span></li>
+      </ul></li>
+      </ul></li>
+      <li>「dangerouslySetInnerHTML を使えば、渡した HTML に含まれる危険なタグや属性は、React
+      が自動的に取り除いてくれる。」という説明は適切か、不適切か。
+      <ul>
+      <li>答え: <span class="masked">不適切。dangerouslySetInnerHTML
+      自体にサニタイズ機能はない。安全性を確認していない HTML をそのまま渡すと、XSS
+      の危険がある。</span></li>
+      </ul></li>
+      <li>「post.content が文字列の場合、DOMPurify.sanitize(post.content)
+      を一度呼び出せば、返り値を使わずに元の post.content を dangerouslySetInnerHTML
+      に渡しても、サニタイズ済みの内容が表示される。」という説明は適切か、不適切か。
+      <ul>
+      <li>答え: <span class="masked">不適切。サニタイズされた文字列は返り値として得られる。元の
+      post.content は書き換わらないため、描画にはサニタイズの返り値を使う。</span></li>
+      </ul></li>
+      <li>DOMPurify の <code>ALLOWED_TAGS</code> に <code>["b", "br"]</code>
+      を指定し、<code>&lt;b&gt;重要&lt;/b&gt;&lt;br&gt;&lt;img src="x" onerror="alert(1)"&gt;</code>
+      をサニタイズした結果として、適切なものを1つ選べ。ただし、それ以外の設定は変更していないものとする。
+      <ul>
+      <li>① <code>重要</code></li>
+      <li>② <code>&lt;b&gt;重要&lt;/b&gt;&lt;br&gt;&lt;img src="x"&gt;</code></li>
+      <li>③ <code>&lt;b&gt;重要&lt;/b&gt;&lt;br&gt;</code></li>
+      <li>④ <code>&lt;b&gt;重要&lt;/b&gt;&lt;br&gt;&lt;img src="x" onerror="alert(1)"&gt;</code>
+      <ul>
+      <li>答え: <span class="masked">③。許可した b と br は残り、許可していない img
+      はタグごと削除される。</span></li>
+      </ul></li>
+      </ul></li>
+      <li>「isomorphic-dompurify は、サーバ側とブラウザ側で DOMPurify
+      を同じような書き方で利用できるようにするためのライブラリである。」という説明は適切か、不適切か。
+      <ul>
+      <li>答え: <span class="masked">適切。ブラウザと Node.js で異なる DOMPurify
+      の初期化処理をライブラリ側が扱う。</span></li>
+      </ul></li>
       </ul>
       <h3 data-number="7.4.2" id="演習-宿題-80分"><span class="header-section-number">7.4.2</span>
       演習 (宿題: <i class="fa-solid fa-stopwatch"></i> 80分)</h3>
       <p>次のように「投稿日」と「カテゴリ」が表示されるように
       <code>src/app/_components/PostSummary.tsx</code>
       をアップデートしてください。<strong>「レイアウト」や「デザイン
-      (装飾)」は各自で自由に設計してください</strong>。必要に応じて <code>dummyPosts.ts</code>
-      にデータを追加してください。</p>
+      (装飾)」は各自で自由に設計してください</strong>。</p>
+      <ul>
+      <li>必要に応じて <code>dummyPosts.ts</code> に検証用のデータを追加してください。</li>
+      </ul>
       <figure>
       <img src="figs/06/app_09.png" alt="img" />
       <figcaption aria-hidden="true">img</figcaption>
       </figure>
       <ul>
-      <li><p>日付の表示には、次のコマンドで <code>dayjs</code>
-      を追加してください。<code>isomorphic-dompurify</code> は前の節で追加したものを使います。</p>
-      <pre><code>npm i --save-exact dayjs@1.11.23</code></pre></li>
+      <li><p>日時の表示整形には、次のコマンドで <code>dayjs</code>
+      をインストールして、それを利用してください。</p>
+      <div class="sourceCode" id="cb54"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> i <span class="at">--save-exact</span> dayjs@1.11.23</span></code></pre></div></li>
       <li><p>本文は <strong>最大で「3行」まで表示</strong> されるようにしてください
       (4行以上になる場合は <code>...</code> で省略する)。</p>
       <ul>
       <li>ヒント: <span class="masked">Tailwind CSS の <code>line-clamp-3</code>
       を利用すると便利です</span></li>
       </ul></li>
-      <li><p><strong>EX (任意)</strong>: <code>src/app/page.tsx</code>
-      にボタンなどのUIを追加し、「日付の新しい順」「日付の古い順」に記事概要を並び替える処理を実装してください。</p></li>
-      <li><p><strong>EX (任意)</strong>: 同様に、カテゴリによるフィルタ機能 (絞り込み機能)
-      を実装してください。例えば <code>TypeScript</code>
-      のカテゴリタグがついている記事だけを一覧で表示するなど。</p></li>
-      <li><p>実装例は<a
-      href="codes/06/code03.tsx">こちら<i class="fa-solid fa-person-chalkboard"></i></a>を参照してください。</p></li>
+      </ul>
+      <div class="prompts">
+      <ul>
+      <li>Tailwind CSS の <code>line-clamp-3</code>
+      とは、どのようなスタイリング機能を持ったユーティリティクラスですか。</li>
+      </ul>
+      </div>
+      <div class="balloon char-01 face-02 tone-yellow">
+      <ul>
+      <li><strong>中級者向けミッション (任意)</strong>: <code>src/app/page.tsx</code>
+      にボタンなどのUIを追加し、「日付の新しい順」「日付の古い順」に記事概要を並び替える処理を実装してみてください。</li>
+      <li><strong>中級者向けミッション (任意)</strong>: 同様に、カテゴリによるフィルタ機能
+      (絞り込み機能) を実装してみてください。
+      <ul>
+      <li>例えば「TypeScript」のカテゴリタグがついている記事だけを一覧で表示するなど。</li>
+      </ul></li>
+      </ul>
+      </div>
+      <ul>
+      <li>実装例は <a
+      href="https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/06/code03.tsx">こちら<i class="fa-solid fa-person-chalkboard"></i></a>
+      を参照してください。</li>
       </ul>
       <h2 data-number="7.5" id="最後の動作確認"><span class="header-section-number">7.5</span>
       最後の動作確認</h2>
       <p>開発サーバを停止し、次のコマンドを順に実行してください。</p>
-      <pre><code>npm run lint
-npm run build
-npm run start</code></pre>
-      <p>Lint とビルドでエラーが出ないことを確認し、本番モードで <code>http://localhost:3000/</code>
-      と <code>http://localhost:3000/about</code>
-      にアクセスしてください。記事一覧・投稿日・カテゴリ・改行、アバター画像、ヘッダのリンクを確認してください。ブラウザのコンソールにもエラーが出ていないことを確認し、最後に
+      <div class="sourceCode" id="cb55"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run lint</span>
+<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run build</span>
+<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a><span class="ex">npm</span> run start</span></code></pre></div>
+      <p>リント と ビルド でエラーが出ないことを確認し、本番モードで
+      <code>http://localhost:3000/</code> と <code>http://localhost:3000/about</code>
+      にアクセスしてください。記事一覧・投稿日・カテゴリ・改行、アバター画像、ヘッダのリンクを確認してください。</p>
+      <p>ブラウザのコンソール (デベロッパーツール) にもエラーが出ていないことを確認し、最後に
       <code>Ctrl+C</code> でサーバを停止してください。</p>
       <!-- ---------------------------------------- -->
     </main>

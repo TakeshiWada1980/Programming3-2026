@@ -25,7 +25,7 @@ const PostSummary: React.FC<Props> = (props) => {
               className={cn(
                 "rounded-md px-2 py-0.5",
                 "text-xs font-bold",
-                "border border-slate-400 text-slate-500"
+                "border border-slate-400 text-slate-500",
               )}
             >
               {category.name}
@@ -33,7 +33,7 @@ const PostSummary: React.FC<Props> = (props) => {
           ))}
         </div>
       </div>
-      <div className="mb-1 text-lg font-bold">{post.title}</div>
+      <div className="mb-1 text-lg font-semibold">{post.title}</div>
       <div
         className="line-clamp-3"
         dangerouslySetInnerHTML={{ __html: safeHTML }}
