@@ -328,6 +328,13 @@
 
   function setupCodeBlocks() {
     document.querySelectorAll("div.sourceCode").forEach((div) => {
+      if (div.hasAttribute("data-caption") && !div.querySelector(":scope > .code-caption")) {
+        const caption = document.createElement("div");
+        caption.className = "code-caption";
+        caption.textContent = div.getAttribute("data-caption");
+        div.prepend(caption);
+      }
+
       const startFrom = Number.parseInt(div.getAttribute("data-startfrom"), 10);
       if (Number.isFinite(startFrom)) {
         div.style.counterReset = `pg-line ${startFrom - 1}`;

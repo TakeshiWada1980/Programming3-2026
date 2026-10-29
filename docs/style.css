@@ -277,15 +277,17 @@ div.sourceCode {
   counter-reset: pg-line;
 }
 
-div.sourceCode[data-caption]::before {
+div.sourceCode > .code-caption {
   font-family:
     "JetBrains Mono", "SFMono-Regular", Consolas, "Liberation Mono", Menlo,
     Courier, monospace;
   display: block;
   padding-left: 20px;
+  padding-right: 2.5em;
   background: var(--code-pg-foreground);
   color: var(--code-pg-background);
-  content: attr(data-caption);
+  cursor: text;
+  user-select: text;
 }
 
 /* ------- プログラムコード::行番号 ------- */
@@ -1290,7 +1292,7 @@ div.sourceCode:has(> pre:is(.powershell, .bash)) {
   background: transparent;
 }
 
-div.sourceCode:has(> pre:is(.powershell, .bash))[data-caption]::before {
+div.sourceCode:has(> pre:is(.powershell, .bash)) > .code-caption {
   background: #071a35;
   color: #f1f5f9;
 }
