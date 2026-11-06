@@ -14,7 +14,7 @@ var:
 
 ### 課題1について
 
-[課題1](lecture05.html#課題1)<font size=-1>～ ぼくのかんがえたさいきょうのTodoアプリ ～</font> の提出期限は「**11月19日 (水) 23時**」です。
+[課題1](lecture05.html#課題1)<font size=-1>～ ぼくのかんがえたさいきょうのTodoアプリ ～</font> の提出期限は「**11月19日 (木) 18時**」です。
 
 ### 今後の授業の流れ
 
@@ -35,11 +35,13 @@ var:
 
 トップページに表示される「記事一覧」のなかの各記事をクリックすると、**記事詳細ページに遷移する機能** や **外部サイトに配置した画像を表示する機能** を実装していきます。
 
+<!-- 【要撮り直し】記事一覧と記事詳細の完成イメージ。2026年度版の PostSummary (投稿日・カテゴリ表示あり) と投稿データで撮影する。 -->
+
 ![img](figs/07/app_03.png)
 
 ここでは `/posts/[id]` というパスにアクセスすると「記事の詳細 (全文)」と「カバーイメージ (画像)」が表示されるように実装していきます。
 
-ところで Next.js において、URLパスのなかの `[id]` のような表記は <span class="masked">パラメータプレースホルダ</span> とよばれ、そこには **動的に値が入ること** を意味します。具体的には、次のように[投稿記事のID](https://github.com/TakeshiWada1980/Programming3-2024/blob/main/docs/codes/06/dummyPosts.ts)を表す文字列が `[id]` の部分に埋め込まれるようなURLパターンを `/posts/[id]` のように表記します。
+ところで Next.js において、URLパスのなかの `[id]` のような表記は <span class="masked">パラメータプレースホルダ</span> とよばれ、そこには **動的に値が入ること** を意味します。具体的には、次のように[投稿記事のID](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/06/dummyPosts.ts)を表す文字列が `[id]` の部分に埋め込まれるようなURLパターンを `/posts/[id]` のように表記します。
 
 - 投稿1 `/posts/36b7c693-4cce-4d73-afa3-acb54a404290`
 - 投稿2 `/posts/24f932b8-231b-429b-b9dc-569f07ba16a7`
@@ -47,12 +49,12 @@ var:
 
 ### ハイパーリンクの追加
 
-詳細記事へのリンクを実装するために、まずは `PostSummary.tsx` (前回講義で作成済み) の JSX のなかに ``<Link href={`/posts/${post.id}`}>...</Link>`` という **ハイパーリンク設定** を追加してください。Linkコンポーネントは「文字列」だけではなく、次のように <span class="masked">div要素</span> を**子要素**にすることもできます (そのdiv要素内の領域であれば、どこをクリックしてもリンクするように設定できます)。
+詳細記事へのリンクを実装するために、まずは **PostSummary.tsx** (前回講義で作成済み) の JSX のなかに ``<Link href={`/posts/${post.id}`}>...</Link>`` という **ハイパーリンク設定** を追加してください。Linkコンポーネントは「文字列」だけではなく、次のように <span class="masked">div要素</span> を**子要素**にすることもできます (そのdiv要素内の領域であれば、どこをクリックしてもリンクするように設定できます)。
 
 ```ts{.numberLines caption="src/app/_components/PostSummary.tsx (抜粋・実装例)"}
 {/* ファイルの先頭で「Linkコンポーネント」のインポートが必要です */}
 <Link href={`/posts/${post.id}`}>
-  <div className="mb-1 text-lg font-bold">{post.title}</div>
+  <div className="mb-1 text-lg font-semibold">{post.title}</div>
   <div
     className="line-clamp-3"
     dangerouslySetInnerHTML={{ __html: safeHTML }}
@@ -60,7 +62,7 @@ var:
 </Link>
 ```
 
-上記 **第02行目** の ``href={`/posts/${post.id}`}`` により `post.id` **に応じて動的にハイパーリンク先を設定** していることを確認してください。なお、**Linkコンポーネントのインポート** については、既に実装済みの `Header.tsx` を参照してください。
+上記 **第02行目** の ``href={`/posts/${post.id}`}`` により `post.id` **に応じて動的にハイパーリンク先を設定** していることを確認してください。なお、**Linkコンポーネントのインポート** については、既に実装済みの **Header.tsx** を参照してください。
 
 上記の変更ができたら、現時点でハイパーリンクが機能すること (=**記事概要をクリックするとブラウザのアドレスバーの「URLパス」が変化すること**) を確認してください。また、リンク先のコンテンツが存在しないときに、どのようになるのかも実際に確認してください。
 
@@ -70,11 +72,13 @@ var:
 
 リンク先のコンテンツ (= **記事詳細ページのコンテンツ**) を作成していきます。
 
-まずは、次のような構成になるようにプロジェクトにフォルダを追加してください。つまり、`/src/app` のなかに `posts` フォルダを作成して、さらに、そのなかに `[id]` フォルダを作成してください。前回講義でも解説したように Next.js では <span class="masked">フォルダ構成が、そのまま「URLパス」に対応する仕組み</span> となるため、フォルダの「**名前設定**」や「**階層構造**」には十分に注意を払ってください。
+まずは、次のような構成になるようにプロジェクトにフォルダを追加してください。つまり、**/src/app** のなかに **posts** フォルダを作成して、さらに、そのなかに **[id]** フォルダを作成してください。前回講義でも解説したように Next.js では <span class="masked">フォルダ構成が、そのまま「URLパス」に対応する仕組み</span> となるため、フォルダの「**名前設定**」や「**階層構造**」には十分に注意を払ってください。
+
+<!-- 【要撮り直し】VSCode のエクスプローラで src/app/posts/[id]/page.tsx を作成した状態。2026年度版のプロジェクト構成 (about、_components、_mocks、_types など) に合わせる。 -->
 
 ![img](figs/07/vscode_01.png)
 
-次に `[id]` フォルダのなかに `page.tsx` というファイルを作成して、URLパスの `[id]` に対応した記事詳細を表示 (例えば、`[id]` が `36b7c693-4cce-4d73-afa3-acb54a404290` であれば「**投稿1**」を表示) するためのコードを記述してください。
+次に **[id]** フォルダのなかに **page.tsx** というファイルを作成して、URLパスの `[id]` に対応した記事詳細を表示 (例えば、`[id]` が `36b7c693-4cce-4d73-afa3-acb54a404290` であれば「**投稿1**」を表示) するためのコードを記述してください。
 
 ```ts{.numberLines caption="src/app/posts/[id]/page.tsx"}
 "use client";
@@ -92,7 +96,7 @@ import DOMPurify from "isomorphic-dompurify";
 // 投稿記事の詳細表示 /posts/[id]
 const Page: React.FC = () => {
   const [post, setPost] = useState<Post | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   // 動的ルートパラメータから 記事id を取得 （URL:/posts/[id]）
   const { id } = useParams() as { id: string };
@@ -101,7 +105,6 @@ const Page: React.FC = () => {
   useEffect(() => {
     // 本来はウェブAPIを叩いてデータを取得するが、まずはモックデータを使用
     // (ネットからのデータ取得をシミュレートして１秒後にデータをセットする)
-    setIsLoading(true);
     const timer = setTimeout(() => {
       console.log("ウェブAPIからデータを取得しました (虚言)");
       // dummyPosts から id に一致する投稿を取得してセット
@@ -143,7 +146,7 @@ const Page: React.FC = () => {
             alt="Example Image"
             width={post.coverImage.width}
             height={post.coverImage.height}
-            priority
+            preload
             className="rounded-xl"
           />
         </div>
@@ -163,6 +166,8 @@ export default Page;
 
 ...になります。
 
+また、**第16行目** の `isLoading` は、ページを開いた時点ではデータの取得がまだ始まっていないので、初期値を `true` にしています (`false` にすると、ページを開いた直後に一瞬だけ「指定idの投稿の取得に失敗しました。」が表示されてしまいます)。
+
 
 #### パラメータプレースホルダの処理
 
@@ -179,19 +184,19 @@ const { categoryId, postId } = useParams() as { categoryId: string; postId: stri
 
 ---
 
-なお、`useSearchParams` や `useLocation` というHooksも存在します。`useParams` との違いは生成AIを使って解決してください。
+なお、`useSearchParams` というHookも存在します (React Router という別のライブラリには `useLocation` というHookもあります)。`useParams` との違いは生成AIを使って解決してください。
 
-**(プロンプト例)**
-
-> React (Next.js) における useParams と useSearchParams、useLocation の「違い」や「使い分け」について解説してください。
+::: prompts
+- Next.js (App Router) を学習中の学生です。useParams と useSearchParams の「違い」や「使い分け」について、URL の例を使って解説してください。また、React Router の useLocation は Next.js でも使うのか教えてください。
+:::
 
 #### findメソッドによる検索
 
-`id` と一致する記事の取得は、配列操作メソッドの `find` を使って  **第29行目** で行なっています。`filter` は条件を満たす要素の「**配列**」を戻り値としていましたが、`find` は条件を満たす <span class="masked">単一の要素 (配列の先頭からチェックして一番初めに条件を満たした単一の要素)</span> を戻り値とします。なお、条件に一致する要素が存在しなかったときは `undefined` を返します。
+`id` と一致する記事の取得は、配列操作メソッドの `find` を使って **第28行目** で行なっています。`filter` は条件を満たす要素の「**配列**」を戻り値としていましたが、`find` は条件を満たす <span class="masked">単一の要素 (配列の先頭からチェックして一番初めに条件を満たした単一の要素)</span> を戻り値とします。なお、条件に一致する要素が存在しなかったときは `undefined` を返します。
 
 ここでは、idに該当する記事が存在しないことを `undefined` ではなく `null` を使って扱いたいので、次のようにしています。これにより `dummyPosts.find((post) => post.id === id)` の結果が `undefined` のとき、`setPost(null)` となります。
 
-```ts{.numberLines caption="src/app/posts/[id]/page.tsx (抜粋)" startFrom=29}
+```ts{.numberLines caption="src/app/posts/[id]/page.tsx (抜粋)" startFrom=28}
 setPost(dummyPosts.find((post) => post.id === id) || null);
 ```
 
@@ -206,7 +211,7 @@ if (foundPost !== undefined) {
 }
 ```
 
-<div class="note type-tips">
+::: {.note .type-tips}
 **「null」と「undefined」の使い分けについて**
 
 `null` と `undefined` は、条件式の内部で単体で評価すると同じ結果（falsyな値）になるなど同じような挙動を示すことがありますが、実際には **両者には様々な差異** があります。そして、慣れないうちは、実際問題として `null` **と** `undefined` **の使い分けが難しい** という場面が多々あります。
@@ -219,58 +224,54 @@ if (foundPost !== undefined) {
 - `null` は **開発者が意図的に「値が存在しない」ことを表現したい場合** に使用する
 
 両者の違いや、使い分けについては、時間があるときに生成AIを利用して (学習の段階に応じて) 徐々に理解を深めていってください。
-</div>
+:::
 
 #### 不正なidを受け取ったときの処理
 
-ウェブブラウザのアドレスバーにURLが直接入力された場合などは、**不正なid** を受け取ることがあります。**第48行目** から **第50行目** は、そのような場合に対処する実装となります。
+ウェブブラウザのアドレスバーにURLが直接入力された場合などは、**不正なid** を受け取ることがあります。**第47行目** から **第49行目** は、そのような場合に対処する実装となります。
+
+<!-- 【要撮り直し】存在しない id にアクセスしたときの表示 (「指定idの投稿の取得に失敗しました。」)。2026年度版アプリで撮影する。 -->
 
 ![img](figs/07/app_05.png)
  
 #### 動作確認と画像取得に関する設定変更
 
-`src/app/posts/[id]/page.tsx` を作成、保存したら開発モードで動作を確認してください。トップページの記事概要から詳細ページに移動すると、次のようなエラーが発生します。
+**src/app/posts/[id]/page.tsx** を作成、保存したら開発モードで動作を確認してください。トップページの記事概要から詳細ページに移動すると、次のようなエラーが発生します。
+
+<!-- 【要撮り直し】外部画像のホスト名が next.config.ts に未設定のときのエラー画面。Next.js 16 の表示とエラーメッセージで撮影する。 -->
 
 ![img](figs/07/app_02.png)
 
-これは、エラーメッセージから読み取れるように (`public`フォルダなどのプロジェクト内部に配置した画像ではなく) <span class="masked">外部サイトから画像を取得して表示しようとしていること</span> に起因します。Next.js のデフォルト設定では、「セキュリティ」と「パフォーマンス最適化」の観点から **外部からの画像の読込みが制限** されるようになっています。
+これは、エラーメッセージから読み取れるように (**public** フォルダなどのプロジェクト内部に配置した画像ではなく) <span class="masked">外部サイトから画像を取得して表示しようとしていること</span> に起因します。Next.js のデフォルト設定では、「セキュリティ」と「パフォーマンス最適化」の観点から **外部からの画像の読込みが制限** されるようになっています。
 
-**(プロンプト例)**
+::: prompts
+- Next.js の Image コンポーネントで外部サイトの画像を表示しようとしたところ、next.config.ts に設定が必要というエラーになりました。外部からの画像の読込みがデフォルトで制限されているのは、セキュリティやパフォーマンスの観点から、どのような理由があるのですか。
+:::
 
-> Next.js のデフォルト設定では、外部からの画像の読込みが制限されています。この理由について教えてください。
+外部からの画像の読込みを許可するためには、プロジェクトフォルダの直下に配置されている **next.config.ts** を変更します。[前回講義](lecture06.html#next.jsにおける画像の表示)で、`placehold.jp` と `avataaars.io` を許可する設定を追加しました。今回は、記事のカバーイメージが置かれている `w1980.blob.core.windows.net` を **remotePatterns** に追加してください。
 
-外部からの画像の読込みを許可するためには、プロジェクトフォルダの直下に配置されている `next.config.ts` を次のように変更します。
-
-```js{.numberLines caption="next.config.ts (特定の外部オリジンからの画像の読込みの許可)"}
+```ts{.numberLines caption="next.config.ts (特定の外部オリジンからの画像の読込みの許可)"}
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  cacheComponents: false,
   devIndicators: false,
-  images: {
-    remotePatterns: [
-      { protocol: "https", hostname: "w1980.blob.core.windows.net" },
-    ],
+  turbopack: {
+    rules: {
+      "*.css": {
+        loaders: ["@tailwindcss/turbopack"],
+        as: "*.css",
+      },
+    },
   },
-};
-
-export default nextConfig;
-```
-
-複数のサイトを設定したいときは、次のように設定します。
-
-[placehold.jp](https://placehold.jp)は、<span class="masked">指定したサイズでダミー画像 (モックアップ用の画像)</span> を生成してくれるウェブサービスとなっています。ウェブアプリ開発の初期段階で非常に役立つサービスなので覚えておいてください。
-
-```js{.numberLines caption="next.config.ts"}
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  /* config options here */
-  devIndicators: false,
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "w1980.blob.core.windows.net" },
       { protocol: "https", hostname: "placehold.jp" },
+      {
+        protocol: "https",
+        hostname: "avataaars.io",
+      },
+      { protocol: "https", hostname: "w1980.blob.core.windows.net" }, // ◀ 追加
     ],
   },
 };
@@ -278,8 +279,9 @@ const nextConfig: NextConfig = {
 export default nextConfig;
 ```
 
+**next.config.ts** の変更後は、稀に**ホットリロードが効かないこと**があります。そのときは、開発サーバを停止してから、再度、起動して動作を確認してください。今度は、記事詳細ページのなかで次のように画像が表示されるはずです。
 
-`next.config.ts` の変更後は、稀に**ホットリロードが効かないこと**があります。そのときは、開発サーバを停止してから、再度、起動して動作を確認してください。今度は、記事詳細ページのなかで次のように画像が表示されるはずです。
+<!-- 【要撮り直し】詳細ページにカバーイメージが表示された状態。2026年度版アプリ (Image の preload 指定など) で撮影する。 -->
 
 ![img](figs/07/app_01.png)
 
@@ -289,7 +291,7 @@ export default nextConfig;
 
 ## ウェブから記事データを取得
 
-ここまではモック (`src/app/_mocks/dummyPosts.ts`) からブログ記事のデータを取得して利用してきましたが、これを <span class="masked">ウェブAPIを使ってバックエンドから取得できる</span> ようにアップデートしていきます。
+ここまではモック (**src/app/_mocks/dummyPosts.ts**) からブログ記事のデータを取得して利用してきましたが、これを <span class="masked">ウェブAPIを使ってバックエンドから取得できる</span> ようにアップデートしていきます。
 
 ### ウェブAPIとは
 
@@ -300,6 +302,8 @@ export default nextConfig;
 [郵便番号検索API](https://zipcloud.ibsnet.co.jp/doc/api)は、利用に際して **HTTPヘッダに認証情報等を付加する必要がないので**、ブラウザから直接利用することができます。Chromeのアドレスバーに次のURLを入力すると、以下のようにJSONフォーマットのレスポンスを得ることができます。
 
 - `https://zipcloud.ibsnet.co.jp/api/search?zipcode=572-0832`
+
+<!-- 【要確認】ブラウザのアドレスバーで郵便番号検索APIを開いた画面。現在のAPIの応答・ブラウザの表示と一致するか確認し、必要なら撮り直す。 -->
 
 ![img](figs/07/api_01.png)
 
@@ -312,7 +316,7 @@ URL (URI) のなかで `?` 以降の部分を <span class="masked">クエリパ�
 
 **2個以上のパラメータ**を指定する場合は `&` で区切ります。例えば、`limit=5` というパラメータを追加したい場合は <span class="masked">`?zipcode=999-9999&limit=5`</span> のようにクエリパラメータを与えます。
 
-<div class="note type-tips">
+::: {.note .type-tips}
 **URLエンコード**
 
 クエリパラメータに、日本語やスペース、記号などの特殊文字を使用したい場合があります。しかし、このような文字をそのままURLに使用すると問題が発生する可能性があるため、<span class="masked">URLエンコード (パーセントエンコード)</span> という処理で安全な文字列に変換する必要があります。
@@ -322,7 +326,7 @@ URL (URI) のなかで `?` 以降の部分を <span class="masked">クエリパ�
 以下のURLは `tbm=isch` と `q=大阪` というクエリパラメータを与えている例となります (「tbm=isch」は画像検索のためのパラメータになります)。
 
 - `https://www.google.com/search?tbm=isch&q=%E5%A4%A7%E9%98%AA`
-</div>
+:::
 
 
 ### 郵便番号検索APIの組込み
@@ -331,9 +335,11 @@ Next.js のコンポーネントのなかで、[郵便番号検索API](https://z
 
 具体的には `http://localhost:3000/playground/zip-code/572-0832` というパスにアクセスしたとき、次のような画面が表示されるように設計・実装していきます。
 
+<!-- 【要撮り直し】/playground/zip-code/572-0832 の表示。2026年度版アプリ (Next.js 16) で撮影する。 -->
+
 ![img](figs/07/app_04.png)
 
-まずは `src/app` に `playground` というフォルダを作成して、そこに `zip-code` というサブフォルダを作成してください。さらに `zip-code` のなかに `[code]` というフォルダを作成して、そこに `page.tsx` を作成してください。
+まずは **src/app** に **playground** というフォルダを作成して、そこに **zip-code** というサブフォルダを作成してください。さらに **zip-code** のなかに **[code]** というフォルダを作成して、そこに **page.tsx** を作成してください。
 
 ```
 📂 src/app/
@@ -343,7 +349,7 @@ Next.js のコンポーネントのなかで、[郵便番号検索API](https://z
             └─ page.tsx
 ```
 
-`page.tsx` には、以下のコードを記述してください。
+**page.tsx** には、以下のコードを記述してください。
 
 ```ts{.numberLines caption="src/app/playground/zip-code/[code]/page.tsx"}
 "use client";
@@ -356,10 +362,11 @@ const Page: React.FC = () => {
   const [response, setResponse] = useState<string>("APIからデータを取得中...");
 
   useEffect(() => {
-    const fetchAddressFromZipCode  = async () => {
+    const fetchAddressFromZipCode = async () => {
       // ウェブAPIにGETリクエストを送信してレスポンスを取得
       const requestUrl = `${endpoint}?zipcode=${code}`;
-      const response = await fetch(requestUrl, { // ◀◀ 注目
+      const response = await fetch(requestUrl, {
+        // ◀◀ 注目
         method: "GET",
         cache: "no-store", // キャッシュを利用しない
       });
@@ -370,7 +377,7 @@ const Page: React.FC = () => {
       setResponse(JSON.stringify(parsedData, null, 2));
     };
 
-    fetchAddressFromZipCode (); // 関数を実行
+    fetchAddressFromZipCode(); // 関数を実行
   }, [code]);
 
   return (
@@ -389,31 +396,33 @@ export default Page;
 
 はじめに開発モードで起動して、`http://localhost:3000/playground/zip-code/572-0832` にアクセスして、意図したように機能することを確認してください。
 
+<!-- 【要撮り直し】/playground/zip-code/572-0832 の表示。2026年度版アプリ (Next.js 16) で撮影する。 -->
+
 ![img](figs/07/app_04.png)
 
-このコードのなかで注目すべき箇所は **第10行目** から **第26行目** にかけての `useEffect` の処理になります。
+このコードのなかで注目すべき箇所は **第10行目** から **第27行目** にかけての `useEffect` の処理になります。
 
 メインとなるデータ取得の処理は `useEffect(() => {...},[code])` のなかに記述されており、**Pageコンポーネントが読み込まれたとき (マウントされたとき)** と、`code` が変更されたとき **だけ**、APIからのデータ取得が実行されるようになっています。
 
 
-`useEffect` の内部では、**第11行目** から **第23行目** にかけて `fetchAddressFromZipCode` がアロー関数形式で定義され、それが **第25行目** で呼び出されています。`fetchAddressFromZipCode` の内部では `async` と `await` という<span class="masked">「非同期処理」を取り扱うためのキーワード</span> が使用されています (非同期処理の詳細は次のセクションで解説します)。そして、ウェブAPIからデータを取得するメイン処理は **第14行目** の `fetch` という組み込み関数で行なわれています。
+`useEffect` の内部では、**第11行目** から **第24行目** にかけて `fetchAddressFromZipCode` がアロー関数形式で定義され、それが **第26行目** で呼び出されています。`fetchAddressFromZipCode` の内部では `async` と `await` という<span class="masked">「非同期処理」を取り扱うためのキーワード</span> が使用されています (非同期処理の詳細は次のセクションで解説します)。そして、ウェブAPIからデータを取得するメイン処理は **第14行目** の `fetch` という組み込み関数で行なわれています。
 
 「fetch」とは、ウェブアプリの文脈では <span class="masked">データを外部から取得する</span> や <span class="masked">リモートのリソースを読み込んでくる</span> という意味になります。関数 `fetch` の **第1引数** にはウェブAPI の URL (エンドポイントとも呼ばれます) を与え、**第2引数** にはリクエストのオプション設定を与えます。
 
 ---
 
 
-なお、**第33行目** の `<pre>...</pre>` は、**Preformatted Text** (整形済みテキスト) のためのタグで、タグに囲まれた子要素の内容を <span class="masked">「スペース」や「改行」などをそのままに、等幅フォントで</span> 出力する機能を持ちます。
+なお、**第34行目** の `<pre>...</pre>` は、**Preformatted Text** (整形済みテキスト) のためのタグで、タグに囲まれた子要素の内容を <span class="masked">「スペース」や「改行」などをそのままに、等幅フォントで</span> 出力する機能を持ちます。
 
 #### 演習 (<i class="fa-solid fa-stopwatch"></i> 5分) 
 
-**第33行目** の `<pre>` タグを以下のように `<div>` タグに書き換えて、画面表示がどのように変化するか確認してください。
+**第34行目** の `<pre>` タグを以下のように `<div>` タグに書き換えて、画面表示がどのように変化するか確認してください。
 
-```ts{.numberLines caption="src/app/playground/zip-code/[code]/page.tsx (抜粋・変更前)" startFrom=32}
+```ts{.numberLines caption="src/app/playground/zip-code/[code]/page.tsx (抜粋・変更前)" startFrom=34}
 <pre className="rounded-md bg-green-100 p-3 text-sm">{response}</pre>
 ```
 
-```ts{.numberLines caption="src/app/playground/zip-code/[code]/page.tsx (抜粋・変更後)" startFrom=32}
+```ts{.numberLines caption="src/app/playground/zip-code/[code]/page.tsx (抜粋・変更後)" startFrom=34}
 <div className="rounded-md bg-green-100 p-3 text-sm">{response}</div>
 ```
 
@@ -421,9 +430,9 @@ export default Page;
 
 ここでは「**同期処理**」や「**非同期処理**」の概要について学んでいきます。
 
-<div class="note type-caution">
+::: {.note .type-caution}
 **注意**: ここでは **正確性・厳密性をある程度犠牲にして、分かりやすさを優先した解説**になることを了承ください。詳しいことについては、ウェブや生成AIを利用して理解を深めてください。
-</div>
+:::
 
 アプリ開発の文脈において「**同期処理**」や「**非同期処理**」とは <span class="masked">プログラム (タスク) の実行順序についての制御方式</span> を指す用語になります。ざっくりと言えば、同期処理は「**順次実行**」、非同期処理は <span class="masked">「並列実行」</span> を基本とした制御方式になります。
 
@@ -445,7 +454,7 @@ export default Page;
 
 ```ts{.numberLines caption="src/app/playground/sync/page.tsx"}
 "use client";
-import { twMerge } from "tailwind-merge";
+import { cn } from "cn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 
@@ -472,9 +481,9 @@ const Page: React.FC = () => {
         <button
           type="button"
           onClick={syncProcess}
-          className={twMerge(
+          className={cn(
             "rounded-md px-3 py-1",
-            "bg-indigo-500 font-bold text-white hover:bg-indigo-600"
+            "bg-indigo-500 font-bold text-white hover:bg-indigo-600",
           )}
         >
           同期処理の実行
@@ -512,6 +521,8 @@ export default Page;
 
 そして、画面内の「**同期処理の実行**」を押下したとき (つまり **第28行目** の設定によって、関数 `syncProcess` がコールされたとき)、デベロッパーツールのコンソールに <span class="masked">どのような順序で、どのようなログが出力されるか</span> について少し考えてみてください。これは同期処理なので、難しく考えず普通に素直に考えてもらってOKです。
 
+<!-- 【要撮り直し】/playground/sync の初期表示 (歯車アイコンとチェックボックス)。2026年度版アプリで撮影する。 -->
+
 ![img](figs/07/sync_01.png)
 
 コンソール出力がどのようになるか、予測できたでしょうか。実際に「同期処理の実行」のボタンを押下して結果を確認してみてください。次のような結果となるはずです。
@@ -530,15 +541,15 @@ export default Page;
 
 ### 処理時間を要するタスクを同期処理で扱うときの問題
 
-次に `src/app/playground/sync/page.tsx` を次のように書き換えてください。**第11行目** の `heavySyncTask` は、**処理時間を要するタスク** (実行完了までに時間のかかるタスク) を疑似的にシミュレートしている関数になります。
+次に **src/app/playground/sync/page.tsx** を次のように書き換えてください。**第11行目** の `heavySyncTask` は、**処理時間を要するタスク** (実行完了までに時間のかかるタスク) を疑似的にシミュレートしている関数になります。
 
 この「**処理時間を要するタスク**」とは、フロントエンド開発で言えば具体的には <span class="masked">ウェブAPIからのデータの取得</span> や、大量のデータを処理する計算、複雑なDOM操作などが相当します。
 
-`page.tsx` を書き換えたら、先ほどと同様に「**同期処理の実行**」のボタンを押下したとき、どのようなコンソール出力が得られるかを考え、その後、実際に実行してみてください。
+**page.tsx** を書き換えたら、先ほどと同様に「**同期処理の実行**」のボタンを押下したとき、どのようなコンソール出力が得られるかを考え、その後、実際に実行してみてください。
 
 ```ts{.numberLines caption="src/app/playground/sync/page.tsx"}
 "use client";
-import { twMerge } from "tailwind-merge";
+import { cn } from "cn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 
@@ -550,7 +561,7 @@ const syncTask = (name: string) => {
 const heavySyncTask = (workload: number) => {
   // なんらかの重たい処理が実行されると仮定
   const startTime = Date.now();
-  while (Date.now() - startTime < workload) { }
+  while (Date.now() - startTime < workload) {}
   const ret = Math.floor(Math.random() * 10);
   console.log("同期処理 heavySyncTask が完了しました");
   return ret;
@@ -584,6 +595,8 @@ const Page: React.FC = () => {
 
 そして、もうひとつ、`syncProcess` の **実行が完了するまで** は <span class="masked">チェックボックスをクリックしても応答しなくなってしまうこと</span> も確認してください。このようにフリーズしたような状態というのは、ユーザ体験 (UX) を著しく悪化させることになります。
 
+<!-- 【要撮り直し】同期処理の実行中に画面が固まっている様子を説明する図。2026年度版アプリで撮影する。 -->
+
 ![img](figs/07/sync_02.png)
 
 ### 同期処理で問題が起こる原因
@@ -603,13 +616,13 @@ const Page: React.FC = () => {
 
 ### 非同期処理
 
-以上に示したような同期処理の問題 (ブロッキング) を回避するために、JavaScript には **非同期処理の仕組み** が用意されています。まずは、実際に実装して、その動作を確認してみます。新規に `src/app/playground/async/page.tsx` を作成して、以下のコードを記述してください。
+以上に示したような同期処理の問題 (ブロッキング) を回避するために、JavaScript には **非同期処理の仕組み** が用意されています。まずは、実際に実装して、その動作を確認してみます。新規に **src/app/playground/async/page.tsx** を作成して、以下のコードを記述してください。
 
 全体構造は、先ほどの同期処理と同じですが、**第11行目** の `heavyAsyncTask` 関数が大きく書き換わっています。`heavyAsyncTask` は `async` キーワードが付けられた <span class="masked">非同期処理を含んだ関数</span> となっています (非同期処理の本体部分は **第12行目** です)。
 
 ```ts{.numberLines caption="src/app/playground/async/page.tsx"}
 "use client";
-import { twMerge } from "tailwind-merge";
+import { cn } from "cn";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGear } from "@fortawesome/free-solid-svg-icons";
 
@@ -644,9 +657,9 @@ const Page: React.FC = () => {
         <button
           type="button"
           onClick={asyncProcess}
-          className={twMerge(
+          className={cn(
             "rounded-md px-3 py-1",
-            "bg-indigo-500 font-bold text-white hover:bg-indigo-600"
+            "bg-indigo-500 font-bold text-white hover:bg-indigo-600",
           )}
         >
           非同期処理の実行
@@ -681,6 +694,8 @@ export default Page;
 ```
 
 `/playground/async` にアクセスして「**非同期処理の実行**」のボタンを押下してみてください。デベロッパーツールのコンソール出力は次のような結果となったはずです。
+
+<!-- 【要撮り直し】非同期処理の実行後のコンソール出力。ログ文言とあわせて2026年度版アプリで撮影する。 -->
 
 ![img](figs/07/async_01.png)
 
@@ -721,7 +736,7 @@ const Page: React.FC = () => {
 
 なお、`syncTask("処理2")` も、`heavyAsyncTask` の完了を待ってから実行したい場合、次のように記述することができます。
 
-```ts{.numberLines caption="src/app/playground/async/page.tsx (抜粋)" startFrom=19}
+```ts{.numberLines caption="src/app/playground/async/page.tsx (抜粋)" startFrom=18}
 const Page: React.FC = () => {
   const asyncProcess = async () => { // ◀ async キーワードの追加
     console.log("関数 asyncProcess を開始");
@@ -736,7 +751,7 @@ const Page: React.FC = () => {
 
 #### 演習 (<i class="fa-solid fa-stopwatch"></i> 10分) 
 
-`await` は、`async` キーワードをつけた関数のなかでのみ使用できます。**20行目** の `async` キーワードを削除すると、どのようなエラーが発生するか確認してください。
+`await` は、`async` キーワードをつけた関数のなかでのみ使用できます。**第19行目** の `async` キーワードを削除すると、どのようなエラーが発生するか確認してください。
 
 ### 改めて郵便番号検索APIの利用処理を確認
 
@@ -744,10 +759,11 @@ const Page: React.FC = () => {
 
 ```ts{.numberLines caption="src/app/playground/zip-code/[code]/page.tsx (再掲・抜粋)" startFrom=10}
 useEffect(() => {
-  const fetchAddressFromZipCode  = async () => {
+  const fetchAddressFromZipCode = async () => {
     // ウェブAPIにGETリクエストを送信してレスポンスを取得
     const requestUrl = `${endpoint}?zipcode=${code}`;
-    const response = await fetch(requestUrl, { // ◀◀ 注目
+    const response = await fetch(requestUrl, {
+      // ◀◀ 注目
       method: "GET",
       cache: "no-store", // キャッシュを利用しない
     });
@@ -758,21 +774,23 @@ useEffect(() => {
     setResponse(JSON.stringify(parsedData, null, 2));
   };
 
-  fetchAddressFromZipCode (); // 関数を実行
+  fetchAddressFromZipCode(); // 関数を実行
 }, [code]);
 ```
 
 - **第11行目** で `async` キーワードを付けているのは、その内部で `await` を使用するためです。
 
-- **第14行目** で `await fetch (...)` としているのは `fetch` が「**非同期処理**」であり、なおかつ、その完了を待ってから **第18行目** を実行したいためです。
+- **第14行目** で `await fetch (...)` としているのは `fetch` が「**非同期処理**」であり、なおかつ、その完了を待ってから **第19行目** を実行したいためです。
 
-- **第21行目** で `await response.json()` としているのは、`json()` メソッドが「**非同期処理**」で実装されており、<span class="masked">その完了を待って (=その「戻り値」を使って) 後続の`setResponse`を実行したいため</span> です。
+- **第22行目** で `await response.json()` としているのは、`json()` メソッドが「**非同期処理**」で実装されており、<span class="masked">その完了を待って (=その「戻り値」を使って) 後続の`setResponse`を実行したいため</span> です。
 
 なお、`json()` メソッドは HTTP/HTTPSレスポンスのボディ部が**JSONフォーマットであることを前提に**オブジェクトへの変換を行います。関数やメソッドが「**非同期処理かどうか**」は、VSCodeのエディタ上でカーソルをあわせて表示されるツールチップで、その関数/メソッドの「戻り値」が `Promise<...>` であるかで判断できます。
 
+<!-- 【要撮り直し】VSCode で fetch や json() にカーソルを合わせたときのツールチップ (戻り値が Promise であること)。現在の VSCode・TypeScript の表示で撮影する。 -->
+
 ![img](figs/07/async_02.png)
 
-最後に、**第11行目** で `fetchAddressFromZipCode` をアロー関数形式で定義して、それを **第25行目** でコールするという (面倒な) 手続きをしているのは、<span class="masked">useEffect のなかには、非同期処理を直接書くことができない</span> という仕様のためです。
+最後に、**第11行目** で `fetchAddressFromZipCode` をアロー関数形式で定義して、それを **第26行目** でコールするという (面倒な) 手続きをしているのは、<span class="masked">useEffect のなかには、非同期処理を直接書くことができない</span> という仕様のためです。
 
 #### 演習 (<i class="fa-solid fa-stopwatch"></i> 5分) 
 
@@ -795,16 +813,18 @@ useEffect(async () => {
 
 ## ブログ記事のデータをウェブから取得
 
-ウェブAPIからJSONフォーマットのデータを取得し、それをオブジェクトに変換する処理について学んだので、これをブログアプリに適用してみたいと思います。ブログ記事の一覧がJSONフォーマットで取得可能なエンドポイントとして、以下を用意したので、これを利用してきます。
+ウェブAPIからJSONフォーマットのデータを取得し、それをオブジェクトに変換する処理について学んだので、これをブログアプリに適用してみたいと思います。ブログ記事の一覧がJSONフォーマットで取得可能なエンドポイントとして、以下を用意したので、これを利用していきます。
 
 - [https://w1980.blob.core.windows.net/pg3/posts.json](https://w1980.blob.core.windows.net/pg3/posts.json)
 
 
 まずは、ブラウザからアクセスしてJSON形式で記事データが取得可能なことを確認してください。こちらには「投稿4」が追加されています。
 
+<!-- 【要確認】ブラウザで posts.json を開いた画面。ホスト先の JSON (投稿4を含む) の内容と一致するか確認する。 -->
+
 ![img](figs/07/app_06.png)
 
-トップページ (`src/app/page.tsx`) の実装を次のように変更して、ウェブから記事が取得することができることを確認してください。基本的には、ここまでに学んできたことの組み合わせになります。
+トップページ (**src/app/page.tsx**) の実装を次のように変更して、ウェブから記事が取得することができることを確認してください。基本的には、ここまでに学んできたことの組み合わせになります。
 
 ```ts{.numberLines caption="src/app/page.tsx (ウェブから記事を取得)"}
 "use client";
@@ -833,7 +853,7 @@ const Page: React.FC = () => {
         setPosts(data);
       } catch (e) {
         setFetchError(
-          e instanceof Error ? e.message : "予期せぬエラーが発生しました"
+          e instanceof Error ? e.message : "予期せぬエラーが発生しました",
         );
       }
     };
@@ -870,6 +890,8 @@ export default Page;
 
 実行すると次のような結果が得られると思います。
 
+<!-- 【要撮り直し】Web から取得した記事一覧 (投稿4を含む)。2026年度版 PostSummary の表示で撮影する。 -->
+
 ![img](figs/07/app_07.png)
 
 ここまでの実装で、このブログアプリに**「閲覧者」としてアクセスしたとき**のフロントエンド処理の本質的な実装が**概ね完了**したことになります (ただし**「投稿者」としてアクセスしたとき**のフロントエンドは、まだ実装できていません)。
@@ -884,6 +906,8 @@ CMS とは <span class="masked">Content Management System</span> の頭文字を
 
 [microCMS](https://microcms.io/)は、このようなヘッドレスCMSに分類されるサービスになります。microCMS を利用すると、次のように **「ブログ投稿者」としての投稿記事の作成や編集** は microCMSのサイトで行なって、**「閲覧者」としての投稿記事の取得** はウェブAPIで行なって「ビュー や UI は React を使って自分で自由にデザイン・実装する」という使い方が可能になります。
 
+<!-- 【要確認】microCMS を利用するときの全体イメージ図。現在の microCMS の画面・用語、2026年度版アプリの画面に合わせるか確認する。 -->
+
 ![img](figs/07/cms_00.png)
 
 皆さんには、後期中間試験後にバックエンドについても Next.js で実装してもらいますが、[microCMS](https://microcms.io/)などのヘッドレスCMSと連携すれば、現段階のフロントエンドの実装だけでも実用的なブログアプリとしてリリースすることができます。
@@ -896,9 +920,13 @@ CMS とは <span class="masked">Content Management System</span> の頭文字を
 
 ブログ記事のコンテンツの作成・管理・公開のサービスを作成していきます。画面内の「**＋追加**」を押下してください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_01.png)
 
 「**1から作成する**」を選択してください。
+
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
 
 ![img](figs/07/cms_02.png)
 
@@ -906,9 +934,13 @@ CMS とは <span class="masked">Content Management System</span> の頭文字を
 
 - ここでは **サービス名** は `next-blog-app` と設定する想定で進めます。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_03.png)
 
 「**サービスにアクセスする**」のボタンを押下してください。
+
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
 
 ![img](figs/07/cms_04.png)
 
@@ -916,19 +948,27 @@ CMS とは <span class="masked">Content Management System</span> の頭文字を
 
 - もし「APIを作成」のページになっていなければ、左パネルの「**コンテンツ (API)**」の右隣の <i class="fa-solid fa-ellipsis-vertical"></i> を押下して「**＋新しいAPIを作成**」の項目を押下してください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_05.png)
 
 API管理用の名前 (**API名**) と、そのAPIを利用するための**エンドポイント** (URL) を設定します。ここでは「**ブログ記事の一覧を取得するためのAPI**」を作成するので、エンドポイントは `posts` に設定します。完了したら、画面右下の「**次へ**」を押下します。
+
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
 
 ![img](figs/07/cms_06.png)
 
 記事の「**一覧**」を取得するためのAPIを作成するので「**リスト形式**」を選択して、画面右下の「**次へ**」を押下します。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_07.png)
 
-次のように **APIのスキーマ** (＝構造) を定義します。これは `src/app/_types/Post.ts` で定義した**「Post型」に対応させるように設定**していきます ([参照](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/07/code02.ts))。なお、画面上で説明されているように `id` や `createdAt` は自動的に作成されるので、ここで項目を作成する必要はありません。
+次のように **APIのスキーマ** (＝構造) を定義します。これは **src/app/_types/Post.ts** で定義した**「Post型」に対応させるように設定**していきます ([参照](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/07/code02.ts))。なお、画面上で説明されているように `id` や `createdAt` は自動的に作成されるので、ここで項目を作成する必要はありません。
 
 また、カテゴリ (`categories`) については、<u>あとのステップで追加</u>します。
+
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
 
 ![img](figs/07/cms_08.png)
 
@@ -940,6 +980,8 @@ API管理用の名前 (**API名**) と、そのAPIを利用するための**エ�
 
 - ブラウザの画面幅が狭いと、下図の <font color="deeppink">❷</font> の「**＋追加**」ボタンが隠れているので注意してください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_09.png)
 
 APIのスキーマ (構造) で設定した項目 (=タイトル、本文、カバーイメージ) の入力フォームが表示されるので、自由にコンテンツを作成してください (見本のとおりに入力する必要はありません)。
@@ -948,17 +990,25 @@ APIのスキーマ (構造) で設定した項目 (=タイトル、本文、カ�
 
 入力が完了したら右上の「**公開**」のボタンを押下してください。「**コンテンツを公開します。よろしいですか？**」というアラートが表示されるので「OK」を押下してください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_10.png)
 
 もし、以下のダイアログが表示されたら「**APIプレビューを開く**」のボタンを押下してください。
+
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
 
 ![img](figs/07/cms_11.png)
 
 上記のダイアログが表示されなかったときは、次の操作で **APIプレビュー** を開いてください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_12.png)
 
 APIプレビューでは、<u>このブログ記事の一覧を取得するためのAPIのエンドポイント (URL)</u> と、認証のためにHTTPリクエストの **Header** に付加しなければならない `X-MICROCMS-API-KEY` の値が表示されます。基本的には `X-MICROCMS-API-KEY` は <u>公開すべき値ではないので注意</u>してください (とはいえ、フロントエンドからHTTPリクエストを送るので、ちょっと工夫すれば覗けてしまう値ですが…)。
+
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
 
 ![img](figs/07/cms_13.png)
 
@@ -968,13 +1018,15 @@ APIプレビューでは、<u>このブログ記事の一覧を取得するた�
 
 このあとの作業で使用するので、**サービスID** と `X-MICROCMS-API-KEY` (**APIキー**) の値、`contentId` (**投稿記事のID**) の値を、適当なファイルにメモしておいてください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_26.png)
 
-**(プロンプト例)**
+::: prompts
+- APIエンドポイントとはなんですか。
 
-> APIエンドポイントとはなんですか。
-
-> APIエンドポイントにアクセスする際には `X-MICROCMS-API-KEY` を設定してください、と言われました。何が要求されていますか。
+- APIエンドポイントにアクセスする際には `X-MICROCMS-API-KEY` を設定してください、と言われました。何が要求されていますか。
+:::
 
 ### APIの利用テスト
 
@@ -983,6 +1035,8 @@ APIプレビューでは、<u>このブログ記事の一覧を取得するた�
 これは Chrome などのウェブブラウザからでも確認できそうですが、HTTPリクエストの **Header に** `X-MICROCMS-API-KEY` **という項目でAPIキーを設定する必要があるため**、ブラウザのアドレスバーにエンドポイントを入力するだけでは、APIの正常な応答が確認できません。
 
 実際にウェブブラウザにエンドポイント `https://サービスID.microcms.io/api/v1/posts/` を入力してみてください。以下のような応答が返ってきます。
+
+<!-- 【要確認】ブラウザでエンドポイントを直接開いたときの応答 (APIキーなし)。現在の microCMS の応答・ブラウザの表示と一致するか確認する。 -->
 
 ![img](figs/07/vscode_03.png)
 
@@ -994,6 +1048,8 @@ APIプレビューでは、<u>このブログ記事の一覧を取得するた�
 なお、個人開発などで、
 既に他の RESTクライアントツール を使い慣れている場合は、それを継続で使用してください。httpYacを別途導入する必要はありません。
 
+<!-- 【要確認】VSCode・httpYac の画面。現在の拡張機能の表示と一致するか確認し、必要なら撮り直す。 -->
+
 ![img](figs/07/vscode_04.png)
 
 インストールが完了したら、プロジェクトフォルダのルートに、次のようなフォルダとファイルを新規作成してください。
@@ -1004,7 +1060,7 @@ APIプレビューでは、<u>このブログ記事の一覧を取得するた�
     └─ MicroCMS.http
 ```
 
-`MicroCMS.http` に次のような内容を記述して保存してください。なお、**第03行目**から**第05行目** には、さきほどメモした値を設定してください。
+**MicroCMS.http** に次のような内容を記述して保存してください。なお、**第03行目**から**第05行目** には、さきほどメモした値を設定してください。
 
 ```txt{.numberLines caption="devtools/httpYac/MicroCMS.http"}
 # [Ctrl]+[Alt]+[R] で各セクションを実行
@@ -1022,15 +1078,19 @@ GET https://{{service_id}}.microcms.io/api/v1/posts/{{post_id}}
 X-MICROCMS-API-KEY : {{api_key}}
 ```
 
-<div class="note type-tips">
-`MicroCMS.http` には、APIキーなどの情報を含むので、Git管理の対象から外します (GitHubにプッシュしないようにします)。`.gitignore` に `devtools/httpYac` を追記しておいてください。
-</div>
+::: {.note .type-tips}
+**MicroCMS.http** には、APIキーなどの情報を含むので、Git管理の対象から外します (GitHubにプッシュしないようにします)。**.gitignore** に **devtools/httpYac** を追記しておいてください。
+:::
 
 ファイルを保存したら、まずは「**全投稿の取得**」のセクションの `send` のボタン (下図参照) を押下してください (あるいは、当該セクションにカーソルがある状態で `[Ctrl]+[Alt]+[R]` を押下してください)。
+
+<!-- 【要確認】VSCode・httpYac の画面。現在の拡張機能の表示と一致するか確認し、必要なら撮り直す。 -->
 
 ![img](figs/07/vscode_08.png)
 
 これにより、指定のエンドポイントに HTTPリクエスト が送信されて、HTTPレスポンス が返ってきます。
+
+<!-- 【要確認】VSCode・httpYac の画面。現在の拡張機能の表示と一致するか確認し、必要なら撮り直す。 -->
 
 ![img](figs/07/vscode_09.png)
 
@@ -1041,10 +1101,10 @@ X-MICROCMS-API-KEY : {{api_key}}
   "contents": [
     {
       "id": "yyyyyy",
-      "createdAt": "2025-11-14T09:37:22.652Z",
-      "updatedAt": "2025-11-14T09:37:22.652Z",
-      "publishedAt": "2025-11-14T09:37:22.652Z",
-      "revisedAt": "2025-11-14T09:37:22.652Z",
+      "createdAt": "2026-11-13T09:37:22.652Z",
+      "updatedAt": "2026-11-13T09:37:22.652Z",
+      "publishedAt": "2026-11-13T09:37:22.652Z",
+      "revisedAt": "2026-11-13T09:37:22.652Z",
       "title": "投稿1",
       "content": "<p>春はあけぼの。</p><p>やうやう白くなりゆく...</p>",
       "coverImage": {
@@ -1060,19 +1120,31 @@ X-MICROCMS-API-KEY : {{api_key}}
 }
 ```
 
-また、このレスポンスから、microCMSにアップロードした画像は `https://images.microcms-assets.io/assets/...` に配置されることが分かります。この画像は、カバーイメージとして記事詳細のページのなかで読み込む予定なので `next.config.ts` のなかに「**画像読込みを許可するサイト**」として `images.microcms-assets.io` を追加しておいてください。
+また、このレスポンスから、microCMSにアップロードした画像は `https://images.microcms-assets.io/assets/...` に配置されることが分かります。この画像は、カバーイメージとして記事詳細のページのなかで読み込む予定なので **next.config.ts** のなかに「**画像読込みを許可するサイト**」として `images.microcms-assets.io` を追加しておいてください。
 
-```js{.numberLines caption="next.config.ts (画像読込み許可サイトの追加)"}
+```ts{.numberLines caption="next.config.ts (画像読込み許可サイトの追加)"}
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
+  cacheComponents: false,
   devIndicators: false,
+  turbopack: {
+    rules: {
+      "*.css": {
+        loaders: ["@tailwindcss/turbopack"],
+        as: "*.css",
+      },
+    },
+  },
   images: {
     remotePatterns: [
-      { protocol: "https", hostname: "w1980.blob.core.windows.net" },
       { protocol: "https", hostname: "placehold.jp" },
-      { protocol: "https", hostname: "images.microcms-assets.io" },
+      {
+        protocol: "https",
+        hostname: "avataaars.io",
+      },
+      { protocol: "https", hostname: "w1980.blob.core.windows.net" },
+      { protocol: "https", hostname: "images.microcms-assets.io" }, // ◀ 追加
     ],
   },
 };
@@ -1082,17 +1154,21 @@ export default nextConfig;
 
 さらに、レスポンスが表示されているタブの上部の `HTTP/1.1 200 - OK` の部分をクリックすると...
 
+<!-- 【要確認】VSCode・httpYac の画面。現在の拡張機能の表示と一致するか確認し、必要なら撮り直す。 -->
+
 ![img](figs/07/vscode_11.png)
 
 バックグラウンドで送受信された生の「HTTPリクエスト」と「HTTPレスポンス」をヘッダを含めて確認することができます。
+
+<!-- 【要確認】VSCode・httpYac の画面。現在の拡張機能の表示と一致するか確認し、必要なら撮り直す。 -->
 
 ![img](figs/07/vscode_10.png)
 
 #### 演習 (<i class="fa-solid fa-stopwatch"></i> 8分) 
 
-- `MicroCMS.http` の `### 単投稿の取得` のセクションから、「投稿記事 (単体) のデータ」が取得できることを確認してください。
+- **MicroCMS.http** の `### 単投稿の取得` のセクションから、「投稿記事 (単体) のデータ」が取得できることを確認してください。
 
-- `MicroCMS.http` の `@service_id`、`@api_key`、`@post_id` に誤りがあると、それぞれ、どのようなレスポンスになるか実際に確認してください。
+- **MicroCMS.http** の `@service_id`、`@api_key`、`@post_id` に誤りがあると、それぞれ、どのようなレスポンスになるか実際に確認してください。
   - `@service_id` に誤り 👉 <span class="masked">404 - Not Found</span>
   - `@api_key` に誤り 👉 <span class="masked">401 - Unauthorized</span>
   - `@post_id` に誤り 👉 <span class="masked">404 - Not Found</span>
@@ -1101,48 +1177,72 @@ export default nextConfig;
 
 つづいて microCMS に「カテゴリ」を作成して、さきほどの「**ブログ記事**」の属性として設定できるようにしていきます。左パネルの「**コンテンツ (API)**」の右隣の <i class="fa-solid fa-ellipsis-vertical"></i> を押下して「**＋新しいAPIを作成**」の項目を押下してください。さらに、APIを作成の「自分で決める」のボタンを押下してください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_14.png)
 
 次のように設定してください。投稿記事のときもそうでしたが、データの配列を取得するエンドポイントは `categories` のように **複数形** にすることが一般的になります。設定できたら画面下部の「次へ」を押下してください。
+
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
 
 ![img](figs/07/cms_15.png)
 
 「**リスト形式**」を選択してください。設定できたら画面下部の「次へ」を押下してください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_16.png)
 
-次のようにカテゴリAPIのスキーマ (構造) を定義します。これは `src/app/_types/Category.ts` で定義した **「Category型」に対応させるように設定** していきます。設定できたら画面右下の「**作成**」を押下して確定します。
+次のようにカテゴリAPIのスキーマ (構造) を定義します。これは **src/app/_types/Category.ts** で定義した **「Category型」に対応させるように設定** していきます。設定できたら画面右下の「**作成**」を押下して確定します。
+
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
 
 ![img](figs/07/cms_17.png)
 
 作成したフィールドに、実際にカテゴリのコンテンツ (`TypeScript` や `React` など) を追加していきます。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_18.png)
 
 とりあえず、適当に2個ほどカテゴリに設定する値 (`TypeScript` や `React` など) を自由に追加してください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_19.png)
+
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
 
 ![img](figs/07/cms_27.png)
 
 
 「**ブログ記事**」の属性として、「**カテゴリ**」を設定できるようにAPIスキーマ (構造) を変更していきます。画面から「**ブログ記事**」を選択して、「**API設定**」を選択してください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_20.png)
 
 「**APIスキーマ**」を選択して、「**＋フィールドを追加**」を選択してください。
+
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
 
 ![img](figs/07/cms_21.png)
 
 次のように設定してください。ひとつの「ブログ記事」に複数個のカテゴリが設定できるように、「**種類**」の設定値は「**複数コンテンツ参照**」としてください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_22.png)
 
 次のダイアログが表示されるので `Categories` を選択して「**決定**」を押下してください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_22-1.png)
 
 ダイアログが閉じて元の設定画面に戻るので「**変更する**」を押下します。さらに、次のような**確認ダイアログ**が表示されるので、画面の指示に従って「**変更する**」を実行してください。
+
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
 
 ![img](figs/07/cms_23.png)
 
@@ -1150,9 +1250,13 @@ export default nextConfig;
 
 作成済みの「ブログ記事」に「カテゴリ」の属性を設定していきます。左パネルの「**ブログ記事**」から、さきほど作成したブログ記事 (ステータスが「公開中」になっているもの) を選択して編集モードに切り替え、次の図のように**カテゴリ**の「**追加**」ボタンを押下してください。
 
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
+
 ![img](figs/07/cms_24.png)
 
 任意のカテゴリを選択して、「**公開**」のボタンを押下してください。
+
+<!-- 【要確認】microCMS の管理画面。現在の画面・ボタン名・文言と一致するか確認し、異なる場合は撮り直す。 -->
 
 ![img](figs/07/cms_25.png)
 
@@ -1164,7 +1268,7 @@ httpYac を使って `https://[ServiceID].microcms.io/api/v1/posts/` からデ�
 
 エンドポイント `https://[ServiceID].microcms.io/api/v1/categories/` から「**カテゴリ一覧**」が取得できることを確認してください。
 
-- [MicroCMS.httpの記述例](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/07/code03.http)
+- [MicroCMS.httpの記述例](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/07/code03.http)
   - まずは、自分で記述してから参照してください。
 
 ## ブログアプリとmicroCMSの連携
@@ -1179,6 +1283,8 @@ httpYac を使って実験したように、microCMS の API を利用するた�
 
 先のセクションで取得した APIキー は (設定を変更しない限りは) 以下のようにブログ記事の **GET (READ) 権限のみ** を持つ設定となっているため、大して問題にはなりませんが、**編集や削除といった権限を持ったAPIキー**が流出・漏洩すると不正利用され実害が生じます。
 
+<!-- 【要確認】APIキーの権限設定画面。現在の microCMS の管理画面と一致するか確認し、必要なら撮り直す。 -->
+
 ![img](figs/07/cms_2_01.png)
 
 そこで、一般に認証情報などは <span class="masked">環境変数</span> に格納して管理することが推奨されています。**環境変数**とは OSやシェル環境で設定される変数のことで、プログラムから参照することができます。環境変数を利用する方法には、以下のようなメリットがあります。
@@ -1187,17 +1293,17 @@ httpYac を使って実験したように、microCMS の API を利用するた�
 2. **柔軟な管理**：開発環境と本番環境で異なる値を設定できる
 3. **安全な共有**：チーム開発時もソースコードのみを共有できる
 
-<div class="note type-caution">
+::: {.note .type-caution}
 **注意**
 
 ここでは、**フロントエンドのプログラムで「APIキー」を参照**します。フロントエンドプログラムは**ブラウザで実行されるため**、たとえ環境変数に設定したAPIキーであっても、デベロッパーツールを使うと簡単に値 (APIキーの文字列) を取得できてしまいます。
 
 そのため、フロントエンドで使用するAPIキーには、**参照 (GET) 権限のみを付与**し、編集・削除などの権限は与えないように注意してください。逆に言えば、編集・削除などの権限を持ったAPIキーは <span class="masked">バックエンドのみで使用</span> するようにしてください。
-</div>
+:::
 
-Next.js の開発では環境変数の設定に `.env` ファイルを利用します。このファイルは `.gitignore` に追加し、**Gitによるバージョン管理から除外**します。既に[前回講義](lecture06.html#gitignore)で `.gitignore` に `.env` を設定済みですが、再度、確認してください。
+Next.js の開発では環境変数の設定に **.env** ファイルを利用します。このファイルは **.gitignore** に追加し、**Gitによるバージョン管理から除外**します。既に[前回講義](lecture06.html#gitignore)で **.gitignore** に `.env*` を設定済みですが、再度、確認してください。
 
-確認ができたら、プロジェクトフォルダの直下に `.env` というファイルを作成して、以下の設定を記述して保存してください。`XXXXX` にはサービスID、`YYYYY` には APIキー を記述してください (ダブルクォーテーションで囲む必要はありません)。通常、環境変数は **アッパースネークケース** で名前をつけます。
+確認ができたら、プロジェクトフォルダの直下に **.env** というファイルを作成して、以下の設定を記述して保存してください。`XXXXX` にはサービスID、`YYYYY` には APIキー を記述してください (ダブルクォーテーションで囲む必要はありません)。通常、環境変数は **アッパースネークケース** で名前をつけます。
 
 `#` から始まる行はコメント扱いとなります。<span class="masked">`=`の前後にスペースを入れると予期しない動作</span> を引き起こす可能性があります。
 
@@ -1219,7 +1325,7 @@ const apiKey = process.env.NEXT_PUBLIC_MICROCMS_API_KEY;
 
 ### ブログ記事一覧の表示
 
-microCMS からデータを取得するために `src/app/page.tsx` を次のように変更してください。変更後は、ホットリロードが機能しない場合があるので、そのときは、ブラウザで再読み込みを実行してください。
+microCMS からデータを取得するために **src/app/page.tsx** を次のように変更してください。変更後は、ホットリロードが機能しない場合があるので、そのときは、ブラウザで再読み込みを実行してください。
 
 ```ts{.numberLines caption="src/app/page.tsx (microCMSから)"}
 "use client";
@@ -1256,7 +1362,7 @@ const Page: React.FC = () => {
         setPosts(data.contents as Post[]);
       } catch (e) {
         setFetchError(
-          e instanceof Error ? e.message : "予期せぬエラーが発生しました"
+          e instanceof Error ? e.message : "予期せぬエラーが発生しました",
         );
       }
     };
@@ -1308,12 +1414,15 @@ httpYac を使って[事前確認](lecture07.html#apiの利用テスト)した�
 記事詳細のページについても、トップページと同様に microCMS からデータを取得して表示できるように実装しておいてください。
 
 - `https://[ServiceID].microcms.io/api/v1/posts/[投稿記事のid]` のエンドポイントを利用してください。
-- 画像の取得に失敗するときは `next.config.ts` の設定を確認してください。
-- どうしても実装できないときは[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2025/blob/main/docs/codes/07/code01.tsx)を参照してください。
+- 画像の取得に失敗するときは **next.config.ts** の設定を確認してください。
+- 実装できたら `npm run lint` を実行して、エラーが出ないことも確認してください。
+- どうしても実装できないときは[こちら<i class="fa-solid fa-person-chalkboard"></i>](https://github.com/TakeshiWada1980/Programming3-2026/blob/main/docs/codes/07/code01.tsx)を参照してください。
 
 ## 宿題
 
 次回の授業 (後期中間試験明け) では、バックエンド開発として **リレーショナルデータベース (RDB)** を扱います。[Progate](https://prog-8.com/)の「SQL 1」のセクション ([https://prog-8.com/lessons/sql/study/1](https://prog-8.com/lessons/sql/study/1)のうち無料利用可能なコンテンツ) を使って予習しておくことをお勧めします。20分程度で取り組むことができます。
+
+<!-- 【要確認】Progate「SQL 1」の画面。現在の Progate の表示と一致するか確認する。 -->
 
 ![img](figs/07/progate_01.png)
 
